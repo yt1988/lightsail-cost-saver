@@ -2,13 +2,20 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-A free, single-page calculator for Amazon Lightsail data transfer. Lightsail instances of the **same size in the same region share one transfer allowance pool**. The tool uses that rule to tell you whether this month is safe, how much overage you're heading for, and the cheapest number of extra instances that avoids it.
+If you run anything traffic-heavy on Lightsail, you've probably had one scary bill. Once a plan's included transfer runs out, overage costs $0.09/GB, about $92 per TB. Yet a $5 IPv6 instance comes with 2 TB of transfer, which works out to $2.50 per TB. Same terabyte, more than 30× the price.
 
-- One static HTML file: no backend, no build step
-- Your data stays in your browser (`localStorage`); export or import a JSON backup any time
-- 10 languages (English, 简体中文, 繁體中文, 日本語, 한국어, Español, Français, Deutsch, Português, Русский), detected automatically and switchable
-- Light, dark and system themes; works on phones
-- Prices for 19 AWS regions, refreshed from the AWS Price List API by a script
+What many people miss: **Lightsail instances of the same size in the same region share one transfer pool**. In a busy month you can add a few small instances and the pool grows with them; when traffic drops, delete them. Billing is hourly, so nothing is wasted.
+
+The hard part is doing the math. Will you go over this month? By how much? How many instances should you add, and when? How is a mid-month instance's allowance prorated? Can overage you've already hit be undone? The answers are scattered across AWS docs and forum threads, and it's easy to get them wrong by hand.
+
+This tool does that math for you. Enter what you've used so far this month, or just your expected monthly total, and it tells you:
+
+- **Whether this month is safe**: safe, overage expected, or already over, and how much extra you'd pay
+- **When the allowance runs out**, so you know how long you have to act
+- **The cheapest number of traffic instances to add**, added to your setup with one click
+- **What to run next month** at the current pace
+
+No sign-up. Open it and go; your data stays in your own browser. Available in 10 languages, with light and dark themes, and it works on phones.
 
 ## Features
 
