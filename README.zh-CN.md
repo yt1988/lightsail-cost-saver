@@ -238,3 +238,7 @@ wrangler.toml, vercel.json, netlify.toml
 - [流量额度 FAQ](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html)
 - [计费 FAQ](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html)
 - [AWS 服务条款](https://aws.amazon.com/service-terms/)
+
+## 许可证
+
+[MIT](LICENSE)
