@@ -1,0 +1,8 @@
+# Cloudflare / Netlify static headers: let agents and other sites read the public data and module.
+/calc.js
+  Access-Control-Allow-Origin: *
+/prices.json
+  Access-Control-Allow-Origin: *
+/llms.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8

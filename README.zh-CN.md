@@ -58,6 +58,24 @@
 
 结果仅为估算，以 AWS 账单为准。本工具不是 AWS 官方工具。
 
+## 搭配你的 AI Agent 使用
+
+仍然是纯静态、免费；计算在 Agent 那一端完成。
+
+- **带参数的链接**：Agent 可以生成类似 `https://ls.1ms.dog/?region=us-east-1&size=1&used=3150&nodes=1@2026-10-11T00:00Z` 的链接发给你，打开就会载入这套配置（你原来的数据会先备份，可一键恢复）。反过来，在页面的 **高级设置 → 复制配置链接** 可以把当前配置变成链接。
+- **给 Agent 看的说明**：[llms.txt](https://ls.1ms.dog/llms.txt) 写明了计费规则、链接参数和下面这个模块的用法。
+- **价格数据**：[prices.json](https://ls.1ms.dog/prices.json) 包含所有地区的套餐价格和超额单价。
+- **计算模块**：[calc.js](https://ls.1ms.dog/calc.js) 就是网页实际运行的那份计算代码，结果和页面完全一致。
+
+```js
+import { calculate } from "https://ls.1ms.dog/calc.js";
+const prices = await (await fetch("https://ls.1ms.dog/prices.json")).json();
+calculate({ region: "us-east-1", sizeGB: 1, usedGB: 3150 }, prices);
+// → { status: "overage-expected", overageCost: …, recommendation: { addTrafficInstances: 2, … }, … }
+```
+
+这几个文件允许任何网站跨域读取。`calc.js` 和 `prices.json` 由 `node scripts/build.mjs` 从 `public/index.html` 生成；`npm test` 会检查它们是否同步，并运行回归测试。
+
 ## 部署
 
 整个程序就是 `public/` 文件夹，任何静态托管都能用。下面是三种现成方式。
@@ -137,6 +155,10 @@ node scripts/set-site-url.mjs https://your-domain.example
 
 ```
 public/index.html                 整个程序（标志已内嵌，无外部图片）
+public/calc.js, prices.json      为 Agent 生成的计算模块和价格数据
+public/llms.txt                   给 Agent 看的使用说明
+scripts/build.mjs                 从页面重新生成 calc.js 和 prices.json
+scripts/test-calc.mjs             回归测试（npm test）
 scripts/update-prices.mjs         从 AWS Price List API 更新价格
 scripts/set-site-url.mjs          为你的域名生成 canonical / hreflang / sitemap / robots
 assets/                           1ms 标志母版（浅色、深色），留档用

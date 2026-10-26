@@ -1,0 +1,87 @@
+# AWS Lightsail Cost Saver
+
+> Free calculator for Amazon Lightsail data transfer. Lightsail instances of the same size in the same AWS Region share one transfer allowance pool. Given a setup and this month's usage (or a month-end forecast), it says whether the month is safe, how much overage to expect, and the cheapest number of extra same-size IPv6-only "traffic instances" to add. Everything runs client-side; there is no server API.
+
+- Web app: https://ls.1ms.dog/
+- Source: https://github.com/yt1988/lightsail-cost-saver
+- Prices (JSON): https://ls.1ms.dog/prices.json
+- Calculation module (ES module): https://ls.1ms.dog/calc.js
+
+## Billing rules the calculator applies
+
+- Inbound and outbound traffic both count against the allowance; only outbound traffic beyond it is charged (overage, USD per GB, varies by region).
+- Allowances pool across instances in the same region with the same bundle size; dual-stack and IPv6-only instances of one size pool together.
+- 1 TB = 1024 GB. The billing month is the UTC calendar month. Mumbai, Sydney, Jakarta, Malaysia, Hong Kong and São Paulo get half the allowance (already reflected in prices.json).
+- Instances are billed hourly; allowance for an instance that exists only part of the month is prorated by its lifetime.
+- Overage already incurred cannot be offset by adding instances later; new instances only cover traffic from when they start.
+- The base instance can be dual-stack or IPv6-only; traffic instances are always the base's size and IPv6-only (cheapest per TB).
+- Results are estimates; the AWS bill is final. Not an official AWS tool.
+
+## Option 1: send the user a pre-filled link
+
+Build a URL and give it to the user. Opening it loads the setup into their browser (their previous data is backed up and can be restored).
+
+```
+https://ls.1ms.dog/?region=us-east-1&size=1&used=3150&nodes=1@2026-10-11T00:00Z
+```
+
+| Param | Meaning | Example |
+|---|---|---|
+| `region` | AWS Region code | `us-east-1` |
+| `size` | base bundle RAM in GB: 0.5, 1, 2, 4, 8, 16, 32, 64 | `1` |
+| `ipv4` | `0` = base is IPv6-only (default dual-stack) | `0` |
+| `base` | base instance start (UTC ISO), default start of month | `2026-10-01T00:00Z` |
+| `used` | data used so far this month in GB (in + out) | `3150` |
+| `in`, `out` | used GB split by bill item (TotalDataXfer-In-Bytes / -Out-Bytes); summed | `150`, `3000` |
+| `at` | when `used` was read (UTC ISO), default now | `2026-10-26T06:00Z` |
+| `forecast` | expected month-end total GB; with no `used` this switches to full-month planning | `10000` |
+| `outpct` | share of traffic that is outbound, 0–100 (default 100) | `90` |
+| `prorate` | `0` = don't prorate mid-month allowance | `0` |
+| `nodes` | traffic instances, comma-separated `count@start[~end]` (UTC ISO) | `2@2026-10-20T00:00Z,1@2026-10-25T00:00Z~2026-10-28T00:00Z` |
+
+Add `lang=` (en, zh-CN, zh-TW, ja, ko, es, fr, de, pt, ru) to choose the interface language.
+
+## Option 2: compute the answer yourself
+
+In a browser, Deno, or any runtime that can import ES modules from a URL:
+
+```js
+import { calculate, buildLink } from "https://ls.1ms.dog/calc.js";
+const prices = await (await fetch("https://ls.1ms.dog/prices.json")).json();
+
+const input = {
+  region: "us-east-1",
+  sizeGB: 1,                // base bundle RAM
+  ipv4: true,               // base is dual-stack
+  usedGB: 3150,             // or inGB + outGB, or only forecastGB for a full-month plan
+  trafficInstances: [{ count: 1, start: "2026-10-11T00:00Z" }]
+};
+const result = calculate(input, prices);   // optional 3rd arg: "now" in ms
+const link = buildLink(input);             // the same setup as an Option 1 link
+```
+
+`calculate` returns plain JSON, the same numbers the web app shows:
+
+```json
+{
+  "mode": "actual-usage",
+  "status": "overage-expected",
+  "allowanceGB": 3435.35, "usedGB": 3150, "forecastGB": 3867.33,
+  "overageGB": 431.97, "overageCost": 38.88, "instanceCost": 10.38, "totalCost": 49.26,
+  "allowanceRunsOutAt": "2026-10-28T…Z", "unavoidableOverageGB": 0,
+  "recommendation": { "addTrafficInstances": 2, "startingAt": "2026-10-26T06:00:00.000Z",
+    "eachAddsGB": 379.87, "eachCosts": 0.93, "resultingCost": 1.85, "savesVsAddingNone": 37.02 },
+  "options": [{ "addTrafficInstances": 0, "instanceCost": 0, "overageCost": 38.88, "total": 38.88 }, "…"],
+  "nextMonth": { "trafficInstances": 1, "monthlyCost": 12 }
+}
+```
+
+- `mode`: `actual-usage` (usage given), `full-month-plan` (only a forecast; every instance counts for the whole month), `needs-input`.
+- `status`: `safe`, `overage-expected`, `over-allowance` (overage already incurred), `needs-input`.
+- Money is USD, transfer is GB, times are UTC ISO strings.
+
+Node.js can't import from a URL directly: download calc.js next to your script, or copy the module from the repository (`public/calc.js`).
+
+## prices.json
+
+`regions[id].overagePerGB` and `regions[id].bundles[]` with `ramGB`, `dualStackMonthly`, `ipv6OnlyMonthly`, `transferTB`. `date` is when prices were last pulled from the AWS Price List API.

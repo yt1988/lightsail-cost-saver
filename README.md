@@ -58,6 +58,24 @@ No sign-up. Open it and go; your data stays in your own browser. Available in 10
 
 Estimates only; your AWS bill is final. This is not an official AWS tool.
 
+## Use it with your AI agent
+
+Everything stays static and free; the agent does the work on its side.
+
+- **Pre-filled links**: an agent can build a link such as `https://ls.1ms.dog/?region=us-east-1&size=1&used=3150&nodes=1@2026-10-11T00:00Z` and hand it to you; opening it loads that setup (your previous data is backed up and can be restored). In the app, **Advanced settings → Copy config link** does the reverse.
+- **Rules for agents**: [llms.txt](https://ls.1ms.dog/llms.txt) explains the billing rules, link parameters and the module below.
+- **Prices**: [prices.json](https://ls.1ms.dog/prices.json) has every region's bundles and overage rate.
+- **Calculation module**: [calc.js](https://ls.1ms.dog/calc.js) is the exact code the page runs.
+
+```js
+import { calculate } from "https://ls.1ms.dog/calc.js";
+const prices = await (await fetch("https://ls.1ms.dog/prices.json")).json();
+calculate({ region: "us-east-1", sizeGB: 1, usedGB: 3150 }, prices);
+// → { status: "overage-expected", overageCost: …, recommendation: { addTrafficInstances: 2, … }, … }
+```
+
+These files are readable from any origin. `calc.js` and `prices.json` are generated from `public/index.html` by `node scripts/build.mjs`; `npm test` checks they're in sync and runs the regression tests.
+
 ## Deploy
 
 The whole app is `public/`. Any static host works; three ready-made options follow.
@@ -137,6 +155,10 @@ Both run once on your machine or in CI and add nothing to page load. If a region
 
 ```
 public/index.html                 the whole app (logos inlined, no external images)
+public/calc.js, prices.json      generated for agents (calculation module, prices)
+public/llms.txt                   how agents can use the tool
+scripts/build.mjs                 regenerates calc.js and prices.json from the page
+scripts/test-calc.mjs             regression tests (npm test)
 scripts/update-prices.mjs         refresh prices from the AWS Price List API
 scripts/set-site-url.mjs          canonical / hreflang / sitemap / robots for your domain
 assets/                           1ms logo masters (light and dark), kept for reference

@@ -198,6 +198,8 @@ input[type="range"] { width: 100%; accent-color: var(--sel); }
 .used-l { display: flex; flex-direction: column; gap: 6px; }
 .used-meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1 1 200px; }
 .used-meta a { color: var(--muted); font-size: 12px; }
+.act .note a { color: var(--muted); }
+.act .note a:hover { color: var(--fg); }
 /* optional per-item entry: kept as quiet as the chips around it */
 .parts { display: flex; align-items: baseline; gap: 4px 6px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
 .part { display: inline-flex; align-items: baseline; gap: 4px; }
@@ -1045,6 +1047,7 @@ footer a:hover { color: var(--fg); }
           </div>
           <div class="row"><span data-i="prorate">Prorate allowance for mid-month instances</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           <div class="btns">
+            <button class="btn sm" id="copyLinkBtn" type="button" data-i="copyLink">Copy config link</button>
             <button class="btn sm" id="exportBtn" type="button" data-i="exp">Export backup</button>
             <label class="btn sm" for="importFile" data-i="imp">Import backup</label>
             <input type="file" id="importFile" accept="application/json,.json" hidden>
@@ -1056,6 +1059,11 @@ footer a:hover { color: var(--fg); }
       <button class="icon-btn danger" id="resetBtn" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg></button>
     </div>
   </header>
+
+  <div class="banner" id="linkBanner" hidden>
+    <span data-i="linkLoaded">Loaded the configuration from the link. Your previous data is backed up.</span>
+    <button class="btn sm" id="linkUndo" type="button" data-i="undo">Restore my data</button>
+  </div>
 
   <div class="banner" id="rollover" hidden>
     <span id="rolloverText"></span>
@@ -1203,14 +1211,14 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail 省钱计算器", tagline: "基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案",
       region: "地区：流量池只在同一地区内合并", lang: "语言", over: "超额", half: "额度减半",
       settings: "高级设置", outRatio: "出站占比", outRatioHint: "超额只对出站收费。不确定就保持 100%。", prorate: "月中开通的额度按时长折算",
-      exp: "导出备份", imp: "导入备份", sample: "载入示例", reset: "重置全部数据", gh: "在 GitHub 查看源码", theme: "主题", th_system: "跟随系统", th_light: "浅色", th_dark: "深色",
+      exp: "导出备份", imp: "导入备份", sample: "载入示例", reset: "重置全部数据", copyLink: "复制配置链接", copied: "已复制", linkLoaded: "已载入链接中的配置，你原来的数据已备份。", undo: "恢复原来的数据", gh: "在 GitHub 查看源码", theme: "主题", th_system: "跟随系统", th_light: "浅色", th_dark: "深色",
       roll: "已进入 {m}：保留基石实例和运行中的流量实例，清零已用流量？", rollBtn: "开始新月份",
       usedUnit: "GB 已用", usedAria: "本月已用流量",
       recorded: "记录于 {t} · 日均 {v}", toBill: "去账单查看",
       allow: "本月额度", remain: "剩余", exceeded: "已超出", forecast: "月底预计", forecastTip: "留空按日均自动推算；也可手动填入预期的月总量（GB）", fcErr: "不能低于已用流量 {v}", endErr: "删除时间需晚于开通时间", localTime: "本地时间", utcNote: "AWS 按 UTC 自然月计费，本月从本地时间 {t} 开始",
       cost: "本月预估费用", inclOver: "含超额 {v}",
       bandGood: "安全 · 额度够用", bandWarn: "预计超额 {v}", bandBad: "已超额 · 预计多付 {v}", bandIdle: "待填用量", lgUsed: "已用 {v}", lgEnd: "月底预计 {v}", lgOver: "超出 {v}",
-      fill: "先填入本月已用流量", fillHint: "在 AWS 账单（Bills → Lightsail）中找到 {in} 和 {out} 两项，相加即可。",
+      fill: "先填入本月已用流量", fillHint: "在 {a}AWS 账单（Bills → Lightsail）{/a}中找到 {in} 和 {out} 两项，相加即可。",
       enough: "额度够用，不用加流量实例", leftEnd: "月底剩 {v}",
       suggest: "建议添加 {n} 台流量实例", apply: "一键添加", from: "{spec}，从 {t} 起", saveV: "比不加省 {v}",
       exPred: "额度预计 {t} 用完", exPast: "额度已于 {t} 用完", noAdd: "不加流量实例更省", planMode: "按整月规划", planNote: "每台流量实例 +{a} · {c}/月", optimal: "已是最省配置，剩余超额无法再避免",
@@ -1238,14 +1246,14 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail 省錢計算器", tagline: "基於「同地域同規格流量池共享」規則，幫你找出更省錢的彈性流量方案",
       region: "地區：流量池只在同一地區內合併", lang: "語言", over: "超額", half: "額度減半",
       settings: "進階設定", outRatio: "出站占比", outRatioHint: "超額只對出站收費。不確定就保持 100%。", prorate: "月中開通的額度按時長折算",
-      exp: "匯出備份", imp: "匯入備份", sample: "載入範例", reset: "重設全部資料", gh: "在 GitHub 查看原始碼", theme: "主題", th_system: "跟隨系統", th_light: "淺色", th_dark: "深色",
+      exp: "匯出備份", imp: "匯入備份", sample: "載入範例", reset: "重設全部資料", copyLink: "複製設定連結", copied: "已複製", linkLoaded: "已載入連結中的設定，你原本的資料已備份。", undo: "恢復原本的資料", gh: "在 GitHub 查看原始碼", theme: "主題", th_system: "跟隨系統", th_light: "淺色", th_dark: "深色",
       roll: "已進入 {m}：保留基石實例和運行中的流量實例，清零已用流量？", rollBtn: "開始新月份",
       usedUnit: "GB 已用", usedAria: "本月已用流量",
       recorded: "記錄於 {t} · 日均 {v}", toBill: "前往帳單查看",
       allow: "本月額度", remain: "剩餘", exceeded: "已超出", forecast: "月底預計", forecastTip: "留空按日均自動推算；也可手動填入預期的月總量（GB）", fcErr: "不能低於已用流量 {v}", endErr: "刪除時間需晚於開通時間", localTime: "本地時間", utcNote: "AWS 按 UTC 自然月計費，本月從本地時間 {t} 開始",
       cost: "本月預估費用", inclOver: "含超額 {v}",
       bandGood: "安全 · 額度夠用", bandWarn: "預計超額 {v}", bandBad: "已超額 · 預計多付 {v}", bandIdle: "待填用量", lgUsed: "已用 {v}", lgEnd: "月底預計 {v}", lgOver: "超出 {v}",
-      fill: "先填入本月已用流量", fillHint: "在 AWS 帳單（Bills → Lightsail）中找到 {in} 和 {out} 兩項，相加即可。",
+      fill: "先填入本月已用流量", fillHint: "在 {a}AWS 帳單（Bills → Lightsail）{/a}中找到 {in} 和 {out} 兩項，相加即可。",
       enough: "額度夠用，不用加流量實例", leftEnd: "月底剩 {v}",
       suggest: "建議新增 {n} 台流量實例", apply: "一鍵新增", from: "{spec}，從 {t} 起", saveV: "比不加省 {v}",
       exPred: "額度預計 {t} 用完", exPast: "額度已於 {t} 用完", noAdd: "不加流量實例更省", planMode: "按整月規劃", planNote: "每台流量實例 +{a} · {c}/月", optimal: "已是最省配置，剩餘超額無法再避免",
@@ -1273,14 +1281,14 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail Cost Saver", tagline: "Uses the rule that same-region, same-size instances share one transfer pool to find the cheapest plan for elastic traffic.",
       region: "Region: allowances only pool within one region", lang: "Language", over: "overage", half: "half allowance",
       settings: "Advanced settings", outRatio: "Outbound share", outRatioHint: "Only outbound traffic is billed as overage. Keep 100% if unsure.", prorate: "Prorate allowance for mid-month instances",
-      exp: "Export backup", imp: "Import backup", sample: "Load example", reset: "Reset all data", gh: "View source on GitHub", theme: "Theme", th_system: "System", th_light: "Light", th_dark: "Dark",
+      exp: "Export backup", imp: "Import backup", sample: "Load example", reset: "Reset all data", copyLink: "Copy config link", copied: "Copied", linkLoaded: "Loaded the configuration from the link. Your previous data is backed up.", undo: "Restore my data", gh: "View source on GitHub", theme: "Theme", th_system: "System", th_light: "Light", th_dark: "Dark",
       roll: "{m} has started. Keep the base and running traffic instances and clear usage?", rollBtn: "Start new month",
       usedUnit: "GB used", usedAria: "Data used this month",
       recorded: "Recorded {t} · {v}/day", toBill: "Open Bills",
       allow: "Allowance", remain: "Remaining", exceeded: "Over by", forecast: "Month-end forecast", forecastTip: "Leave empty to project from the daily average, or enter your expected monthly total (GB)", fcErr: "Can’t be below used ({v})", endErr: "Deletion must be after creation", localTime: "local time", utcNote: "AWS bills by UTC calendar month; this month began {t} your time",
       cost: "Estimated cost", inclOver: "incl. {v} overage",
       bandGood: "Safe · within allowance", bandWarn: "Overage expected: {v}", bandBad: "Over allowance · about {v} extra", bandIdle: "Enter usage", lgUsed: "Used {v}", lgEnd: "Month end {v}", lgOver: "Over by {v}",
-      fill: "Enter this month’s data usage first", fillHint: "In AWS Bills → Lightsail, add up the {in} and {out} line items.",
+      fill: "Enter this month’s data usage first", fillHint: "In {a}AWS Bills → Lightsail{/a}, add up the {in} and {out} line items.",
       enough: "Allowance is enough, no extra instances needed", leftEnd: "{v} left at month end",
       suggest: "Add {n} traffic instance(s)", apply: "Add now", from: "{spec}, from {t}", saveV: "saves {v} vs. adding none",
       exPred: "allowance runs out {t}", exPast: "allowance ran out {t}", noAdd: "Adding none is cheaper", planMode: "Full-month plan", planNote: "Each traffic instance: +{a} · {c}/mo", optimal: "Already the cheapest setup; the remaining overage can’t be avoided",
@@ -1308,14 +1316,14 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail 節約計算機", tagline: "「同じリージョン・同じプランのデータ転送量はプールで共有」というルールで、変動する通信量に最も安いプランを見つけます。",
       region: "リージョン：プールは同じリージョン内でのみ合算", lang: "言語", over: "超過", half: "枠半分",
       settings: "詳細設定", outRatio: "送信の割合", outRatioHint: "超過料金は送信のみ。不明なら 100% のままに。", prorate: "月途中の作成分は枠を時間按分",
-      exp: "バックアップを書き出す", imp: "バックアップを読み込む", sample: "サンプルを読み込む", reset: "全データをリセット", gh: "GitHub でソースを見る", theme: "テーマ", th_system: "システム", th_light: "ライト", th_dark: "ダーク",
+      exp: "バックアップを書き出す", imp: "バックアップを読み込む", sample: "サンプルを読み込む", reset: "全データをリセット", copyLink: "設定リンクをコピー", copied: "コピーしました", linkLoaded: "リンクの設定を読み込みました。以前のデータはバックアップ済みです。", undo: "元のデータに戻す", gh: "GitHub でソースを見る", theme: "テーマ", th_system: "システム", th_light: "ライト", th_dark: "ダーク",
       roll: "{m} になりました。ベースと稼働中のトラフィック用インスタンスを残し、使用量をクリアしますか？", rollBtn: "新しい月を開始",
       usedUnit: "GB 使用", usedAria: "今月の使用量",
       recorded: "{t} 記録 · 1日平均 {v}", toBill: "請求書を開く",
       allow: "今月の枠", remain: "残り", exceeded: "超過", forecast: "月末予測", forecastTip: "空欄なら日平均から推定。予想する月合計 (GB) を入力することもできます", fcErr: "使用量 {v} 未満にはできません", endErr: "削除日時は作成日時より後にしてください", localTime: "ローカル時間", utcNote: "AWS は UTC の暦月で課金。今月はローカル時間 {t} から",
       cost: "今月の見積額", inclOver: "超過 {v} を含む",
       bandGood: "安全 · 枠内に収まります", bandWarn: "超過見込み {v}", bandBad: "超過中 · 追加 約 {v}", bandIdle: "使用量を入力", lgUsed: "使用 {v}", lgEnd: "月末予測 {v}", lgOver: "超過 {v}",
-      fill: "まず今月の使用量を入力", fillHint: "AWS 請求書 (Bills → Lightsail) の {in} と {out} を合計してください。",
+      fill: "まず今月の使用量を入力", fillHint: "{a}AWS 請求書 (Bills → Lightsail){/a} の {in} と {out} を合計してください。",
       enough: "枠は十分です。追加は不要", leftEnd: "月末に {v} 残る見込み",
       suggest: "トラフィック用インスタンスを {n} 台追加", apply: "追加する", from: "{spec}、{t} から", saveV: "追加しない場合より {v} 節約",
       exPred: "枠は {t} に尽きる見込み", exPast: "枠は {t} に尽きました", noAdd: "追加しない方が安い", planMode: "月全体で計画", planNote: "トラフィック用 1 台あたり +{a} · {c}/月", optimal: "すでに最安の構成です。残りの超過は避けられません",
@@ -1343,14 +1351,14 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail 절약 계산기", tagline: "‘같은 리전·같은 사양 인스턴스는 전송량 풀을 공유’하는 규칙으로 변동 트래픽에 가장 저렴한 구성을 찾아줍니다.",
       region: "리전: 풀은 같은 리전 안에서만 합산", lang: "언어", over: "초과", half: "할당량 절반",
       settings: "고급 설정", outRatio: "아웃바운드 비율", outRatioHint: "초과 요금은 아웃바운드에만 부과됩니다. 모르면 100% 유지.", prorate: "월 중간 생성분 할당량을 시간 비례 계산",
-      exp: "백업 내보내기", imp: "백업 가져오기", sample: "예시 불러오기", reset: "모든 데이터 초기화", gh: "GitHub에서 소스 보기", theme: "테마", th_system: "시스템", th_light: "라이트", th_dark: "다크",
+      exp: "백업 내보내기", imp: "백업 가져오기", sample: "예시 불러오기", reset: "모든 데이터 초기화", copyLink: "설정 링크 복사", copied: "복사됨", linkLoaded: "링크의 설정을 불러왔습니다. 이전 데이터는 백업되었습니다.", undo: "이전 데이터 복원", gh: "GitHub에서 소스 보기", theme: "테마", th_system: "시스템", th_light: "라이트", th_dark: "다크",
       roll: "{m}이 시작되었습니다. 기본 인스턴스와 실행 중인 트래픽 인스턴스는 유지하고 사용량을 초기화할까요?", rollBtn: "새 달 시작",
       usedUnit: "GB 사용", usedAria: "이번 달 사용량",
       recorded: "{t} 기록 · 일평균 {v}", toBill: "청구서 열기",
       allow: "이번 달 할당량", remain: "남음", exceeded: "초과", forecast: "월말 예상", forecastTip: "비워 두면 일평균으로 추정하며, 예상 월 총량(GB)을 직접 입력할 수도 있습니다", fcErr: "사용량 {v}보다 작을 수 없습니다", endErr: "삭제 시각은 생성 시각보다 늦어야 합니다", localTime: "현지 시간", utcNote: "AWS는 UTC 달력 월 기준 과금. 이번 달은 현지 시간 {t}부터",
       cost: "이번 달 예상 비용", inclOver: "초과 {v} 포함",
       bandGood: "안전 · 할당량 이내", bandWarn: "초과 예상 {v}", bandBad: "초과됨 · 추가 약 {v}", bandIdle: "사용량 입력", lgUsed: "사용 {v}", lgEnd: "월말 예상 {v}", lgOver: "초과 {v}",
-      fill: "먼저 이번 달 사용량을 입력하세요", fillHint: "AWS 청구서(Bills → Lightsail)에서 {in}와 {out}를 더하면 됩니다.",
+      fill: "먼저 이번 달 사용량을 입력하세요", fillHint: "{a}AWS 청구서(Bills → Lightsail){/a}에서 {in}와 {out}를 더하면 됩니다.",
       enough: "할당량이 충분합니다. 추가 불필요", leftEnd: "월말 {v} 남음",
       suggest: "트래픽 인스턴스 {n}대 추가 권장", apply: "바로 추가", from: "{spec}, {t}부터", saveV: "추가하지 않을 때보다 {v} 절약",
       exPred: "할당량 {t} 소진 예상", exPast: "할당량 {t}에 소진됨", noAdd: "추가하지 않는 편이 저렴", planMode: "한 달 전체 기준", planNote: "트래픽 인스턴스 1대당 +{a} · {c}/월", optimal: "이미 가장 저렴한 구성입니다. 남은 초과는 피할 수 없습니다",
@@ -1378,14 +1386,14 @@ footer a:hover { color: var(--fg); }
       name: "Calculadora de ahorro AWS Lightsail", tagline: "Aprovecha que las instancias de la misma región y tamaño comparten la transferencia para hallar el plan más barato con tráfico variable.",
       region: "Región: la cuota solo se combina dentro de una región", lang: "Idioma", over: "exceso", half: "cuota a la mitad",
       settings: "Ajustes avanzados", outRatio: "Proporción saliente", outRatioHint: "Solo el tráfico saliente se cobra como exceso. Deja 100 % si no lo sabes.", prorate: "Prorratear la cuota de instancias creadas a mitad de mes",
-      exp: "Exportar copia", imp: "Importar copia", sample: "Cargar ejemplo", reset: "Restablecer todo", gh: "Ver el código en GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Oscuro",
+      exp: "Exportar copia", imp: "Importar copia", sample: "Cargar ejemplo", reset: "Restablecer todo", copyLink: "Copiar enlace de configuración", copied: "Copiado", linkLoaded: "Se cargó la configuración del enlace. Tus datos anteriores están respaldados.", undo: "Restaurar mis datos", gh: "Ver el código en GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Oscuro",
       roll: "Ha empezado {m}. ¿Conservar la base y las instancias de tráfico activas y poner el uso a cero?", rollBtn: "Empezar mes nuevo",
       usedUnit: "GB usados", usedAria: "Datos usados este mes",
       recorded: "Registrado {t} · {v}/día", toBill: "Abrir facturas",
       allow: "Cuota", remain: "Restante", exceeded: "Excedido", forecast: "Previsión a fin de mes", forecastTip: "Vacío = proyección por media diaria; o escribe el total mensual esperado (GB)", fcErr: "No puede ser menor que lo usado ({v})", endErr: "La eliminación debe ser posterior a la creación", localTime: "hora local", utcNote: "AWS factura por mes natural UTC; este mes empezó el {t} (hora local)",
       cost: "Coste estimado", inclOver: "incl. {v} de exceso",
       bandGood: "Seguro · dentro de cuota", bandWarn: "Exceso previsto: {v}", bandBad: "Cuota superada · unos {v} extra", bandIdle: "Introduce el uso", lgUsed: "Usado {v}", lgEnd: "Fin de mes {v}", lgOver: "Exceso {v}",
-      fill: "Primero introduce el uso de este mes", fillHint: "En AWS Bills → Lightsail, suma los conceptos {in} y {out}.",
+      fill: "Primero introduce el uso de este mes", fillHint: "En {a}AWS Bills → Lightsail{/a}, suma los conceptos {in} y {out}.",
       enough: "La cuota alcanza, no hace falta añadir", leftEnd: "Quedarán {v} a fin de mes",
       suggest: "Añade {n} instancia(s) de tráfico", apply: "Añadir", from: "{spec}, desde {t}", saveV: "ahorra {v} frente a no añadir",
       exPred: "la cuota se agota el {t}", exPast: "la cuota se agotó el {t}", noAdd: "No añadir es más barato", planMode: "Plan de mes completo", planNote: "Cada instancia de tráfico: +{a} · {c}/mes", optimal: "Ya es la configuración más barata; el exceso restante es inevitable",
@@ -1413,14 +1421,14 @@ footer a:hover { color: var(--fg); }
       name: "Calculateur d’économies AWS Lightsail", tagline: "S’appuie sur le partage du quota de transfert entre instances de même région et même taille pour trouver le plan le moins cher.",
       region: "Région : les quotas ne se cumulent que dans une région", lang: "Langue", over: "dépassement", half: "quota divisé par deux",
       settings: "Réglages avancés", outRatio: "Part sortante", outRatioHint: "Seul le trafic sortant est facturé en dépassement. Gardez 100 % en cas de doute.", prorate: "Proratiser le quota des instances créées en cours de mois",
-      exp: "Exporter", imp: "Importer", sample: "Charger un exemple", reset: "Tout réinitialiser", gh: "Voir le code sur GitHub", theme: "Thème", th_system: "Système", th_light: "Clair", th_dark: "Sombre",
+      exp: "Exporter", imp: "Importer", sample: "Charger un exemple", reset: "Tout réinitialiser", copyLink: "Copier le lien de configuration", copied: "Copié", linkLoaded: "Configuration du lien chargée. Vos données précédentes sont sauvegardées.", undo: "Restaurer mes données", gh: "Voir le code sur GitHub", theme: "Thème", th_system: "Système", th_light: "Clair", th_dark: "Sombre",
       roll: "{m} a commencé. Garder la base et les instances de trafic actives et remettre l’usage à zéro ?", rollBtn: "Nouveau mois",
       usedUnit: "Go utilisés", usedAria: "Données utilisées ce mois",
       recorded: "Relevé {t} · {v}/jour", toBill: "Ouvrir les factures",
       allow: "Quota", remain: "Restant", exceeded: "Dépassé de", forecast: "Prévision fin de mois", forecastTip: "Vide = projection selon la moyenne quotidienne ; ou saisissez le total mensuel attendu (Go)", fcErr: "Ne peut pas être inférieur à l’usage ({v})", endErr: "La suppression doit être postérieure à la création", localTime: "heure locale", utcNote: "AWS facture par mois civil UTC ; ce mois a commencé le {t} (heure locale)",
       cost: "Coût estimé", inclOver: "dont {v} de dépassement",
       bandGood: "Sûr · dans le quota", bandWarn: "Dépassement prévu : {v}", bandBad: "Quota dépassé · environ {v} en plus", bandIdle: "Saisir l’usage", lgUsed: "Utilisé {v}", lgEnd: "Fin de mois {v}", lgOver: "Dépassement {v}",
-      fill: "Saisissez d’abord l’usage du mois", fillHint: "Dans AWS Bills → Lightsail, additionnez les lignes {in} et {out}.",
+      fill: "Saisissez d’abord l’usage du mois", fillHint: "Dans {a}AWS Bills → Lightsail{/a}, additionnez les lignes {in} et {out}.",
       enough: "Le quota suffit, rien à ajouter", leftEnd: "{v} restants en fin de mois",
       suggest: "Ajoutez {n} instance(s) de trafic", apply: "Ajouter", from: "{spec}, dès le {t}", saveV: "économise {v} par rapport à ne rien ajouter",
       exPred: "quota épuisé le {t}", exPast: "quota épuisé depuis le {t}", noAdd: "Ne rien ajouter coûte moins", planMode: "Plan sur le mois entier", planNote: "Par instance de trafic : +{a} · {c}/mois", optimal: "Configuration déjà optimale ; le dépassement restant est inévitable",
@@ -1448,14 +1456,14 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail Sparrechner", tagline: "Nutzt die Regel, dass Instanzen gleicher Region und Größe ein Transfervolumen teilen, und findet den günstigsten Plan für schwankenden Traffic.",
       region: "Region: Kontingente werden nur innerhalb einer Region zusammengelegt", lang: "Sprache", over: "Überschreitung", half: "halbes Kontingent",
       settings: "Erweiterte Einstellungen", outRatio: "Ausgehender Anteil", outRatioHint: "Nur ausgehender Traffic wird als Überschreitung berechnet. Im Zweifel 100 % lassen.", prorate: "Kontingent bei Erstellung im Monat anteilig rechnen",
-      exp: "Backup exportieren", imp: "Backup importieren", sample: "Beispiel laden", reset: "Alle Daten zurücksetzen", gh: "Quellcode auf GitHub ansehen", theme: "Design", th_system: "System", th_light: "Hell", th_dark: "Dunkel",
+      exp: "Backup exportieren", imp: "Backup importieren", sample: "Beispiel laden", reset: "Alle Daten zurücksetzen", copyLink: "Konfigurationslink kopieren", copied: "Kopiert", linkLoaded: "Konfiguration aus dem Link geladen. Deine vorherigen Daten sind gesichert.", undo: "Meine Daten wiederherstellen", gh: "Quellcode auf GitHub ansehen", theme: "Design", th_system: "System", th_light: "Hell", th_dark: "Dunkel",
       roll: "{m} hat begonnen. Basis und laufende Traffic-Instanzen behalten und Verbrauch zurücksetzen?", rollBtn: "Neuen Monat starten",
       usedUnit: "GB genutzt", usedAria: "Verbrauch in diesem Monat",
       recorded: "Erfasst {t} · {v}/Tag", toBill: "Rechnungen öffnen",
       allow: "Kontingent", remain: "Übrig", exceeded: "Überschritten um", forecast: "Prognose Monatsende", forecastTip: "Leer = Hochrechnung aus dem Tagesschnitt; oder erwartete Monatssumme (GB) eintragen", fcErr: "Darf nicht unter dem Verbrauch liegen ({v})", endErr: "Löschen muss nach dem Erstellen liegen", localTime: "Ortszeit", utcNote: "AWS rechnet nach UTC-Kalendermonat ab; dieser Monat begann am {t} (Ortszeit)",
       cost: "Geschätzte Kosten", inclOver: "inkl. {v} Überschreitung",
       bandGood: "Sicher · im Kontingent", bandWarn: "Erwartete Überschreitung: {v}", bandBad: "Überschritten · ca. {v} extra", bandIdle: "Verbrauch eingeben", lgUsed: "Genutzt {v}", lgEnd: "Monatsende {v}", lgOver: "Überschreitung {v}",
-      fill: "Zuerst den Verbrauch dieses Monats eingeben", fillHint: "In AWS Bills → Lightsail die Posten {in} und {out} addieren.",
+      fill: "Zuerst den Verbrauch dieses Monats eingeben", fillHint: "In {a}AWS Bills → Lightsail{/a} die Posten {in} und {out} addieren.",
       enough: "Kontingent reicht, nichts hinzufügen", leftEnd: "{v} übrig am Monatsende",
       suggest: "{n} Traffic-Instanz(en) hinzufügen", apply: "Hinzufügen", from: "{spec}, ab {t}", saveV: "spart {v} gegenüber keiner",
       exPred: "Kontingent voraussichtlich am {t} aufgebraucht", exPast: "Kontingent seit {t} aufgebraucht", noAdd: "Keine hinzuzufügen ist günstiger", planMode: "Planung für den ganzen Monat", planNote: "Je Traffic-Instanz: +{a} · {c}/Monat", optimal: "Bereits die günstigste Konfiguration; die restliche Überschreitung ist unvermeidbar",
@@ -1483,14 +1491,14 @@ footer a:hover { color: var(--fg); }
       name: "Calculadora de economia AWS Lightsail", tagline: "Usa a regra de que instâncias da mesma região e tamanho compartilham a transferência para achar o plano mais barato para tráfego variável.",
       region: "Região: a cota só é somada dentro de uma região", lang: "Idioma", over: "excedente", half: "metade da cota",
       settings: "Configurações avançadas", outRatio: "Parcela de saída", outRatioHint: "Só o tráfego de saída é cobrado como excedente. Mantenha 100% se não souber.", prorate: "Proporcionalizar a cota de instâncias criadas no meio do mês",
-      exp: "Exportar backup", imp: "Importar backup", sample: "Carregar exemplo", reset: "Redefinir tudo", gh: "Ver o código no GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Escuro",
+      exp: "Exportar backup", imp: "Importar backup", sample: "Carregar exemplo", reset: "Redefinir tudo", copyLink: "Copiar link da configuração", copied: "Copiado", linkLoaded: "Configuração do link carregada. Seus dados anteriores foram salvos.", undo: "Restaurar meus dados", gh: "Ver o código no GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Escuro",
       roll: "{m} começou. Manter a base e as instâncias de tráfego ativas e zerar o uso?", rollBtn: "Iniciar novo mês",
       usedUnit: "GB usados", usedAria: "Dados usados neste mês",
       recorded: "Registrado {t} · {v}/dia", toBill: "Abrir faturas",
       allow: "Cota", remain: "Restante", exceeded: "Excedido", forecast: "Previsão fim do mês", forecastTip: "Vazio = projeção pela média diária; ou informe o total mensal esperado (GB)", fcErr: "Não pode ser menor que o usado ({v})", endErr: "A exclusão deve ser depois da criação", localTime: "hora local", utcNote: "A AWS cobra por mês civil UTC; este mês começou em {t} (hora local)",
       cost: "Custo estimado", inclOver: "inclui {v} de excedente",
       bandGood: "Seguro · dentro da cota", bandWarn: "Excedente previsto: {v}", bandBad: "Cota excedida · cerca de {v} a mais", bandIdle: "Informe o uso", lgUsed: "Usado {v}", lgEnd: "Fim do mês {v}", lgOver: "Excedente {v}",
-      fill: "Primeiro informe o uso deste mês", fillHint: "Em AWS Bills → Lightsail, some os itens {in} e {out}.",
+      fill: "Primeiro informe o uso deste mês", fillHint: "Em {a}AWS Bills → Lightsail{/a}, some os itens {in} e {out}.",
       enough: "A cota basta, nada a adicionar", leftEnd: "Sobram {v} no fim do mês",
       suggest: "Adicione {n} instância(s) de tráfego", apply: "Adicionar", from: "{spec}, a partir de {t}", saveV: "economiza {v} em relação a não adicionar",
       exPred: "a cota acaba em {t}", exPast: "a cota acabou em {t}", noAdd: "Não adicionar é mais barato", planMode: "Plano do mês inteiro", planNote: "Cada instância de tráfego: +{a} · {c}/mês", optimal: "Já é a configuração mais barata; o excedente restante é inevitável",
@@ -1518,14 +1526,14 @@ footer a:hover { color: var(--fg); }
       name: "Калькулятор экономии AWS Lightsail", tagline: "Использует правило общего пула трафика для инстансов одного региона и размера, чтобы найти самый дешёвый план при переменном трафике.",
       region: "Регион: лимиты суммируются только внутри региона", lang: "Язык", over: "превышение", half: "половина лимита",
       settings: "Дополнительно", outRatio: "Доля исходящего", outRatioHint: "Превышение оплачивается только за исходящий трафик. Если не уверены, оставьте 100%.", prorate: "Пропорциональный лимит для созданных в середине месяца",
-      exp: "Экспорт копии", imp: "Импорт копии", sample: "Загрузить пример", reset: "Сбросить все данные", gh: "Исходный код на GitHub", theme: "Тема", th_system: "Системная", th_light: "Светлая", th_dark: "Тёмная",
+      exp: "Экспорт копии", imp: "Импорт копии", sample: "Загрузить пример", reset: "Сбросить все данные", copyLink: "Копировать ссылку на настройки", copied: "Скопировано", linkLoaded: "Настройки из ссылки загружены. Прежние данные сохранены.", undo: "Вернуть мои данные", gh: "Исходный код на GitHub", theme: "Тема", th_system: "Системная", th_light: "Светлая", th_dark: "Тёмная",
       roll: "Начался {m}. Оставить базовый и работающие трафик-инстансы и обнулить расход?", rollBtn: "Начать новый месяц",
       usedUnit: "ГБ израсходовано", usedAria: "Расход за месяц",
       recorded: "Записано {t} · {v}/день", toBill: "Открыть счета",
       allow: "Лимит", remain: "Осталось", exceeded: "Превышено на", forecast: "Прогноз на конец месяца", forecastTip: "Пусто = прогноз по среднему за день; или введите ожидаемый итог за месяц (ГБ)", fcErr: "Не может быть меньше расхода ({v})", endErr: "Удаление должно быть позже создания", localTime: "местное время", utcNote: "AWS считает по календарному месяцу UTC; этот месяц начался {t} по местному времени",
       cost: "Оценка стоимости", inclOver: "вкл. {v} превышения",
       bandGood: "Безопасно · в пределах лимита", bandWarn: "Ожидается превышение: {v}", bandBad: "Лимит превышен · около {v} сверху", bandIdle: "Введите расход", lgUsed: "Израсходовано {v}", lgEnd: "К концу месяца {v}", lgOver: "Превышение {v}",
-      fill: "Сначала введите расход за этот месяц", fillHint: "В AWS Bills → Lightsail сложите статьи {in} и {out}.",
+      fill: "Сначала введите расход за этот месяц", fillHint: "В {a}AWS Bills → Lightsail{/a} сложите статьи {in} и {out}.",
       enough: "Лимита хватает, добавлять не нужно", leftEnd: "к концу месяца останется {v}",
       suggest: "Добавьте трафик-инстансов: {n}", apply: "Добавить", from: "{spec}, с {t}", saveV: "экономия {v} по сравнению с отказом",
       exPred: "лимит закончится {t}", exPast: "лимит закончился {t}", noAdd: "Выгоднее ничего не добавлять", planMode: "План на весь месяц", planNote: "Каждый трафик-инстанс: +{a} · {c}/мес.", optimal: "Это уже самая дешёвая конфигурация; оставшееся превышение неизбежно",
@@ -1553,6 +1561,182 @@ footer a:hover { color: var(--fg); }
   const KEY = "lightsail-pool:v2", OLD_KEY = "lightsail-pool:v1", LANG_KEY = "lightsail-pool:lang", THEME_KEY = "lightsail-pool:theme";
   const HOUR = 36e5, DAY = 864e5, IN = "TotalDataXfer-In-Bytes", OUT = "TotalDataXfer-Out-Bytes";
 
+  /* CALC:BEGIN — shared calculation core. scripts/build.mjs copies this block verbatim into public/calc.js,
+     so it must stay self-contained (no DOM, no page state, no globals). */
+  const CALC_VERSION = 1;
+  // Lightsail counts allowance in binary units: the API's transferPerMonthInGb is 1024 for a 1 TB plan
+  const GB_PER_TB = 1024, HOUR_MS = 36e5;
+  const monthKey = d => d.getUTCFullYear() + "-" + String(d.getUTCMonth() + 1).padStart(2, "0");
+  const monthRange = k => { const [y, m] = k.split("-").map(Number); return [Date.UTC(y, m - 1, 1), Date.UTC(y, m, 1)]; };
+
+  // Accepts the compact page format ({ q: [[ram, dual, ipv6, tb]] }) or the published prices.json format.
+  function normalizePrices(prices) {
+    const regions = {};
+    for (const [id, r] of Object.entries(prices.regions || {})) {
+      const rows = r.q ? r.q.map(([ram, p4, p6, tb]) => ({ ram, p4, p6, tb }))
+        : (r.bundles || []).map(b => ({ ram: b.ramGB, p4: b.dualStackMonthly, p6: b.ipv6OnlyMonthly, tb: b.transferTB }));
+      regions[id] = { over: r.over ?? r.overagePerGB, bundles: rows };
+    }
+    return { date: prices.date, regions };
+  }
+  function regionInfo(prices, id) {
+    const norm = normalizePrices(prices), ids = Object.keys(norm.regions);
+    const rid = norm.regions[id] ? id : ids[0], r = norm.regions[rid], one = r.bundles.find(b => b.ram === 1);
+    return { id: rid, price: r.over, half: !!one && one.tb < 2, bundles: r.bundles };
+  }
+
+  // state: { month "YYYY-MM", region, size (RAM GB), ipv4, baseStart ms, used GB|null, usedAt ms, forecast GB|null,
+  //          outRatio 0-100, prorate, nodes: [{ count, start ms|null, end ms|null }] }
+  function computeCore(state, prices, nowReal) {
+    const clamp = (v, a, z) => Math.min(z, Math.max(a, v));
+    const R = regionInfo(prices, state.region);
+    const b = R.bundles.find(x => x.ram === state.size) || R.bundles.find(x => x.ram === 1) || R.bundles[0];
+    const full = b.tb * GB_PER_TB, [m0, m1] = monthRange(state.month), M = m1 - m0;
+    const now = clamp(nowReal, m0, m1), nodesIn = state.nodes || [];
+    const span = (s, e) => { s = Math.max(s == null ? m0 : s, m0); e = Math.min(e == null ? m1 : e, m1); return e > s ? (e - s) / M : 0; };
+    const allowOf = (n, f) => n * full * (state.prorate ? f : (f > 0 ? 1 : 0));
+    // Plan mode: only a month-end total is given, no usage yet. Treat the month as a whole and assume every
+    // running instance is configured for all of it, so the answer is "how many for the full month".
+    const hasU = state.used != null, auto = state.forecast == null, has = hasU || !auto, plan = !hasU && !auto;
+    const life = (s, e) => plan && e == null ? 1 : span(s, e);
+    const bf = life(state.baseStart, null);
+    const base = { allow: allowOf(1, bf), cost: (state.ipv4 ? b.p4 : b.p6) * bf };
+    // allowFuture: instances that start later can only cover traffic from then on, never overage already incurred
+    const basePlanned = !plan && state.baseStart != null && state.baseStart > now;
+    let allow = base.allow, allowFuture = basePlanned ? base.allow : 0, cost = base.cost, live = 1;
+    const nodes = nodesIn.map(n => {
+      const f = life(n.start, n.end), r = {
+        allow: allowOf(n.count, f), cost: n.count * b.p6 * f,
+        planned: !plan && n.start != null && n.start > nowReal, gone: n.end != null && n.end <= nowReal
+      };
+      allow += r.allow; cost += r.cost; if (!r.gone) live += n.count;
+      if (!plan && n.start != null && n.start > now) allowFuture += r.allow;
+      return r;
+    });
+    const allowPast = allow - allowFuture;
+    // Traffic can only flow once the first instance exists, so the daily pace is measured from there, not from the 1st
+    const starts = [state.baseStart, ...nodesIn.map(n => n.start)].map(v => v == null ? m0 : v);
+    const p0 = plan ? m0 : clamp(Math.min(...starts), m0, m1 - HOUR_MS);
+    const tU = clamp(hasU ? (state.usedAt || now) : now, p0 + HOUR_MS, m1);
+    const U = hasU ? +state.used : 0;
+    const rate = U / (tU - p0);
+    const P = auto ? U + rate * (m1 - tU) : Math.max(+state.forecast, U);
+    const fr = plan ? 0 : m1 > tU ? (P - U) / (m1 - tU) : 0;
+    const Unow = U + fr * Math.max(0, now - tU);
+    const ratio = state.outRatio / 100;
+    // overage already incurred is fixed; the rest of the month is covered by leftover current allowance plus later instances
+    const lockedGB = plan ? 0 : Math.max(0, Unow - allowPast);
+    const F = Math.max(0, P - Unow), Rem = Math.max(0, allowPast - Unow) + allowFuture;
+    const overGB = (lockedGB + Math.max(0, F - Rem)) * ratio, overCost = overGB * R.price;
+    let exhaust = !has || plan ? null : lockedGB > 0 ? (rate > 0 ? p0 + allowPast / rate : null)
+      : allow <= U ? (rate > 0 ? p0 + allow / rate : null) : (fr > 0 ? tU + (allow - U) / fr : null);
+    if (exhaust != null && exhaust >= m1) exhaust = null;
+    // options: add N IPv6-only traffic instances from the next full hour (a whole month each in plan mode)
+    const t0 = Math.ceil(now / HOUR_MS) * HOUR_MS, rf = plan ? 1 : Math.max(0, (m1 - t0) / M);
+    const ai = full * (state.prorate ? rf : 1), ci = b.p6 * rf;
+    const optFor = N => { const o = (lockedGB + Math.max(0, F - Rem - N * ai)) * ratio * R.price; return { N, add: N * ci, over: o, total: N * ci + o }; };
+    const Nmin = ai > 0 && F > Rem ? Math.ceil((F - Rem) / ai) : 0;
+    const ns = Nmin <= 3 ? [...Array(Nmin + 2).keys()] : [0, Nmin - 1, Nmin, Nmin + 1];
+    const opts = has && rf > 0 && overGB > 0 ? ns.map(optFor) : [];
+    const best = opts.reduce((a, o) => (!a || o.total < a.total - 1e-9 ? o : a), null);
+    const status = !has ? "idle" : lockedGB > 0 ? "bad" : overGB > 0 ? "warn" : "good";
+    const nextNodes = has ? Math.max(0, Math.ceil(P / full) - 1) : 0;
+    const nextCost = (state.ipv4 ? b.p4 : b.p6) + nextNodes * b.p6;
+    return { R, b, full, m0, m1, now, p0, base, allow, cost, live, has, hasU, plan, U, tU, rate, P, auto, Unow, overGB, overCost, lockedGB, exhaust,
+      t0, ai, ci, opts, best, status, nextNodes, nextCost, nodes };
+  }
+
+  // Friendly input (what agents and links use) <-> internal state. Dates may be ms, ISO strings or Date objects.
+  function toState(input = {}, now = Date.now()) {
+    const ms = v => v == null || v === "" ? null : typeof v === "number" ? v : new Date(v).getTime();
+    const num = v => v == null || v === "" || !isFinite(+v) ? null : +v;
+    const month = /^\d{4}-(0[1-9]|1[0-2])$/.test(input.month || "") ? input.month : monthKey(new Date(now));
+    const [m0] = monthRange(month);
+    const inGB = num(input.inGB), outGB = num(input.outGB);
+    const used = num(input.usedGB) ?? (inGB != null || outGB != null ? (inGB || 0) + (outGB || 0) : null);
+    return {
+      v: 2, month, region: input.region || "us-east-1", size: num(input.sizeGB) ?? 1, ipv4: input.ipv4 !== false,
+      baseStart: ms(input.baseStart) ?? m0, used, usedAt: used == null ? null : ms(input.usedAt) ?? now,
+      usedIn: inGB, usedOut: outGB, forecast: num(input.forecastGB),
+      outRatio: num(input.outboundPercent) ?? 100, prorate: input.prorate !== false,
+      nodes: (input.trafficInstances || []).map(n => ({ count: Math.max(1, Math.floor(num(n.count) || 1)), start: ms(n.start), end: ms(n.end) }))
+    };
+  }
+  function fromState(s) {
+    const iso = v => v == null ? undefined : new Date(v).toISOString();
+    const out = { month: s.month, region: s.region, sizeGB: s.size, ipv4: s.ipv4, baseStart: iso(s.baseStart) };
+    if (s.usedIn != null || s.usedOut != null) { out.inGB = s.usedIn ?? 0; out.outGB = s.usedOut ?? 0; }
+    else if (s.used != null) out.usedGB = s.used;
+    if (s.used != null) out.usedAt = iso(s.usedAt);
+    if (s.forecast != null) out.forecastGB = s.forecast;
+    if (s.outRatio !== 100) out.outboundPercent = s.outRatio;
+    if (s.prorate === false) out.prorate = false;
+    out.trafficInstances = (s.nodes || []).map(n => ({ count: n.count, start: iso(n.start), end: iso(n.end) }));
+    return out;
+  }
+
+  // calculate(input, prices[, now]) -> plain JSON answer, the same numbers the page shows
+  function calculate(input, prices, now = Date.now()) {
+    const s = toState(input, now), c = computeCore(s, prices, now);
+    const r2 = v => Math.round(v * 100) / 100, iso = v => v == null ? null : new Date(v).toISOString();
+    const statusName = { idle: "needs-input", good: "safe", warn: "overage-expected", bad: "over-allowance" }[c.status];
+    return {
+      version: CALC_VERSION, pricesDate: normalizePrices(prices).date, month: s.month,
+      mode: c.plan ? "full-month-plan" : c.hasU ? "actual-usage" : "needs-input", status: statusName,
+      region: { id: c.R.id, overagePerGB: c.R.price, halfAllowance: c.R.half },
+      base: { ramGB: c.b.ram, network: s.ipv4 ? "dual-stack" : "ipv6-only", monthlyPrice: s.ipv4 ? c.b.p4 : c.b.p6, transferTB: c.b.tb },
+      allowanceGB: r2(c.allow), usedGB: c.hasU ? r2(c.Unow) : null, forecastGB: c.has ? r2(c.P) : null,
+      overageGB: r2(c.overGB), overageCost: r2(c.overCost), instanceCost: r2(c.cost), totalCost: r2(c.cost + c.overCost),
+      allowanceRunsOutAt: iso(c.exhaust), unavoidableOverageGB: r2(c.lockedGB),
+      recommendation: c.best ? {
+        addTrafficInstances: c.best.N, startingAt: c.plan ? null : iso(c.t0),
+        eachAddsGB: r2(c.ai), eachCosts: r2(c.ci), resultingCost: r2(c.best.total), savesVsAddingNone: r2(c.opts[0].total - c.best.total)
+      } : null,
+      options: c.opts.map(o => ({ addTrafficInstances: o.N, instanceCost: r2(o.add), overageCost: r2(o.over), total: r2(o.total) })),
+      nextMonth: c.has ? { trafficInstances: c.nextNodes, monthlyCost: r2(c.nextCost) } : null
+    };
+  }
+
+  // Shareable links: ?region=&size=&ipv4=&base=&used=|in=&out=&at=&forecast=&outpct=&prorate=&nodes=count@start[~end],...
+  const LINK_KEYS = ["region", "size", "ipv4", "base", "used", "in", "out", "at", "forecast", "outpct", "prorate", "nodes"];
+  function buildLink(input, base = "https://ls.1ms.dog/") {
+    const u = new URL(base), p = u.searchParams, set = (k, v) => { if (v != null && v !== "") p.set(k, String(v)); };
+    set("region", input.region); set("size", input.sizeGB);
+    if (input.ipv4 === false) p.set("ipv4", "0");
+    set("base", input.baseStart && new Date(input.baseStart).toISOString().slice(0, 16) + "Z");
+    set("used", input.usedGB); set("in", input.inGB); set("out", input.outGB);
+    set("at", input.usedAt && new Date(input.usedAt).toISOString().slice(0, 16) + "Z");
+    set("forecast", input.forecastGB); set("outpct", input.outboundPercent);
+    if (input.prorate === false) p.set("prorate", "0");
+    const t = v => v ? new Date(v).toISOString().slice(0, 16) + "Z" : "";
+    if ((input.trafficInstances || []).length) p.set("nodes", input.trafficInstances.map(n => n.count + "@" + t(n.start) + (n.end ? "~" + t(n.end) : "")).join(","));
+    // keep ":" "@" "," readable; URLSearchParams would percent-encode them
+    const q = [...p].map(([k, v]) => k + "=" + encodeURIComponent(v).replace(/%3A/g, ":").replace(/%40/g, "@").replace(/%2C/g, ",")).join("&");
+    return u.origin + u.pathname + (q ? "?" + q : "");
+  }
+  function parseLink(search) {
+    const p = new URLSearchParams(search), g = k => p.get(k);
+    if (!LINK_KEYS.some(k => p.has(k))) return null;
+    const out = {};
+    if (g("region")) out.region = g("region");
+    if (g("size")) out.sizeGB = +g("size");
+    if (g("ipv4") === "0") out.ipv4 = false;
+    if (g("base")) out.baseStart = g("base");
+    if (g("used")) out.usedGB = +g("used");
+    if (g("in")) out.inGB = +g("in");
+    if (g("out")) out.outGB = +g("out");
+    if (g("at")) out.usedAt = g("at");
+    if (g("forecast")) out.forecastGB = +g("forecast");
+    if (g("outpct")) out.outboundPercent = +g("outpct");
+    if (g("prorate") === "0") out.prorate = false;
+    if (g("nodes")) out.trafficInstances = g("nodes").split(",").filter(Boolean).map(x => {
+      const [count, rest = ""] = x.split("@"), [start, end] = rest.split("~");
+      return { count: +count || 1, start: start || null, end: end || null };
+    });
+    return out;
+  }
+  /* CALC:END */
+
   // ---------- helpers ----------
   const $ = s => document.querySelector(s);
   const uid = () => Math.random().toString(36).slice(2, 9);
@@ -1564,10 +1748,6 @@ footer a:hover { color: var(--fg); }
   const regionOf = id => { const r = PRICES.regions[id], one = r.q.find(x => x[0] === 1); return { id, price: r.over, half: !!one && one[3] < 2 }; };
   const region = () => regionOf(PRICES.regions[S.region] ? S.region : REGION_IDS[0]);
   const ramLabel = r => r < 1 ? "512M" : r + "G";
-  const monthKey = d => d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1);
-  const monthRange = k => { const [y, m] = k.split("-").map(Number); return [Date.UTC(y, m - 1, 1), Date.UTC(y, m, 1)]; };
-  // Lightsail counts allowance in binary units: the API's transferPerMonthInGb is 1024 for a 1 TB plan
-  const GB_PER_TB = 1024;
   const fullAllow = b => b.tb * GB_PER_TB;
   const fmtGB = g => { g = Math.max(0, g || 0); return g >= GB_PER_TB ? (g / GB_PER_TB).toFixed(g >= 10 * GB_PER_TB ? 1 : 2) + " TB" : Math.round(g) + " GB"; };
   const fmtUSD = x => "$" + (x >= 1000 ? Math.round(x).toLocaleString("en-US") : x.toFixed(2));
@@ -1660,61 +1840,25 @@ footer a:hover { color: var(--fg); }
     return defaults();
   }
   let S = load();
+  // A config link (?region=…&used=…, see llms.txt) replaces the saved setup in this browser.
+  // The previous setup is kept so the banner can undo it, and the config params are dropped from the address bar.
+  let linkLoaded = false, linkBackup = null;
+  try {
+    const linked = parseLink(location.search);
+    if (linked) {
+      linkBackup = localStorage.getItem(KEY);
+      S = sanitize(toState(linked, Date.now())); linkLoaded = true; save();
+      const u = new URL(location.href); LINK_KEYS.forEach(k => u.searchParams.delete(k)); history.replaceState(null, "", u);
+    }
+  } catch (e) {}
   function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
 
   // ---------- model ----------
+  // the numbers come from the shared core above, so the page, calc.js and any agent agree
   function compute() {
-    const R = region(), b = bundle(S.size), full = fullAllow(b), [m0, m1] = monthRange(S.month), M = m1 - m0;
-    const nowReal = Date.now(), now = clamp(nowReal, m0, m1);
-    const span = (s, e) => { s = Math.max(s == null ? m0 : s, m0); e = Math.min(e == null ? m1 : e, m1); return e > s ? (e - s) / M : 0; };
-    const allowOf = (n, f) => n * full * (S.prorate ? f : (f > 0 ? 1 : 0));
-    // Plan mode: only a month-end total is given, no usage yet. Treat the month as a whole and assume every
-    // running instance is configured for all of it, so the answer is "how many for the full month".
-    const hasU = S.used != null, auto = S.forecast == null, has = hasU || !auto, plan = !hasU && !auto;
-    const life = (s, e) => plan && e == null ? 1 : span(s, e);
-    const bf = life(S.baseStart, null);
-    const base = { allow: allowOf(1, bf), cost: (S.ipv4 ? b.p4 : b.p6) * bf };
-    // allowFuture: instances that start later can only cover traffic from then on, never overage already incurred
-    const basePlanned = !plan && S.baseStart != null && S.baseStart > now;
-    let allow = base.allow, allowFuture = basePlanned ? base.allow : 0, cost = base.cost, live = 1;
-    for (const n of S.nodes) {
-      const f = life(n.start, n.end);
-      n._allow = allowOf(n.count, f); n._cost = n.count * b.p6 * f;
-      n._planned = !plan && n.start != null && n.start > nowReal; n._gone = n.end != null && n.end <= nowReal;
-      allow += n._allow; cost += n._cost; if (!n._gone) live += n.count;
-      if (!plan && n.start != null && n.start > now) allowFuture += n._allow;
-    }
-    const allowPast = allow - allowFuture;
-    // Traffic can only flow once the first instance exists, so the daily pace is measured from there, not from the 1st
-    const starts = [S.baseStart, ...S.nodes.map(n => n.start)].map(v => v == null ? m0 : v);
-    const p0 = plan ? m0 : clamp(Math.min(...starts), m0, m1 - HOUR);
-    const tU = clamp(hasU ? (S.usedAt || now) : now, p0 + HOUR, m1);
-    const U = hasU ? +S.used : 0;
-    const rate = U / (tU - p0);
-    const P = auto ? U + rate * (m1 - tU) : Math.max(+S.forecast, U);
-    const fr = plan ? 0 : m1 > tU ? (P - U) / (m1 - tU) : 0;
-    const Unow = U + fr * Math.max(0, now - tU);
-    const ratio = S.outRatio / 100;
-    // overage already incurred is fixed; the rest of the month is covered by leftover current allowance plus later instances
-    const lockedGB = plan ? 0 : Math.max(0, Unow - allowPast);
-    const F = Math.max(0, P - Unow), Rem = Math.max(0, allowPast - Unow) + allowFuture;
-    const overGB = (lockedGB + Math.max(0, F - Rem)) * ratio, overCost = overGB * R.price;
-    let exhaust = !has || plan ? null : lockedGB > 0 ? (rate > 0 ? p0 + allowPast / rate : null)
-      : allow <= U ? (rate > 0 ? p0 + allow / rate : null) : (fr > 0 ? tU + (allow - U) / fr : null);
-    if (exhaust != null && exhaust >= m1) exhaust = null;
-    // options: add N IPv6-only traffic instances from the next full hour (a whole month each in plan mode)
-    const t0 = nextHour(now), rf = plan ? 1 : Math.max(0, (m1 - t0) / M);
-    const ai = full * (S.prorate ? rf : 1), ci = b.p6 * rf;
-    const optFor = N => { const o = (lockedGB + Math.max(0, F - Rem - N * ai)) * ratio * R.price; return { N, add: N * ci, over: o, total: N * ci + o }; };
-    const Nmin = ai > 0 && F > Rem ? Math.ceil((F - Rem) / ai) : 0;
-    const ns = Nmin <= 3 ? [...Array(Nmin + 2).keys()] : [0, Nmin - 1, Nmin, Nmin + 1];
-    const opts = has && rf > 0 && overGB > 0 ? ns.map(optFor) : [];
-    const best = opts.reduce((a, o) => (!a || o.total < a.total - 1e-9 ? o : a), null);
-    const status = !has ? "idle" : lockedGB > 0 ? "bad" : overGB > 0 ? "warn" : "good";
-    const nextNodes = has ? Math.max(0, Math.ceil(P / full) - 1) : 0;
-    const nextCost = (S.ipv4 ? b.p4 : b.p6) + nextNodes * b.p6;
-    return { R, b, full, m0, m1, now, p0, base, allow, cost, live, has, hasU, plan, U, tU, rate, P, auto, Unow, overGB, overCost, lockedGB, exhaust,
-      t0, ai, ci, opts, best, status, nextNodes, nextCost };
+    const c = computeCore(S, PRICES, Date.now());
+    S.nodes.forEach((n, i) => { const r = c.nodes[i]; n._allow = r.allow; n._cost = r.cost; n._planned = r.planned; n._gone = r.gone; });
+    return c;
   }
 
   // ---------- render ----------
@@ -1743,7 +1887,7 @@ footer a:hover { color: var(--fg); }
   }
 
   function actHTML(c) {
-    const codes = { in: `<code>${IN}</code>`, out: `<code>${OUT}</code>` };
+    const codes = { in: `<code>${IN}</code>`, out: `<code>${OUT}</code>`, a: `<a href="${BILL}" target="_blank" rel="noopener noreferrer">`, "/a": "</a>" };
     if (!c.has) return `<div class="act-h"><strong>${t("fill")}</strong></div><div class="note">${t("fillHint", codes)}</div>`;
     const cfg = c.nextNodes ? t("cfgPlus", { n: c.nextNodes }) : t("cfgBase");
     const next = `<div class="next"><span class="tag">${t("next")}</span><span>${t("nextLine", { v: fmtGB(c.P), cfg: `<b>${cfg}</b>`, c: `<b class="num">${fmtUSD(c.nextCost)}</b>` })}</span></div>`;
@@ -1811,6 +1955,7 @@ footer a:hover { color: var(--fg); }
     const off = -new Date().getTimezoneOffset(), oh = Math.floor(Math.abs(off) / 60), om = Math.abs(off) % 60;
     $("#tzLbl").textContent = `(${t("localTime")} UTC${off >= 0 ? "+" : "-"}${oh}${om ? ":" + pad(om) : ""})`;
     $("#utcNote").textContent = t("utcNote", { t: fmtDate(c.m0) });
+    $("#linkBanner").hidden = !linkLoaded;
     const cur = monthKey(new Date()), ro = $("#rollover");
     ro.hidden = cur === S.month;
     if (!ro.hidden) $("#rolloverText").textContent = t("roll", { m: cur });
@@ -1907,6 +2052,22 @@ footer a:hover { color: var(--fg); }
     S = defaults(); save(); dlg.hidden = true; full();
   });
 
+  $("#linkUndo").addEventListener("click", () => {
+    try { if (linkBackup == null) localStorage.removeItem(KEY); else localStorage.setItem(KEY, linkBackup); } catch (e) {}
+    S = load(); linkLoaded = false; full();
+  });
+  // links always point at the public site (canonical), not wherever this copy happens to be served from
+  $("#copyLinkBtn").addEventListener("click", async e => {
+    const btn = e.currentTarget, canon = document.querySelector('link[rel="canonical"]');
+    const base = canon ? new URL(canon.href).origin + "/" : location.origin + location.pathname;
+    const url = buildLink(fromState(S), base);
+    let ok = false;
+    try { await navigator.clipboard.writeText(url); ok = true; } catch (x) {
+      try { const ta = document.createElement("textarea"); ta.value = url; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); } catch (y) {}
+    }
+    btn.textContent = ok ? t("copied") : url;
+    setTimeout(() => { btn.textContent = t("copyLink"); }, 1800);
+  });
   $("#exportBtn").addEventListener("click", () => {
     try {
       const a = document.createElement("a");

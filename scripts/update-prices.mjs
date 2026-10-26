@@ -73,3 +73,7 @@ const body = `const PRICES = {"date":"${date}","regions":{\n` +
   Object.entries(regions).map(([id, r]) => `    ${JSON.stringify(id)}:${JSON.stringify(r)}`).join(",\n") + "\n  }};";
 await writeFile(FILE, html.slice(0, a + BEGIN.length) + "\n  " + body + "\n  " + html.slice(b));
 console.log(`\nUpdated ${ok}/${Object.keys(regions).length} regions → public/index.html (date ${date})`);
+
+// keep public/calc.js and public/prices.json in step with the page
+const { build } = await import("./build.mjs");
+await build();

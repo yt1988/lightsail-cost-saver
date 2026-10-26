@@ -1,0 +1,1020 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "source": "AWS Price List API (Amazon Lightsail), Linux general purpose bundles",
+  "units": {
+    "dualStackMonthly": "USD per month, public IPv4 + IPv6",
+    "ipv6OnlyMonthly": "USD per month, IPv6 only",
+    "transferTB": "monthly transfer allowance in TB (1 TB = 1024 GB); already halved in regions where AWS halves it",
+    "overagePerGB": "USD per GB of outbound transfer beyond the pooled allowance"
+  },
+  "regions": {
+    "us-east-1": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "us-east-2": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "us-west-2": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "ca-central-1": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "eu-central-1": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "eu-west-1": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "eu-west-2": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "eu-west-3": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "eu-north-1": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "eu-south-2": {
+      "overagePerGB": 0.12,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "ap-northeast-1": {
+      "overagePerGB": 0.14,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "ap-northeast-2": {
+      "overagePerGB": 0.13,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "ap-southeast-1": {
+      "overagePerGB": 0.12,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 4
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 6
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 7
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 8
+        }
+      ]
+    },
+    "ap-east-1": {
+      "overagePerGB": 0.09,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 0.5
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 1.5
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 2.5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 3.5
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 4
+        }
+      ]
+    },
+    "ap-south-1": {
+      "overagePerGB": 0.13,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 0.5
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 1.5
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 2.5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 3.5
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 4
+        }
+      ]
+    },
+    "ap-southeast-2": {
+      "overagePerGB": 0.17,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 0.5
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 1.5
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 2.5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 3.5
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 4
+        }
+      ]
+    },
+    "ap-southeast-3": {
+      "overagePerGB": 0.132,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 0.5
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 1.5
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 2.5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 3.5
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 4
+        }
+      ]
+    },
+    "ap-southeast-5": {
+      "overagePerGB": 0.108,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 0.5
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 1.5
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 2.5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 3.5
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 4
+        }
+      ]
+    },
+    "sa-east-1": {
+      "overagePerGB": 0.15,
+      "bundles": [
+        {
+          "ramGB": 0.5,
+          "dualStackMonthly": 5,
+          "ipv6OnlyMonthly": 3.5,
+          "transferTB": 0.5
+        },
+        {
+          "ramGB": 1,
+          "dualStackMonthly": 7,
+          "ipv6OnlyMonthly": 5,
+          "transferTB": 1
+        },
+        {
+          "ramGB": 2,
+          "dualStackMonthly": 12,
+          "ipv6OnlyMonthly": 10,
+          "transferTB": 1.5
+        },
+        {
+          "ramGB": 4,
+          "dualStackMonthly": 24,
+          "ipv6OnlyMonthly": 20,
+          "transferTB": 2
+        },
+        {
+          "ramGB": 8,
+          "dualStackMonthly": 44,
+          "ipv6OnlyMonthly": 40,
+          "transferTB": 2.5
+        },
+        {
+          "ramGB": 16,
+          "dualStackMonthly": 84,
+          "ipv6OnlyMonthly": 80,
+          "transferTB": 3
+        },
+        {
+          "ramGB": 32,
+          "dualStackMonthly": 164,
+          "ipv6OnlyMonthly": 160,
+          "transferTB": 3.5
+        },
+        {
+          "ramGB": 64,
+          "dualStackMonthly": 384,
+          "ipv6OnlyMonthly": 380,
+          "transferTB": 4
+        }
+      ]
+    }
+  }
+}
