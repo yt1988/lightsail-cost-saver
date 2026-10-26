@@ -84,10 +84,10 @@ npx vercel --prod
 
 ### Docker
 
-镜像已发布到 Docker Hub：`yt1988/lightsail-cost-saver`（nginx 托管静态页面，约 20 MB，支持 `linux/amd64` 和 `linux/arm64`）。
+镜像已发布到 Docker Hub：`imxjp/lightsail-cost-saver`（nginx 托管静态页面，约 20 MB，支持 `linux/amd64` 和 `linux/arm64`）。
 
 ```bash
-docker run -d --name lightsail-cost-saver -p 8080:80 --restart unless-stopped yt1988/lightsail-cost-saver:latest
+docker run -d --name lightsail-cost-saver -p 8080:80 --restart unless-stopped imxjp/lightsail-cost-saver:latest
 ```
 
 然后打开 http://localhost:8080。
@@ -97,7 +97,7 @@ docker run -d --name lightsail-cost-saver -p 8080:80 --restart unless-stopped yt
 ```yaml
 services:
   lightsail-cost-saver:
-    image: yt1988/lightsail-cost-saver:latest
+    image: imxjp/lightsail-cost-saver:latest
     ports:
       - "8080:80"
     restart: unless-stopped

@@ -84,10 +84,10 @@ Note: the free Hobby plan is for **non-commercial use only** and stops serving o
 
 ### Docker
 
-A ready-to-run image is published to Docker Hub as `yt1988/lightsail-cost-saver` (nginx serving the static page, about 20 MB, `linux/amd64` and `linux/arm64`).
+A ready-to-run image is published to Docker Hub as `imxjp/lightsail-cost-saver` (nginx serving the static page, about 20 MB, `linux/amd64` and `linux/arm64`).
 
 ```bash
-docker run -d --name lightsail-cost-saver -p 8080:80 --restart unless-stopped yt1988/lightsail-cost-saver:latest
+docker run -d --name lightsail-cost-saver -p 8080:80 --restart unless-stopped imxjp/lightsail-cost-saver:latest
 ```
 
 Then open http://localhost:8080.
@@ -97,7 +97,7 @@ With Docker Compose:
 ```yaml
 services:
   lightsail-cost-saver:
-    image: yt1988/lightsail-cost-saver:latest
+    image: imxjp/lightsail-cost-saver:latest
     ports:
       - "8080:80"
     restart: unless-stopped

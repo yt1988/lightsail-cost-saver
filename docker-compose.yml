@@ -1,7 +1,7 @@
 services:
   lightsail-pool:
     build: .
-    image: yt1988/lightsail-cost-saver:latest
+    image: imxjp/lightsail-cost-saver:latest
     ports:
       - "8080:80"
     restart: unless-stopped
