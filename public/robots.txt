@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ls.1ms.dog/sitemap.xml

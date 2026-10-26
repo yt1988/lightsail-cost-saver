@@ -39,6 +39,20 @@
 <meta name="twitter:title" content="AWS Lightsail Cost Saver">
 <meta name="twitter:description" content="Forecast Lightsail data transfer overage and find the cheapest way to add bandwidth.">
 <!-- SITE:BEGIN (canonical, og:url and hreflang are filled in by scripts/set-site-url.mjs) -->
+<link rel="canonical" href="https://ls.1ms.dog/">
+<meta property="og:url" content="https://ls.1ms.dog/">
+<link rel="alternate" hreflang="en" href="https://ls.1ms.dog/">
+<link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN">
+<link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW">
+<link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja">
+<link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko">
+<link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es">
+<link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr">
+<link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de">
+<link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt">
+<link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru">
+<link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/">
+<link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -1579,6 +1593,9 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
   function applyLang() {
     document.documentElement.lang = LANG;
     document.title = t("name");
+    // each language version is its own page: point canonical at the current language's URL, not always the root
+    const canon = document.querySelector('link[rel="canonical"]');
+    if (canon) { const u = new URL(canon.href); u.search = LANG === "en" ? "" : "?lang=" + LANG; canon.href = u.href; }
     document.querySelectorAll("[data-i]").forEach(el => { el.textContent = t(el.dataset.i); });
     document.querySelector("footer").textContent = t("foot", { d: PRICES.date });
     setThemeTitle();
