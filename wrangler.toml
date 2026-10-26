@@ -1,3 +1,7 @@
+# Cloudflare Workers with static assets: `npx wrangler deploy` uploads ./public.
+# There is no Worker script, so every request is a static asset request (free and not metered).
 name = "lightsail-cost-saver"
-pages_build_output_dir = "public"
 compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./public"

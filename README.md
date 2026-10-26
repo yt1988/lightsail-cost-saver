@@ -48,27 +48,29 @@ Estimates only; your AWS bill is final. This is not an official AWS tool.
 
 The whole app is `public/`. Any static host works; three ready-made options follow.
 
-### Cloudflare Pages (recommended)
+### Cloudflare (recommended)
 
-Static assets have no bandwidth or request limits on the free plan, and there's no commercial-use restriction.
+Requests for static assets are free and unmetered, and there's no commercial-use restriction. `wrangler.toml` is set up as a Worker that only serves static assets from `public/` (no Worker script), which is the default flow in the Cloudflare dashboard today.
 
-**Option A: connect this repository**
+**Option A: connect this repository (Workers)**
 
 1. Fork this repository.
-2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**, then pick your fork.
-3. Build settings:
-   - Framework preset: **None**
+2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Import a repository**, then pick your fork.
+3. Settings:
    - Build command: *(leave empty)*
-   - Build output directory: **`public`**
-4. **Save and Deploy**. Every push to the main branch redeploys.
+   - Deploy command: **`npx wrangler deploy`** (the default)
+   - Preview command: `npx wrangler versions upload` or the default; preview builds are optional
+4. **Deploy**. Every push to the main branch redeploys.
 
-**Option B: deploy from your machine**
+**Option B: Cloudflare Pages**
+
+Workers & Pages → **Create** → **Pages** → **Connect to Git** → Framework preset **None**, Build command *(empty)*, Build output directory **`public`**.
+
+**Option C: deploy from your machine**
 
 ```bash
-npx wrangler pages deploy public --project-name lightsail-cost-saver
+npx wrangler deploy
 ```
-
-`wrangler.toml` already sets `pages_build_output_dir = "public"`.
 
 ### Vercel
 

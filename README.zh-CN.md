@@ -48,27 +48,29 @@
 
 整个程序就是 `public/` 文件夹，任何静态托管都能用。下面是三种现成方式。
 
-### Cloudflare Pages（推荐）
+### Cloudflare（推荐）
 
-免费版静态资源不限流量、不限请求，也没有商用限制。
+静态资源请求免费、不计量，也没有商用限制。`wrangler.toml` 已配置为一个只托管 `public/` 静态资源的 Worker（没有 Worker 脚本），对应 Cloudflare 控制台目前默认的创建流程。
 
-**方式 A：连接本仓库**
+**方式 A：连接本仓库（Workers）**
 
 1. Fork 本仓库。
-2. Cloudflare 控制台 → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**，选择你的 Fork。
-3. 构建设置：
-   - Framework preset：**None**
-   - Build command：*（留空）*
-   - Build output directory：**`public`**
-4. 点 **Save and Deploy**。之后每次推送到主分支都会自动重新部署。
+2. Cloudflare 控制台 → **Workers & Pages** → **创建** → **导入存储库**，选择你的 Fork。
+3. 设置：
+   - 构建命令：*（留空）*
+   - 部署命令：**`npx wrangler deploy`**（默认值即可）
+   - 预览命令：保持默认；「启用预览构建」可开可关
+4. 点 **部署**。之后每次推送到主分支都会自动重新部署。
 
-**方式 B：在本机部署**
+**方式 B：Cloudflare Pages**
+
+Workers & Pages → **创建** → **Pages** → **连接到 Git** → 框架预设选 **无**，构建命令留空，构建输出目录填 **`public`**。
+
+**方式 C：在本机部署**
 
 ```bash
-npx wrangler pages deploy public --project-name lightsail-cost-saver
+npx wrangler deploy
 ```
-
-`wrangler.toml` 已设置 `pages_build_output_dir = "public"`。
 
 ### Vercel
 
