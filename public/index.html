@@ -140,6 +140,20 @@ code { font-family: var(--f-num); font-size: 11px; background: var(--soft); bord
 :root[data-theme="dark"] .logo .logo-light { display: none; }
 :root[data-theme="dark"] .logo .logo-dark { display: block; }
 .tools { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+/* the toolbar never breaks beside the logo: when one row does not fit, fitHeader() adds .stack and it moves under the logo, as on narrow screens */
+.top:not(.stack) .tools { flex-wrap: nowrap; }
+.top:not(.stack) .tools > * { flex-shrink: 0; }
+.top.stack { grid-template-columns: minmax(0, 1fr); }
+.top.stack .tools { justify-content: flex-start; grid-column: 1; grid-row: 3; position: relative; }
+.top.stack .menu { position: static; }
+.top.stack .pop { left: 0; right: auto; top: calc(100% + 6px); }
+.top.stack .tools { flex-wrap: nowrap; }
+.top.stack .tools > * { flex-shrink: 0; }
+.top.stack #regionWrap { flex: 0 1 auto; min-width: 0; }
+.top.stack #regionWrap select { flex: 1 1 auto; min-width: 0; }
+.top.split .tools { flex-wrap: wrap; }
+.top.split #regionWrap { flex: 1 0 100%; }
+.top.split #regionWrap select { max-width: none; }
 .sel { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
 .sel select { border: 0; background: transparent; outline: none; max-width: 228px; cursor: pointer; text-overflow: ellipsis; }
 /* native dropdown lists don't always follow color-scheme (Windows Chrome draws them white), so paint options from tokens */
@@ -152,8 +166,42 @@ code { font-family: var(--f-num); font-size: 11px; background: var(--soft); bord
 .icon-btn:hover, .btn:hover, .sel:hover { border-color: var(--muted); }
 .icon-btn.danger:hover { color: var(--bad); border-color: var(--bad); }
 .menu { position: relative; }
-.pop { position: absolute; right: 0; top: 40px; z-index: 20; width: 280px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
-  box-shadow: 0 12px 32px var(--shadow); padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+.pop { position: absolute; right: 0; top: 40px; z-index: 20; width: 300px; max-width: calc(100vw - 32px); background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
+  box-shadow: 0 12px 32px var(--shadow); padding: 4px 14px; display: flex; flex-direction: column; }
+/* settings sections: calculation, theme, data, then the destructive action set apart at the bottom */
+.pg { padding: 12px 0; display: flex; flex-direction: column; gap: 10px; }
+.pg + .pg { border-top: 1px solid var(--line); }
+.pg-h { font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+/* data actions as one grouped list: icon + label rows sharing a border */
+.list { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.list-i { display: flex; align-items: center; gap: 10px; width: 100%; height: 36px; padding: 0 12px; border: 0; background: none; color: var(--fg); cursor: pointer; text-align: left; font-size: 13.5px; }
+.list-i + .list-i { border-top: 1px solid var(--line); }
+.list-i svg { width: 15px; height: 15px; flex: none; color: var(--muted); }
+.list-i span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list-i:hover { background: var(--soft); }
+.list-i:hover svg { color: var(--fg); }
+.seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; padding: 2px; border-radius: 8px; background: var(--soft); }
+.seg button { height: 28px; border: 0; border-radius: 6px; background: transparent; cursor: pointer; color: var(--muted); font-size: 12.5px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-width: 0; white-space: nowrap; overflow: hidden; }
+.seg button svg { width: 14px; height: 14px; flex: none; }
+.seg button:hover { color: var(--fg); }
+.seg button[aria-pressed="true"] { background: var(--panel); color: var(--fg); box-shadow: 0 1px 2px var(--shadow); }
+/* reset: hold the button for 1 s; a bar fills across it, releasing early cancels */
+.danger-row { position: relative; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  height: 32px; width: 100%; border: 0; border-radius: 8px; background: var(--bad); color: #fff; cursor: pointer; font-weight: 500;
+  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 12px; transition: box-shadow .15s, filter .15s; }
+.danger-row svg { width: 15px; height: 15px; flex: none; position: relative; }
+.danger-row span { position: relative; }
+.danger-row .fill { position: absolute; inset: 0; background: #0000003d; transform: scaleX(0); transform-origin: left; }
+.danger-row.hold .fill { animation: hold-fill 1s linear forwards; }
+@keyframes hold-fill { to { transform: scaleX(1); } }
+.danger-row:hover { filter: brightness(1.06); }
+.danger-row.hold, .danger-row.tip { box-shadow: 0 0 0 3px var(--bad-soft); }
+#resetHint { text-align: center; }
+.tool-btn { height: 34px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--panel); cursor: pointer; color: var(--fg); white-space: nowrap; font-weight: 500; }
+.tool-btn svg { width: 16px; height: 16px; color: var(--sel); flex: none; }
+.tool-btn:hover { border-color: var(--sel); }
 .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .btns { display: flex; gap: 6px; flex-wrap: wrap; }
 .btn { height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; }
@@ -303,10 +351,89 @@ input[type="range"] { width: 100%; accent-color: var(--sel); }
 .chip { font-size: 11px; height: 18px; padding: 0 6px; border-radius: 4px; display: inline-flex; align-items: center; background: var(--warn-soft); color: var(--warn); }
 
 /* modal */
-.scrim { position: fixed; inset: 0; z-index: 50; background: #0000004d; display: grid; place-items: center; padding: 16px; }
+.scrim { position: fixed; inset: 0; z-index: 50; background: #0000008c; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); display: grid; place-items: center; padding: 16px; }
 .dialog { width: min(360px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 20px 48px #0000003a; }
 .dialog h3 { margin: 0; font-size: 15px; }
 .dialog .btns { justify-content: flex-end; }
+
+/* agent dialog: centered on desktop, bottom sheet on phones */
+/* fixed top; the body is sized to the tallest tab (sizeAgent), so switching tabs never moves or resizes the dialog.
+   It only scrolls when the viewport is too short to show everything. */
+.scrim.sheet { --ag-top: clamp(16px, 16vh, 168px); align-items: start; padding-top: var(--ag-top); }
+@media (max-height: 860px) { .scrim.sheet { --ag-top: max(16px, 5vh); } }
+@media (max-height: 780px) { .scrim.sheet { --ag-top: 16px; } }
+.dialog.ag { width: min(1040px, 100%); max-height: calc(100vh - var(--ag-top) - 24px); padding: 0; gap: 0; overflow: hidden; }
+.ag-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 22px 28px 14px; }
+.ag-head h3 { font-size: 18px; }
+.ag-head .note { margin-top: 6px; font-size: 13.5px; }
+.ag-head .icon-btn { border-color: transparent; flex: none; margin: -4px -8px 0 0; }
+.ag-head .icon-btn:hover { background: var(--soft); }
+.tabs { display: flex; gap: 24px; padding: 0 28px; border-bottom: 1px solid var(--line); flex: none; }
+.tabs button { height: 40px; border: 0; background: none; padding: 0; cursor: pointer; color: var(--muted); font-weight: 500; position: relative; white-space: nowrap; }
+.tabs button:hover { color: var(--fg); }
+.tabs button[aria-selected="true"] { color: var(--fg); }
+.tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 2px; background: var(--sel); }
+.ag-body { flex: 0 1 auto; min-height: 0; overflow-y: auto; padding: 22px 28px 26px; overscroll-behavior: contain; scrollbar-width: none; }
+.ag-body::-webkit-scrollbar { display: none; }
+.dialog.ag { position: relative; }
+.dialog.ag.more::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 48px; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--panel)); border-radius: 0 0 var(--r) var(--r); }
+.ag-body [role="tabpanel"] { display: flex; flex-direction: column; gap: 16px; }
+/* every tab fills the body (sized to the tallest); Quick start keeps its note at the bottom */
+.ag-body [role="tabpanel"] { min-height: 100%; }
+#pane-start .callout { margin-top: auto; }
+.steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 24px; counter-reset: st; }
+.steps > li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 14px; counter-increment: st; }
+.steps > li::before { content: counter(st); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--sel-soft); color: var(--sel); font: 600 12.5px var(--f-num); }
+.steps b { font-weight: 600; font-size: 14.5px; line-height: 26px; }
+.steps .note { margin-top: 4px; font-size: 13.5px; line-height: 1.65; }
+.prompt { margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); overflow: hidden; }
+.prompt pre { margin: 0; padding: 16px 18px 8px; white-space: pre-wrap; word-break: break-word; font: 13.5px/1.8 var(--f-ui); }
+.prompt-f { display: flex; justify-content: flex-end; gap: 8px; padding: 0 10px 10px; }
+.callout { display: flex; gap: 10px; padding: 12px 14px; border-radius: 10px; background: var(--soft); font-size: 13px; line-height: 1.6; color: var(--muted); }
+.callout.w { background: var(--warn-soft); color: var(--fg); }
+.callout svg { width: 15px; height: 15px; flex: none; margin-top: 3px; color: var(--muted); }
+.callout.w svg { color: var(--warn); }
+.cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.case { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.case-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.case-h b { font-weight: 600; font-size: 14.5px; }
+.tag { font-size: 11px; height: 20px; padding: 0 8px; border-radius: 10px; display: inline-flex; align-items: center; white-space: nowrap; background: var(--sel-soft); color: var(--sel); }
+.tag.ro { background: var(--warn-soft); color: var(--warn); }
+.tag.rw { background: var(--bad-soft); color: var(--bad); }
+.case .lbl { font-size: 12px; line-height: 1.55; }
+.case .prompt { margin-top: 0; flex: 1; position: relative; border-radius: 10px; }
+.case .prompt pre { padding: 9px 40px 9px 12px; font-size: 12.5px; line-height: 1.6; }
+.copy-ic { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 7px;
+  background: var(--panel); color: var(--muted); cursor: pointer; padding: 0; }
+.copy-ic:hover { color: var(--fg); border-color: var(--muted); }
+.copy-ic svg { width: 14px; height: 14px; }
+.copy-ic.ok { color: var(--sel); border-color: var(--sel); }
+.case.rw { border-color: color-mix(in srgb, var(--bad) 45%, var(--line)); }
+.dev { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 24px; align-items: start; }
+.dev-col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.dev-col + .dev-col .ag-h { margin-top: 0; }
+.files { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.file { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding: 12px 14px; }
+.file-m { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.file + .file { border-top: 1px solid var(--line); }
+.file .file-n { font: 600 13px var(--f-num); color: var(--fg); text-decoration: none; justify-self: start; }
+.file .file-n:hover { color: var(--sel); }
+.file .lbl { font-size: 12.5px; }
+.code { border-radius: 12px; background: var(--soft); border: 1px solid var(--line); }
+.code pre { margin: 0; padding: 14px 16px; overflow-x: auto; font: 12px/1.65 var(--f-num); }
+.ag-h { font-size: 13px; font-weight: 600; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 28px; }
+.params { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.params td { padding: 7px 0; border-top: 1px solid var(--line); vertical-align: top; line-height: 1.5; }
+.params td:first-child { width: 80px; font: 500 12px var(--f-num); padding-top: 8px; }
+.params tr:first-child td { border-top: 0; }
+.ag-links { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; }
+.ag-links a { color: var(--sel); text-decoration: none; }
+.ag-links a:hover { text-decoration: underline; }
+@media (max-width: 900px) {
+  .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dev { grid-template-columns: minmax(0, 1fr); }
+}
 
 /* rules */
 .rule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; padding: 16px 16px 12px; }
@@ -323,11 +450,21 @@ footer a:hover { color: var(--fg); }
 
 @media (max-width: 880px) {
   .top { grid-template-columns: minmax(0, 1fr); }
-  .tools { justify-content: flex-start; grid-column: 1; grid-row: 3; }
+  .tools { justify-content: flex-start; grid-column: 1; grid-row: 3; position: relative; }
+  .menu { position: static; }
+  .pop { left: 0; right: auto; top: calc(100% + 6px); }
   .grid { grid-template-columns: minmax(0, 1fr); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
+  .tool-btn { width: 34px; padding: 0; justify-content: center; }
+  .tool-btn span { display: none; }
+  .scrim.sheet { align-items: end; padding: 0; }
+  .ag-head { padding: 20px 20px 14px; }
+  .tabs { padding: 0 20px; gap: 20px; }
+  .ag-body { padding: 20px 20px 24px; }
+  .dialog.ag { width: 100%; max-height: 88vh; max-height: 88dvh; border-radius: 16px 16px 0 0; border-bottom: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .cases { grid-template-columns: minmax(0, 1fr); }
   .brand-row { flex-wrap: wrap; gap: 12px; }
   .brand-row h1 { white-space: normal; }
   .band { flex-wrap: wrap; }
@@ -1036,27 +1173,44 @@ footer a:hover { color: var(--fg); }
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c2 2 2 10.4 0 12.4M8 1.8c-2 2-2 10.4 0 12.4"/></svg>
         <select id="lang"></select>
       </label>
+      <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">Use with AI</span></button>
       <a class="icon-btn" id="ghBtn" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="View source on GitHub" aria-label="View source on GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
       <details class="menu" id="settings">
         <summary class="icon-btn" id="settingsBtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h2M7 12h7"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="5.5" cy="12" r="1.6"/></svg></summary>
         <div class="pop">
-          <div>
-            <div class="row"><span data-i="outRatio">Outbound share</span><span class="num" id="outRatioV"></span></div>
-            <input type="range" id="outRatio" min="0" max="100" step="5">
-            <div class="lbl" data-i="outRatioHint">Only outbound traffic is billed as overage. Keep 100% if unsure.</div>
-          </div>
-          <div class="row"><span data-i="prorate">Prorate allowance for mid-month instances</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
-          <div class="btns">
-            <button class="btn sm" id="copyLinkBtn" type="button" data-i="copyLink">Copy config link</button>
-            <button class="btn sm" id="exportBtn" type="button" data-i="exp">Export backup</button>
-            <label class="btn sm" for="importFile" data-i="imp">Import backup</label>
+          <section class="pg">
+            <div class="pg-h" data-i="secCalc">Calculation</div>
+            <div>
+              <div class="row"><span data-i="outRatio">Outbound share</span><span class="num" id="outRatioV"></span></div>
+              <input type="range" id="outRatio" min="0" max="100" step="5">
+              <div class="lbl" data-i="outRatioHint">Only outbound traffic is billed as overage. Keep 100% if unsure.</div>
+            </div>
+            <div class="row"><span data-i="prorate">Prorate allowance for mid-month instances</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+          </section>
+          <section class="pg">
+            <div class="pg-h" data-i="theme">Theme</div>
+            <div class="seg" id="themeSeg" role="group">
+              <button type="button" data-t="system"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2" y="3" width="12" height="8" rx="1.5"/><path d="M6 14h4M8 11v3"/></svg><span data-i="th_system">System</span></button>
+              <button type="button" data-t="light"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg><span data-i="th_light">Light</span></button>
+              <button type="button" data-t="dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z"/></svg><span data-i="th_dark">Dark</span></button>
+            </div>
+          </section>
+          <section class="pg">
+            <div class="pg-h" data-i="secData">Data</div>
+            <div class="list">
+              <button class="list-i" id="copyLinkBtn" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 0 1 3.5 3.5l-1 1M9 11.5l-1 1a2.5 2.5 0 0 1-3.5-3.5l1-1"/></svg><span data-i="copyLink">Copy config link</span></button>
+              <button class="list-i" id="exportBtn" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v8M4.8 7.5L8 10.7l3.2-3.2M3 13.5h10"/></svg><span data-i="exp">Export backup</span></button>
+              <label class="list-i" for="importFile"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10.5v-8M4.8 5.5L8 2.3l3.2 3.2M3 13.5h10"/></svg><span data-i="imp">Import backup</span></label>
+              <button class="list-i" id="sampleBtn" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h4M6.8 2.5v4L3.6 12a1 1 0 0 0 .9 1.5h7a1 1 0 0 0 .9-1.5L9.2 6.5v-4"/></svg><span data-i="sample">Load example</span></button>
+            </div>
             <input type="file" id="importFile" accept="application/json,.json" hidden>
-            <button class="btn sm" id="sampleBtn" type="button" data-i="sample">Load example</button>
-          </div>
+          </section>
+          <section class="pg">
+            <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">Reset all data</span></button>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>Instances, usage and settings return to defaults. This cannot be undone.</div>
+          </section>
         </div>
       </details>
-      <button class="icon-btn" id="themeBtn" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg></button>
-      <button class="icon-btn danger" id="resetBtn" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg></button>
     </div>
   </header>
 
@@ -1153,11 +1307,23 @@ footer a:hover { color: var(--fg); }
   <footer><span id="footTxt">Data stays in this browser · Prices checked 2026-10-25 · Not an official AWS tool</span> · <a href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer">GitHub</a></footer>
 </div>
 
-<div class="scrim" id="confirm" hidden>
-  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="confirmT">
-    <h3 id="confirmT" data-i="cT">Clear all data?</h3>
-    <div class="note" data-i="cB">Instances, usage and settings return to defaults. This cannot be undone. Export a backup in Advanced settings first if needed.</div>
-    <div class="btns"><button class="btn" id="confirmNo" type="button" data-i="cancel">Cancel</button><button class="btn red" id="confirmYes" type="button" data-i="clear">Clear</button></div>
+<!-- how to use the calculator from an AI agent; tab contents are filled per language by renderAgent() -->
+<div class="scrim sheet" id="agent" hidden>
+  <div class="dialog ag" role="dialog" aria-modal="true" aria-labelledby="agentT">
+    <div class="ag-head">
+      <div><h3 id="agentT"></h3><div class="note" id="agentSub"></div></div>
+      <button class="icon-btn" id="agentX" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+    </div>
+    <div class="tabs" role="tablist" id="agentTabs">
+      <button type="button" role="tab" data-tab="start" id="tab-start" aria-controls="pane-start"></button>
+      <button type="button" role="tab" data-tab="cases" id="tab-cases" aria-controls="pane-cases"></button>
+      <button type="button" role="tab" data-tab="dev" id="tab-dev" aria-controls="pane-dev"></button>
+    </div>
+    <div class="ag-body">
+      <div role="tabpanel" id="pane-start" aria-labelledby="tab-start"></div>
+      <div role="tabpanel" id="pane-cases" aria-labelledby="tab-cases" hidden></div>
+      <div role="tabpanel" id="pane-dev" aria-labelledby="tab-dev" hidden></div>
+    </div>
   </div>
 </div>
 
@@ -1211,7 +1377,7 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail 省钱计算器", tagline: "基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案",
       region: "地区：流量池只在同一地区内合并", lang: "语言", over: "超额", half: "额度减半",
       settings: "高级设置", outRatio: "出站占比", outRatioHint: "超额只对出站收费。不确定就保持 100%。", prorate: "月中开通的额度按时长折算",
-      exp: "导出备份", imp: "导入备份", sample: "载入示例", reset: "重置全部数据", copyLink: "复制配置链接", copied: "已复制", linkLoaded: "已载入链接中的配置，你原来的数据已备份。", undo: "恢复原来的数据", gh: "在 GitHub 查看源码", theme: "主题", th_system: "跟随系统", th_light: "浅色", th_dark: "深色",
+      exp: "导出备份", imp: "导入备份", sample: "载入示例", reset: "重置全部数据", resetHold: "按住 1 秒确认重置", copyLink: "复制配置链接", copied: "已复制", linkLoaded: "已载入链接中的配置，你原来的数据已备份。", undo: "恢复原来的数据", gh: "在 GitHub 查看源码", theme: "主题", th_system: "跟随系统", th_light: "浅色", th_dark: "深色",
       roll: "已进入 {m}：保留基石实例和运行中的流量实例，清零已用流量？", rollBtn: "开始新月份",
       usedUnit: "GB 已用", usedAria: "本月已用流量",
       recorded: "记录于 {t} · 日均 {v}", toBill: "去账单查看",
@@ -1229,6 +1395,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "流量实例", share: "同地区、同规格实例共享流量池，IPv6-only。", nodeAdd: "现在新增 1 台：+{a} · {c}（按至月底时长）", add: "添加流量实例",
       nStart: "开通", nEnd: "删除（运行中留空）", planned: "计划", gone: "已删除", dec: "减少", inc: "增加", count: "台数", del: "删除",
+      agent: "接入 Agent", secCalc: "计算", secData: "数据",
+      ag: {"title":"在 AI Agent 里使用","sub":"让 Agent 读一份简短说明，它就能替你算，并给你一个可以在这里核对的链接。","close":"关闭","tabs":["快速开始","典型用例","开发者"],"s1":"复制这段提示词","prompt":"请先阅读 {url}，按其中的 Lightsail 计费规则帮我计算流量池。\n我的情况：区域 ___，套餐 ___（如 $7 / 2 TB 流量），本月已用 ___ GB（截至 ___）。\n请告诉我这个月会不会超额、加几台流量实例最省钱，并给我一个预填好的计算器链接方便核对。","copyPrompt":"复制提示词","s2":"粘贴到能联网的 Agent 里","s2n":"ChatGPT、Claude、Gemini、Cursor 等都可以。把空白处填上，或者直接粘贴账单里的流量明细。","s3":"打开它给你的链接","s3n":"链接会把配置载入这个页面，方便你核对数字。你原来的数据会先备份，可以一键恢复。","privacy":"这个页面不上传任何数据。配置链接里带有你的用量数字，分享前请留意。","casesIntro":"复制一句提问，改成你的数字，发给 Agent 即可。每句都已带上说明文档地址。","does":"Agent 会：","copyQ":"复制这句提问","ref":"（规则和算法见 {url}）","perm":{"none":"无需权限","ro":"需 AWS 只读权限","rw":"需 AWS 写权限 · 产生费用"},"cases":[["会不会超","月中想知道这个月的额度够不够。","我在东京用 $12 / 3 TB 的 Lightsail 套餐，本月已用 2800 GB，这个月会超吗？要加几台流量实例？","按日均用量预测月底，给出最省钱的方案。"],["部署选型","新项目上线前，选区域和套餐。","我的应用每月大约 8 TB 流量，用户主要在东南亚，用 Lightsail 怎么配最便宜？","对比各区域单价、半额区域，以及套餐加流量实例的组合。"],["下月规划","月初按预计总量定好实例数。","下个月预计在法兰克福跑 12000 GB，用 $7 / 2 TB 的套餐，开几台流量实例成本最低？","用整月规划模式算出台数和月成本。"],["账单解读","看不懂账单里的流量明细。","这是我 AWS 账单里 Lightsail 的流量明细：（粘贴）。还剩多少额度？会被收费吗？","汇总 DataXfer-In/Out 两项，并给你一个核对链接。"],["流量预警","每天自动检查，快超额前提醒你。","每天早上读取我 Lightsail 实例的网络流量指标，如果这个月预计会超额就提醒我。","用 AWS CLI 或 SDK 读取 NetworkIn/Out，代入计算后通知你。"],["自动扩容","预计超额时自动加流量实例。","如果预计会超额，就在同一区域按推荐数量创建同套餐的 IPv6 实例。创建前先让我确认。","根据推荐结果调用 Lightsail API 创建实例。"]],"scaleWarn":"自动扩容会创建真实计费的实例。只给 Agent 必要的权限，要求它创建前确认，并设好实例数上限。","devIntro":"所有文件都是静态的，允许跨域读取，没有服务端 API，也不需要密钥。","files":["给 Agent 读的说明：计费规则、链接参数、返回字段","各区域的价格与额度","计算模块（ES Module），和这个页面同一套代码"],"copyUrl":"复制地址","codeH":"在代码里调用","copy":"复制","paramsH":"预填链接参数","params":["AWS 区域代码，如 us-east-1","套餐，以内存 GB 标识，如 $7 / 2 TB 为 1","本月已用 GB（入站 + 出站）","预计月底总量 GB；单独使用时按整月规划","流量实例，格式 数量@开始[~结束]，UTC"],"more":"完整参数和返回字段见 llms.txt。Node.js 不能直接从网址导入，可以下载 calc.js 或从仓库复制。"},
       cT: "清空全部数据？", cB: "实例、已用流量和设置都会恢复默认，无法撤销。需要的话先在高级设置里导出备份。", cancel: "取消", clear: "清空",
       rules: "计费规则速查",
       r: ["入站 + 出站<b>都扣额度</b>",
@@ -1246,7 +1414,7 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail 省錢計算器", tagline: "基於「同地域同規格流量池共享」規則，幫你找出更省錢的彈性流量方案",
       region: "地區：流量池只在同一地區內合併", lang: "語言", over: "超額", half: "額度減半",
       settings: "進階設定", outRatio: "出站占比", outRatioHint: "超額只對出站收費。不確定就保持 100%。", prorate: "月中開通的額度按時長折算",
-      exp: "匯出備份", imp: "匯入備份", sample: "載入範例", reset: "重設全部資料", copyLink: "複製設定連結", copied: "已複製", linkLoaded: "已載入連結中的設定，你原本的資料已備份。", undo: "恢復原本的資料", gh: "在 GitHub 查看原始碼", theme: "主題", th_system: "跟隨系統", th_light: "淺色", th_dark: "深色",
+      exp: "匯出備份", imp: "匯入備份", sample: "載入範例", reset: "重設全部資料", resetHold: "按住 1 秒確認重設", copyLink: "複製設定連結", copied: "已複製", linkLoaded: "已載入連結中的設定，你原本的資料已備份。", undo: "恢復原本的資料", gh: "在 GitHub 查看原始碼", theme: "主題", th_system: "跟隨系統", th_light: "淺色", th_dark: "深色",
       roll: "已進入 {m}：保留基石實例和運行中的流量實例，清零已用流量？", rollBtn: "開始新月份",
       usedUnit: "GB 已用", usedAria: "本月已用流量",
       recorded: "記錄於 {t} · 日均 {v}", toBill: "前往帳單查看",
@@ -1264,6 +1432,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "流量實例", share: "同地區、同規格實例共享流量池，IPv6-only。", nodeAdd: "現在新增 1 台：+{a} · {c}（按至月底時長）", add: "新增流量實例",
       nStart: "開通", nEnd: "刪除（運行中留空）", planned: "計畫", gone: "已刪除", dec: "減少", inc: "增加", count: "台數", del: "刪除",
+      agent: "接入 Agent", secCalc: "計算", secData: "資料",
+      ag: {"title":"在 AI Agent 裡使用","sub":"讓 Agent 讀一份簡短說明，它就能替你算，並給你一個可以在這裡核對的連結。","close":"關閉","tabs":["快速開始","典型用例","開發者"],"s1":"複製這段提示詞","prompt":"請先閱讀 {url}，按其中的 Lightsail 計費規則幫我計算流量池。\n我的情況：區域 ___，方案 ___（如 $7 / 2 TB 流量），本月已用 ___ GB（截至 ___）。\n請告訴我這個月會不會超額、加幾台流量執行個體最省錢，並給我一個預先填好的計算器連結方便核對。","copyPrompt":"複製提示詞","s2":"貼到能連網的 Agent 裡","s2n":"ChatGPT、Claude、Gemini、Cursor 等都可以。把空白處填上，或直接貼上帳單裡的流量明細。","s3":"開啟它給你的連結","s3n":"連結會把設定載入這個頁面，方便你核對數字。你原本的資料會先備份，可以一鍵恢復。","privacy":"這個頁面不上傳任何資料。設定連結裡帶有你的用量數字，分享前請留意。","casesIntro":"複製一句提問，改成你的數字，傳給 Agent 即可。每句都已帶上說明文件網址。","does":"Agent 會：","copyQ":"複製這句提問","ref":"（規則和演算法見 {url}）","perm":{"none":"無需權限","ro":"需 AWS 唯讀權限","rw":"需 AWS 寫入權限 · 產生費用"},"cases":[["會不會超","月中想知道這個月的額度夠不夠。","我在東京用 $12 / 3 TB 的 Lightsail 方案，本月已用 2800 GB，這個月會超嗎？要加幾台流量執行個體？","按日均用量預測月底，給出最省錢的方案。"],["部署選型","新專案上線前，選區域和方案。","我的應用每月大約 8 TB 流量，使用者主要在東南亞，用 Lightsail 怎麼配最便宜？","比較各區域單價、半額區域，以及方案加流量執行個體的組合。"],["下月規劃","月初按預計總量定好執行個體數。","下個月預計在法蘭克福跑 12000 GB，用 $7 / 2 TB 的方案，開幾台流量執行個體成本最低？","用整月規劃模式算出台數和月成本。"],["帳單解讀","看不懂帳單裡的流量明細。","這是我 AWS 帳單裡 Lightsail 的流量明細：（貼上）。還剩多少額度？會被收費嗎？","加總 DataXfer-In/Out 兩項，並給你一個核對連結。"],["流量預警","每天自動檢查，快超額前提醒你。","每天早上讀取我 Lightsail 執行個體的網路流量指標，如果這個月預計會超額就提醒我。","用 AWS CLI 或 SDK 讀取 NetworkIn/Out，代入計算後通知你。"],["自動擴容","預計超額時自動加流量執行個體。","如果預計會超額，就在同一區域按建議數量建立同方案的 IPv6 執行個體。建立前先讓我確認。","根據建議結果呼叫 Lightsail API 建立執行個體。"]],"scaleWarn":"自動擴容會建立真實計費的執行個體。只給 Agent 必要的權限，要求它建立前確認，並設好執行個體數上限。","devIntro":"所有檔案都是靜態的，允許跨域讀取，沒有伺服器 API，也不需要金鑰。","files":["給 Agent 讀的說明：計費規則、連結參數、回傳欄位","各區域的價格與額度","計算模組（ES Module），和這個頁面同一套程式碼"],"copyUrl":"複製網址","codeH":"在程式碼裡呼叫","copy":"複製","paramsH":"預填連結參數","params":["AWS 區域代碼，如 us-east-1","方案，以記憶體 GB 標識，如 $7 / 2 TB 為 1","本月已用 GB（輸入 + 輸出）","預計月底總量 GB；單獨使用時按整月規劃","流量執行個體，格式 數量@開始[~結束]，UTC"],"more":"完整參數和回傳欄位見 llms.txt。Node.js 不能直接從網址匯入，可以下載 calc.js 或從儲存庫複製。"},
       cT: "清空全部資料？", cB: "實例、已用流量和設定都會恢復預設，無法復原。需要的話先在進階設定裡匯出備份。", cancel: "取消", clear: "清空",
       rules: "計費規則速查",
       r: ["入站 + 出站<b>都扣額度</b>",
@@ -1281,7 +1451,7 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail Cost Saver", tagline: "Uses the rule that same-region, same-size instances share one transfer pool to find the cheapest plan for elastic traffic.",
       region: "Region: allowances only pool within one region", lang: "Language", over: "overage", half: "half allowance",
       settings: "Advanced settings", outRatio: "Outbound share", outRatioHint: "Only outbound traffic is billed as overage. Keep 100% if unsure.", prorate: "Prorate allowance for mid-month instances",
-      exp: "Export backup", imp: "Import backup", sample: "Load example", reset: "Reset all data", copyLink: "Copy config link", copied: "Copied", linkLoaded: "Loaded the configuration from the link. Your previous data is backed up.", undo: "Restore my data", gh: "View source on GitHub", theme: "Theme", th_system: "System", th_light: "Light", th_dark: "Dark",
+      exp: "Export backup", imp: "Import backup", sample: "Load example", reset: "Reset all data", resetHold: "Hold 1 s to reset", copyLink: "Copy config link", copied: "Copied", linkLoaded: "Loaded the configuration from the link. Your previous data is backed up.", undo: "Restore my data", gh: "View source on GitHub", theme: "Theme", th_system: "System", th_light: "Light", th_dark: "Dark",
       roll: "{m} has started. Keep the base and running traffic instances and clear usage?", rollBtn: "Start new month",
       usedUnit: "GB used", usedAria: "Data used this month",
       recorded: "Recorded {t} · {v}/day", toBill: "Open Bills",
@@ -1299,6 +1469,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "Traffic instances", share: "Same-region, same-size instances share the pool. IPv6-only.", nodeAdd: "Add 1 now: +{a} · {c} (prorated to month end)", add: "Add traffic instance",
       nStart: "Created", nEnd: "Deleted (blank if running)", planned: "Planned", gone: "Deleted", dec: "Decrease", inc: "Increase", count: "Count", del: "Remove",
+      agent: "Use with AI", secCalc: "Calculation", secData: "Data",
+      ag: {"title":"Use it with an AI agent","sub":"Your agent reads one short guide, does the math for you and hands back a link you can check here.","close":"Close","tabs":["Quick start","Use cases","Developers"],"s1":"Copy this prompt","prompt":"Read {url} first, then use its Lightsail billing rules to work out my data transfer pool.\nMy setup: region ___, bundle ___ (e.g. $7 / 2 TB transfer), ___ GB used this month (as of ___).\nTell me whether I'll go over this month and the cheapest number of traffic instances to add, and give me a pre-filled calculator link so I can check.","copyPrompt":"Copy prompt","s2":"Paste it into an agent that can browse the web","s2n":"ChatGPT, Claude, Gemini, Cursor and similar all work. Fill in the blanks, or paste the data transfer lines from your bill instead.","s3":"Open the link it returns","s3n":"The link loads the setup here so you can check the numbers. Your current data is backed up first and can be restored.","privacy":"This page uploads nothing. Config links contain your usage numbers, so check before sharing them.","casesIntro":"Copy a question, change the numbers and send it to your agent. Each one already points it at the guide.","does":"Agent: ","copyQ":"Copy question","ref":" (Rules and method: {url})","perm":{"none":"No access needed","ro":"AWS read-only","rw":"AWS write · costs money"},"cases":[["Will I go over?","A mid-month check on whether the pool will last.","I'm on the $12 / 3 TB Lightsail bundle in Tokyo and have used 2800 GB this month. Will I go over, and how many traffic instances should I add?","projects month-end use from the daily pace and finds the cheapest fix."],["Choose a setup","Planning a new project before you deploy.","My app will push about 8 TB a month, mostly to users in Southeast Asia. What's the cheapest Lightsail region and bundle setup?","compares region prices, half-allowance regions and bundle plus traffic-instance combinations."],["Plan next month","Sizing the fleet at the start of the month.","Next month I expect about 12,000 GB in Frankfurt on the $7 / 2 TB bundle. How many traffic instances keep the cost lowest?","runs a full-month plan and returns the count and monthly cost."],["Explain my bill","The data transfer lines on the bill are hard to read.","Here are the Lightsail data transfer lines from my AWS bill: (paste). How much allowance is left, and will I be charged?","adds up the DataXfer-In/Out items and gives you a link to verify."],["Usage alerts","A daily check that warns you before overage.","Every morning, read the network metrics of my Lightsail instances and warn me if this month is heading for overage.","reads NetworkIn/Out with the AWS CLI or SDK, runs the numbers and notifies you."],["Auto scale-up","Add traffic instances automatically when overage is coming.","If overage is expected, create the recommended number of IPv6-only instances of my bundle in the same region. Ask me to confirm before creating anything.","uses the recommendation to call the Lightsail API and create instances."]],"scaleWarn":"Auto scale-up creates real, billed instances. Give the agent only the permissions it needs, require confirmation and cap the instance count.","devIntro":"Everything is static and readable from any origin. There is no server API and no key.","files":["Guide for agents: rules, link parameters, result fields","Prices and allowances for every region","The calculation module (ES module), the same code as this page"],"copyUrl":"Copy URL","codeH":"Call it from code","copy":"Copy","paramsH":"Pre-filled link parameters","params":["AWS Region code, e.g. us-east-1","Bundle, identified by RAM in GB; $7 / 2 TB is 1","GB used so far this month (in + out)","Expected month-end total in GB; on its own, plans the full month","Traffic instances as count@start[~end], UTC"],"more":"All parameters and result fields are in llms.txt. Node.js can't import from a URL: download calc.js or copy it from the repository."},
       cT: "Clear all data?", cB: "Instances, usage and settings return to defaults. This cannot be undone. Export a backup in Advanced settings first if needed.", cancel: "Cancel", clear: "Clear",
       rules: "Billing rules",
       r: ["Inbound + outbound <b>both use the allowance</b>",
@@ -1316,7 +1488,7 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail 節約計算機", tagline: "「同じリージョン・同じプランのデータ転送量はプールで共有」というルールで、変動する通信量に最も安いプランを見つけます。",
       region: "リージョン：プールは同じリージョン内でのみ合算", lang: "言語", over: "超過", half: "枠半分",
       settings: "詳細設定", outRatio: "送信の割合", outRatioHint: "超過料金は送信のみ。不明なら 100% のままに。", prorate: "月途中の作成分は枠を時間按分",
-      exp: "バックアップを書き出す", imp: "バックアップを読み込む", sample: "サンプルを読み込む", reset: "全データをリセット", copyLink: "設定リンクをコピー", copied: "コピーしました", linkLoaded: "リンクの設定を読み込みました。以前のデータはバックアップ済みです。", undo: "元のデータに戻す", gh: "GitHub でソースを見る", theme: "テーマ", th_system: "システム", th_light: "ライト", th_dark: "ダーク",
+      exp: "バックアップを書き出す", imp: "バックアップを読み込む", sample: "サンプルを読み込む", reset: "全データをリセット", resetHold: "1 秒長押しでリセット", copyLink: "設定リンクをコピー", copied: "コピーしました", linkLoaded: "リンクの設定を読み込みました。以前のデータはバックアップ済みです。", undo: "元のデータに戻す", gh: "GitHub でソースを見る", theme: "テーマ", th_system: "システム", th_light: "ライト", th_dark: "ダーク",
       roll: "{m} になりました。ベースと稼働中のトラフィック用インスタンスを残し、使用量をクリアしますか？", rollBtn: "新しい月を開始",
       usedUnit: "GB 使用", usedAria: "今月の使用量",
       recorded: "{t} 記録 · 1日平均 {v}", toBill: "請求書を開く",
@@ -1334,6 +1506,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "トラフィック用インスタンス", share: "同じリージョン・同じプランのインスタンスはプールを共有。IPv6-only。", nodeAdd: "今 1 台追加：+{a} · {c}（月末まで按分）", add: "トラフィック用インスタンスを追加",
       nStart: "作成", nEnd: "削除 (稼働中は空欄)", planned: "予定", gone: "削除済み", dec: "減らす", inc: "増やす", count: "台数", del: "削除",
+      agent: "AI で使う", secCalc: "計算", secData: "データ",
+      ag: {"title":"AI エージェントで使う","sub":"短いガイドを読ませるだけで、エージェントが計算し、ここで確認できるリンクを返します。","close":"閉じる","tabs":["クイックスタート","活用例","開発者向け"],"s1":"このプロンプトをコピー","prompt":"まず {url} を読み、その Lightsail の課金ルールでデータ転送プールを計算してください。\n私の構成：リージョン ___、プラン ___（例：$7 / 転送量 2 TB）、今月の使用量 ___ GB（___ 時点）。\n今月超過するか、最も安く済むトラフィック用インスタンスの追加台数を教えてください。確認用に入力済みの計算機リンクもください。","copyPrompt":"プロンプトをコピー","s2":"Web を閲覧できるエージェントに貼り付ける","s2n":"ChatGPT、Claude、Gemini、Cursor などで使えます。空欄を埋めるか、請求書の転送量の明細をそのまま貼り付けてください。","s3":"返ってきたリンクを開く","s3n":"リンクを開くと構成がこのページに読み込まれ、数値を確認できます。元のデータは先にバックアップされ、復元できます。","privacy":"このページは何もアップロードしません。設定リンクには使用量が含まれるので、共有前に確認してください。","casesIntro":"質問をコピーして数値を書き換え、エージェントに送るだけです。どの質問にもガイドの URL が入っています。","does":"エージェント：","copyQ":"質問をコピー","ref":"（ルールと計算方法：{url}）","perm":{"none":"権限不要","ro":"AWS 読み取り権限","rw":"AWS 書き込み権限・費用発生"},"cases":[["超過する？","月の途中で、枠が足りるか確認したい。","東京で $12 / 3 TB の Lightsail プランを使っていて、今月は 2800 GB 使いました。今月超過しますか？トラフィック用インスタンスを何台追加すべき？","1 日あたりのペースから月末を予測し、最も安い対策を出します。"],["構成を選ぶ","新規プロジェクトのデプロイ前に検討したい。","月に約 8 TB 転送するアプリで、ユーザーは主に東南アジアです。Lightsail で最も安いリージョンとプランの組み合わせは？","リージョン単価、枠半分のリージョン、プランとトラフィック用インスタンスの組み合わせを比較します。"],["来月の計画","月初に台数を決めたい。","来月はフランクフルトの $7 / 2 TB プランで約 12000 GB を見込んでいます。トラフィック用インスタンスは何台が最安ですか？","月全体の計画モードで台数と月額を出します。"],["請求書を読む","請求書の転送量の明細がわかりにくい。","AWS 請求書の Lightsail 転送量の明細です：（貼り付け）。枠はあとどれくらいで、課金されますか？","DataXfer-In/Out を合計し、確認用リンクを返します。"],["使用量アラート","毎日チェックして、超過前に知らせてほしい。","毎朝 Lightsail インスタンスのネットワーク指標を読み取り、今月超過しそうなら知らせてください。","AWS CLI または SDK で NetworkIn/Out を読み、計算して通知します。"],["自動スケールアップ","超過しそうなときに自動で追加したい。","超過が見込まれる場合、同じリージョンに同じプランの IPv6 インスタンスを推奨台数だけ作成してください。作成前に必ず確認を求めてください。","推奨結果に従って Lightsail API でインスタンスを作成します。"]],"scaleWarn":"自動スケールアップは実際に課金されるインスタンスを作成します。必要最小限の権限だけを与え、作成前の確認と台数の上限を設定してください。","devIntro":"すべて静的ファイルで、どのオリジンからも読み込めます。サーバー API もキーもありません。","files":["エージェント向けガイド：ルール、リンクのパラメータ、結果のフィールド","全リージョンの料金と転送枠","計算モジュール（ES Module）、このページと同じコード"],"copyUrl":"URL をコピー","codeH":"コードから呼び出す","copy":"コピー","paramsH":"入力済みリンクのパラメータ","params":["AWS リージョンコード（例 us-east-1）","プラン（メモリ GB で指定）。$7 / 2 TB は 1","今月の使用量 GB（受信 + 送信）","月末の見込み合計 GB。単独なら月全体の計画","トラフィック用インスタンス：台数@開始[~終了]、UTC"],"more":"すべてのパラメータと結果のフィールドは llms.txt にあります。Node.js は URL から直接 import できないため、calc.js をダウンロードするかリポジトリからコピーしてください。"},
       cT: "全データを消去しますか？", cB: "インスタンス、使用量、設定が初期状態に戻り、元に戻せません。必要なら先に詳細設定から書き出してください。", cancel: "キャンセル", clear: "消去",
       rules: "料金ルール早見表",
       r: ["受信 + 送信の<b>両方が枠を消費</b>",
@@ -1351,7 +1525,7 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail 절약 계산기", tagline: "‘같은 리전·같은 사양 인스턴스는 전송량 풀을 공유’하는 규칙으로 변동 트래픽에 가장 저렴한 구성을 찾아줍니다.",
       region: "리전: 풀은 같은 리전 안에서만 합산", lang: "언어", over: "초과", half: "할당량 절반",
       settings: "고급 설정", outRatio: "아웃바운드 비율", outRatioHint: "초과 요금은 아웃바운드에만 부과됩니다. 모르면 100% 유지.", prorate: "월 중간 생성분 할당량을 시간 비례 계산",
-      exp: "백업 내보내기", imp: "백업 가져오기", sample: "예시 불러오기", reset: "모든 데이터 초기화", copyLink: "설정 링크 복사", copied: "복사됨", linkLoaded: "링크의 설정을 불러왔습니다. 이전 데이터는 백업되었습니다.", undo: "이전 데이터 복원", gh: "GitHub에서 소스 보기", theme: "테마", th_system: "시스템", th_light: "라이트", th_dark: "다크",
+      exp: "백업 내보내기", imp: "백업 가져오기", sample: "예시 불러오기", reset: "모든 데이터 초기화", resetHold: "1초간 눌러 초기화", copyLink: "설정 링크 복사", copied: "복사됨", linkLoaded: "링크의 설정을 불러왔습니다. 이전 데이터는 백업되었습니다.", undo: "이전 데이터 복원", gh: "GitHub에서 소스 보기", theme: "테마", th_system: "시스템", th_light: "라이트", th_dark: "다크",
       roll: "{m}이 시작되었습니다. 기본 인스턴스와 실행 중인 트래픽 인스턴스는 유지하고 사용량을 초기화할까요?", rollBtn: "새 달 시작",
       usedUnit: "GB 사용", usedAria: "이번 달 사용량",
       recorded: "{t} 기록 · 일평균 {v}", toBill: "청구서 열기",
@@ -1369,6 +1543,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "트래픽 인스턴스", share: "같은 리전·같은 사양 인스턴스는 풀을 공유. IPv6-only.", nodeAdd: "지금 1대 추가: +{a} · {c} (월말까지 비례)", add: "트래픽 인스턴스 추가",
       nStart: "생성", nEnd: "삭제 (실행 중이면 비움)", planned: "예정", gone: "삭제됨", dec: "줄이기", inc: "늘리기", count: "대수", del: "삭제",
+      agent: "AI로 사용", secCalc: "계산", secData: "데이터",
+      ag: {"title":"AI 에이전트에서 사용하기","sub":"짧은 안내 문서만 읽히면 에이전트가 대신 계산하고, 여기서 확인할 수 있는 링크를 돌려줍니다.","close":"닫기","tabs":["빠른 시작","활용 예시","개발자"],"s1":"이 프롬프트를 복사하세요","prompt":"먼저 {url} 을 읽고, 그 Lightsail 과금 규칙으로 내 데이터 전송 풀을 계산해 주세요.\n내 구성: 리전 ___, 플랜 ___(예: $7 / 전송량 2 TB), 이번 달 사용량 ___ GB(___ 기준).\n이번 달 초과 여부와 가장 저렴한 트래픽 인스턴스 추가 대수를 알려 주고, 확인용으로 값이 채워진 계산기 링크도 주세요.","copyPrompt":"프롬프트 복사","s2":"웹 검색이 되는 에이전트에 붙여 넣기","s2n":"ChatGPT, Claude, Gemini, Cursor 등 모두 됩니다. 빈칸을 채우거나 청구서의 전송량 항목을 그대로 붙여 넣으세요.","s3":"돌려받은 링크 열기","s3n":"링크를 열면 구성이 이 페이지에 불러와져 숫자를 확인할 수 있습니다. 기존 데이터는 먼저 백업되며 복원할 수 있습니다.","privacy":"이 페이지는 아무것도 업로드하지 않습니다. 설정 링크에는 사용량이 들어 있으니 공유 전에 확인하세요.","casesIntro":"질문을 복사해 숫자만 바꿔 에이전트에 보내세요. 모든 질문에 안내 문서 주소가 들어 있습니다.","does":"에이전트: ","copyQ":"질문 복사","ref":" (규칙과 계산 방법: {url})","perm":{"none":"권한 불필요","ro":"AWS 읽기 권한","rw":"AWS 쓰기 권한 · 비용 발생"},"cases":[["초과할까?","월 중간에 할당량이 충분한지 확인.","도쿄에서 $12 / 3 TB Lightsail 플랜을 쓰고 이번 달 2800 GB를 썼습니다. 이번 달 초과하나요? 트래픽 인스턴스를 몇 대 추가해야 하나요?","일평균 속도로 월말을 예측하고 가장 저렴한 해결책을 찾습니다."],["구성 선택","새 프로젝트 배포 전에 검토.","월 약 8 TB를 전송하는 앱이고 사용자는 주로 동남아시아에 있습니다. Lightsail에서 가장 저렴한 리전과 플랜 구성은?","리전 단가, 할당량 절반 리전, 플랜과 트래픽 인스턴스 조합을 비교합니다."],["다음 달 계획","월초에 인스턴스 수를 정하기.","다음 달 프랑크푸르트 $7 / 2 TB 플랜으로 약 12000 GB를 예상합니다. 트래픽 인스턴스를 몇 대 두면 가장 저렴한가요?","월 전체 계획 모드로 대수와 월 비용을 계산합니다."],["청구서 해석","청구서의 전송량 항목이 이해하기 어려움.","AWS 청구서의 Lightsail 전송량 항목입니다: (붙여 넣기). 남은 할당량은 얼마이고 요금이 나오나요?","DataXfer-In/Out 항목을 합산하고 확인용 링크를 줍니다."],["사용량 알림","매일 점검해 초과 전에 알림.","매일 아침 내 Lightsail 인스턴스의 네트워크 지표를 읽고, 이번 달 초과가 예상되면 알려 주세요.","AWS CLI 또는 SDK로 NetworkIn/Out을 읽어 계산한 뒤 알려 줍니다."],["자동 확장","초과가 예상되면 트래픽 인스턴스를 자동 추가.","초과가 예상되면 같은 리전에 같은 플랜의 IPv6 인스턴스를 추천 대수만큼 만들어 주세요. 만들기 전에 반드시 확인을 받으세요.","추천 결과에 따라 Lightsail API로 인스턴스를 만듭니다."]],"scaleWarn":"자동 확장은 실제로 과금되는 인스턴스를 만듭니다. 필요한 권한만 주고, 생성 전 확인과 인스턴스 수 상한을 설정하세요.","devIntro":"모든 파일은 정적이며 어느 출처에서나 읽을 수 있습니다. 서버 API도 키도 없습니다.","files":["에이전트용 안내: 규칙, 링크 매개변수, 결과 필드","모든 리전의 가격과 할당량","계산 모듈(ES Module), 이 페이지와 같은 코드"],"copyUrl":"URL 복사","codeH":"코드에서 호출","copy":"복사","paramsH":"미리 채운 링크 매개변수","params":["AWS 리전 코드(예: us-east-1)","플랜(메모리 GB로 지정). $7 / 2 TB는 1","이번 달 사용량 GB(수신 + 송신)","예상 월말 총량 GB; 단독으로 쓰면 월 전체 계획","트래픽 인스턴스: 대수@시작[~종료], UTC"],"more":"모든 매개변수와 결과 필드는 llms.txt에 있습니다. Node.js는 URL에서 바로 import할 수 없으니 calc.js를 내려받거나 저장소에서 복사하세요."},
       cT: "모든 데이터를 지울까요?", cB: "인스턴스, 사용량, 설정이 기본값으로 돌아가며 되돌릴 수 없습니다. 필요하면 먼저 고급 설정에서 내보내세요.", cancel: "취소", clear: "지우기",
       rules: "요금 규칙 요약",
       r: ["인바운드 + 아웃바운드 <b>모두 할당량 차감</b>",
@@ -1386,7 +1562,7 @@ footer a:hover { color: var(--fg); }
       name: "Calculadora de ahorro AWS Lightsail", tagline: "Aprovecha que las instancias de la misma región y tamaño comparten la transferencia para hallar el plan más barato con tráfico variable.",
       region: "Región: la cuota solo se combina dentro de una región", lang: "Idioma", over: "exceso", half: "cuota a la mitad",
       settings: "Ajustes avanzados", outRatio: "Proporción saliente", outRatioHint: "Solo el tráfico saliente se cobra como exceso. Deja 100 % si no lo sabes.", prorate: "Prorratear la cuota de instancias creadas a mitad de mes",
-      exp: "Exportar copia", imp: "Importar copia", sample: "Cargar ejemplo", reset: "Restablecer todo", copyLink: "Copiar enlace de configuración", copied: "Copiado", linkLoaded: "Se cargó la configuración del enlace. Tus datos anteriores están respaldados.", undo: "Restaurar mis datos", gh: "Ver el código en GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Oscuro",
+      exp: "Exportar copia", imp: "Importar copia", sample: "Cargar ejemplo", reset: "Restablecer todo", resetHold: "Mantén 1 s para restablecer", copyLink: "Copiar enlace de configuración", copied: "Copiado", linkLoaded: "Se cargó la configuración del enlace. Tus datos anteriores están respaldados.", undo: "Restaurar mis datos", gh: "Ver el código en GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Oscuro",
       roll: "Ha empezado {m}. ¿Conservar la base y las instancias de tráfico activas y poner el uso a cero?", rollBtn: "Empezar mes nuevo",
       usedUnit: "GB usados", usedAria: "Datos usados este mes",
       recorded: "Registrado {t} · {v}/día", toBill: "Abrir facturas",
@@ -1404,6 +1580,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "Instancias de tráfico", share: "Las instancias de la misma región y tamaño comparten el pool. Solo IPv6.", nodeAdd: "Añadir 1 ahora: +{a} · {c} (prorrateado a fin de mes)", add: "Añadir instancia de tráfico",
       nStart: "Creada", nEnd: "Eliminada (vacío si activa)", planned: "Prevista", gone: "Eliminada", dec: "Restar", inc: "Sumar", count: "Cantidad", del: "Quitar",
+      agent: "Usar con IA", secCalc: "Cálculo", secData: "Datos",
+      ag: {"title":"Úsalo con un agente de IA","sub":"Tu agente lee una guía breve, hace las cuentas por ti y te devuelve un enlace para comprobarlas aquí.","close":"Cerrar","tabs":["Inicio rápido","Casos de uso","Desarrolladores"],"s1":"Copia este prompt","prompt":"Lee primero {url} y usa sus reglas de facturación de Lightsail para calcular mi pool de transferencia de datos.\nMi configuración: región ___, plan ___ (p. ej. $7 / 2 TB de transferencia), ___ GB usados este mes (a fecha de ___).\nDime si me pasaré este mes y cuántas instancias de tráfico añadir para pagar lo mínimo, y dame un enlace de la calculadora ya rellenado para comprobarlo.","copyPrompt":"Copiar prompt","s2":"Pégalo en un agente con acceso a la web","s2n":"Sirven ChatGPT, Claude, Gemini, Cursor y similares. Completa los huecos o pega las líneas de transferencia de tu factura.","s3":"Abre el enlace que te devuelve","s3n":"El enlace carga la configuración aquí para que compruebes los números. Tus datos actuales se guardan antes y puedes restaurarlos.","privacy":"Esta página no sube nada. Los enlaces de configuración incluyen tus cifras de uso: revísalos antes de compartirlos.","casesIntro":"Copia una pregunta, cambia los números y envíala a tu agente. Todas incluyen ya la dirección de la guía.","does":"El agente: ","copyQ":"Copiar pregunta","ref":" (Reglas y método: {url})","perm":{"none":"Sin permisos","ro":"AWS solo lectura","rw":"AWS escritura · genera costes"},"cases":[["¿Me pasaré?","A mitad de mes, saber si el pool aguanta.","Tengo el plan Lightsail de $12 / 3 TB en Tokio y llevo 2800 GB este mes. ¿Me pasaré? ¿Cuántas instancias de tráfico debo añadir?","proyecta el fin de mes con el ritmo diario y busca la solución más barata."],["Elegir configuración","Planificar un proyecto nuevo antes de desplegar.","Mi app moverá unos 8 TB al mes, sobre todo a usuarios del sudeste asiático. ¿Qué región y plan de Lightsail sale más barato?","compara precios por región, regiones con media asignación y combinaciones de plan e instancias de tráfico."],["Planificar el mes","Dimensionar la flota a principio de mes.","El mes que viene espero unos 12 000 GB en Fráncfort con el plan de $7 / 2 TB. ¿Cuántas instancias de tráfico minimizan el coste?","hace un plan de mes completo y devuelve el número y el coste mensual."],["Entender la factura","Las líneas de transferencia de la factura cuestan de leer.","Estas son las líneas de transferencia de Lightsail de mi factura de AWS: (pegar). ¿Cuánta asignación me queda y me cobrarán?","suma los conceptos DataXfer-In/Out y te da un enlace para verificar."],["Alertas de uso","Una comprobación diaria que avisa antes del exceso.","Cada mañana, lee las métricas de red de mis instancias Lightsail y avísame si este mes va camino de pasarse.","lee NetworkIn/Out con la CLI o el SDK de AWS, hace el cálculo y te avisa."],["Escalado automático","Añadir instancias de tráfico solas cuando se acerca el exceso.","Si se prevé exceso, crea en la misma región el número recomendado de instancias solo IPv6 de mi plan. Pídeme confirmación antes de crear nada.","usa la recomendación para llamar a la API de Lightsail y crear instancias."]],"scaleWarn":"El escalado automático crea instancias reales que se facturan. Da al agente solo los permisos necesarios, exige confirmación y fija un máximo de instancias.","devIntro":"Todo es estático y se puede leer desde cualquier origen. No hay API de servidor ni clave.","files":["Guía para agentes: reglas, parámetros del enlace, campos del resultado","Precios y asignaciones de todas las regiones","El módulo de cálculo (ES module), el mismo código que esta página"],"copyUrl":"Copiar URL","codeH":"Llamarlo desde código","copy":"Copiar","paramsH":"Parámetros del enlace prellenado","params":["Código de región de AWS, p. ej. us-east-1","Plan, identificado por su RAM en GB; $7 / 2 TB es 1","GB usados este mes (entrada + salida)","Total previsto a fin de mes en GB; solo, planifica el mes completo","Instancias de tráfico: cantidad@inicio[~fin], UTC"],"more":"Todos los parámetros y campos del resultado están en llms.txt. Node.js no puede importar desde una URL: descarga calc.js o cópialo del repositorio."},
       cT: "¿Borrar todos los datos?", cB: "Instancias, uso y ajustes vuelven a los valores iniciales. No se puede deshacer. Exporta una copia antes si la necesitas.", cancel: "Cancelar", clear: "Borrar",
       rules: "Reglas de facturación",
       r: ["Entrante + saliente <b>consumen la cuota</b>",
@@ -1421,7 +1599,7 @@ footer a:hover { color: var(--fg); }
       name: "Calculateur d’économies AWS Lightsail", tagline: "S’appuie sur le partage du quota de transfert entre instances de même région et même taille pour trouver le plan le moins cher.",
       region: "Région : les quotas ne se cumulent que dans une région", lang: "Langue", over: "dépassement", half: "quota divisé par deux",
       settings: "Réglages avancés", outRatio: "Part sortante", outRatioHint: "Seul le trafic sortant est facturé en dépassement. Gardez 100 % en cas de doute.", prorate: "Proratiser le quota des instances créées en cours de mois",
-      exp: "Exporter", imp: "Importer", sample: "Charger un exemple", reset: "Tout réinitialiser", copyLink: "Copier le lien de configuration", copied: "Copié", linkLoaded: "Configuration du lien chargée. Vos données précédentes sont sauvegardées.", undo: "Restaurer mes données", gh: "Voir le code sur GitHub", theme: "Thème", th_system: "Système", th_light: "Clair", th_dark: "Sombre",
+      exp: "Exporter", imp: "Importer", sample: "Charger un exemple", reset: "Tout réinitialiser", resetHold: "Maintenez 1 s pour réinitialiser", copyLink: "Copier le lien de configuration", copied: "Copié", linkLoaded: "Configuration du lien chargée. Vos données précédentes sont sauvegardées.", undo: "Restaurer mes données", gh: "Voir le code sur GitHub", theme: "Thème", th_system: "Système", th_light: "Clair", th_dark: "Sombre",
       roll: "{m} a commencé. Garder la base et les instances de trafic actives et remettre l’usage à zéro ?", rollBtn: "Nouveau mois",
       usedUnit: "Go utilisés", usedAria: "Données utilisées ce mois",
       recorded: "Relevé {t} · {v}/jour", toBill: "Ouvrir les factures",
@@ -1439,6 +1617,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "Instances de trafic", share: "Même région, même taille : le pool est partagé. IPv6 seul.", nodeAdd: "Ajouter 1 maintenant : +{a} · {c} (au prorata jusqu’à fin de mois)", add: "Ajouter une instance de trafic",
       nStart: "Créée", nEnd: "Supprimée (vide si active)", planned: "Prévue", gone: "Supprimée", dec: "Moins", inc: "Plus", count: "Nombre", del: "Retirer",
+      agent: "Utiliser avec l’IA", secCalc: "Calcul", secData: "Données",
+      ag: {"title":"L’utiliser avec un agent IA","sub":"Votre agent lit un court guide, fait le calcul et vous renvoie un lien à vérifier ici.","close":"Fermer","tabs":["Démarrage","Cas d’usage","Développeurs"],"s1":"Copiez ce prompt","prompt":"Lis d’abord {url}, puis applique ses règles de facturation Lightsail pour calculer mon pool de transfert de données.\nMa configuration : région ___, forfait ___ (ex. 7 $ / 2 To de transfert), ___ Go utilisés ce mois-ci (au ___).\nDis-moi si je vais dépasser ce mois-ci et combien d’instances de trafic ajouter au moindre coût, et donne-moi un lien de calculatrice pré-rempli pour vérifier.","copyPrompt":"Copier le prompt","s2":"Collez-le dans un agent qui accède au web","s2n":"ChatGPT, Claude, Gemini, Cursor et équivalents conviennent. Remplissez les blancs ou collez les lignes de transfert de votre facture.","s3":"Ouvrez le lien qu’il renvoie","s3n":"Le lien charge la configuration ici pour vérifier les chiffres. Vos données actuelles sont d’abord sauvegardées et restaurables.","privacy":"Cette page n’envoie rien. Les liens de configuration contiennent vos chiffres d’usage : vérifiez avant de les partager.","casesIntro":"Copiez une question, changez les chiffres et envoyez-la à votre agent. Chacune indique déjà l’adresse du guide.","does":"L’agent : ","copyQ":"Copier la question","ref":" (Règles et méthode : {url})","perm":{"none":"Aucun accès requis","ro":"AWS lecture seule","rw":"AWS écriture · payant"},"cases":[["Vais-je dépasser ?","En milieu de mois, savoir si le pool tiendra.","J’ai le forfait Lightsail à 12 $ / 3 To à Tokyo et j’ai utilisé 2800 Go ce mois-ci. Vais-je dépasser ? Combien d’instances de trafic ajouter ?","projette la fin du mois au rythme quotidien et trouve la solution la moins chère."],["Choisir une config","Préparer un nouveau projet avant le déploiement.","Mon app enverra environ 8 To par mois, surtout vers l’Asie du Sud-Est. Quelle région et quel forfait Lightsail coûtent le moins ?","compare les prix par région, les régions à quota réduit de moitié et les combinaisons forfait + instances de trafic."],["Planifier le mois","Dimensionner la flotte en début de mois.","Le mois prochain, je prévois environ 12 000 Go à Francfort avec le forfait à 7 $ / 2 To. Combien d’instances de trafic pour le coût le plus bas ?","fait un plan sur le mois entier et renvoie le nombre et le coût mensuel."],["Lire ma facture","Les lignes de transfert de la facture sont peu lisibles.","Voici les lignes de transfert Lightsail de ma facture AWS : (coller). Combien de quota me reste-t-il et serai-je facturé ?","additionne les postes DataXfer-In/Out et vous donne un lien de vérification."],["Alertes d’usage","Un contrôle quotidien qui prévient avant le dépassement.","Chaque matin, lis les métriques réseau de mes instances Lightsail et préviens-moi si ce mois-ci s’oriente vers un dépassement.","lit NetworkIn/Out via l’AWS CLI ou le SDK, fait le calcul et vous prévient."],["Montée en charge auto","Ajouter des instances de trafic automatiquement avant un dépassement.","Si un dépassement est prévu, crée dans la même région le nombre recommandé d’instances IPv6 seulement de mon forfait. Demande-moi confirmation avant toute création.","s’appuie sur la recommandation pour appeler l’API Lightsail et créer les instances."]],"scaleWarn":"La montée en charge auto crée de vraies instances facturées. Donnez à l’agent le strict nécessaire, exigez une confirmation et plafonnez le nombre d’instances.","devIntro":"Tout est statique et lisible depuis n’importe quelle origine. Pas d’API serveur, pas de clé.","files":["Guide pour agents : règles, paramètres de lien, champs du résultat","Prix et quotas de chaque région","Le module de calcul (module ES), le même code que cette page"],"copyUrl":"Copier l’URL","codeH":"L’appeler depuis du code","copy":"Copier","paramsH":"Paramètres du lien pré-rempli","params":["Code de région AWS, ex. us-east-1","Forfait, identifié par sa RAM en Go ; 7 $ / 2 To vaut 1","Go utilisés ce mois-ci (entrant + sortant)","Total prévu en fin de mois en Go ; seul, planifie le mois entier","Instances de trafic : nombre@début[~fin], UTC"],"more":"Tous les paramètres et champs du résultat sont dans llms.txt. Node.js ne peut pas importer depuis une URL : téléchargez calc.js ou copiez-le depuis le dépôt."},
       cT: "Effacer toutes les données ?", cB: "Instances, usage et réglages reviennent aux valeurs par défaut, sans retour possible. Exportez une sauvegarde avant si besoin.", cancel: "Annuler", clear: "Effacer",
       rules: "Règles de facturation",
       r: ["Entrant + sortant <b>consomment le quota</b>",
@@ -1456,7 +1636,7 @@ footer a:hover { color: var(--fg); }
       name: "AWS Lightsail Sparrechner", tagline: "Nutzt die Regel, dass Instanzen gleicher Region und Größe ein Transfervolumen teilen, und findet den günstigsten Plan für schwankenden Traffic.",
       region: "Region: Kontingente werden nur innerhalb einer Region zusammengelegt", lang: "Sprache", over: "Überschreitung", half: "halbes Kontingent",
       settings: "Erweiterte Einstellungen", outRatio: "Ausgehender Anteil", outRatioHint: "Nur ausgehender Traffic wird als Überschreitung berechnet. Im Zweifel 100 % lassen.", prorate: "Kontingent bei Erstellung im Monat anteilig rechnen",
-      exp: "Backup exportieren", imp: "Backup importieren", sample: "Beispiel laden", reset: "Alle Daten zurücksetzen", copyLink: "Konfigurationslink kopieren", copied: "Kopiert", linkLoaded: "Konfiguration aus dem Link geladen. Deine vorherigen Daten sind gesichert.", undo: "Meine Daten wiederherstellen", gh: "Quellcode auf GitHub ansehen", theme: "Design", th_system: "System", th_light: "Hell", th_dark: "Dunkel",
+      exp: "Backup exportieren", imp: "Backup importieren", sample: "Beispiel laden", reset: "Alle Daten zurücksetzen", resetHold: "1 s halten zum Zurücksetzen", copyLink: "Konfigurationslink kopieren", copied: "Kopiert", linkLoaded: "Konfiguration aus dem Link geladen. Deine vorherigen Daten sind gesichert.", undo: "Meine Daten wiederherstellen", gh: "Quellcode auf GitHub ansehen", theme: "Design", th_system: "System", th_light: "Hell", th_dark: "Dunkel",
       roll: "{m} hat begonnen. Basis und laufende Traffic-Instanzen behalten und Verbrauch zurücksetzen?", rollBtn: "Neuen Monat starten",
       usedUnit: "GB genutzt", usedAria: "Verbrauch in diesem Monat",
       recorded: "Erfasst {t} · {v}/Tag", toBill: "Rechnungen öffnen",
@@ -1474,6 +1654,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "Traffic-Instanzen", share: "Gleiche Region, gleiche Größe: gemeinsamer Pool. Nur IPv6.", nodeAdd: "Jetzt 1 hinzufügen: +{a} · {c} (anteilig bis Monatsende)", add: "Traffic-Instanz hinzufügen",
       nStart: "Erstellt", nEnd: "Gelöscht (leer, wenn aktiv)", planned: "Geplant", gone: "Gelöscht", dec: "Weniger", inc: "Mehr", count: "Anzahl", del: "Entfernen",
+      agent: "Mit KI nutzen", secCalc: "Berechnung", secData: "Daten",
+      ag: {"title":"Mit einem KI-Agenten nutzen","sub":"Ihr Agent liest eine kurze Anleitung, rechnet für Sie und gibt einen Link zurück, den Sie hier prüfen können.","close":"Schließen","tabs":["Schnellstart","Anwendungsfälle","Entwickler"],"s1":"Diesen Prompt kopieren","prompt":"Lies zuerst {url} und berechne mit den dortigen Lightsail-Abrechnungsregeln meinen Datentransfer-Pool.\nMein Setup: Region ___, Paket ___ (z. B. $7 / 2 TB Transfer), diesen Monat ___ GB verbraucht (Stand ___).\nSag mir, ob ich diesen Monat überziehe und wie viele Traffic-Instanzen ich am günstigsten hinzufüge, und gib mir einen vorausgefüllten Rechner-Link zum Prüfen.","copyPrompt":"Prompt kopieren","s2":"In einen Agenten mit Webzugriff einfügen","s2n":"ChatGPT, Claude, Gemini, Cursor und ähnliche funktionieren. Füllen Sie die Lücken aus oder fügen Sie die Transferzeilen Ihrer Rechnung ein.","s3":"Den zurückgegebenen Link öffnen","s3n":"Der Link lädt das Setup hier, damit Sie die Zahlen prüfen können. Ihre bisherigen Daten werden vorher gesichert und lassen sich wiederherstellen.","privacy":"Diese Seite lädt nichts hoch. Konfigurationslinks enthalten Ihre Verbrauchszahlen – prüfen Sie sie vor dem Teilen.","casesIntro":"Frage kopieren, Zahlen anpassen und an den Agenten senden. Jede Frage enthält bereits die Adresse der Anleitung.","does":"Der Agent: ","copyQ":"Frage kopieren","ref":" (Regeln und Methode: {url})","perm":{"none":"Kein Zugriff nötig","ro":"AWS nur lesen","rw":"AWS schreiben · kostet Geld"},"cases":[["Überziehe ich?","Zur Monatsmitte prüfen, ob der Pool reicht.","Ich nutze das Lightsail-Paket für $12 / 3 TB in Tokio und habe diesen Monat 2800 GB verbraucht. Überziehe ich? Wie viele Traffic-Instanzen sollte ich hinzufügen?","hochrechnet das Monatsende aus dem Tagesschnitt und findet die günstigste Lösung."],["Setup wählen","Ein neues Projekt vor dem Deployment planen.","Meine App überträgt etwa 8 TB im Monat, vor allem nach Südostasien. Welche Lightsail-Region und welches Paket sind am günstigsten?","vergleicht Regionspreise, Regionen mit halbem Kontingent und Kombinationen aus Paket und Traffic-Instanzen."],["Nächsten Monat planen","Die Flotte zu Monatsbeginn dimensionieren.","Nächsten Monat erwarte ich etwa 12.000 GB in Frankfurt mit dem Paket für $7 / 2 TB. Wie viele Traffic-Instanzen sind am günstigsten?","rechnet einen ganzen Monat durch und liefert Anzahl und Monatskosten."],["Rechnung verstehen","Die Transferzeilen der Rechnung sind schwer zu lesen.","Hier die Lightsail-Transferzeilen meiner AWS-Rechnung: (einfügen). Wie viel Kontingent bleibt, und wird mir etwas berechnet?","summiert die Posten DataXfer-In/Out und gibt Ihnen einen Prüf-Link."],["Verbrauchswarnung","Eine tägliche Prüfung, die vor dem Überziehen warnt.","Lies jeden Morgen die Netzwerkmetriken meiner Lightsail-Instanzen und warne mich, wenn dieser Monat auf eine Überziehung zuläuft.","liest NetworkIn/Out per AWS CLI oder SDK, rechnet und benachrichtigt Sie."],["Auto-Skalierung","Traffic-Instanzen automatisch hinzufügen, wenn eine Überziehung droht.","Wenn eine Überziehung erwartet wird, erstelle in derselben Region die empfohlene Anzahl reiner IPv6-Instanzen meines Pakets. Frag mich vor jeder Erstellung um Bestätigung.","ruft anhand der Empfehlung die Lightsail-API auf und erstellt Instanzen."]],"scaleWarn":"Erstellt echte, kostenpflichtige Instanzen: nur nötige Rechte vergeben, Bestätigung verlangen, Anzahl begrenzen.","devIntro":"Alles ist statisch und von jedem Origin lesbar. Es gibt keine Server-API und keinen Schlüssel.","files":["Anleitung für Agenten: Regeln, Link-Parameter, Ergebnisfelder","Preise und Kontingente aller Regionen","Das Rechenmodul (ES-Modul), derselbe Code wie diese Seite"],"copyUrl":"URL kopieren","codeH":"Aus Code aufrufen","copy":"Kopieren","paramsH":"Parameter für vorausgefüllte Links","params":["AWS-Regionscode, z. B. us-east-1","Paket, angegeben über RAM in GB; $7 / 2 TB ist 1","Diesen Monat verbrauchte GB (ein + aus)","Erwartete Gesamtmenge zum Monatsende in GB; allein plant es den ganzen Monat","Traffic-Instanzen als Anzahl@Start[~Ende], UTC"],"more":"Alle Parameter und Ergebnisfelder stehen in llms.txt. Node.js kann nicht von einer URL importieren: calc.js herunterladen oder aus dem Repository kopieren."},
       cT: "Alle Daten löschen?", cB: "Instanzen, Verbrauch und Einstellungen werden zurückgesetzt. Das lässt sich nicht rückgängig machen. Bei Bedarf vorher ein Backup exportieren.", cancel: "Abbrechen", clear: "Löschen",
       rules: "Abrechnungsregeln",
       r: ["Eingehend + ausgehend <b>zählen beide</b> zum Kontingent",
@@ -1491,7 +1673,7 @@ footer a:hover { color: var(--fg); }
       name: "Calculadora de economia AWS Lightsail", tagline: "Usa a regra de que instâncias da mesma região e tamanho compartilham a transferência para achar o plano mais barato para tráfego variável.",
       region: "Região: a cota só é somada dentro de uma região", lang: "Idioma", over: "excedente", half: "metade da cota",
       settings: "Configurações avançadas", outRatio: "Parcela de saída", outRatioHint: "Só o tráfego de saída é cobrado como excedente. Mantenha 100% se não souber.", prorate: "Proporcionalizar a cota de instâncias criadas no meio do mês",
-      exp: "Exportar backup", imp: "Importar backup", sample: "Carregar exemplo", reset: "Redefinir tudo", copyLink: "Copiar link da configuração", copied: "Copiado", linkLoaded: "Configuração do link carregada. Seus dados anteriores foram salvos.", undo: "Restaurar meus dados", gh: "Ver o código no GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Escuro",
+      exp: "Exportar backup", imp: "Importar backup", sample: "Carregar exemplo", reset: "Redefinir tudo", resetHold: "Segure 1 s para redefinir", copyLink: "Copiar link da configuração", copied: "Copiado", linkLoaded: "Configuração do link carregada. Seus dados anteriores foram salvos.", undo: "Restaurar meus dados", gh: "Ver o código no GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Escuro",
       roll: "{m} começou. Manter a base e as instâncias de tráfego ativas e zerar o uso?", rollBtn: "Iniciar novo mês",
       usedUnit: "GB usados", usedAria: "Dados usados neste mês",
       recorded: "Registrado {t} · {v}/dia", toBill: "Abrir faturas",
@@ -1509,6 +1691,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "Instâncias de tráfego", share: "Mesma região e tamanho compartilham o pool. Só IPv6.", nodeAdd: "Adicionar 1 agora: +{a} · {c} (proporcional até o fim do mês)", add: "Adicionar instância de tráfego",
       nStart: "Criada", nEnd: "Excluída (vazio se ativa)", planned: "Planejada", gone: "Excluída", dec: "Diminuir", inc: "Aumentar", count: "Quantidade", del: "Remover",
+      agent: "Usar com IA", secCalc: "Cálculo", secData: "Dados",
+      ag: {"title":"Use com um agente de IA","sub":"Seu agente lê um guia curto, faz as contas por você e devolve um link para conferir aqui.","close":"Fechar","tabs":["Início rápido","Casos de uso","Desenvolvedores"],"s1":"Copie este prompt","prompt":"Leia primeiro {url} e use as regras de cobrança do Lightsail descritas lá para calcular meu pool de transferência de dados.\nMinha configuração: região ___, plano ___ (ex. $7 / 2 TB de transferência), ___ GB usados este mês (até ___).\nDiga se vou ultrapassar este mês e quantas instâncias de tráfego adicionar pelo menor custo, e me dê um link da calculadora já preenchido para conferir.","copyPrompt":"Copiar prompt","s2":"Cole em um agente com acesso à web","s2n":"ChatGPT, Claude, Gemini, Cursor e similares funcionam. Preencha as lacunas ou cole as linhas de transferência da sua fatura.","s3":"Abra o link que ele devolver","s3n":"O link carrega a configuração aqui para você conferir os números. Seus dados atuais são salvos antes e podem ser restaurados.","privacy":"Esta página não envia nada. Links de configuração contêm seus números de uso: confira antes de compartilhar.","casesIntro":"Copie uma pergunta, troque os números e envie ao seu agente. Todas já incluem o endereço do guia.","does":"O agente: ","copyQ":"Copiar pergunta","ref":" (Regras e método: {url})","perm":{"none":"Sem permissões","ro":"AWS somente leitura","rw":"AWS escrita · gera custos"},"cases":[["Vou ultrapassar?","No meio do mês, saber se o pool vai durar.","Uso o plano Lightsail de $12 / 3 TB em Tóquio e já gastei 2800 GB este mês. Vou ultrapassar? Quantas instâncias de tráfego devo adicionar?","projeta o fim do mês pelo ritmo diário e encontra a solução mais barata."],["Escolher a configuração","Planejar um projeto novo antes de implantar.","Meu app vai transferir cerca de 8 TB por mês, principalmente para o Sudeste Asiático. Qual região e plano do Lightsail saem mais baratos?","compara preços por região, regiões com metade da franquia e combinações de plano e instâncias de tráfego."],["Planejar o mês","Dimensionar a frota no início do mês.","No próximo mês espero cerca de 12.000 GB em Frankfurt no plano de $7 / 2 TB. Quantas instâncias de tráfego deixam o custo mais baixo?","faz um plano do mês inteiro e devolve a quantidade e o custo mensal."],["Entender a fatura","As linhas de transferência da fatura são difíceis de ler.","Estas são as linhas de transferência do Lightsail da minha fatura da AWS: (colar). Quanto de franquia sobra e serei cobrado?","soma os itens DataXfer-In/Out e dá um link para conferir."],["Alertas de uso","Uma verificação diária que avisa antes do excedente.","Toda manhã, leia as métricas de rede das minhas instâncias Lightsail e me avise se este mês estiver a caminho de ultrapassar.","lê NetworkIn/Out com a AWS CLI ou SDK, faz o cálculo e avisa você."],["Escalar automaticamente","Adicionar instâncias de tráfego sozinho quando o excedente se aproxima.","Se houver excedente previsto, crie na mesma região a quantidade recomendada de instâncias só IPv6 do meu plano. Peça minha confirmação antes de criar qualquer coisa.","usa a recomendação para chamar a API do Lightsail e criar instâncias."]],"scaleWarn":"Escalar automaticamente cria instâncias reais e cobradas. Dê ao agente só as permissões necessárias, exija confirmação e limite o número de instâncias.","devIntro":"Tudo é estático e pode ser lido de qualquer origem. Não há API de servidor nem chave.","files":["Guia para agentes: regras, parâmetros do link, campos do resultado","Preços e franquias de todas as regiões","O módulo de cálculo (ES module), o mesmo código desta página"],"copyUrl":"Copiar URL","codeH":"Chamar pelo código","copy":"Copiar","paramsH":"Parâmetros do link pré-preenchido","params":["Código da região AWS, ex. us-east-1","Plano, identificado pela RAM em GB; $7 / 2 TB é 1","GB usados este mês (entrada + saída)","Total previsto no fim do mês em GB; sozinho, planeja o mês inteiro","Instâncias de tráfego: quantidade@início[~fim], UTC"],"more":"Todos os parâmetros e campos do resultado estão no llms.txt. O Node.js não importa de uma URL: baixe o calc.js ou copie do repositório."},
       cT: "Apagar todos os dados?", cB: "Instâncias, uso e configurações voltam ao padrão. Não dá para desfazer. Exporte um backup antes, se precisar.", cancel: "Cancelar", clear: "Apagar",
       rules: "Regras de cobrança",
       r: ["Entrada + saída <b>consomem a cota</b>",
@@ -1526,7 +1710,7 @@ footer a:hover { color: var(--fg); }
       name: "Калькулятор экономии AWS Lightsail", tagline: "Использует правило общего пула трафика для инстансов одного региона и размера, чтобы найти самый дешёвый план при переменном трафике.",
       region: "Регион: лимиты суммируются только внутри региона", lang: "Язык", over: "превышение", half: "половина лимита",
       settings: "Дополнительно", outRatio: "Доля исходящего", outRatioHint: "Превышение оплачивается только за исходящий трафик. Если не уверены, оставьте 100%.", prorate: "Пропорциональный лимит для созданных в середине месяца",
-      exp: "Экспорт копии", imp: "Импорт копии", sample: "Загрузить пример", reset: "Сбросить все данные", copyLink: "Копировать ссылку на настройки", copied: "Скопировано", linkLoaded: "Настройки из ссылки загружены. Прежние данные сохранены.", undo: "Вернуть мои данные", gh: "Исходный код на GitHub", theme: "Тема", th_system: "Системная", th_light: "Светлая", th_dark: "Тёмная",
+      exp: "Экспорт копии", imp: "Импорт копии", sample: "Загрузить пример", reset: "Сбросить все данные", resetHold: "Удерживайте 1 с для сброса", copyLink: "Копировать ссылку на настройки", copied: "Скопировано", linkLoaded: "Настройки из ссылки загружены. Прежние данные сохранены.", undo: "Вернуть мои данные", gh: "Исходный код на GitHub", theme: "Тема", th_system: "Системная", th_light: "Светлая", th_dark: "Тёмная",
       roll: "Начался {m}. Оставить базовый и работающие трафик-инстансы и обнулить расход?", rollBtn: "Начать новый месяц",
       usedUnit: "ГБ израсходовано", usedAria: "Расход за месяц",
       recorded: "Записано {t} · {v}/день", toBill: "Открыть счета",
@@ -1544,6 +1728,8 @@ footer a:hover { color: var(--fg); }
      
       nodes: "Трафик-инстансы", share: "Инстансы одного региона и размера делят пул. Только IPv6.", nodeAdd: "Добавить 1 сейчас: +{a} · {c} (пропорционально до конца месяца)", add: "Добавить трафик-инстанс",
       nStart: "Создан", nEnd: "Удалён (пусто, если работает)", planned: "План", gone: "Удалён", dec: "Меньше", inc: "Больше", count: "Количество", del: "Убрать",
+      agent: "ИИ-агент", secCalc: "Расчёт", secData: "Данные",
+      ag: {"title":"Использовать с ИИ-агентом","sub":"Агент читает короткую инструкцию, считает за вас и возвращает ссылку, которую можно проверить здесь.","close":"Закрыть","tabs":["Быстрый старт","Сценарии","Разработчикам"],"s1":"Скопируйте этот промпт","prompt":"Сначала прочитай {url} и по описанным там правилам тарификации Lightsail рассчитай мой пул трафика.\nМоя конфигурация: регион ___, тариф ___ (напр. $7 / 2 ТБ трафика), в этом месяце израсходовано ___ ГБ (на ___).\nСкажи, превышу ли я лимит в этом месяце и сколько трафик-инстансов добавить, чтобы заплатить меньше всего, и дай заполненную ссылку на калькулятор для проверки.","copyPrompt":"Копировать промпт","s2":"Вставьте его в агента с доступом к вебу","s2n":"Подойдут ChatGPT, Claude, Gemini, Cursor и подобные. Заполните пропуски или вставьте строки трафика из счёта.","s3":"Откройте ссылку, которую он вернёт","s3n":"Ссылка загрузит конфигурацию сюда, чтобы вы проверили цифры. Ваши текущие данные сначала сохраняются, их можно восстановить.","privacy":"Эта страница ничего не отправляет. Ссылки на конфигурацию содержат цифры расхода — проверьте их, прежде чем делиться.","casesIntro":"Скопируйте вопрос, подставьте свои цифры и отправьте агенту. В каждом уже есть адрес инструкции.","does":"Агент: ","copyQ":"Копировать вопрос","ref":" (Правила и методика: {url})","perm":{"none":"Доступ не нужен","ro":"AWS только чтение","rw":"AWS запись · платно"},"cases":[["Превышу ли?","В середине месяца понять, хватит ли пула.","У меня тариф Lightsail $12 / 3 ТБ в Токио, в этом месяце израсходовано 2800 ГБ. Превышу ли я лимит? Сколько трафик-инстансов добавить?","прогнозирует конец месяца по дневному темпу и находит самое дешёвое решение."],["Выбор конфигурации","Спланировать новый проект до развёртывания.","Моё приложение будет отдавать около 8 ТБ в месяц, в основном в Юго-Восточную Азию. Какой регион и тариф Lightsail выйдут дешевле всего?","сравнивает цены регионов, регионы с половинным лимитом и сочетания тарифа с трафик-инстансами."],["План на месяц","Определить число инстансов в начале месяца.","В следующем месяце ожидаю около 12 000 ГБ во Франкфурте на тарифе $7 / 2 ТБ. Сколько трафик-инстансов дадут минимальную стоимость?","строит план на весь месяц и возвращает количество и месячную стоимость."],["Разбор счёта","Строки трафика в счёте трудно понять.","Вот строки трафика Lightsail из моего счёта AWS: (вставить). Сколько лимита осталось и будут ли списания?","суммирует статьи DataXfer-In/Out и даёт ссылку для проверки."],["Оповещения","Ежедневная проверка с предупреждением до превышения.","Каждое утро читай сетевые метрики моих инстансов Lightsail и предупреди меня, если в этом месяце намечается превышение.","читает NetworkIn/Out через AWS CLI или SDK, считает и уведомляет вас."],["Автомасштаб","Автоматически добавлять трафик-инстансы перед превышением.","Если ожидается превышение, создай в том же регионе рекомендованное число инстансов моего тарифа только с IPv6. Перед созданием обязательно спроси подтверждение.","по рекомендации вызывает API Lightsail и создаёт инстансы."]],"scaleWarn":"Создаёт настоящие платные инстансы: давайте только нужные права, требуйте подтверждения и ограничьте их число.","devIntro":"Всё статично и доступно с любого источника. Нет серверного API и ключей.","files":["Инструкция для агентов: правила, параметры ссылки, поля результата","Цены и лимиты всех регионов","Модуль расчёта (ES-модуль), тот же код, что на этой странице"],"copyUrl":"Копировать URL","codeH":"Вызов из кода","copy":"Копировать","paramsH":"Параметры заполненной ссылки","params":["Код региона AWS, напр. us-east-1","Тариф, задаётся объёмом RAM в ГБ; $7 / 2 ТБ — это 1","Израсходовано в этом месяце, ГБ (вход + выход)","Ожидаемый итог на конец месяца, ГБ; отдельно — план на весь месяц","Трафик-инстансы: количество@начало[~конец], UTC"],"more":"Все параметры и поля результата — в llms.txt. Node.js не импортирует по URL: скачайте calc.js или скопируйте его из репозитория."},
       cT: "Удалить все данные?", cB: "Инстансы, расход и настройки вернутся к исходным. Отменить нельзя. При необходимости сначала экспортируйте копию.", cancel: "Отмена", clear: "Удалить",
       rules: "Правила тарификации",
       r: ["Входящий + исходящий <b>расходуют лимит</b>",
@@ -1782,11 +1968,12 @@ footer a:hover { color: var(--fg); }
     document.querySelectorAll("[data-i]").forEach(el => { el.textContent = t(el.dataset.i); });
     $("#footTxt").textContent = t("foot", { d: PRICES.date });
     $("#ghBtn").title = t("gh"); $("#ghBtn").setAttribute("aria-label", t("gh"));
-    setThemeTitle();
+    $("#agentBtn").title = t("agent"); $("#agentBtn").setAttribute("aria-label", t("agent"));
+    renderAgent();
+    fitHeader();
     $("#regionWrap").title = t("region"); $("#region").setAttribute("aria-label", t("region"));
     $("#langWrap").title = t("lang"); $("#lang").setAttribute("aria-label", t("lang"));
     $("#settingsBtn").title = t("settings"); $("#settingsBtn").setAttribute("aria-label", t("settings"));
-    $("#resetBtn").title = t("reset"); $("#resetBtn").setAttribute("aria-label", t("reset"));
     $("#used").setAttribute("aria-label", t("usedAria"));
     $("#forecast").title = t("forecastTip");
     $("#outRatio").setAttribute("aria-label", t("outRatio"));
@@ -2041,32 +2228,65 @@ footer a:hover { color: var(--fg); }
     Object.assign(S, { month: cur, used: null, usedAt: null, usedIn: null, usedOut: null, forecast: null }); save(); full();
   });
 
-  // global reset with a confirmation dialog (language choice is kept)
-  const dlg = $("#confirm");
-  $("#resetBtn").addEventListener("click", () => { dlg.hidden = false; $("#confirmNo").focus(); });
-  $("#confirmNo").addEventListener("click", () => { dlg.hidden = true; });
-  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.hidden = true; });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") dlg.hidden = true; });
-  $("#confirmYes").addEventListener("click", () => {
-    try { localStorage.removeItem(KEY); localStorage.removeItem(OLD_KEY); } catch (e) {}
-    S = defaults(); save(); dlg.hidden = true; full();
+  // global reset: hold the button for 1 s (a bar fills across it); letting go early cancels. Language choice is kept.
+  const HOLD_MS = 1000;
+  let holdTimer = 0, tipTimer = 0;
+  function resetLabel(tip) {
+    const b = $("#resetBtn");
+    b.classList.toggle("tip", tip); $("#resetHint").hidden = !tip && !b.classList.contains("hold");
+    $("#resetBtn span").textContent = t(tip || b.classList.contains("hold") ? "resetHold" : "reset");
+  }
+  function startHold(e) {
+    if (e.button > 0) return;
+    const b = $("#resetBtn");
+    clearTimeout(tipTimer); b.classList.remove("hold"); void b.offsetWidth; b.classList.add("hold"); resetLabel(false);
+    if (e.pointerId != null) try { b.setPointerCapture(e.pointerId); } catch (x) {}
+    holdTimer = setTimeout(() => {
+      disarmReset();
+      try { localStorage.removeItem(KEY); localStorage.removeItem(OLD_KEY); } catch (x) {}
+      S = defaults(); save(); $("#settings").open = false; full();
+    }, HOLD_MS);
+  }
+  // released early: cancel, and leave the "hold 3 s" hint up for a moment so a plain click explains itself
+  function endHold() {
+    const b = $("#resetBtn"); if (!b.classList.contains("hold")) return;
+    clearTimeout(holdTimer); b.classList.remove("hold"); resetLabel(true);
+    clearTimeout(tipTimer); tipTimer = setTimeout(() => resetLabel(false), 2200);
+  }
+  function disarmReset() { clearTimeout(holdTimer); clearTimeout(tipTimer); $("#resetBtn").classList.remove("hold"); resetLabel(false); }
+  const rb = $("#resetBtn");
+  rb.addEventListener("pointerdown", startHold);
+  ["pointerup", "pointercancel", "lostpointercapture"].forEach(ev => rb.addEventListener(ev, endHold));
+  rb.addEventListener("contextmenu", e => e.preventDefault());
+  rb.addEventListener("keydown", e => { if ((e.key === " " || e.key === "Enter") && !e.repeat) { e.preventDefault(); startHold(e); } });
+  rb.addEventListener("keyup", e => { if (e.key === " " || e.key === "Enter") endHold(); });
+  rb.addEventListener("blur", endHold);
+  $("#settings").addEventListener("toggle", () => { if (!$("#settings").open) disarmReset(); });
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    if (!$("#agent").hidden) closeAgent(); else $("#settings").open = false;
   });
 
   $("#linkUndo").addEventListener("click", () => {
     try { if (linkBackup == null) localStorage.removeItem(KEY); else localStorage.setItem(KEY, linkBackup); } catch (e) {}
     S = load(); linkLoaded = false; full();
   });
-  // links always point at the public site (canonical), not wherever this copy happens to be served from
-  $("#copyLinkBtn").addEventListener("click", async e => {
-    const btn = e.currentTarget, canon = document.querySelector('link[rel="canonical"]');
-    const base = canon ? new URL(canon.href).origin + "/" : location.origin + location.pathname;
-    const url = buildLink(fromState(S), base);
-    let ok = false;
-    try { await navigator.clipboard.writeText(url); ok = true; } catch (x) {
-      try { const ta = document.createElement("textarea"); ta.value = url; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); } catch (y) {}
+  async function copyText(s) {
+    try { await navigator.clipboard.writeText(s); return true; } catch (x) {
+      try { const ta = document.createElement("textarea"); ta.value = s; document.body.appendChild(ta); ta.select(); const ok = document.execCommand("copy"); ta.remove(); return ok; } catch (y) { return false; }
     }
-    btn.textContent = ok ? t("copied") : url;
-    setTimeout(() => { btn.textContent = t("copyLink"); }, 1800);
+  }
+  // links always point at the public site (canonical), not wherever this copy happens to be served from
+  function siteBase() {
+    const canon = document.querySelector('link[rel="canonical"]');
+    return canon ? new URL(canon.href).origin + "/" : location.origin + location.pathname;
+  }
+  $("#copyLinkBtn").addEventListener("click", async e => {
+    const btn = e.currentTarget, url = buildLink(fromState(S), siteBase());
+    const ok = await copyText(url);
+    const label = btn.querySelector("span");
+    label.textContent = ok ? t("copied") : url;
+    setTimeout(() => { label.textContent = t("copyLink"); }, 1800);
   });
   $("#exportBtn").addEventListener("click", () => {
     try {
@@ -2088,22 +2308,141 @@ footer a:hover { color: var(--fg); }
   });
   document.addEventListener("click", e => { const d = $("#settings"); if (d.open && !d.contains(e.target)) d.open = false; });
 
-  // theme: system -> light -> dark, remembered per browser
+  // theme: system / light / dark, remembered per browser
   const THEMES = ["system", "light", "dark"];
   let theme = "system"; try { theme = localStorage.getItem(THEME_KEY) || "system"; } catch (e) {}
-  function setThemeTitle() { const b = $("#themeBtn"); b.title = t("theme") + ": " + t("th_" + theme); b.setAttribute("aria-label", b.title); }
-  const THEME_ICONS = {
-    system: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2" y="3" width="12" height="8" rx="1.5"/><path d="M6 14h4M8 11v3"/></svg>',
-    light: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg>',
-    dark: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z"/></svg>'
-  };
+  if (!THEMES.includes(theme)) theme = "system";
   function applyTheme() {
     if (theme === "system") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", theme);
-    $("#themeBtn").innerHTML = THEME_ICONS[theme] || THEME_ICONS.system;
-    setThemeTitle();
+    document.querySelectorAll("#themeSeg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.t === theme)));
   }
-  $("#themeBtn").addEventListener("click", () => { theme = THEMES[(THEMES.indexOf(theme) + 1) % 3]; try { localStorage.setItem(THEME_KEY, theme); } catch (e) {} applyTheme(); });
+  $("#themeSeg").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    theme = b.dataset.t; try { localStorage.setItem(THEME_KEY, theme); } catch (x) {} applyTheme();
+  });
   applyTheme();
+
+  function fitHeader() {
+    const top = $(".top"), tools = $(".tools"), brand = $(".brand-row");
+    top.classList.remove("stack", "split");
+    const cs = getComputedStyle(top), oneCol = cs.gridTemplateColumns.trim().split(/\s+/).length === 1;
+    // sum the controls: right-aligned overflow spills to the left, which scrollWidth doesn't count
+    const gap = parseFloat(getComputedStyle(tools).columnGap), region = $("#regionWrap");
+    const items = [...tools.children].filter(el => el.offsetWidth);
+    const row = items.reduce((s, el) => s + el.offsetWidth, 0) + (items.length - 1) * gap;
+    const need = row + (oneCol ? 0 : brand.scrollWidth + parseFloat(cs.columnGap));
+    if (need <= top.clientWidth + 1) return;
+    // under the logo: one row with a shrinking region picker, or, if that would get too narrow, the picker on its own row
+    top.classList.add("stack");
+    const room = top.clientWidth - (row - region.offsetWidth);
+    if (room < Math.min(region.offsetWidth, 180)) top.classList.add("split");
+  }
+  addEventListener("resize", fitHeader);
+  // the title and controls change width when the web font arrives or the language changes; stacking itself doesn't resize them
+  if (window.ResizeObserver) { const ro = new ResizeObserver(fitHeader); [$(".brand-row h1"), ...$(".tools").children].forEach(el => ro.observe(el)); }
+
+  // agent dialog: how to hand this calculator to an AI agent (prompt, use cases, developer files)
+  const CASE_PERM = ["none", "none", "none", "none", "ro", "rw"];
+  const AG_ICON_INFO = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v3.6M8 5.2v.1"/></svg>';
+  const AG_ICON_WARN = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.2l6.2 11H1.8z"/><path d="M8 6.6v3M8 11.4v.1"/></svg>';
+  const AG_ICON_COPY = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5A1.5 1.5 0 0 0 9 1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></svg>';
+  const AG_ICON_OK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg>';
+  let agTab = "start", agCopies = [];
+  const escH = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function renderAgent() {
+    const A = Object.assign({}, I18N.en.ag, I18N[LANG].ag), base = siteBase(), llms = base + "llms.txt";
+    const copyBtn = (text, label) => { agCopies.push(text); return `<button class="btn sm" type="button" data-copy="${agCopies.length - 1}" data-label="${escH(label)}">${escH(label)}</button>`; };
+    const copyIc = (text, label) => { agCopies.push(text); return `<button class="copy-ic" type="button" data-copy="${agCopies.length - 1}" data-icon="1" title="${escH(label)}" aria-label="${escH(label)}">${AG_ICON_COPY}</button>`; };
+    const sub = (s, v) => { for (const p in v) s = s.split("{" + p + "}").join(v[p]); return s; };
+    agCopies = [];
+    $("#agentT").textContent = A.title; $("#agentSub").textContent = A.sub;
+    $("#agentX").title = A.close; $("#agentX").setAttribute("aria-label", A.close);
+    $("#tab-start").textContent = A.tabs[0]; $("#tab-cases").textContent = A.tabs[1]; $("#tab-dev").textContent = A.tabs[2];
+    const prompt = sub(A.prompt, { url: llms });
+    $("#pane-start").innerHTML = `<ol class="steps">
+      <li><div><b>${escH(A.s1)}</b><div class="prompt"><pre>${escH(prompt)}</pre><div class="prompt-f">${copyBtn(prompt, A.copyPrompt)}</div></div></div></li>
+      <li><div><b>${escH(A.s2)}</b><div class="note">${escH(A.s2n)}</div></div></li>
+      <li><div><b>${escH(A.s3)}</b><div class="note">${escH(A.s3n)}</div></div></li></ol>
+      <div class="callout">${AG_ICON_INFO}<span>${escH(A.privacy)}</span></div>`;
+    $("#pane-cases").innerHTML = `<div class="cases">${A.cases.map((c, i) => {
+      const p = CASE_PERM[i], q = c[2] + sub(A.ref, { url: llms });
+      return `<div class="case${p === "rw" ? " rw" : ""}"><div class="case-h"><b title="${escH(c[1])}">${escH(c[0])}</b><span class="tag${p === "none" ? "" : " " + p}">${escH(A.perm[p])}</span></div>
+        <div class="prompt"><pre>${escH(c[2])}</pre>${copyIc(q, A.copyQ)}</div>
+        <div class="lbl">${escH(A.does)}${escH(c[3])}</div></div>`;
+    }).join("")}</div><div class="callout w">${AG_ICON_WARN}<span>${escH(A.scaleWarn)}</span></div>`;
+    const code = `const base = "${base}";
+const { calculate, buildLink } =
+  await import(base + "calc.js");
+const prices =
+  await (await fetch(base + "prices.json")).json();
+
+const input = {
+  region: "us-east-1",
+  sizeGB: 1,              // the $7 / 2 TB bundle
+  usedGB: 3150,
+  trafficInstances: [
+    { count: 1, start: "2026-10-11T00:00Z" }
+  ]
+};
+const result = calculate(input, prices);
+// result.status, .overageCost, .recommendation …
+const link = buildLink(input, base);`;
+    const files = [["llms.txt", A.files[0]], ["prices.json", A.files[1]], ["calc.js", A.files[2]]];
+    const params = ["region", "size", "used", "forecast", "nodes"];
+    $("#pane-dev").innerHTML = `<div class="note">${escH(A.devIntro)}</div>
+      <div class="dev"><div class="dev-col">
+        <div class="files">${files.map(([n, d]) => `<div class="file"><a class="file-n" href="${base + n}" target="_blank" rel="noopener" title="${escH(base + n)}">${n} ↗</a>${copyBtn(base + n, A.copyUrl)}<span class="lbl file-m">${escH(d)}</span></div>`).join("")}</div>
+        <div class="ag-h">${escH(A.paramsH)}</div>
+        <table class="params">${params.map((p, i) => `<tr><td>${p}</td><td>${escH(A.params[i])}</td></tr>`).join("")}</table>
+      </div><div class="dev-col">
+        <div class="ag-h"><span>${escH(A.codeH)}</span>${copyBtn(code, A.copy)}</div><div class="code"><pre>${escH(code)}</pre></div>
+        <div class="note">${escH(A.more)}</div>
+        <div class="ag-links"><a href="${llms}" target="_blank" rel="noopener">llms.txt ↗</a><a href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+      </div></div>`;
+    showAgentTab(agTab, false);
+    sizeAgent();
+  }
+  function sizeAgent() {
+    if ($("#agent").hidden) return;
+    const body = $(".ag-body"), cs = getComputedStyle(body);
+    body.style.height = "";
+    let max = 0;
+    document.querySelectorAll(".ag-body [role=tabpanel]").forEach(p => { const was = p.hidden; p.hidden = false; max = Math.max(max, p.offsetHeight); p.hidden = was; });
+    body.style.height = Math.ceil(max + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) + "px";
+    // on a short screen the dialog's max-height squeezes the body; pin it to what is actually visible
+    body.style.height = body.offsetHeight + "px";
+    agMore();
+  }
+  function agMore() { const bd = $(".ag-body"); $(".dialog.ag").classList.toggle("more", bd.scrollTop + bd.clientHeight < bd.scrollHeight - 2); }
+  $(".ag-body").addEventListener("scroll", agMore, { passive: true });
+  addEventListener("resize", sizeAgent);
+  function showAgentTab(id, focus) {
+    agTab = id;
+    document.querySelectorAll("#agentTabs [role=tab]").forEach(b => {
+      const on = b.dataset.tab === id;
+      b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1;
+      $("#pane-" + b.dataset.tab).hidden = !on;
+      if (on && focus) b.focus();
+    });
+    $(".ag-body").scrollTop = 0; agMore();
+  }
+  function openAgent() { $("#settings").open = false; $("#agent").hidden = false; sizeAgent(); document.documentElement.style.overflow = "hidden"; $("#tab-" + agTab).focus(); }
+  function closeAgent() { $("#agent").hidden = true; document.documentElement.style.overflow = ""; $("#agentBtn").focus(); }
+  $("#agentBtn").addEventListener("click", openAgent);
+  $("#agentX").addEventListener("click", closeAgent);
+  $("#agent").addEventListener("click", async e => {
+    if (e.target === e.currentTarget) return closeAgent();
+    const tab = e.target.closest("[role=tab]"); if (tab) return showAgentTab(tab.dataset.tab, false);
+    const b = e.target.closest("[data-copy]"); if (!b) return;
+    const ok = await copyText(agCopies[+b.dataset.copy]);
+    clearTimeout(b._t);
+    if (b.dataset.icon) { b.innerHTML = ok ? AG_ICON_OK : "✕"; b.classList.toggle("ok", ok); b._t = setTimeout(() => { b.innerHTML = AG_ICON_COPY; b.classList.remove("ok"); }, 1600); }
+    else { b.textContent = ok ? t("copied") : "✕"; b._t = setTimeout(() => { b.textContent = b.dataset.label; }, 1600); }
+  });
+  $("#agentTabs").addEventListener("keydown", e => {
+    const ids = ["start", "cases", "dev"], i = ids.indexOf(agTab);
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); showAgentTab(ids[(i + (e.key === "ArrowRight" ? 1 : 2)) % 3], true); }
+  });
 
   // favicon: head crop of the inline 1ms logo (same master, wordmark layer hidden), so no separate file is needed
   try {

@@ -28,7 +28,7 @@ https://ls.1ms.dog/?region=us-east-1&size=1&used=3150&nodes=1@2026-10-11T00:00Z
 | Param | Meaning | Example |
 |---|---|---|
 | `region` | AWS Region code | `us-east-1` |
-| `size` | base bundle RAM in GB: 0.5, 1, 2, 4, 8, 16, 32, 64 | `1` |
+| `size` | base bundle, identified by RAM in GB: 0.5, 1, 2, 4, 8, 16, 32, 64 | `1` |
 | `ipv4` | `0` = base is IPv6-only (default dual-stack) | `0` |
 | `base` | base instance start (UTC ISO), default start of month | `2026-10-01T00:00Z` |
 | `used` | data used so far this month in GB (in + out) | `3150` |
@@ -38,6 +38,8 @@ https://ls.1ms.dog/?region=us-east-1&size=1&used=3150&nodes=1@2026-10-11T00:00Z
 | `outpct` | share of traffic that is outbound, 0–100 (default 100) | `90` |
 | `prorate` | `0` = don't prorate mid-month allowance | `0` |
 | `nodes` | traffic instances, comma-separated `count@start[~end]` (UTC ISO) | `2@2026-10-20T00:00Z,1@2026-10-25T00:00Z~2026-10-28T00:00Z` |
+
+Users usually name a bundle by its price and transfer, as the web app shows it (for example "$7 / 2 TB"). Map that to `size` with prices.json: find the bundle in that region whose `dualStackMonthly` (or `ipv6OnlyMonthly` for an IPv6-only base) and `transferTB` match, and use its `ramGB`. Transfer is halved in some regions, so match within the user's region.
 
 Add `lang=` (en, zh-CN, zh-TW, ja, ko, es, fr, de, pt, ru) to choose the interface language.
 

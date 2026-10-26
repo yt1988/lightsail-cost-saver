@@ -2,7 +2,7 @@
 
 [English](README.md) · **简体中文**
 
-> **在线体验：[ls.1ms.dog](https://ls.1ms.dog/)**，打开即用，无需注册。
+> **在线体验：[ls.1ms.dog](https://ls.1ms.dog/)**，打开即用，无需注册。也可以[交给你的 AI Agent](#搭配你的-ai-agent-使用)。
 
 <a href="https://ls.1ms.dog/"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/preview-zh-dark.png">
@@ -44,6 +44,87 @@
 | 按实际用量 | 填了已用流量 | 日均从本月最早一台实例开通算起；已产生的超额不能被新实例抵消；新实例从下一个整点起按剩余时长折算 |
 | 整月规划 | 只填了月底预计 | 不把今天之前当作已发生；所有运行中的实例按整月计算，给出整月不超额所需台数 |
 
+## 搭配你的 AI Agent 使用
+
+不想自己填？把它交给 ChatGPT、Claude、Gemini、Cursor 这类能联网的 Agent。Agent 读一份说明文档就会算，并给你一个预填好的链接，打开就能在页面上核对。页面右上角的 **接入 Agent** 里有同样的内容，可以一键复制。
+
+### 一分钟上手
+
+把下面这段发给 Agent，填上空白处：
+
+```text
+请先阅读 https://ls.1ms.dog/llms.txt，按其中的 Lightsail 计费规则帮我计算流量池。
+我的情况：区域 ___，套餐 ___（如 $7 / 2 TB 流量），本月已用 ___ GB（截至 ___）。
+请告诉我这个月会不会超额、加几台流量实例最省钱，并给我一个预填好的计算器链接方便核对。
+```
+
+链接打开后会载入这套配置；你原来的数据会先备份，可以一键恢复。反过来，在页面的 **设置 → 复制配置链接** 可以把当前配置变成链接发给 Agent。
+
+### 典型用例
+
+| 用例 | 可以这样问 | 需要的权限 |
+|---|---|---|
+| 会不会超 | 我在东京用 $12 / 3 TB 的套餐，本月已用 2800 GB，这个月会超吗？要加几台流量实例？ | 无 |
+| 部署选型 | 每月大约 8 TB 流量，用户主要在东南亚，Lightsail 怎么配最便宜？ | 无 |
+| 下月规划 | 下个月预计在法兰克福跑 12000 GB，用 $7 / 2 TB 的套餐，开几台流量实例成本最低？ | 无 |
+| 账单解读 | 这是我账单里 Lightsail 的流量明细（粘贴），还剩多少额度？会被收费吗？ | 无 |
+| 流量预警 | 每天早上读取我实例的网络流量指标，预计超额就提醒我。 | AWS 只读 |
+| 自动扩容 | 预计超额时，在同一区域按推荐数量创建同套餐的 IPv6 实例，创建前先让我确认。 | AWS 写权限，会产生费用 |
+
+在问题后面加一句「规则和算法见 https://ls.1ms.dog/llms.txt」，Agent 就会按同一套口径计算。
+
+### 开发者接入
+
+全部是静态文件，允许任何网站跨域读取，没有服务端 API，也不需要密钥。
+
+| 文件 | 内容 |
+|---|---|
+| [llms.txt](https://ls.1ms.dog/llms.txt) | 给 Agent 读的说明：计费规则、链接参数、返回字段 |
+| [prices.json](https://ls.1ms.dog/prices.json) | 各区域的套餐价格、流量额度和超额单价 |
+| [calc.js](https://ls.1ms.dog/calc.js) | 计算模块（ES Module），就是网页实际运行的那份代码，结果和页面一致 |
+
+```js
+import { calculate, buildLink } from "https://ls.1ms.dog/calc.js";
+const prices = await (await fetch("https://ls.1ms.dog/prices.json")).json();
+
+const input = {
+  region: "us-east-1", sizeGB: 1, usedGB: 3150,
+  trafficInstances: [{ count: 1, start: "2026-10-11T00:00Z" }]
+};
+const result = calculate(input, prices);
+const link = buildLink(input);   // 同一套配置的预填链接
+```
+
+`calculate` 返回的主要字段：
+
+| 字段 | 含义 |
+|---|---|
+| `status` | `safe`、`overage-expected`、`over-allowance` 或 `needs-input` |
+| `allowanceGB`、`usedGB`、`forecastGB` | 额度、已用、月底预计（GB） |
+| `overageGB`、`overageCost`、`totalCost` | 预计超额量（GB）、超额费、总费用（USD） |
+| `allowanceRunsOutAt` | 额度预计用完的时间（UTC） |
+| `recommendation` | 建议加几台流量实例、从何时开始、能省多少 |
+| `nextMonth` | 下月建议的流量实例数和月成本 |
+
+预填链接的常用参数：
+
+| 参数 | 含义 | 示例 |
+|---|---|---|
+| `region` | AWS 区域代码 | `us-east-1` |
+| `size` | 套餐，以内存 GB 标识（prices.json 里可对应到价格和流量） | `1` |
+| `used` | 本月已用 GB（入站 + 出站） | `3150` |
+| `forecast` | 预计月底总量 GB；不填 `used` 时按整月规划 | `10000` |
+| `nodes` | 流量实例，`数量@开始[~结束]`，UTC | `1@2026-10-11T00:00Z` |
+
+完整参数见 [llms.txt](https://ls.1ms.dog/llms.txt)。Node.js 不能直接从网址导入，可以下载 `calc.js`，或直接用仓库里的 `public/calc.js`。`calc.js` 和 `prices.json` 由 `node scripts/build.mjs` 从 `public/index.html` 生成；`npm test` 会检查它们是否同步，并运行回归测试。
+
+### 安全提示
+
+- 配置链接里带有你的用量数字，分享前留意。
+- 「流量预警」只需要只读权限，建议单独建一个只读的 IAM 用户或角色给 Agent。
+- 「自动扩容」会创建真实计费的实例：只授予必要的权限，要求 Agent 创建前先确认，并设好实例数上限。
+- 结果是估算，以 AWS 账单为准。
+
 ## 计算口径
 
 | 项目 | 规则 |
@@ -57,24 +138,6 @@
 | 额度减半地区 | 孟买、悉尼、雅加达、马来西亚、香港、圣保罗 |
 
 结果仅为估算，以 AWS 账单为准。本工具不是 AWS 官方工具。
-
-## 搭配你的 AI Agent 使用
-
-仍然是纯静态、免费；计算在 Agent 那一端完成。
-
-- **带参数的链接**：Agent 可以生成类似 `https://ls.1ms.dog/?region=us-east-1&size=1&used=3150&nodes=1@2026-10-11T00:00Z` 的链接发给你，打开就会载入这套配置（你原来的数据会先备份，可一键恢复）。反过来，在页面的 **高级设置 → 复制配置链接** 可以把当前配置变成链接。
-- **给 Agent 看的说明**：[llms.txt](https://ls.1ms.dog/llms.txt) 写明了计费规则、链接参数和下面这个模块的用法。
-- **价格数据**：[prices.json](https://ls.1ms.dog/prices.json) 包含所有地区的套餐价格和超额单价。
-- **计算模块**：[calc.js](https://ls.1ms.dog/calc.js) 就是网页实际运行的那份计算代码，结果和页面完全一致。
-
-```js
-import { calculate } from "https://ls.1ms.dog/calc.js";
-const prices = await (await fetch("https://ls.1ms.dog/prices.json")).json();
-calculate({ region: "us-east-1", sizeGB: 1, usedGB: 3150 }, prices);
-// → { status: "overage-expected", overageCost: …, recommendation: { addTrafficInstances: 2, … }, … }
-```
-
-这几个文件允许任何网站跨域读取。`calc.js` 和 `prices.json` 由 `node scripts/build.mjs` 从 `public/index.html` 生成；`npm test` 会检查它们是否同步，并运行回归测试。
 
 ## 部署
 
