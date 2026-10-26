@@ -2,6 +2,8 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
+> **Live demo: [ls.1ms.dog](https://ls.1ms.dog/)**. Open it and go, no sign-up.
+
 If you run anything traffic-heavy on Lightsail, you've probably had one scary bill. Once a plan's included transfer runs out, overage costs $0.09/GB, about $92 per TB. Yet a $5 IPv6 instance comes with 2 TB of transfer, which works out to $2.50 per TB. Same terabyte, more than 30× the price.
 
 What many people miss: **Lightsail instances of the same size in the same region share one transfer pool**. In a busy month you can add a few small instances and the pool grows with them; when traffic drops, delete them. Billing is hourly, so nothing is wasted.
