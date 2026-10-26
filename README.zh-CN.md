@@ -4,6 +4,11 @@
 
 > **在线体验：[ls.1ms.dog](https://ls.1ms.dog/)**，打开即用，无需注册。
 
+<a href="https://ls.1ms.dog/"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/preview-zh-dark.png">
+  <img src="docs/preview-zh-light.png" alt="AWS Lightsail 省钱计算器界面预览：状态栏显示预计超额 $39.53，并建议添加 2 台流量实例" width="100%">
+</picture></a>
+
 用 Lightsail 跑流量型业务的人，大概都被月底账单吓过一次。套餐自带的流量用完之后，超出的部分按 $0.09/GB 收费，折合下来每 TB 要 $92；可一台 $5 的 IPv6 实例本身就带 2 TB 流量，相当于每 TB 只要 $2.5。同样是 1 TB 流量，价格差了三十多倍。
 
 很多人不知道，Lightsail 里**同地区、同规格的实例共享同一个流量池**。流量大的月份临时加几台小实例，池子就跟着变大；流量回落了再删掉，按小时计费，一分钱都不浪费。
