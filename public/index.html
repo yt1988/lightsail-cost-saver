@@ -316,6 +316,8 @@ input[type="range"] { width: 100%; accent-color: var(--sel); }
 .links a:hover { border-color: var(--muted); }
 .links a::after { content: " ↗"; color: var(--muted); }
 footer { font-size: 12px; color: var(--muted); text-align: center; }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--fg); }
 
 @media (max-width: 880px) {
   .top { grid-template-columns: minmax(0, 1fr); }
@@ -1032,6 +1034,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c2 2 2 10.4 0 12.4M8 1.8c-2 2-2 10.4 0 12.4"/></svg>
         <select id="lang"></select>
       </label>
+      <a class="icon-btn" id="ghBtn" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="View source on GitHub" aria-label="View source on GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
       <details class="menu" id="settings">
         <summary class="icon-btn" id="settingsBtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h2M7 12h7"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="5.5" cy="12" r="1.6"/></svg></summary>
         <div class="pop">
@@ -1139,7 +1142,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
     </div>
   </section>
 
-  <footer data-i="foot">Data stays in this browser · Prices checked 2026-10-25 · Not an official AWS tool</footer>
+  <footer><span id="footTxt">Data stays in this browser · Prices checked 2026-10-25 · Not an official AWS tool</span> · <a href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer">GitHub</a></footer>
 </div>
 
 <div class="scrim" id="confirm" hidden>
@@ -1200,7 +1203,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "AWS Lightsail 省钱计算器", tagline: "基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案",
       region: "地区：流量池只在同一地区内合并", lang: "语言", over: "超额", half: "额度减半",
       settings: "高级设置", outRatio: "出站占比", outRatioHint: "超额只对出站收费。不确定就保持 100%。", prorate: "月中开通的额度按时长折算",
-      exp: "导出备份", imp: "导入备份", sample: "载入示例", reset: "重置全部数据", theme: "主题", th_system: "跟随系统", th_light: "浅色", th_dark: "深色",
+      exp: "导出备份", imp: "导入备份", sample: "载入示例", reset: "重置全部数据", gh: "在 GitHub 查看源码", theme: "主题", th_system: "跟随系统", th_light: "浅色", th_dark: "深色",
       roll: "已进入 {m}：保留基石实例和运行中的流量实例，清零已用流量？", rollBtn: "开始新月份",
       usedUnit: "GB 已用", usedAria: "本月已用流量",
       recorded: "记录于 {t} · 日均 {v}", toBill: "去账单查看",
@@ -1235,7 +1238,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "AWS Lightsail 省錢計算器", tagline: "基於「同地域同規格流量池共享」規則，幫你找出更省錢的彈性流量方案",
       region: "地區：流量池只在同一地區內合併", lang: "語言", over: "超額", half: "額度減半",
       settings: "進階設定", outRatio: "出站占比", outRatioHint: "超額只對出站收費。不確定就保持 100%。", prorate: "月中開通的額度按時長折算",
-      exp: "匯出備份", imp: "匯入備份", sample: "載入範例", reset: "重設全部資料", theme: "主題", th_system: "跟隨系統", th_light: "淺色", th_dark: "深色",
+      exp: "匯出備份", imp: "匯入備份", sample: "載入範例", reset: "重設全部資料", gh: "在 GitHub 查看原始碼", theme: "主題", th_system: "跟隨系統", th_light: "淺色", th_dark: "深色",
       roll: "已進入 {m}：保留基石實例和運行中的流量實例，清零已用流量？", rollBtn: "開始新月份",
       usedUnit: "GB 已用", usedAria: "本月已用流量",
       recorded: "記錄於 {t} · 日均 {v}", toBill: "前往帳單查看",
@@ -1270,7 +1273,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "AWS Lightsail Cost Saver", tagline: "Uses the rule that same-region, same-size instances share one transfer pool to find the cheapest plan for elastic traffic.",
       region: "Region: allowances only pool within one region", lang: "Language", over: "overage", half: "half allowance",
       settings: "Advanced settings", outRatio: "Outbound share", outRatioHint: "Only outbound traffic is billed as overage. Keep 100% if unsure.", prorate: "Prorate allowance for mid-month instances",
-      exp: "Export backup", imp: "Import backup", sample: "Load example", reset: "Reset all data", theme: "Theme", th_system: "System", th_light: "Light", th_dark: "Dark",
+      exp: "Export backup", imp: "Import backup", sample: "Load example", reset: "Reset all data", gh: "View source on GitHub", theme: "Theme", th_system: "System", th_light: "Light", th_dark: "Dark",
       roll: "{m} has started. Keep the base and running traffic instances and clear usage?", rollBtn: "Start new month",
       usedUnit: "GB used", usedAria: "Data used this month",
       recorded: "Recorded {t} · {v}/day", toBill: "Open Bills",
@@ -1305,7 +1308,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "AWS Lightsail 節約計算機", tagline: "「同じリージョン・同じプランのデータ転送量はプールで共有」というルールで、変動する通信量に最も安いプランを見つけます。",
       region: "リージョン：プールは同じリージョン内でのみ合算", lang: "言語", over: "超過", half: "枠半分",
       settings: "詳細設定", outRatio: "送信の割合", outRatioHint: "超過料金は送信のみ。不明なら 100% のままに。", prorate: "月途中の作成分は枠を時間按分",
-      exp: "バックアップを書き出す", imp: "バックアップを読み込む", sample: "サンプルを読み込む", reset: "全データをリセット", theme: "テーマ", th_system: "システム", th_light: "ライト", th_dark: "ダーク",
+      exp: "バックアップを書き出す", imp: "バックアップを読み込む", sample: "サンプルを読み込む", reset: "全データをリセット", gh: "GitHub でソースを見る", theme: "テーマ", th_system: "システム", th_light: "ライト", th_dark: "ダーク",
       roll: "{m} になりました。ベースと稼働中のトラフィック用インスタンスを残し、使用量をクリアしますか？", rollBtn: "新しい月を開始",
       usedUnit: "GB 使用", usedAria: "今月の使用量",
       recorded: "{t} 記録 · 1日平均 {v}", toBill: "請求書を開く",
@@ -1340,7 +1343,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "AWS Lightsail 절약 계산기", tagline: "‘같은 리전·같은 사양 인스턴스는 전송량 풀을 공유’하는 규칙으로 변동 트래픽에 가장 저렴한 구성을 찾아줍니다.",
       region: "리전: 풀은 같은 리전 안에서만 합산", lang: "언어", over: "초과", half: "할당량 절반",
       settings: "고급 설정", outRatio: "아웃바운드 비율", outRatioHint: "초과 요금은 아웃바운드에만 부과됩니다. 모르면 100% 유지.", prorate: "월 중간 생성분 할당량을 시간 비례 계산",
-      exp: "백업 내보내기", imp: "백업 가져오기", sample: "예시 불러오기", reset: "모든 데이터 초기화", theme: "테마", th_system: "시스템", th_light: "라이트", th_dark: "다크",
+      exp: "백업 내보내기", imp: "백업 가져오기", sample: "예시 불러오기", reset: "모든 데이터 초기화", gh: "GitHub에서 소스 보기", theme: "테마", th_system: "시스템", th_light: "라이트", th_dark: "다크",
       roll: "{m}이 시작되었습니다. 기본 인스턴스와 실행 중인 트래픽 인스턴스는 유지하고 사용량을 초기화할까요?", rollBtn: "새 달 시작",
       usedUnit: "GB 사용", usedAria: "이번 달 사용량",
       recorded: "{t} 기록 · 일평균 {v}", toBill: "청구서 열기",
@@ -1375,7 +1378,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "Calculadora de ahorro AWS Lightsail", tagline: "Aprovecha que las instancias de la misma región y tamaño comparten la transferencia para hallar el plan más barato con tráfico variable.",
       region: "Región: la cuota solo se combina dentro de una región", lang: "Idioma", over: "exceso", half: "cuota a la mitad",
       settings: "Ajustes avanzados", outRatio: "Proporción saliente", outRatioHint: "Solo el tráfico saliente se cobra como exceso. Deja 100 % si no lo sabes.", prorate: "Prorratear la cuota de instancias creadas a mitad de mes",
-      exp: "Exportar copia", imp: "Importar copia", sample: "Cargar ejemplo", reset: "Restablecer todo", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Oscuro",
+      exp: "Exportar copia", imp: "Importar copia", sample: "Cargar ejemplo", reset: "Restablecer todo", gh: "Ver el código en GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Oscuro",
       roll: "Ha empezado {m}. ¿Conservar la base y las instancias de tráfico activas y poner el uso a cero?", rollBtn: "Empezar mes nuevo",
       usedUnit: "GB usados", usedAria: "Datos usados este mes",
       recorded: "Registrado {t} · {v}/día", toBill: "Abrir facturas",
@@ -1410,7 +1413,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "Calculateur d’économies AWS Lightsail", tagline: "S’appuie sur le partage du quota de transfert entre instances de même région et même taille pour trouver le plan le moins cher.",
       region: "Région : les quotas ne se cumulent que dans une région", lang: "Langue", over: "dépassement", half: "quota divisé par deux",
       settings: "Réglages avancés", outRatio: "Part sortante", outRatioHint: "Seul le trafic sortant est facturé en dépassement. Gardez 100 % en cas de doute.", prorate: "Proratiser le quota des instances créées en cours de mois",
-      exp: "Exporter", imp: "Importer", sample: "Charger un exemple", reset: "Tout réinitialiser", theme: "Thème", th_system: "Système", th_light: "Clair", th_dark: "Sombre",
+      exp: "Exporter", imp: "Importer", sample: "Charger un exemple", reset: "Tout réinitialiser", gh: "Voir le code sur GitHub", theme: "Thème", th_system: "Système", th_light: "Clair", th_dark: "Sombre",
       roll: "{m} a commencé. Garder la base et les instances de trafic actives et remettre l’usage à zéro ?", rollBtn: "Nouveau mois",
       usedUnit: "Go utilisés", usedAria: "Données utilisées ce mois",
       recorded: "Relevé {t} · {v}/jour", toBill: "Ouvrir les factures",
@@ -1445,7 +1448,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "AWS Lightsail Sparrechner", tagline: "Nutzt die Regel, dass Instanzen gleicher Region und Größe ein Transfervolumen teilen, und findet den günstigsten Plan für schwankenden Traffic.",
       region: "Region: Kontingente werden nur innerhalb einer Region zusammengelegt", lang: "Sprache", over: "Überschreitung", half: "halbes Kontingent",
       settings: "Erweiterte Einstellungen", outRatio: "Ausgehender Anteil", outRatioHint: "Nur ausgehender Traffic wird als Überschreitung berechnet. Im Zweifel 100 % lassen.", prorate: "Kontingent bei Erstellung im Monat anteilig rechnen",
-      exp: "Backup exportieren", imp: "Backup importieren", sample: "Beispiel laden", reset: "Alle Daten zurücksetzen", theme: "Design", th_system: "System", th_light: "Hell", th_dark: "Dunkel",
+      exp: "Backup exportieren", imp: "Backup importieren", sample: "Beispiel laden", reset: "Alle Daten zurücksetzen", gh: "Quellcode auf GitHub ansehen", theme: "Design", th_system: "System", th_light: "Hell", th_dark: "Dunkel",
       roll: "{m} hat begonnen. Basis und laufende Traffic-Instanzen behalten und Verbrauch zurücksetzen?", rollBtn: "Neuen Monat starten",
       usedUnit: "GB genutzt", usedAria: "Verbrauch in diesem Monat",
       recorded: "Erfasst {t} · {v}/Tag", toBill: "Rechnungen öffnen",
@@ -1480,7 +1483,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "Calculadora de economia AWS Lightsail", tagline: "Usa a regra de que instâncias da mesma região e tamanho compartilham a transferência para achar o plano mais barato para tráfego variável.",
       region: "Região: a cota só é somada dentro de uma região", lang: "Idioma", over: "excedente", half: "metade da cota",
       settings: "Configurações avançadas", outRatio: "Parcela de saída", outRatioHint: "Só o tráfego de saída é cobrado como excedente. Mantenha 100% se não souber.", prorate: "Proporcionalizar a cota de instâncias criadas no meio do mês",
-      exp: "Exportar backup", imp: "Importar backup", sample: "Carregar exemplo", reset: "Redefinir tudo", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Escuro",
+      exp: "Exportar backup", imp: "Importar backup", sample: "Carregar exemplo", reset: "Redefinir tudo", gh: "Ver o código no GitHub", theme: "Tema", th_system: "Sistema", th_light: "Claro", th_dark: "Escuro",
       roll: "{m} começou. Manter a base e as instâncias de tráfego ativas e zerar o uso?", rollBtn: "Iniciar novo mês",
       usedUnit: "GB usados", usedAria: "Dados usados neste mês",
       recorded: "Registrado {t} · {v}/dia", toBill: "Abrir faturas",
@@ -1515,7 +1518,7 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
       name: "Калькулятор экономии AWS Lightsail", tagline: "Использует правило общего пула трафика для инстансов одного региона и размера, чтобы найти самый дешёвый план при переменном трафике.",
       region: "Регион: лимиты суммируются только внутри региона", lang: "Язык", over: "превышение", half: "половина лимита",
       settings: "Дополнительно", outRatio: "Доля исходящего", outRatioHint: "Превышение оплачивается только за исходящий трафик. Если не уверены, оставьте 100%.", prorate: "Пропорциональный лимит для созданных в середине месяца",
-      exp: "Экспорт копии", imp: "Импорт копии", sample: "Загрузить пример", reset: "Сбросить все данные", theme: "Тема", th_system: "Системная", th_light: "Светлая", th_dark: "Тёмная",
+      exp: "Экспорт копии", imp: "Импорт копии", sample: "Загрузить пример", reset: "Сбросить все данные", gh: "Исходный код на GitHub", theme: "Тема", th_system: "Системная", th_light: "Светлая", th_dark: "Тёмная",
       roll: "Начался {m}. Оставить базовый и работающие трафик-инстансы и обнулить расход?", rollBtn: "Начать новый месяц",
       usedUnit: "ГБ израсходовано", usedAria: "Расход за месяц",
       recorded: "Записано {t} · {v}/день", toBill: "Открыть счета",
@@ -1597,7 +1600,8 @@ footer { font-size: 12px; color: var(--muted); text-align: center; }
     const canon = document.querySelector('link[rel="canonical"]');
     if (canon) { const u = new URL(canon.href); u.search = LANG === "en" ? "" : "?lang=" + LANG; canon.href = u.href; }
     document.querySelectorAll("[data-i]").forEach(el => { el.textContent = t(el.dataset.i); });
-    document.querySelector("footer").textContent = t("foot", { d: PRICES.date });
+    $("#footTxt").textContent = t("foot", { d: PRICES.date });
+    $("#ghBtn").title = t("gh"); $("#ghBtn").setAttribute("aria-label", t("gh"));
     setThemeTitle();
     $("#regionWrap").title = t("region"); $("#region").setAttribute("aria-label", t("region"));
     $("#langWrap").title = t("lang"); $("#lang").setAttribute("aria-label", t("lang"));
