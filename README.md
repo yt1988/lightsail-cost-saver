@@ -140,6 +140,7 @@ public/index.html                 the whole app (logos inlined, no external imag
 scripts/update-prices.mjs         refresh prices from the AWS Price List API
 scripts/set-site-url.mjs          canonical / hreflang / sitemap / robots for your domain
 assets/                           1ms logo masters (light and dark), kept for reference
+docs/                             README preview screenshots
 Dockerfile, nginx.conf            container image
 .github/workflows/docker.yml      builds and pushes the Docker Hub image
 .github/workflows/pages.yml       optional GitHub Pages deployment

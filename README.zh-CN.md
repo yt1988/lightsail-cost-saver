@@ -140,6 +140,7 @@ public/index.html                 整个程序（标志已内嵌，无外部图�
 scripts/update-prices.mjs         从 AWS Price List API 更新价格
 scripts/set-site-url.mjs          为你的域名生成 canonical / hreflang / sitemap / robots
 assets/                           1ms 标志母版（浅色、深色），留档用
+docs/                             README 预览截图
 Dockerfile, nginx.conf            容器镜像
 .github/workflows/docker.yml      构建并推送 Docker Hub 镜像
 .github/workflows/pages.yml       可选的 GitHub Pages 部署
