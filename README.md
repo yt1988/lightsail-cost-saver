@@ -22,7 +22,7 @@ This tool does that math for you. Enter what you've used so far this month, or j
 - **The cheapest number of traffic instances to add**, added to your setup with one click
 - **What to run next month** at the current pace
 
-No sign-up. Open it and go; your data stays in your own browser. Available in 10 languages, with light and dark themes, and it works on phones.
+No sign-up. Open it and go; your data stays in your own browser. Available in 10 languages, each its own pre-rendered page (for example [/zh/](https://ls.1ms.dog/zh/) and [/ja/](https://ls.1ms.dog/ja/)), with light and dark themes, and it works on phones.
 
 ## Features
 
@@ -214,14 +214,18 @@ node scripts/set-site-url.mjs https://your-domain.example
 
 Both run once on your machine or in CI and add nothing to page load. If a region fails to download, its previous prices are kept.
 
+Edit only `public/index.html` (the English page). After a change, run `npm run build`: it regenerates `calc.js`, `prices.json` and the pages for the other languages, with their text written into the HTML so search engines that don't run JavaScript, such as Baidu, can index them. `npm test` (also run in CI) fails if any generated file is out of date.
+
 ## Project layout
 
 ```
-public/index.html                 the whole app (logos inlined, no external images)
+public/index.html                 the whole app and the English page (logos inlined, no external images)
+public/zh/, ja/, … index.html     generated: one pre-rendered page per language
 public/calc.js, prices.json      generated for agents (calculation module, prices)
 public/llms.txt                   how agents can use the tool
-scripts/build.mjs                 regenerates calc.js and prices.json from the page
+scripts/build.mjs                 regenerates the language pages, calc.js and prices.json from the page
 scripts/test-calc.mjs             regression tests (npm test)
+scripts/test-pages.mjs            checks every language page is pre-rendered (npm test)
 scripts/update-prices.mjs         refresh prices from the AWS Price List API
 scripts/set-site-url.mjs          canonical / hreflang / sitemap / robots for your domain
 assets/                           1ms logo masters (light and dark), kept for reference

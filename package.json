@@ -5,7 +5,7 @@
   "description": "Static calculator for AWS Lightsail data transfer pools",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node scripts/build.mjs --check && node scripts/test-calc.mjs",
+    "test": "node scripts/build.mjs --check && node scripts/test-calc.mjs && node scripts/test-pages.mjs",
     "prices": "node scripts/update-prices.mjs"
   },
   "license": "MIT"

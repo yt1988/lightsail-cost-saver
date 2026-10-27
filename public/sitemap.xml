@@ -1,143 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ls.1ms.dog/zh/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
+  </url>
+  <url>
+    <loc>https://ls.1ms.dog/zh-tw/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
+  </url>
+  <url>
     <loc>https://ls.1ms.dog/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
   </url>
   <url>
-    <loc>https://ls.1ms.dog/?lang=zh-CN</loc>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://ls.1ms.dog/ja/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
   </url>
   <url>
-    <loc>https://ls.1ms.dog/?lang=zh-TW</loc>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://ls.1ms.dog/ko/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
   </url>
   <url>
-    <loc>https://ls.1ms.dog/?lang=ja</loc>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://ls.1ms.dog/es/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
   </url>
   <url>
-    <loc>https://ls.1ms.dog/?lang=ko</loc>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://ls.1ms.dog/fr/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
   </url>
   <url>
-    <loc>https://ls.1ms.dog/?lang=es</loc>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://ls.1ms.dog/de/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
   </url>
   <url>
-    <loc>https://ls.1ms.dog/?lang=fr</loc>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://ls.1ms.dog/pt/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
   </url>
   <url>
-    <loc>https://ls.1ms.dog/?lang=de</loc>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://ls.1ms.dog/ru/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
-  </url>
-  <url>
-    <loc>https://ls.1ms.dog/?lang=pt</loc>
-    <lastmod>2026-10-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
-  </url>
-  <url>
-    <loc>https://ls.1ms.dog/?lang=ru</loc>
-    <lastmod>2026-10-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ls.1ms.dog/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/?lang=zh-CN"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/?lang=zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ls.1ms.dog/ko/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ls.1ms.dog/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ls.1ms.dog/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ls.1ms.dog/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://ls.1ms.dog/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ls.1ms.dog/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ls.1ms.dog/"/>
   </url>
 </urlset>

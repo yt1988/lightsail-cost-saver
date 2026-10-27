@@ -22,7 +22,7 @@
 - **加几台流量实例最省钱**，点一下就加进你的配置
 - **下个月该怎么配**，按这个月的节奏给出建议
 
-不用注册，打开就能用，数据只存在你自己的浏览器里。支持 10 种语言和浅色、深色主题，手机上也好用。
+不用注册，打开就能用，数据只存在你自己的浏览器里。支持 10 种语言（每种语言都是单独预渲染的页面，例如 [/zh/](https://ls.1ms.dog/zh/)、[/ja/](https://ls.1ms.dog/ja/)）和浅色、深色主题，手机上也好用。
 
 ## 功能说明
 
@@ -214,14 +214,18 @@ node scripts/set-site-url.mjs https://your-domain.example
 
 两条命令都只在本地或 CI 里跑一次，不影响页面加载速度。某个地区价格下载失败时，会保留该地区原来的价格。
 
+只需要修改 `public/index.html`（英文页）。改完运行 `npm run build`，会重新生成 `calc.js`、`prices.json` 和其他语言的页面；各语言的文字直接写进 HTML，百度这类不执行 JavaScript 的搜索引擎也能收录。`npm test`（CI 也会跑）会在任何生成文件过期时报错。
+
 ## 项目结构
 
 ```
-public/index.html                 整个程序（标志已内嵌，无外部图片）
+public/index.html                 整个程序，也是英文页（标志已内嵌，无外部图片）
+public/zh/、ja/ … index.html      自动生成：每种语言一个预渲染页面
 public/calc.js, prices.json      为 Agent 生成的计算模块和价格数据
 public/llms.txt                   给 Agent 看的使用说明
-scripts/build.mjs                 从页面重新生成 calc.js 和 prices.json
+scripts/build.mjs                 从页面重新生成各语言页面、calc.js 和 prices.json
 scripts/test-calc.mjs             回归测试（npm test）
+scripts/test-pages.mjs            检查每种语言的页面都已预渲染（npm test）
 scripts/update-prices.mjs         从 AWS Price List API 更新价格
 scripts/set-site-url.mjs          为你的域名生成 canonical / hreflang / sitemap / robots
 assets/                           1ms 标志母版（浅色、深色），留档用
