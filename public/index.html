@@ -157,6 +157,9 @@ code { font-family: var(--f-num); font-size: 11px; background: var(--soft); bord
 .top.stack .tools { justify-content: flex-start; grid-column: 1; grid-row: 3; position: relative; }
 .top.stack .menu { position: static; }
 .top.stack .pop { left: 0; right: auto; top: calc(100% + 6px); }
+.top.compact .tool-btn { width: 34px; padding: 0; justify-content: center; }
+.top.compact .tool-btn span { display: none; }
+.top.compact #region { max-width: 170px; }
 .top.stack .tools { flex-wrap: nowrap; }
 .top.stack .tools > * { flex-shrink: 0; }
 .top.stack #regionWrap { flex: 0 1 auto; min-width: 0; }
@@ -2351,16 +2354,22 @@ footer a:hover { color: var(--fg); }
   applyTheme();
 
   function fitHeader() {
-    const top = $(".top"), tools = $(".tools"), brand = $(".brand-row");
-    top.classList.remove("stack", "split");
-    const cs = getComputedStyle(top), oneCol = cs.gridTemplateColumns.trim().split(/\s+/).length === 1;
+    const top = $(".top"), tools = $(".tools"), brand = $(".brand-row"), region = $("#regionWrap");
+    const gap = parseFloat(getComputedStyle(tools).columnGap);
     // sum the controls: right-aligned overflow spills to the left, which scrollWidth doesn't count
-    const gap = parseFloat(getComputedStyle(tools).columnGap), region = $("#regionWrap");
-    const items = [...tools.children].filter(el => el.offsetWidth);
-    const row = items.reduce((s, el) => s + el.offsetWidth, 0) + (items.length - 1) * gap;
-    const need = row + (oneCol ? 0 : brand.scrollWidth + parseFloat(cs.columnGap));
-    if (need <= top.clientWidth + 1) return;
+    const rowWidth = () => { const items = [...tools.children].filter(el => el.offsetWidth); return items.reduce((s, el) => s + el.offsetWidth, 0) + (items.length - 1) * gap; };
+    const fits = () => {
+      const cs = getComputedStyle(top), oneCol = cs.gridTemplateColumns.trim().split(/\s+/).length === 1;
+      return rowWidth() + (oneCol ? 0 : brand.scrollWidth + parseFloat(cs.columnGap)) <= top.clientWidth + 1;
+    };
+    top.classList.remove("stack", "split", "compact");
+    if (fits()) return;
+    // nearly fits: the AI button keeps only its icon and the region picker gets narrower, still in one row
+    top.classList.add("compact");
+    if (fits()) return;
     // under the logo: one row with a shrinking region picker, or, if that would get too narrow, the picker on its own row
+    top.classList.remove("compact");
+    const row = rowWidth();
     top.classList.add("stack");
     const room = top.clientWidth - (row - region.offsetWidth);
     if (room < Math.min(region.offsetWidth, 180)) top.classList.add("split");
