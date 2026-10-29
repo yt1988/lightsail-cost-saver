@@ -1,5 +1,5 @@
 // AWS Lightsail Cost Saver — calculation core (ES module).
-// Generated from public/index.html by scripts/build.mjs; edit the page, not this file.
+// Generated from src/app.js by scripts/build.mjs; edit that, not this file.
 // Docs: https://ls.1ms.dog/llms.txt · Source: https://github.com/yt1988/lightsail-cost-saver
 //
 //   import { calculate, buildLink } from "https://ls.1ms.dog/calc.js";

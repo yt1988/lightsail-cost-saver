@@ -116,7 +116,7 @@ Common link parameters:
 | `forecast` | Expected month-end total in GB; without `used` it plans the full month | `10000` |
 | `nodes` | Traffic instances as `count@start[~end]`, UTC | `1@2026-10-11T00:00Z` |
 
-All parameters are in [llms.txt](https://ls.1ms.dog/llms.txt). Node.js can't import from a URL: download `calc.js` or use `public/calc.js` from this repository. `calc.js` and `prices.json` are generated from `public/index.html` by `node scripts/build.mjs`; `npm test` checks they're in sync and runs the regression tests.
+All parameters are in [llms.txt](https://ls.1ms.dog/llms.txt). Node.js can't import from a URL: download `calc.js` or use `public/calc.js` from this repository. `calc.js` and `prices.json` are generated from `src/app.js` by `node scripts/build.mjs`; `npm test` checks they're in sync and runs the regression tests.
 
 ### Safety notes
 
@@ -205,7 +205,7 @@ To build it yourself instead, clone the repository and run `docker compose up -d
 ## Before you deploy (optional)
 
 ```bash
-# Refresh prices from the AWS Price List API into public/index.html (Node 18+)
+# Refresh prices from the AWS Price List API into src/app.js (Node 18+)
 node scripts/update-prices.mjs
 
 # Set your public URL for SEO: canonical, hreflang, sitemap.xml, robots.txt
@@ -214,16 +214,18 @@ node scripts/set-site-url.mjs https://your-domain.example
 
 Both run once on your machine or in CI and add nothing to page load. If a region fails to download, its previous prices are kept.
 
-Edit only `public/index.html` (the English page). After a change, run `npm run build`: it regenerates `calc.js`, `prices.json` and the pages for the other languages, with their text written into the HTML so search engines that don't run JavaScript, such as Baidu, can index them. `npm test` (also run in CI) fails if any generated file is out of date.
+Edit only `public/index.html` (the markup, which is also the English page) and `src/app.js` (the script, including the translations). After a change, run `npm run build`: it regenerates the script bundle, `calc.js`, `prices.json` and the pages for the other languages, with their text written into the HTML so search engines that don't run JavaScript, such as Baidu, can index them. `npm test` (also run in CI) fails if any generated file is out of date.
 
 ## Project layout
 
 ```
-public/index.html                 the whole app and the English page (logos inlined, no external images)
+public/index.html                 markup and styles, and the English page
+src/app.js                        the page script: prices, translations, calculation, UI
 public/zh/, ja/, … index.html     generated: one pre-rendered page per language
+public/assets/                    logos, self-hosted Geist fonts, favicon and app.<hash>.js (generated)
 public/calc.js, prices.json      generated for agents (calculation module, prices)
 public/llms.txt                   how agents can use the tool
-scripts/build.mjs                 regenerates the language pages, calc.js and prices.json from the page
+scripts/build.mjs                 regenerates the language pages, script bundle, calc.js and prices.json
 scripts/test-calc.mjs             regression tests (npm test)
 scripts/test-pages.mjs            checks every language page is pre-rendered (npm test)
 scripts/update-prices.mjs         refresh prices from the AWS Price List API

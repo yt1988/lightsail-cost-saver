@@ -17,7 +17,7 @@ const m = BEGIN.exec(html), b = html.indexOf(END);
 if (!m || b < 0) throw new Error("SITE markers not found in public/index.html");
 await writeFile(FILE, html.slice(0, m.index + m[0].length) + `\n<link rel="canonical" href="${base}">\n` + html.slice(b));
 
-const D = langData(html), url = l => base + D.LANG_PATHS[l], LANGS = D.LANGS.map(([l]) => l);
+const D = langData(await readFile(new URL("../src/app.js", import.meta.url), "utf8")), url = l => base + D.LANG_PATHS[l], LANGS = D.LANGS.map(([l]) => l);
 const today = new Date().toISOString().slice(0, 10);
 const alts = LANGS.map(l => `    <xhtml:link rel="alternate" hreflang="${l}" href="${url(l)}"/>`).join("\n");
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

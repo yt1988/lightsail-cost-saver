@@ -12,6 +12,24 @@
           "value": "*"
         }
       ]
+    },
+    {
+      "source": "/assets/(fonts|js)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(logo-light|logo-dark|favicon).svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
     }
   ]
 }

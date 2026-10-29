@@ -1,23 +1,27 @@
 #!/usr/bin/env node
-// Generates files from public/index.html, which stays the single source (and the English page):
-//   public/calc.js            the CALC:BEGIN…CALC:END block as an ES module
-//   public/prices.json        the PRICES block in a readable format
-//   public/<lang>/index.html  one pre-rendered page per language (zh/, ja/, …), with that language's text
-//                             written into the HTML so crawlers that don't run JS (Baidu) can index it
-// It also keeps index.html's own SITE block (canonical, hreflang) and footer language links in sync.
+// Generates files from the two sources: public/index.html (the markup, and the English page) and src/app.js (the script).
+//   public/assets/js/app.<hash>.js  src/app.js, named by its content so it can be cached for a year
+//   public/assets/favicon.svg       head crop of public/assets/logo-light.svg
+//   public/calc.js                  the CALC:BEGIN…CALC:END block as an ES module
+//   public/prices.json              the PRICES block in a readable format
+//   public/<lang>/index.html        one pre-rendered page per language (zh/, ja/, …), with that language's text
+//                                   written into the HTML so crawlers that don't run JS (Baidu) can index it
+// It also keeps index.html's own SITE block (canonical, hreflang), script tag and footer language links in sync.
 // Usage: node scripts/build.mjs          write the files
 //        node scripts/build.mjs --check  exit 1 if they are out of date (used in CI)
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir, unlink } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const root = new URL("../public/", import.meta.url);
+const appSrc = new URL("../src/app.js", import.meta.url);
 const EXPORTS = ["CALC_VERSION", "GB_PER_TB", "monthKey", "monthRange", "normalizePrices", "regionInfo",
   "computeCore", "toState", "fromState", "calculate", "buildLink", "parseLink"];
 const OG_LOCALE = { en: "en_US", "zh-CN": "zh_CN", "zh-TW": "zh_TW", ja: "ja_JP", ko: "ko_KR", es: "es_ES", fr: "fr_FR", de: "de_DE", pt: "pt_BR", ru: "ru_RU" };
 
 function between(text, begin, end, label) {
   const a = text.indexOf(begin), b = text.indexOf(end);
-  if (a < 0 || b < 0) throw new Error(`${label} markers not found in public/index.html`);
+  if (a < 0 || b < 0) throw new Error(`${label} markers not found`);
   return text.slice(a, b + end.length);
 }
 // replace what lies between two markers, keeping the markers
@@ -29,9 +33,9 @@ function fill(text, begin, end, content, label) {
 }
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-// the language packs, read straight from the page's I18N:BEGIN…I18N:END block
-export function langData(html) {
-  const src = between(html, "/* I18N:BEGIN", "/* I18N:END */", "I18N");
+// the language packs, read straight from the I18N:BEGIN…I18N:END block of src/app.js
+export function langData(app) {
+  const src = between(app, "/* I18N:BEGIN", "/* I18N:END */", "I18N");
   return new Function(src + "\nreturn { REGION_ORDER, LINKS, RULE_ICONS, RULE_WARN, LANGS, LANG_PATHS, I18N };")();
 }
 // the public root URL, taken from the canonical link that scripts/set-site-url.mjs wrote
@@ -55,16 +59,17 @@ function langNav(lang, D) {
   const up = lang === "en" ? "" : "../";
   return D.LANGS.map(([l, name]) => `      <a href="${up + D.LANG_PATHS[l] || "./"}" hreflang="${l}" lang="${l}"${l === lang ? ' aria-current="page"' : ""}>${name}</a>`).join("\n");
 }
-// the parts of index.html that the build owns: canonical/hreflang, the footer text and language links
-function managed(html, lang, D, priceDate) {
+// the parts of index.html that the build owns: canonical/hreflang, the script tag, the footer text and language links
+function managed(html, lang, D, priceDate, appFile) {
   const foot = D.I18N[lang].foot.split("{d}").join(priceDate);
   html = html.replace(/(<span id="footTxt">)[^<]*(<\/span>)/, (m, a, b) => a + esc(foot) + b);
   html = fill(html, "<!-- SITE:BEGIN", "<!-- SITE:END -->", siteTags(siteBase(html), lang, D), "SITE");
+  html = fill(html, "<!-- APP:BEGIN", "<!-- APP:END -->", `<script defer src="assets/js/${appFile}"></script>`, "APP");
   return fill(html, "<!-- LANGNAV:BEGIN", "<!-- LANGNAV:END -->", langNav(lang, D), "LANGNAV");
 }
 
 // index.html (English) -> the same page with another language written in
-export function renderPage(src, lang, D, priceDate) {
+export function renderPage(src, lang, D, priceDate, appFile) {
   const L = D.I18N[lang], E = D.I18N.en;
   const t = (k, v) => { let s = L[k] ?? E[k] ?? k; if (v) for (const p in v) s = s.split("{" + p + "}").join(v[p]); return s; };
   const meta = (attr, key, value) => {
@@ -72,8 +77,10 @@ export function renderPage(src, lang, D, priceDate) {
     if (!re.test(html)) throw new Error(`meta ${key} not found`);
     html = html.replace(re, (m, a, b) => a + esc(value) + b);
   };
-  let html = managed(src, lang, D, priceDate);
+  let html = managed(src, lang, D, priceDate, appFile);
   html = html.replace('<html lang="en">', `<html lang="${lang}">`);
+  // the page sits one level down, so the shared files are at ../assets/
+  html = html.replace(/(["(])assets\//g, "$1../assets/");
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(t("name"))}</title>`);
   meta("name", "description", L.seoDesc ?? t("tagline"));
   meta("name", "keywords", L.seoKw ?? "");
@@ -108,14 +115,21 @@ export function renderPage(src, lang, D, priceDate) {
 
 export async function build({ check = false } = {}) {
   const src = await readFile(new URL("index.html", root), "utf8");
-  const D = langData(src);
-  const priceDate = /"date":"([^"]+)"/.exec(between(src, "/* PRICES:BEGIN */", "/* PRICES:END */", "PRICES"))[1];
-  const html = managed(src, "en", D, priceDate);
+  const app = await readFile(appSrc, "utf8");
+  const D = langData(app);
+  const priceDate = /"date":"([^"]+)"/.exec(between(app, "/* PRICES:BEGIN */", "/* PRICES:END */", "PRICES"))[1];
+  const appFile = `app.${createHash("sha256").update(app).digest("hex").slice(0, 10)}.js`;
+  const html = managed(src, "en", D, priceDate, appFile);
 
-  const block = between(html, "/* CALC:BEGIN", "/* CALC:END */", "CALC");
+  // favicon: the dog's head from the light logo, wordmark hidden
+  const favicon = (await readFile(new URL("assets/logo-light.svg", root), "utf8"))
+    .replace(/<svg [^>]*>/, '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="920 208 544 544">')
+    .replace('id="wordmark"', 'id="wordmark" display="none"');
+
+  const block = between(app, "/* CALC:BEGIN", "/* CALC:END */", "CALC");
   const body = block.split("\n").map(l => l.replace(/^ {2}/, "")).join("\n");
   const calc = `// AWS Lightsail Cost Saver — calculation core (ES module).
-// Generated from public/index.html by scripts/build.mjs; edit the page, not this file.
+// Generated from src/app.js by scripts/build.mjs; edit that, not this file.
 // Docs: https://ls.1ms.dog/llms.txt · Source: https://github.com/yt1988/lightsail-cost-saver
 //
 //   import { calculate, buildLink } from "https://ls.1ms.dog/calc.js";
@@ -127,7 +141,7 @@ ${body}
 export { ${EXPORTS.join(", ")} };
 `;
 
-  const pricesSrc = between(html, "/* PRICES:BEGIN */", "/* PRICES:END */", "PRICES")
+  const pricesSrc = between(app, "/* PRICES:BEGIN */", "/* PRICES:END */", "PRICES")
     .replace("/* PRICES:BEGIN */", "").replace("/* PRICES:END */", "").trim()
     .replace(/^const PRICES =\s*/, "").replace(/;$/, "");
   const P = JSON.parse(pricesSrc);
@@ -149,8 +163,16 @@ export { ${EXPORTS.join(", ")} };
   const json = JSON.stringify(prices, null, 2) + "\n";
 
   const targets = [["index.html", html], ["calc.js", calc], ["prices.json", json],
-    ...D.LANGS.filter(([l]) => l !== "en").map(([l]) => [D.LANG_PATHS[l] + "index.html", renderPage(html, l, D, P.date)])];
+    ["assets/js/" + appFile, app], ["assets/favicon.svg", favicon],
+    ...D.LANGS.filter(([l]) => l !== "en").map(([l]) => [D.LANG_PATHS[l] + "index.html", renderPage(html, l, D, P.date, appFile)])];
   let stale = [];
+  // bundles left from earlier builds
+  const jsDir = new URL("assets/js/", root);
+  for (const name of await readdir(jsDir).catch(() => [])) {
+    if (name === appFile || !/^app\.\w+\.js$/.test(name)) continue;
+    if (check) stale.push("assets/js/" + name + " (old bundle)");
+    else { await unlink(new URL(name, jsDir)); console.log(`removed public/assets/js/${name}`); }
+  }
   for (const [name, content] of targets) {
     const url = new URL(name, root);
     const current = await readFile(url, "utf8").catch(() => null);

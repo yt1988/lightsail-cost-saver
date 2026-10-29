@@ -6,7 +6,7 @@ import { langData, siteBase } from "./build.mjs";
 
 const pub = new URL("../public/", import.meta.url);
 const src = await readFile(new URL("index.html", pub), "utf8");
-const D = langData(src), base = siteBase(src);
+const D = langData(await readFile(new URL("../src/app.js", import.meta.url), "utf8")), base = siteBase(src);
 const plain = s => s.replace(/<[^>]+>/g, "");
 const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 let failed = 0;

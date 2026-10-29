@@ -1,21 +1,21 @@
 #!/usr/bin/env node
 // Pulls current Lightsail prices from the public AWS Price List API and rewrites the
-// PRICES block in public/index.html. Run before deploying: `node scripts/update-prices.mjs`
+// PRICES block in src/app.js, then rebuilds the generated files. Run before deploying: `node scripts/update-prices.mjs`
 // Needs Node 18+ (built-in fetch). Regions that fail to download keep their old values.
 import { readFile, writeFile } from "node:fs/promises";
 
-const FILE = new URL("../public/index.html", import.meta.url);
+const FILE = new URL("../src/app.js", import.meta.url);
 const HOST = "https://pricing.us-east-1.amazonaws.com";
 const BEGIN = "/* PRICES:BEGIN */", END = "/* PRICES:END */";
 const HOURS_PER_MONTH = 744; // Lightsail caps hourly billing at the monthly plan price
 
 const html = await readFile(FILE, "utf8");
 const a = html.indexOf(BEGIN), b = html.indexOf(END);
-if (a < 0 || b < 0) throw new Error("PRICES markers not found in public/index.html");
+if (a < 0 || b < 0) throw new Error("PRICES markers not found in src/app.js");
 const old = JSON.parse(html.slice(a + BEGIN.length, b).replace(/^\s*const PRICES =\s*/, "").replace(/;\s*$/, ""));
 
 const order = /const REGION_ORDER = (\[[^\]]*\])/.exec(html);
-if (!order) throw new Error("REGION_ORDER not found in public/index.html");
+if (!order) throw new Error("REGION_ORDER not found in src/app.js");
 const ids = JSON.parse(order[1]);
 
 const getJSON =async path => { const r = await fetch(HOST + path); if (!r.ok) throw new Error(`${r.status} ${path}`); return r.json(); };
@@ -72,8 +72,8 @@ const date = new Date().toISOString().slice(0, 10);
 const body = `const PRICES = {"date":"${date}","regions":{\n` +
   Object.entries(regions).map(([id, r]) => `    ${JSON.stringify(id)}:${JSON.stringify(r)}`).join(",\n") + "\n  }};";
 await writeFile(FILE, html.slice(0, a + BEGIN.length) + "\n  " + body + "\n  " + html.slice(b));
-console.log(`\nUpdated ${ok}/${Object.keys(regions).length} regions → public/index.html (date ${date})`);
+console.log(`\nUpdated ${ok}/${Object.keys(regions).length} regions → src/app.js (date ${date})`);
 
-// keep public/calc.js and public/prices.json in step with the page
+// regenerate the script bundle, calc.js, prices.json and the language pages
 const { build } = await import("./build.mjs");
 await build();

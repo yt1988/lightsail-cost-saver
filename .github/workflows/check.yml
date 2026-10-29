@@ -1,6 +1,6 @@
 name: Check
 
-# Fails when public/calc.js or public/prices.json no longer match public/index.html, or a calc test breaks.
+# Fails when a generated file no longer matches public/index.html and src/app.js, or a test breaks.
 on:
   push:
   pull_request:

@@ -116,7 +116,7 @@ const link = buildLink(input);   // 同一套配置的预填链接
 | `forecast` | 预计月底总量 GB；不填 `used` 时按整月规划 | `10000` |
 | `nodes` | 流量实例，`数量@开始[~结束]`，UTC | `1@2026-10-11T00:00Z` |
 
-完整参数见 [llms.txt](https://ls.1ms.dog/llms.txt)。Node.js 不能直接从网址导入，可以下载 `calc.js`，或直接用仓库里的 `public/calc.js`。`calc.js` 和 `prices.json` 由 `node scripts/build.mjs` 从 `public/index.html` 生成；`npm test` 会检查它们是否同步，并运行回归测试。
+完整参数见 [llms.txt](https://ls.1ms.dog/llms.txt)。Node.js 不能直接从网址导入，可以下载 `calc.js`，或直接用仓库里的 `public/calc.js`。`calc.js` 和 `prices.json` 由 `node scripts/build.mjs` 从 `src/app.js` 生成；`npm test` 会检查它们是否同步，并运行回归测试。
 
 ### 安全提示
 
@@ -205,7 +205,7 @@ services:
 ## 部署前（可选）
 
 ```bash
-# 从 AWS Price List API 拉取最新价格，写回 public/index.html（需要 Node 18+）
+# 从 AWS Price List API 拉取最新价格，写回 src/app.js（需要 Node 18+）
 node scripts/update-prices.mjs
 
 # 设置正式域名：写入 canonical / hreflang，生成 sitemap.xml 和 robots.txt
@@ -214,16 +214,18 @@ node scripts/set-site-url.mjs https://your-domain.example
 
 两条命令都只在本地或 CI 里跑一次，不影响页面加载速度。某个地区价格下载失败时，会保留该地区原来的价格。
 
-只需要修改 `public/index.html`（英文页）。改完运行 `npm run build`，会重新生成 `calc.js`、`prices.json` 和其他语言的页面；各语言的文字直接写进 HTML，百度这类不执行 JavaScript 的搜索引擎也能收录。`npm test`（CI 也会跑）会在任何生成文件过期时报错。
+只需要修改 `public/index.html`（页面结构，也是英文页）和 `src/app.js`（页面脚本，含各语言文案）。改完运行 `npm run build`，会重新生成脚本包、`calc.js`、`prices.json` 和其他语言的页面；各语言的文字直接写进 HTML，百度这类不执行 JavaScript 的搜索引擎也能收录。`npm test`（CI 也会跑）会在任何生成文件过期时报错。
 
 ## 项目结构
 
 ```
-public/index.html                 整个程序，也是英文页（标志已内嵌，无外部图片）
+public/index.html                 页面结构和样式，也是英文页
+src/app.js                        页面脚本：价格、各语言文案、计算和界面
 public/zh/、ja/ … index.html      自动生成：每种语言一个预渲染页面
+public/assets/                    标志、自托管的 Geist 字体、网站图标和 app.<hash>.js（自动生成）
 public/calc.js, prices.json      为 Agent 生成的计算模块和价格数据
 public/llms.txt                   给 Agent 看的使用说明
-scripts/build.mjs                 从页面重新生成各语言页面、calc.js 和 prices.json
+scripts/build.mjs                 重新生成各语言页面、脚本包、calc.js 和 prices.json
 scripts/test-calc.mjs             回归测试（npm test）
 scripts/test-pages.mjs            检查每种语言的页面都已预渲染（npm test）
 scripts/update-prices.mjs         从 AWS Price List API 更新价格
