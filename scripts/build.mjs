@@ -36,7 +36,29 @@ const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(
 // the language packs, read straight from the I18N:BEGIN…I18N:END block of src/app.js
 export function langData(app) {
   const src = between(app, "/* I18N:BEGIN", "/* I18N:END */", "I18N");
-  return new Function(src + "\nreturn { REGION_ORDER, LINKS, HELP, LANGS, LANG_PATHS, I18N };")();
+  return new Function(src + "\nreturn { REGION_ORDER, REGION_NAMES, LINKS, HELP, LANGS, LANG_PATHS, I18N };")();
+}
+// every language has every text the English pack has, in the same shape and with the same {placeholders};
+// the page has no fallback to English, so a gap here would show up as a missing label
+export function i18nGaps(D) {
+  const gaps = [], ph = s => [...s.matchAll(/\{\/?\w+\}/g)].map(m => m[0]).sort().join(" ");
+  const walk = (en, x, at) => {
+    if (typeof en === "string") {
+      if (typeof x !== "string" || (en && !x.trim())) gaps.push(at + " is missing");
+      else if (ph(en) !== ph(x)) gaps.push(`${at} has placeholders ${ph(x) || "(none)"}, English has ${ph(en)}`);
+    } else if (Array.isArray(en)) {
+      if (!Array.isArray(x) || x.length !== en.length) gaps.push(`${at} should have ${en.length} items`);
+      else en.forEach((v, i) => walk(v, x[i], `${at}[${i}]`));
+    } else if (en && typeof en === "object") {
+      if (!x || typeof x !== "object") gaps.push(at + " is missing");
+      else for (const k in en) walk(en[k], x[k], at + "." + k);
+    }
+  };
+  for (const [l] of D.LANGS) {
+    if (l !== "en") walk(D.I18N.en, D.I18N[l], l);
+    if (D.REGION_NAMES[l]?.length !== D.REGION_ORDER.length || D.REGION_NAMES[l].some(x => !x)) gaps.push(`REGION_NAMES.${l} should name all ${D.REGION_ORDER.length} regions`);
+  }
+  return gaps;
 }
 // the public root URL, taken from the canonical link that scripts/set-site-url.mjs wrote
 export function siteBase(html) {
@@ -61,23 +83,23 @@ function langNav(lang, D) {
 }
 // the help dialog's questions and answers: billing rules, the overage price range and the official links
 function helpItems(lang, D, P) {
-  const L = D.I18N[lang], E = D.I18N.en, overs = Object.values(P.regions).map(r => r.over);
+  const L = D.I18N[lang], overs = Object.values(P.regions).map(r => r.over);
   const usd = v => "$" + v.toFixed(2);
   return D.HELP.map(([kind, i], n) => ({
-    q: (L.helpQ ?? E.helpQ)[n],
+    q: L.helpQ[n],
     a: kind === "r" ? `<p${i === 4 ? ' class="w"' : ""}>${L.r[i]}</p>`
-      : kind === "over" ? `<p>${(L.overA ?? E.overA).split("{lo}").join(usd(Math.min(...overs))).split("{hi}").join(usd(Math.max(...overs)))}</p>`
+      : kind === "over" ? `<p>${L.overA.split("{lo}").join(usd(Math.min(...overs))).split("{hi}").join(usd(Math.max(...overs)))}</p>`
       : `<p class="links">${L.links.map((txt, k) => `<a href="${D.LINKS[k]}" target="_blank" rel="noopener">${txt}</a>`).join("")}</p>`
   }));
 }
-function helpHtml(items) {
+function helpHtml(items, t) {
   const prev = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg>';
   const next = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg>';
   return [
     `      <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">`,
     ...items.map((x, i) => `        <button type="button" role="tab" id="hq${i}" data-hq="${i}" aria-controls="ha${i}" aria-selected="${i === 0}">${esc(x.q)}</button>`),
     `      </nav>`,
-    `      <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" aria-label="‹">${prev}</button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" aria-label="›">${next}</button></div>`,
+    `      <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="${esc(t("qPrev"))}">${prev}</button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="${esc(t("qNext"))}">${next}</button></div>`,
     `      <div class="help-c" id="helpC">`,
     ...items.map((x, i) => `        <section role="tabpanel" id="ha${i}" data-hqb="${i}" aria-labelledby="hq${i}"${i ? " hidden" : ""}><h4>${esc(x.q)}</h4>${x.a}</section>`),
     `      </div>`
@@ -87,7 +109,7 @@ function helpHtml(items) {
 // the help dialog and the FAQ structured data built from it
 function managed(html, lang, D, P, appFile) {
   const priceDate = P.date, items = helpItems(lang, D, P);
-  html = fill(html, "<!-- HELP:BEGIN", "<!-- HELP:END -->", helpHtml(items), "HELP");
+  html = fill(html, "<!-- HELP:BEGIN", "<!-- HELP:END -->", helpHtml(items, k => D.I18N[lang][k]), "HELP");
   html = html.replace(/(<script type="application\/ld\+json">\n)([\s\S]*?)(\n<\/script>)/, (m, a, json, b) => {
     const ld = JSON.parse(json), plain = s => s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
     const faq = { "@type": "FAQPage", inLanguage: lang, mainEntity: items.slice(0, -1).map(x => ({ "@type": "Question", name: x.q, acceptedAnswer: { "@type": "Answer", text: plain(x.a) } })) };
@@ -103,8 +125,8 @@ function managed(html, lang, D, P, appFile) {
 
 // index.html (English) -> the same page with another language written in
 export function renderPage(src, lang, D, P, appFile) {
-  const L = D.I18N[lang], E = D.I18N.en;
-  const t = (k, v) => { let s = L[k] ?? E[k] ?? k; if (v) for (const p in v) s = s.split("{" + p + "}").join(v[p]); return s; };
+  const L = D.I18N[lang];
+  const t = (k, v) => { let s = L[k]; if (v) for (const p in v) s = s.split("{" + p + "}").join(v[p]); return s; };
   const meta = (attr, key, value) => {
     const re = new RegExp(`(<meta ${attr}="${key}" content=")[^"]*(">)`);
     if (!re.test(html)) throw new Error(`meta ${key} not found`);
@@ -137,6 +159,7 @@ export function renderPage(src, lang, D, P, appFile) {
   let n = 0;
   html = html.replace(/(<([a-z0-9]+)\b[^>]*\sdata-i="(\w+)"[^>]*>)([^<]*)(<\/\2>)/g, (m, open, tag, key, text, close) => { n++; return open + esc(t(key)) + close; });
   if (!n) throw new Error("no data-i elements found");
+  html = html.replace(/<[a-z]+\b[^>]*\sdata-ia="(\w+)"[^>]*>/g, (tag, key) => tag.replace(/ (aria-label|title)="[^"]*"/g, (m, a) => ` ${a}="${esc(t(key))}"`));
   return html;
 }
 
@@ -144,6 +167,8 @@ export async function build({ check = false } = {}) {
   const src = await readFile(new URL("index.html", root), "utf8");
   const app = await readFile(appSrc, "utf8");
   const D = langData(app);
+  const gaps = i18nGaps(D);
+  if (gaps.length) throw new Error("Untranslated text in src/app.js:\n  " + gaps.join("\n  "));
   const pricesSrc = between(app, "/* PRICES:BEGIN */", "/* PRICES:END */", "PRICES")
     .replace("/* PRICES:BEGIN */", "").replace("/* PRICES:END */", "").trim()
     .replace(/^const PRICES =\s*/, "").replace(/;$/, "");

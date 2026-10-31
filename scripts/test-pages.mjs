@@ -2,7 +2,7 @@
 // Checks the pre-rendered language pages: each one exists at its path, carries its own language in the
 // HTML itself (no JS needed), and points canonical/hreflang at the right URLs.
 import { readFile } from "node:fs/promises";
-import { langData, siteBase } from "./build.mjs";
+import { langData, siteBase, i18nGaps } from "./build.mjs";
 
 const pub = new URL("../public/", import.meta.url);
 const src = await readFile(new URL("index.html", pub), "utf8");
@@ -16,6 +16,10 @@ const check = (name, ok) => { console.log(`${ok ? "ok  " : "FAIL"} ${name}`); if
 const head = /var d = document\.documentElement, P = (\{[^}]+\})/.exec(src);
 check("head script path map matches LANG_PATHS", !!head && JSON.stringify(JSON.parse(head[1])) === JSON.stringify(D.LANG_PATHS));
 
+// every language has all the text English has (the page does not fall back to English)
+const gaps = i18nGaps(D);
+check("every language is complete" + (gaps.length ? ": " + gaps.join("; ") : ""), !gaps.length);
+
 for (const [lang] of D.LANGS) {
   const L = D.I18N[lang], path = D.LANG_PATHS[lang];
   const html = await readFile(new URL(path + "index.html", pub), "utf8").catch(() => "");
@@ -28,6 +32,9 @@ for (const [lang] of D.LANGS) {
     && (html.match(/<link rel="alternate" hreflang=/g) || []).length === D.LANGS.length + 1
     && html.includes('aria-current="page">' + D.LANGS.find(([l]) => l === lang)[1] + "<");
   check(`/${path} is pre-rendered in ${lang}`, ok);
+  // labels the script would set (data-ia) are already in this language in the HTML
+  const ia = [...html.matchAll(/<[a-z]+\b[^>]*\sdata-ia="(\w+)"[^>]*>/g)];
+  check(`/${path} labels are in ${lang}`, ia.length >= 5 && ia.every(([tag, k]) => tag.includes(`aria-label="${esc(L[k])}"`)));
 }
 
 if (failed) { console.error(`\n${failed} check(s) failed`); process.exit(1); }
