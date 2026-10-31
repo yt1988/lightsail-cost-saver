@@ -4,7 +4,7 @@
 //   public/assets/favicon.svg       head crop of public/assets/logo-light.svg
 //   public/calc.js                  the CALC:BEGIN…CALC:END block as an ES module
 //   public/prices.json              the PRICES block in a readable format
-//   public/<lang>/index.html        one pre-rendered page per language (zh/, ja/, …), with that language's text
+//   public/<lang>/index.html        one pre-rendered page per language (zh-cn/, ja/, …), with that language's text
 //                                   written into the HTML so crawlers that don't run JS (Baidu) can index it
 // It also keeps index.html's own SITE block (canonical, hreflang), script tag and footer language links in sync.
 // Usage: node scripts/build.mjs          write the files
@@ -216,6 +216,9 @@ export { ${EXPORTS.join(", ")} };
   const targets = [["index.html", html], ["calc.js", calc], ["prices.json", json],
     ["assets/js/" + appFile, app], ["assets/favicon.svg", favicon],
     ...D.LANGS.filter(([l]) => l !== "en").map(([l]) => [D.LANG_PATHS[l] + "index.html", renderPage(html, l, D, P, appFile)])];
+  // simplified Chinese moved from /zh/ to /zh-cn/: keep a copy at the old path (canonical points to /zh-cn/)
+  // until the 1ms-shell proxy redirects /zh/, then remove this line and public/zh/
+  targets.push(["zh/index.html", targets.find(([f]) => f === "zh-cn/index.html")[1]]);
   let stale = [];
   // bundles left from earlier builds
   const jsDir = new URL("assets/js/", root);

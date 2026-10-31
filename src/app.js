@@ -53,7 +53,7 @@
   // ---------- language packs ----------
   const LANGS = [["zh-CN","简体中文"],["zh-TW","繁體中文"],["en","English"],["ja","日本語"],["ko","한국어"],["es","Español"],["fr","Français"],["de","Deutsch"],["pt","Português"],["ru","Русский"]];
   // each language is its own pre-rendered page at this path below the site root ("" = the root, English)
-  const LANG_PATHS = {"en":"","zh-CN":"zh/","zh-TW":"zh-tw/","ja":"ja/","ko":"ko/","es":"es/","fr":"fr/","de":"de/","pt":"pt/","ru":"ru/"};
+  const LANG_PATHS = {"en":"","zh-CN":"zh-cn/","zh-TW":"zh-tw/","ja":"ja/","ko":"ko/","es":"es/","fr":"fr/","de":"de/","pt":"pt/","ru":"ru/"};
   const I18N = {
     "zh-CN": {
       name: "AWS Lightsail 省钱计算器", tagline: "基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案",

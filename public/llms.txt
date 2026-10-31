@@ -41,7 +41,7 @@ https://ls.1ms.dog/?region=us-east-1&size=1&used=3150&nodes=1@2026-10-11T00:00Z
 
 Users usually name a bundle by its price and transfer, as the web app shows it (for example "$7 / 2 TB"). Map that to `size` with prices.json: find the bundle in that region whose `dualStackMonthly` (or `ipv6OnlyMonthly` for an IPv6-only base) and `transferTB` match, and use its `ramGB`. Transfer is halved in some regions, so match within the user's region.
 
-To open the link in another interface language, use that language's page as the base: `/zh/` (Simplified Chinese), `/zh-tw/`, `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt/`, `/ru/`; the root is English. For example `https://ls.1ms.dog/zh/?region=us-east-1&size=1&used=3150`. The older `lang=` parameter still works and redirects to the matching page.
+To open the link in another interface language, use that language's page as the base: `/zh-cn/` (Simplified Chinese), `/zh-tw/`, `/ja/`, `/ko/`, `/es/`, `/fr/`, `/de/`, `/pt/`, `/ru/`; the root is English. For example `https://ls.1ms.dog/zh/?region=us-east-1&size=1&used=3150`. The older `lang=` parameter still works and redirects to the matching page.
 
 ## Option 2: compute the answer yourself
 

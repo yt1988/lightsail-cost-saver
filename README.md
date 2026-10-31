@@ -22,7 +22,7 @@ This tool does that math for you. Enter what you've used so far this month, or j
 - **The cheapest number of traffic instances to add**, added to your setup with one click
 - **What to run next month** at the current pace
 
-No sign-up. Open it and go; your data stays in your own browser. Available in 10 languages, each its own pre-rendered page (for example [/zh/](https://ls.1ms.dog/zh/) and [/ja/](https://ls.1ms.dog/ja/)), with light and dark themes, and it works on phones.
+No sign-up. Open it and go; your data stays in your own browser. Available in 10 languages, each its own pre-rendered page (for example [/zh-cn/](https://ls.1ms.dog/zh-cn/) and [/ja/](https://ls.1ms.dog/ja/)), with light and dark themes, and it works on phones.
 
 ## Features
 
@@ -221,7 +221,7 @@ Edit only `public/index.html` (the markup, which is also the English page) and `
 ```
 public/index.html                 markup and styles, and the English page
 src/app.js                        the page script: prices, translations, calculation, UI
-public/zh/, ja/, … index.html     generated: one pre-rendered page per language
+public/zh-cn/, ja/, … index.html     generated: one pre-rendered page per language
 public/assets/                    logos, self-hosted Geist fonts, favicon and app.<hash>.js (generated)
 public/calc.js, prices.json      generated for agents (calculation module, prices)
 public/llms.txt                   how agents can use the tool

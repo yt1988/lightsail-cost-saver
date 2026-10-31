@@ -11,7 +11,7 @@
   // matching page (other query parameters such as config links are kept), and on a first visit to the root,
   // open the page for the visitor's saved or browser language. Crawlers are left on the page they asked for.
   (function () {
-    var d = document.documentElement, P = {"en":"","zh-CN":"zh/","zh-TW":"zh-tw/","ja":"ja/","ko":"ko/","es":"es/","fr":"fr/","de":"de/","pt":"pt/","ru":"ru/"};
+    var d = document.documentElement, P = {"en":"","zh-CN":"zh-cn/","zh-TW":"zh-tw/","ja":"ja/","ko":"ko/","es":"es/","fr":"fr/","de":"de/","pt":"pt/","ru":"ru/"};
     var s = null, th = null;
     try { s = localStorage.getItem("lightsail-pool:lang"); th = localStorage.getItem("lightsail-pool:theme"); } catch (e) {}
     if (th === "light" || th === "dark") d.setAttribute("data-theme", th);
@@ -49,9 +49,9 @@
 <meta name="twitter:title" content="AWS Lightsail 省钱计算器">
 <meta name="twitter:description" content="基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
-<link rel="canonical" href="https://ls.1ms.dog/zh/">
-<meta property="og:url" content="https://ls.1ms.dog/zh/">
-<link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh/">
+<link rel="canonical" href="https://ls.1ms.dog/zh-cn/">
+<meta property="og:url" content="https://ls.1ms.dog/zh-cn/">
+<link rel="alternate" hreflang="zh-CN" href="https://ls.1ms.dog/zh-cn/">
 <link rel="alternate" hreflang="zh-TW" href="https://ls.1ms.dog/zh-tw/">
 <link rel="alternate" hreflang="en" href="https://ls.1ms.dog/">
 <link rel="alternate" hreflang="ja" href="https://ls.1ms.dog/ja/">
@@ -65,11 +65,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 省钱计算器","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"免费的 AWS Lightsail 流量计算器。同地区同规格实例共享流量池：查看已用和剩余额度，预测月底超额费用，算出加几台 IPv6 实例最省钱。","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/zh/"},{"@type":"FAQPage","inLanguage":"zh-CN","mainEntity":[{"@type":"Question","name":"入站流量也扣额度吗？","acceptedAnswer":{"@type":"Answer","text":"入站 + 出站都扣额度"}},{"@type":"Question","name":"入站流量会收费吗？","acceptedAnswer":{"@type":"Answer","text":"超额只收出站，入站永远免费"}},{"@type":"Question","name":"超额怎么收费？","acceptedAnswer":{"@type":"Answer","text":"按地区不同，超出共享额度的出站流量每 GB $0.09–$0.17。计算器使用所选地区的价格。"}},{"@type":"Question","name":"哪些实例共享额度？","acceptedAnswer":{"@type":"Answer","text":"同地区、同规格才合并；同规格双栈与 IPv6-only 可合并"}},{"@type":"Question","name":"关机的实例还收费吗？","acceptedAnswer":{"@type":"Answer","text":"按小时计费，停机照样计费，删除才停止"}},{"@type":"Question","name":"新加实例能抵掉已产生的超额吗？","acceptedAnswer":{"@type":"Answer","text":"已产生的超额，新加实例无法抵消，要在用完前扩容"}},{"@type":"Question","name":"删掉重建能清零用量吗？","acceptedAnswer":{"@type":"Answer","text":"删除后重建不会重置本月已用量"}},{"@type":"Question","name":"内网流量收费吗？","acceptedAnswer":{"@type":"Answer","text":"同地区走私网 IP：扣额度，但超额也免费"}},{"@type":"Question","name":"估算有多准？","acceptedAnswer":{"@type":"Answer","text":"按 1 TB = 1024 GB、UTC 自然月估算，以 AWS 账单为准"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 省钱计算器","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"免费的 AWS Lightsail 流量计算器。同地区同规格实例共享流量池：查看已用和剩余额度，预测月底超额费用，算出加几台 IPv6 实例最省钱。","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/zh-cn/"},{"@type":"FAQPage","inLanguage":"zh-CN","mainEntity":[{"@type":"Question","name":"入站流量也扣额度吗？","acceptedAnswer":{"@type":"Answer","text":"入站 + 出站都扣额度"}},{"@type":"Question","name":"入站流量会收费吗？","acceptedAnswer":{"@type":"Answer","text":"超额只收出站，入站永远免费"}},{"@type":"Question","name":"超额怎么收费？","acceptedAnswer":{"@type":"Answer","text":"按地区不同，超出共享额度的出站流量每 GB $0.09–$0.17。计算器使用所选地区的价格。"}},{"@type":"Question","name":"哪些实例共享额度？","acceptedAnswer":{"@type":"Answer","text":"同地区、同规格才合并；同规格双栈与 IPv6-only 可合并"}},{"@type":"Question","name":"关机的实例还收费吗？","acceptedAnswer":{"@type":"Answer","text":"按小时计费，停机照样计费，删除才停止"}},{"@type":"Question","name":"新加实例能抵掉已产生的超额吗？","acceptedAnswer":{"@type":"Answer","text":"已产生的超额，新加实例无法抵消，要在用完前扩容"}},{"@type":"Question","name":"删掉重建能清零用量吗？","acceptedAnswer":{"@type":"Answer","text":"删除后重建不会重置本月已用量"}},{"@type":"Question","name":"内网流量收费吗？","acceptedAnswer":{"@type":"Answer","text":"同地区走私网 IP：扣额度，但超额也免费"}},{"@type":"Question","name":"估算有多准？","acceptedAnswer":{"@type":"Answer","text":"按 1 TB = 1024 GB、UTC 自然月估算，以 AWS 账单为准"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.a5a852a77c.js"></script>
+<script defer src="../assets/js/app.839cf2d6d4.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -533,13 +533,13 @@ footer a:hover { color: var(--fg); }
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 14.5s5-4.3 5-8.3a5 5 0 0 0-10 0c0 4 5 8.3 5 8.3z"/><circle cx="8" cy="6.2" r="1.8"/></svg>
         <select id="region"></select>
       </label>
+      <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">接入 Agent</span></button>
       <label class="sel" id="langWrap">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c2 2 2 10.4 0 12.4M8 1.8c-2 2-2 10.4 0 12.4"/></svg>
         <select id="lang"></select>
       </label>
-      <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">接入 Agent</span></button>
-      <a class="icon-btn" id="ghBtn" data-ia="gh" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="在 GitHub 查看源码" aria-label="在 GitHub 查看源码"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
       <button class="icon-btn" id="helpBtn" type="button" aria-haspopup="dialog" aria-controls="help"><span class="sr" data-i="rules">计费规则速查</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4M8 11.3v.1"/></svg></button>
+      <a class="icon-btn" id="ghBtn" data-ia="gh" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="在 GitHub 查看源码" aria-label="在 GitHub 查看源码"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
       <details class="menu" id="settings">
         <summary class="icon-btn" id="settingsBtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h2M7 12h7"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="5.5" cy="12" r="1.6"/></svg></summary>
         <div class="pop">
@@ -651,7 +651,7 @@ footer a:hover { color: var(--fg); }
   <footer><span id="footTxt">数据只保存在当前浏览器 · 价格核对于 2026-10-25 · 非 AWS 官方工具</span> · <a href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer">GitHub</a>
     <nav class="langs" data-ia="lang" aria-label="语言">
 <!-- LANGNAV:BEGIN (written by scripts/build.mjs) -->
-      <a href="../zh/" hreflang="zh-CN" lang="zh-CN" aria-current="page">简体中文</a>
+      <a href="../zh-cn/" hreflang="zh-CN" lang="zh-CN" aria-current="page">简体中文</a>
       <a href="../zh-tw/" hreflang="zh-TW" lang="zh-TW">繁體中文</a>
       <a href="../" hreflang="en" lang="en">English</a>
       <a href="../ja/" hreflang="ja" lang="ja">日本語</a>

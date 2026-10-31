@@ -22,7 +22,7 @@
 - **加几台流量实例最省钱**，点一下就加进你的配置
 - **下个月该怎么配**，按这个月的节奏给出建议
 
-不用注册，打开就能用，数据只存在你自己的浏览器里。支持 10 种语言（每种语言都是单独预渲染的页面，例如 [/zh/](https://ls.1ms.dog/zh/)、[/ja/](https://ls.1ms.dog/ja/)）和浅色、深色主题，手机上也好用。
+不用注册，打开就能用，数据只存在你自己的浏览器里。支持 10 种语言（每种语言都是单独预渲染的页面，例如 [/zh-cn/](https://ls.1ms.dog/zh-cn/)、[/ja/](https://ls.1ms.dog/ja/)）和浅色、深色主题，手机上也好用。
 
 ## 功能说明
 
@@ -221,7 +221,7 @@ node scripts/set-site-url.mjs https://your-domain.example
 ```
 public/index.html                 页面结构和样式，也是英文页
 src/app.js                        页面脚本：价格、各语言文案、计算和界面
-public/zh/、ja/ … index.html      自动生成：每种语言一个预渲染页面
+public/zh-cn/、ja/ … index.html      自动生成：每种语言一个预渲染页面
 public/assets/                    标志、自托管的 Geist 字体、网站图标和 app.<hash>.js（自动生成）
 public/calc.js, prices.json      为 Agent 生成的计算模块和价格数据
 public/llms.txt                   给 Agent 看的使用说明
