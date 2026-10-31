@@ -216,9 +216,6 @@ export { ${EXPORTS.join(", ")} };
   const targets = [["index.html", html], ["calc.js", calc], ["prices.json", json],
     ["assets/js/" + appFile, app], ["assets/favicon.svg", favicon],
     ...D.LANGS.filter(([l]) => l !== "en").map(([l]) => [D.LANG_PATHS[l] + "index.html", renderPage(html, l, D, P, appFile)])];
-  // simplified Chinese moved from /zh/ to /zh-cn/: keep a copy at the old path (canonical points to /zh-cn/)
-  // until the 1ms-shell proxy redirects /zh/, then remove this line and public/zh/
-  targets.push(["zh/index.html", targets.find(([f]) => f === "zh-cn/index.html")[1]]);
   let stale = [];
   // bundles left from earlier builds
   const jsDir = new URL("assets/js/", root);
