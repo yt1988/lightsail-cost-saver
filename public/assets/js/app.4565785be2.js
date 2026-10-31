@@ -41,7 +41,8 @@
     "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html",
     "https://aws.amazon.com/service-terms/", "https://console.aws.amazon.com/billing/home#/bills"];
   const BILL = "https://console.aws.amazon.com/billing/home#/bills";
-  const RULE_ICONS = ["⇅","↑","=","h","✕","↺","⇄","≈"], RULE_WARN = [4];
+  // help dialog: the order of the answers after the questions in helpQ (r = billing rules, plus the overage price and links)
+  const HELP = [["r", 0], ["r", 1], ["over"], ["r", 2], ["r", 3], ["r", 4], ["r", 5], ["r", 6], ["r", 7], ["links"]];
 
   // ---------- language packs ----------
   const LANGS = [["zh-CN","简体中文"],["zh-TW","繁體中文"],["en","English"],["ja","日本語"],["ko","한국어"],["es","Español"],["fr","Français"],["de","Deutsch"],["pt","Português"],["ru","Русский"]];
@@ -83,6 +84,8 @@
         "删除后重建<b>不会重置</b>本月已用量",
         "同地区走<b>私网 IP</b>：扣额度，但超额也免费",
         "按 1 TB = 1024 GB、UTC 自然月估算，以 AWS 账单为准"],
+      helpQ: ["入站流量也扣额度吗？","入站流量会收费吗？","超额怎么收费？","哪些实例共享额度？","关机的实例还收费吗？","新加实例能抵掉已产生的超额吗？","删掉重建能清零用量吗？","内网流量收费吗？","估算有多准？","AWS 官方链接"],
+      overA: "按地区不同，超出共享额度的出站流量<b>每 GB {lo}–{hi}</b>。计算器使用所选地区的价格。",
       links: ["官方定价", "流量额度 FAQ", "计费 FAQ", "服务条款", "查看账单用量"],
       foot: "数据只保存在当前浏览器 · 价格核对于 {d} · 非 AWS 官方工具", allowLbl: "额度 {v}"
     },
@@ -121,6 +124,8 @@
         "刪除後重建<b>不會重設</b>本月已用量",
         "同地區走<b>私網 IP</b>：扣額度，但超額也免費",
         "按 1 TB = 1024 GB、UTC 自然月估算，以 AWS 帳單為準"],
+      helpQ: ["入站流量也扣額度嗎？","入站流量會收費嗎？","超額怎麼收費？","哪些實例共享額度？","關機的實例還收費嗎？","新增實例能抵掉已產生的超額嗎？","刪除重建能清零用量嗎？","內網流量收費嗎？","估算有多準？","AWS 官方連結"],
+      overA: "依地區不同，超出共享額度的出站流量<b>每 GB {lo}–{hi}</b>。計算器使用所選地區的價格。",
       links: ["官方定價", "流量額度 FAQ", "計費 FAQ", "服務條款", "查看帳單用量"],
       foot: "資料只儲存在目前瀏覽器 · 價格核對於 {d} · 非 AWS 官方工具", allowLbl: "額度 {v}"
     },
@@ -158,6 +163,8 @@
         "Deleting and recreating <b>does not reset</b> this month’s usage",
         "Traffic over <b>private IPs</b> in one region uses allowance but is never charged",
         "Estimates use 1 TB = 1024 GB and UTC calendar months; your AWS bill is final"],
+      helpQ: ["Does inbound traffic use the allowance?","Is inbound traffic ever charged?","How much does overage cost?","Which instances share a pool?","Do stopped instances still bill?","Can new instances cancel overage?","Does recreating an instance reset usage?","Is private IP traffic charged?","How exact are the estimates?","Official AWS links"],
+      overA: "It depends on the Region: <b>{lo}–{hi} per GB</b> of outbound traffic beyond the pool. The calculator uses the selected Region’s rate.",
       links: ["Pricing", "Data transfer FAQ", "Billing FAQ", "Service terms", "View bill usage"],
       foot: "Data stays in this browser · Prices checked {d} · Not an official AWS tool", allowLbl: "Allowance {v}"
     },
@@ -196,6 +203,8 @@
         "削除して再作成しても今月の使用量は<b>リセットされない</b>",
         "同一リージョンの<b>プライベート IP</b> 通信は枠を消費するが超過でも無料",
         "1 TB = 1024 GB、UTC の暦月で見積もり。最終的には AWS の請求が基準"],
+      helpQ: ["受信トラフィックも枠を消費しますか？","受信トラフィックは課金されますか？","超過料金はいくらですか？","どのインスタンスが枠を共有しますか？","停止中のインスタンスも課金されますか？","インスタンスを追加すれば超過を相殺できますか？","削除して作り直すと使用量はリセットされますか？","プライベート IP の通信は課金されますか？","見積もりはどのくらい正確ですか？","AWS 公式リンク"],
+      overA: "リージョンによって異なり、プールを超えた送信トラフィックは<b>1 GB あたり {lo}–{hi}</b>です。計算には選択中のリージョンの料金を使います。",
       links: ["料金", "データ転送 FAQ", "請求 FAQ", "サービス条件", "請求の使用量を見る"],
       foot: "データはこのブラウザにのみ保存 · 価格確認 {d} · AWS 公式ツールではありません", allowLbl: "枠 {v}"
     },
@@ -234,6 +243,8 @@
         "삭제 후 재생성해도 이번 달 사용량은 <b>초기화되지 않음</b>",
         "같은 리전 <b>프라이빗 IP</b> 트래픽은 할당량을 차감하지만 초과해도 무료",
         "1 TB = 1024 GB, UTC 달력 월 기준 추정. 최종 금액은 AWS 청구서 기준"],
+      helpQ: ["인바운드 트래픽도 할당량을 쓰나요?","인바운드 트래픽도 과금되나요?","초과 요금은 얼마인가요?","어떤 인스턴스가 할당량을 공유하나요?","중지된 인스턴스도 요금이 나오나요?","인스턴스를 추가하면 이미 난 초과를 상쇄할 수 있나요?","삭제 후 다시 만들면 사용량이 초기화되나요?","프라이빗 IP 트래픽도 과금되나요?","추정치는 얼마나 정확한가요?","AWS 공식 링크"],
+      overA: "리전마다 다르며, 풀을 넘는 아웃바운드 트래픽은 <b>GB당 {lo}–{hi}</b>입니다. 계산기는 선택한 리전의 요금을 사용합니다.",
       links: ["요금", "데이터 전송 FAQ", "청구 FAQ", "서비스 약관", "청구 사용량 보기"],
       foot: "데이터는 이 브라우저에만 저장 · 가격 확인 {d} · AWS 공식 도구 아님", allowLbl: "할당량 {v}"
     },
@@ -272,6 +283,8 @@
         "Eliminar y recrear <b>no reinicia</b> el uso del mes",
         "El tráfico por <b>IP privada</b> en la región consume cuota pero nunca se cobra",
         "Estimación con 1 TB = 1024 GB y meses UTC; manda la factura de AWS"],
+      helpQ: ["¿El tráfico entrante consume la cuota?","¿Se cobra el tráfico entrante?","¿Cuánto cuesta el exceso?","¿Qué instancias comparten el pool?","¿Las instancias detenidas siguen cobrando?","¿Añadir instancias compensa el exceso ya generado?","¿Borrar y recrear reinicia el uso?","¿Se cobra el tráfico por IP privada?","¿Qué tan exactas son las estimaciones?","Enlaces oficiales de AWS"],
+      overA: "Depende de la región: <b>{lo}–{hi} por GB</b> de tráfico saliente por encima del pool. La calculadora usa la tarifa de la región elegida.",
       links: ["Precios", "FAQ de transferencia", "FAQ de facturación", "Términos del servicio", "Ver uso en la factura"],
       foot: "Los datos se quedan en este navegador · Precios revisados {d} · No es una herramienta oficial de AWS", allowLbl: "Cuota {v}"
     },
@@ -310,6 +323,8 @@
         "Supprimer puis recréer <b>ne remet pas à zéro</b> l’usage du mois",
         "Le trafic par <b>IP privée</b> dans la région consomme le quota mais n’est jamais facturé",
         "Estimation avec 1 To = 1024 Go et mois UTC ; la facture AWS fait foi"],
+      helpQ: ["Le trafic entrant compte-t-il dans le quota ?","Le trafic entrant est-il facturé ?","Combien coûte le dépassement ?","Quelles instances partagent le pool ?","Une instance arrêtée est-elle facturée ?","Ajouter des instances annule-t-il un dépassement déjà subi ?","Supprimer et recréer remet-il l’usage à zéro ?","Le trafic sur IP privée est-il facturé ?","Les estimations sont-elles précises ?","Liens officiels AWS"],
+      overA: "Selon la région : <b>{lo}–{hi} par Go</b> de trafic sortant au-delà du pool. Le calculateur utilise le tarif de la région choisie.",
       links: ["Tarifs", "FAQ transfert", "FAQ facturation", "Conditions de service", "Voir l’usage facturé"],
       foot: "Les données restent dans ce navigateur · Tarifs vérifiés {d} · Outil non officiel AWS", allowLbl: "Quota {v}"
     },
@@ -348,6 +363,8 @@
         "Löschen und neu erstellen <b>setzt den Verbrauch nicht zurück</b>",
         "Traffic über <b>private IPs</b> in der Region zählt zum Kontingent, kostet aber nie extra",
         "Schätzung mit 1 TB = 1024 GB und UTC-Monaten; maßgeblich ist die AWS-Rechnung"],
+      helpQ: ["Zählt eingehender Traffic zum Kontingent?","Wird eingehender Traffic berechnet?","Was kostet Mehrverbrauch?","Welche Instanzen teilen sich den Pool?","Kosten gestoppte Instanzen weiter?","Gleichen neue Instanzen bereits entstandenen Mehrverbrauch aus?","Setzt Löschen und Neuanlegen den Verbrauch zurück?","Wird Traffic über private IPs berechnet?","Wie genau sind die Schätzungen?","Offizielle AWS-Links"],
+      overA: "Je nach Region <b>{lo}–{hi} pro GB</b> ausgehenden Traffics über dem Pool. Der Rechner nutzt den Preis der gewählten Region.",
       links: ["Preise", "FAQ Datenübertragung", "FAQ Abrechnung", "Servicebedingungen", "Verbrauch auf der Rechnung"],
       foot: "Daten bleiben in diesem Browser · Preise geprüft {d} · Kein offizielles AWS-Tool", allowLbl: "Kontingent {v}"
     },
@@ -386,6 +403,8 @@
         "Excluir e recriar <b>não zera</b> o uso do mês",
         "Tráfego por <b>IP privado</b> na região consome cota, mas nunca é cobrado",
         "Estimativa com 1 TB = 1024 GB e meses UTC; vale a fatura da AWS"],
+      helpQ: ["O tráfego de entrada consome a franquia?","O tráfego de entrada é cobrado?","Quanto custa o excedente?","Quais instâncias compartilham o pool?","Instâncias paradas continuam cobrando?","Adicionar instâncias compensa o excedente já gerado?","Excluir e recriar zera o uso?","O tráfego por IP privado é cobrado?","Quão precisas são as estimativas?","Links oficiais da AWS"],
+      overA: "Depende da região: <b>{lo}–{hi} por GB</b> de tráfego de saída acima do pool. A calculadora usa a tarifa da região selecionada.",
       links: ["Preços", "FAQ de transferência", "FAQ de cobrança", "Termos de serviço", "Ver uso na fatura"],
       foot: "Os dados ficam neste navegador · Preços conferidos em {d} · Não é uma ferramenta oficial da AWS", allowLbl: "Cota {v}"
     },
@@ -424,6 +443,8 @@
         "Удаление и пересоздание <b>не сбрасывает</b> расход месяца",
         "Трафик по <b>частным IP</b> в регионе расходует лимит, но никогда не оплачивается",
         "Оценка при 1 ТБ = 1024 ГБ и месяцах по UTC; окончательно — счёт AWS"],
+      helpQ: ["Входящий трафик расходует лимит?","Входящий трафик оплачивается?","Сколько стоит превышение?","Какие инстансы делят пул?","Остановленный инстанс оплачивается?","Можно ли новыми инстансами погасить уже возникшее превышение?","Сбрасывает ли пересоздание расход?","Оплачивается ли трафик по приватным IP?","Насколько точны оценки?","Официальные ссылки AWS"],
+      overA: "Зависит от региона: <b>{lo}–{hi} за ГБ</b> исходящего трафика сверх пула. Калькулятор использует тариф выбранного региона.",
       links: ["Цены", "FAQ по трафику", "FAQ по оплате", "Условия сервиса", "Расход в счёте"],
       foot: "Данные хранятся только в этом браузере · Цены проверены {d} · Не официальный инструмент AWS", allowLbl: "Лимит {v}"
     }
@@ -609,7 +630,7 @@
   /* CALC:END */
 
   // ---------- helpers ----------
-  const $ = s => document.querySelector(s);
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const uid = () => Math.random().toString(36).slice(2, 9);
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const pad = n => String(n).padStart(2, "0");
@@ -654,8 +675,8 @@
     $("#baseStart").setAttribute("aria-label", t("start"));
     $("#region").innerHTML = REGION_IDS.map(id => { const r = regionOf(id); return `<option value="${id}">${regionName(id)} · ${t("over")} $${r.price}/GB${r.half ? " · " + t("half") : ""}</option>`; }).join("");
     $("#region").value = S.region;
-    $("#rules").innerHTML = I18N[LANG].r.map((txt, i) => `<div class="rule${RULE_WARN.includes(i) ? " w" : ""}"><span class="ic">${RULE_ICONS[i]}</span><span>${txt}</span></div>`).join("");
-    $("#links").innerHTML = I18N[LANG].links.map((txt, i) => `<a href="${LINKS[i]}" target="_blank" rel="noopener">${txt}</a>`).join("");
+    $("#helpBtn").title = t("rules");
+    $$("#help [data-hclose]").forEach(b => b.setAttribute("aria-label", I18N[LANG].ag?.close || I18N.en.ag.close));
   }
   $("#lang").innerHTML = LANGS.map(([c, n]) => `<option value="${c}">${n}</option>`).join("");
 
@@ -773,7 +794,7 @@
     $("#bandIc").textContent = { idle: "?", good: "✓", warn: "!", bad: "!" }[c.status];
     $("#bandT").innerHTML = c.status === "good" ? t("bandGood") : c.status === "warn" ? t("bandWarn", { v: money(c.overCost) })
       : c.status === "bad" ? t("bandBad", { v: money(c.overCost) }) : t("bandIdle");
-    $("#bandSub").innerHTML = (c.plan ? t("planMode") + " · " : "") + (!c.has ? t("fill") : c.status === "good" ? t("leftEnd", { v: `<b class="num">${fmtGB(c.allow - c.P)}</b>` })
+    $("#bandSub").innerHTML = (c.plan ? t("planMode") + " · " : "") + (!c.has ? "" : c.status === "good" ? t("leftEnd", { v: `<b class="num">${fmtGB(c.allow - c.P)}</b>` })
       : (c.exhaust ? t(c.lockedGB > 0 ? "exPast" : "exPred", { t: `<b>${fmtDate(c.exhaust)}</b>` }) + " · " : "") + t("lgOver", { v: `<b class="num">${fmtGB(c.overGB)}</b>` }));
     $("#usedWrap").classList.toggle("need", !c.has);
     const rec = $("#usedRec"); rec.hidden = !c.hasU;
@@ -936,7 +957,7 @@
   $("#settings").addEventListener("toggle", () => { if (!$("#settings").open) disarmReset(); });
   document.addEventListener("keydown", e => {
     if (e.key !== "Escape") return;
-    if (!$("#agent").hidden) closeAgent(); else $("#settings").open = false;
+    if (!$("#help").hidden) closeHelp(); else if (!$("#agent").hidden) closeAgent(); else $("#settings").open = false;
   });
 
   $("#linkUndo").addEventListener("click", () => {
@@ -1104,6 +1125,31 @@ const link = buildLink(input, base);`;
     });
     $(".ag-body").scrollTop = 0; agMore();
   }
+  // help: questions on the left, one answer at a time on the right; a picker with previous / next on phones
+  let helpIdx = 0;
+  const helpQs = $$("#helpNav [data-hq]"), helpN = helpQs.length;
+  $("#helpSel").innerHTML = helpQs.map((b, i) => `<option value="${i}">${i + 1} / ${helpN} · ${escH(b.textContent)}</option>`).join("");
+  function showHelp(i) {
+    helpIdx = Math.max(0, Math.min(helpN - 1, i));
+    helpQs.forEach(b => b.setAttribute("aria-selected", +b.dataset.hq === helpIdx));
+    $$("#helpC [data-hqb]").forEach(a => { a.hidden = +a.dataset.hqb !== helpIdx; });
+    $("#helpSel").value = helpIdx;
+    $$("[data-hstep]").forEach(b => { b.disabled = helpIdx + +b.dataset.hstep < 0 || helpIdx + +b.dataset.hstep >= helpN; });
+    $("#helpC").scrollTop = 0;
+  }
+  function openHelp() { $("#settings").open = false; showHelp(helpIdx); $("#help").hidden = false; document.documentElement.style.overflow = "hidden"; (helpQs[helpIdx].offsetParent ? helpQs[helpIdx] : $("#helpSel")).focus(); }
+  function closeHelp() { $("#help").hidden = true; document.documentElement.style.overflow = ""; $("#helpBtn").focus(); }
+  $("#helpBtn").addEventListener("click", openHelp);
+  $$("#help [data-hclose]").forEach(b => b.addEventListener("click", closeHelp));
+  $("#help").addEventListener("click", e => { if (e.target === e.currentTarget) closeHelp(); });
+  helpQs.forEach(b => b.addEventListener("click", () => showHelp(+b.dataset.hq)));
+  $("#helpNav").addEventListener("keydown", e => {
+    const d = { ArrowDown: 1, ArrowUp: -1 }[e.key]; if (!d) return;
+    e.preventDefault(); showHelp(helpIdx + d); helpQs[helpIdx].focus();
+  });
+  $("#helpSel").addEventListener("change", e => showHelp(+e.target.value));
+  $$("[data-hstep]").forEach(b => b.addEventListener("click", () => showHelp(helpIdx + +b.dataset.hstep)));
+
   function openAgent() { $("#settings").open = false; $("#agent").hidden = false; sizeAgent(); document.documentElement.style.overflow = "hidden"; $("#tab-" + agTab).focus(); }
   function closeAgent() { $("#agent").hidden = true; document.documentElement.style.overflow = ""; $("#agentBtn").focus(); }
   $("#agentBtn").addEventListener("click", openAgent);

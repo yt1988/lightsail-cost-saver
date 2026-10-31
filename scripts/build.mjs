@@ -36,7 +36,7 @@ const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(
 // the language packs, read straight from the I18N:BEGIN…I18N:END block of src/app.js
 export function langData(app) {
   const src = between(app, "/* I18N:BEGIN", "/* I18N:END */", "I18N");
-  return new Function(src + "\nreturn { REGION_ORDER, LINKS, RULE_ICONS, RULE_WARN, LANGS, LANG_PATHS, I18N };")();
+  return new Function(src + "\nreturn { REGION_ORDER, LINKS, HELP, LANGS, LANG_PATHS, I18N };")();
 }
 // the public root URL, taken from the canonical link that scripts/set-site-url.mjs wrote
 export function siteBase(html) {
@@ -59,8 +59,41 @@ function langNav(lang, D) {
   const up = lang === "en" ? "" : "../";
   return D.LANGS.map(([l, name]) => `      <a href="${up + D.LANG_PATHS[l] || "./"}" hreflang="${l}" lang="${l}"${l === lang ? ' aria-current="page"' : ""}>${name}</a>`).join("\n");
 }
-// the parts of index.html that the build owns: canonical/hreflang, the script tag, the footer text and language links
-function managed(html, lang, D, priceDate, appFile) {
+// the help dialog's questions and answers: billing rules, the overage price range and the official links
+function helpItems(lang, D, P) {
+  const L = D.I18N[lang], E = D.I18N.en, overs = Object.values(P.regions).map(r => r.over);
+  const usd = v => "$" + v.toFixed(2);
+  return D.HELP.map(([kind, i], n) => ({
+    q: (L.helpQ ?? E.helpQ)[n],
+    a: kind === "r" ? `<p${i === 4 ? ' class="w"' : ""}>${L.r[i]}</p>`
+      : kind === "over" ? `<p>${(L.overA ?? E.overA).split("{lo}").join(usd(Math.min(...overs))).split("{hi}").join(usd(Math.max(...overs)))}</p>`
+      : `<p class="links">${L.links.map((txt, k) => `<a href="${D.LINKS[k]}" target="_blank" rel="noopener">${txt}</a>`).join("")}</p>`
+  }));
+}
+function helpHtml(items) {
+  const prev = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg>';
+  const next = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg>';
+  return [
+    `      <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">`,
+    ...items.map((x, i) => `        <button type="button" role="tab" id="hq${i}" data-hq="${i}" aria-controls="ha${i}" aria-selected="${i === 0}">${esc(x.q)}</button>`),
+    `      </nav>`,
+    `      <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" aria-label="‹">${prev}</button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" aria-label="›">${next}</button></div>`,
+    `      <div class="help-c" id="helpC">`,
+    ...items.map((x, i) => `        <section role="tabpanel" id="ha${i}" data-hqb="${i}" aria-labelledby="hq${i}"${i ? " hidden" : ""}><h4>${esc(x.q)}</h4>${x.a}</section>`),
+    `      </div>`
+  ].join("\n");
+}
+// the parts of index.html that the build owns: canonical/hreflang, the script tag, the footer text, language links,
+// the help dialog and the FAQ structured data built from it
+function managed(html, lang, D, P, appFile) {
+  const priceDate = P.date, items = helpItems(lang, D, P);
+  html = fill(html, "<!-- HELP:BEGIN", "<!-- HELP:END -->", helpHtml(items), "HELP");
+  html = html.replace(/(<script type="application\/ld\+json">\n)([\s\S]*?)(\n<\/script>)/, (m, a, json, b) => {
+    const ld = JSON.parse(json), plain = s => s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    const faq = { "@type": "FAQPage", inLanguage: lang, mainEntity: items.slice(0, -1).map(x => ({ "@type": "Question", name: x.q, acceptedAnswer: { "@type": "Answer", text: plain(x.a) } })) };
+    ld["@graph"] = [...ld["@graph"].filter(x => x["@type"] !== "FAQPage"), faq];
+    return a + (lang === "en" ? JSON.stringify(ld, null, 1) : JSON.stringify(ld)) + b;
+  });
   const foot = D.I18N[lang].foot.split("{d}").join(priceDate);
   html = html.replace(/(<span id="footTxt">)[^<]*(<\/span>)/, (m, a, b) => a + esc(foot) + b);
   html = fill(html, "<!-- SITE:BEGIN", "<!-- SITE:END -->", siteTags(siteBase(html), lang, D), "SITE");
@@ -69,7 +102,7 @@ function managed(html, lang, D, priceDate, appFile) {
 }
 
 // index.html (English) -> the same page with another language written in
-export function renderPage(src, lang, D, priceDate, appFile) {
+export function renderPage(src, lang, D, P, appFile) {
   const L = D.I18N[lang], E = D.I18N.en;
   const t = (k, v) => { let s = L[k] ?? E[k] ?? k; if (v) for (const p in v) s = s.split("{" + p + "}").join(v[p]); return s; };
   const meta = (attr, key, value) => {
@@ -77,7 +110,7 @@ export function renderPage(src, lang, D, priceDate, appFile) {
     if (!re.test(html)) throw new Error(`meta ${key} not found`);
     html = html.replace(re, (m, a, b) => a + esc(value) + b);
   };
-  let html = managed(src, lang, D, priceDate, appFile);
+  let html = managed(src, lang, D, P, appFile);
   html = html.replace('<html lang="en">', `<html lang="${lang}">`);
   // the page sits one level down, so the shared files are at ../assets/
   html = html.replace(/(["(])assets\//g, "$1../assets/");
@@ -94,10 +127,9 @@ export function renderPage(src, lang, D, priceDate, appFile) {
   html = html.replace(/\n?<meta property="og:locale:alternate" content="[^"]*">/g, "");
   html = html.replace(/<meta property="og:locale" content="[^"]*">/, `<meta property="og:locale" content="${OG_LOCALE[lang]}">\n` +
     D.LANGS.filter(([l]) => l !== lang).map(([l]) => `<meta property="og:locale:alternate" content="${OG_LOCALE[l]}">`).join(""));
-  // structured data: this page's name, description and language; the FAQ stays on the English page
+  // structured data: this page's name, description and language (the FAQ was written by managed())
   html = html.replace(/(<script type="application\/ld\+json">\n)([\s\S]*?)(\n<\/script>)/, (m, a, json, b) => {
     const ld = JSON.parse(json);
-    ld["@graph"] = ld["@graph"].filter(x => x["@type"] !== "FAQPage");
     Object.assign(ld["@graph"][0], { name: t("name"), description: L.seoDesc ?? t("tagline"), inLanguage: lang, url: siteBase(src) + D.LANG_PATHS[lang] });
     return a + JSON.stringify(ld) + b;
   });
@@ -105,11 +137,6 @@ export function renderPage(src, lang, D, priceDate, appFile) {
   let n = 0;
   html = html.replace(/(<([a-z0-9]+)\b[^>]*\sdata-i="(\w+)"[^>]*>)([^<]*)(<\/\2>)/g, (m, open, tag, key, text, close) => { n++; return open + esc(t(key)) + close; });
   if (!n) throw new Error("no data-i elements found");
-  // billing rules and official links, as applyLang() renders them
-  const rules = L.r.map((txt, i) => `      <div class="rule${D.RULE_WARN.includes(i) ? " w" : ""}"><span class="ic">${D.RULE_ICONS[i]}</span><span>${txt}</span></div>`).join("\n");
-  html = html.replace(/(<div class="rule-grid" id="rules">\n)[\s\S]*?(\n    <\/div>\n    <div class="links")/, (m, a, b) => a + rules + b);
-  const links = L.links.map((txt, i) => `      <a href="${D.LINKS[i]}" target="_blank" rel="noopener">${txt}</a>`).join("\n");
-  html = html.replace(/(<div class="links" id="links">\n)[\s\S]*?(\n    <\/div>\n  <\/section>)/, (m, a, b) => a + links + b);
   return html;
 }
 
@@ -117,9 +144,12 @@ export async function build({ check = false } = {}) {
   const src = await readFile(new URL("index.html", root), "utf8");
   const app = await readFile(appSrc, "utf8");
   const D = langData(app);
-  const priceDate = /"date":"([^"]+)"/.exec(between(app, "/* PRICES:BEGIN */", "/* PRICES:END */", "PRICES"))[1];
+  const pricesSrc = between(app, "/* PRICES:BEGIN */", "/* PRICES:END */", "PRICES")
+    .replace("/* PRICES:BEGIN */", "").replace("/* PRICES:END */", "").trim()
+    .replace(/^const PRICES =\s*/, "").replace(/;$/, "");
+  const P = JSON.parse(pricesSrc);
   const appFile = `app.${createHash("sha256").update(app).digest("hex").slice(0, 10)}.js`;
-  const html = managed(src, "en", D, priceDate, appFile);
+  const html = managed(src, "en", D, P, appFile);
 
   // favicon: the dog's head from the light logo, wordmark hidden
   const favicon = (await readFile(new URL("assets/logo-light.svg", root), "utf8"))
@@ -141,10 +171,6 @@ ${body}
 export { ${EXPORTS.join(", ")} };
 `;
 
-  const pricesSrc = between(app, "/* PRICES:BEGIN */", "/* PRICES:END */", "PRICES")
-    .replace("/* PRICES:BEGIN */", "").replace("/* PRICES:END */", "").trim()
-    .replace(/^const PRICES =\s*/, "").replace(/;$/, "");
-  const P = JSON.parse(pricesSrc);
   const prices = {
     schema: 1,
     date: P.date,
@@ -164,7 +190,7 @@ export { ${EXPORTS.join(", ")} };
 
   const targets = [["index.html", html], ["calc.js", calc], ["prices.json", json],
     ["assets/js/" + appFile, app], ["assets/favicon.svg", favicon],
-    ...D.LANGS.filter(([l]) => l !== "en").map(([l]) => [D.LANG_PATHS[l] + "index.html", renderPage(html, l, D, P.date, appFile)])];
+    ...D.LANGS.filter(([l]) => l !== "en").map(([l]) => [D.LANG_PATHS[l] + "index.html", renderPage(html, l, D, P, appFile)])];
   let stale = [];
   // bundles left from earlier builds
   const jsDir = new URL("assets/js/", root);

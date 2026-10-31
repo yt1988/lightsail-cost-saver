@@ -23,6 +23,7 @@ for (const [lang] of D.LANGS) {
     && html.includes(`<title>${esc(L.name)}</title>`)
     && html.includes(`data-i="tagline">${esc(L.tagline)}<`)
     && html.includes(plain(L.r[0]).split(" ")[0])
+    && html.includes(`id="helpBtn"`) && html.includes(`>${esc(L.helpQ[0])}</button>`) && /"@type": ?"FAQPage"/.test(html)
     && html.includes(`<link rel="canonical" href="${base + path}">`)
     && (html.match(/<link rel="alternate" hreflang=/g) || []).length === D.LANGS.length + 1
     && html.includes('aria-current="page">' + D.LANGS.find(([l]) => l === lang)[1] + "<");

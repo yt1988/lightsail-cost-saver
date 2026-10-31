@@ -66,21 +66,126 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
- {"@type":"WebApplication","name":"AWS Lightsail Cost Saver","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript",
-  "description":"Calculator for Amazon Lightsail data transfer pools: track used and remaining allowance, forecast month-end overage and find the cheapest number of same-size IPv6-only instances to add.",
-  "inLanguage":["en","zh-CN","zh-TW","ja","ko","es","fr","de","pt","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"]},
- {"@type":"FAQPage","mainEntity":[
-  {"@type":"Question","name":"Does Lightsail count inbound and outbound data transfer?","acceptedAnswer":{"@type":"Answer","text":"Both inbound and outbound traffic count toward the allowance, but only outbound traffic beyond the allowance is charged as overage."}},
-  {"@type":"Question","name":"Which Lightsail instances share a data transfer allowance?","acceptedAnswer":{"@type":"Answer","text":"Instances of the same bundle size in the same AWS Region pool their allowance. Dual-stack and IPv6-only instances of the same size pool together."}},
-  {"@type":"Question","name":"Can adding an instance cancel overage that already happened?","acceptedAnswer":{"@type":"Answer","text":"No. Overage already incurred is still charged, so add instances before the pool runs out."}},
-  {"@type":"Question","name":"How much is Lightsail data transfer overage?","acceptedAnswer":{"@type":"Answer","text":"It depends on the Region, from $0.09 per GB in US and most EU Regions up to $0.17 per GB in Sydney."}}]}
-]}
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "name": "AWS Lightsail Cost Saver",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "description": "Calculator for Amazon Lightsail data transfer pools: track used and remaining allowance, forecast month-end overage and find the cheapest number of same-size IPv6-only instances to add.",
+   "inLanguage": [
+    "en",
+    "zh-CN",
+    "zh-TW",
+    "ja",
+    "ko",
+    "es",
+    "fr",
+    "de",
+    "pt",
+    "ru"
+   ],
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "featureList": [
+    "Used and remaining transfer allowance",
+    "Month-end usage forecast",
+    "Cheapest scale-up plan",
+    "Prices for 19 AWS regions",
+    "Data stored only in the browser"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "en",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Does inbound traffic use the allowance?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Inbound + outbound both use the allowance"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is inbound traffic ever charged?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Overage is charged on outbound only; inbound is always free"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How much does overage cost?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It depends on the Region: $0.09–$0.17 per GB of outbound traffic beyond the pool. The calculator uses the selected Region’s rate."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which instances share a pool?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Only same-region, same-size instances pool; dual-stack and IPv6-only of one size pool together"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do stopped instances still bill?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Billed hourly; stopped instances still bill, only deletion stops it"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can new instances cancel overage?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Overage already incurred cannot be offset by new instances; scale up before you run out"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does recreating an instance reset usage?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Deleting and recreating does not reset this month’s usage"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is private IP traffic charged?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Traffic over private IPs in one region uses allowance but is never charged"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How exact are the estimates?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Estimates use 1 TB = 1024 GB and UTC calendar months; your AWS bill is final"
+     }
+    }
+   ]
+  }
+ ]
+}
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="assets/js/app.73b12e1b0c.js"></script>
+<script defer src="assets/js/app.4565785be2.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -95,6 +200,7 @@
 @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/geist-mono-vietnamese.woff2) format("woff2");unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
 @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/geist-mono-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
 @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/fonts/geist-mono-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+html { scrollbar-gutter: stable; }
 /* Layout: toolbar + tagline, then the pool (what you read) left and the fleet (what you set) right, rules below; one column on phones. */
 :root {
   --bg: #f6f6f7; --panel: #ffffff; --soft: #f0f0f2; --line: #e4e4e8;
@@ -462,11 +568,26 @@ input[type="range"] { width: 100%; accent-color: var(--sel); }
 }
 
 /* rules */
-.rule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; padding: 16px 16px 12px; }
-.rule { display: flex; gap: 10px; align-items: flex-start; padding: 10px; border-radius: 8px; background: var(--soft); font-size: 13px; }
-.rule .ic { flex: none; width: 26px; height: 26px; border-radius: 6px; background: var(--panel); display: grid; place-items: center; font-family: var(--f-num); font-size: 12px; font-weight: 600; }
-.rule.w .ic { color: var(--bad); }
-.links { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 16px 16px; }
+/* help: questions on the left, one answer at a time on the right; a picker with previous / next on phones */
+.dialog.help { width: min(860px, 100%); height: min(470px, calc(100vh - 32px)); padding: 0; gap: 0; overflow: hidden; }
+.help-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px 14px 22px; border-bottom: 1px solid var(--line); }
+.help-h h3 { font-size: 17px; }
+.help-h .icon-btn { border-color: transparent; }
+.help-h .icon-btn:hover { background: var(--soft); }
+.help-b { display: grid; grid-template-columns: 270px minmax(0, 1fr); min-height: 0; flex: 1; }
+.help-nav { border-right: 1px solid var(--line); padding: 8px; overflow: auto; display: flex; flex-direction: column; gap: 2px; }
+.help-nav button { text-align: left; border: 0; background: none; padding: 9px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; color: var(--muted); line-height: 1.4; }
+.help-nav button:hover { background: var(--soft); color: var(--fg); }
+.help-nav button[aria-selected="true"] { background: var(--sel-soft); color: var(--fg); font-weight: 600; }
+.help-c { padding: 18px 22px 24px; overflow: auto; }
+.help-c h4 { margin: 0 0 10px; font-size: 17px; line-height: 1.35; }
+.help-c p { margin: 0; font-size: 14px; line-height: 1.7; }
+.help-c p.w b { color: var(--bad); }
+.help-pick { display: none; gap: 8px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.help-pick select { flex: 1; min-width: 0; height: 34px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--fg); font: 600 16px var(--f-ui); text-overflow: ellipsis; } /* 16px: no iOS zoom on focus */
+.help-pick .icon-btn:disabled { opacity: .35; cursor: default; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.links { display: flex; gap: 8px; flex-wrap: wrap; }
 .links a { font-size: 13px; color: var(--fg); text-decoration: none; border: 1px solid var(--line); border-radius: 7px; padding: 5px 10px; }
 .links a:hover { border-color: var(--muted); }
 .links a::after { content: " ↗"; color: var(--muted); }
@@ -484,6 +605,12 @@ footer a:hover { color: var(--fg); }
   .pop { left: 0; right: auto; top: calc(100% + 6px); }
   .grid { grid-template-columns: minmax(0, 1fr); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .dialog.help { height: calc(100vh - 32px); height: calc(100dvh - 32px); }
+  .help-b { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .help-nav { display: none; }
+  .help-b .help-pick { display: flex; }
 }
 @media (max-width: 560px) {
   .tool-btn { width: 34px; padding: 0; justify-content: center; }
@@ -528,6 +655,7 @@ footer a:hover { color: var(--fg); }
       </label>
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">Use with AI</span></button>
       <a class="icon-btn" id="ghBtn" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="View source on GitHub" aria-label="View source on GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="icon-btn" id="helpBtn" type="button" aria-haspopup="dialog" aria-controls="help"><span class="sr" data-i="rules">Billing rules</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4M8 11.3v.1"/></svg></button>
       <details class="menu" id="settings">
         <summary class="icon-btn" id="settingsBtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h2M7 12h7"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="5.5" cy="12" r="1.6"/></svg></summary>
         <div class="pop">
@@ -636,27 +764,6 @@ footer a:hover { color: var(--fg); }
     </section>
   </div>
 
-  <section class="panel">
-    <div class="panel-h"><h2 data-i="rules">Billing rules</h2></div>
-    <div class="rule-grid" id="rules">
-      <div class="rule"><span class="ic">⇅</span><span>Inbound + outbound <b>both use the allowance</b></span></div>
-      <div class="rule"><span class="ic">↑</span><span>Overage is <b>charged on outbound only</b>; inbound is always free</span></div>
-      <div class="rule"><span class="ic">=</span><span>Only same-region, <b>same-size</b> instances pool; dual-stack and IPv6-only of one size pool together</span></div>
-      <div class="rule"><span class="ic">h</span><span>Billed hourly; <b>stopped instances still bill</b>, only deletion stops it</span></div>
-      <div class="rule w"><span class="ic">✕</span><span>Overage already incurred <b>cannot be offset</b> by new instances; scale up before you run out</span></div>
-      <div class="rule"><span class="ic">↺</span><span>Deleting and recreating <b>does not reset</b> this month’s usage</span></div>
-      <div class="rule"><span class="ic">⇄</span><span>Traffic over <b>private IPs</b> in one region uses allowance but is never charged</span></div>
-      <div class="rule"><span class="ic">≈</span><span>Estimates use 1 TB = 1024 GB and UTC calendar months; your AWS bill is final</span></div>
-    </div>
-    <div class="links" id="links">
-      <a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">Pricing</a>
-      <a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">Data transfer FAQ</a>
-      <a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">Billing FAQ</a>
-      <a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">Service terms</a>
-      <a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">View bill usage</a>
-    </div>
-  </section>
-
   <footer><span id="footTxt">Data stays in this browser · Prices checked 2026-10-25 · Not an official AWS tool</span> · <a href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer">GitHub</a>
     <nav class="langs" aria-label="Language">
 <!-- LANGNAV:BEGIN (written by scripts/build.mjs) -->
@@ -673,6 +780,43 @@ footer a:hover { color: var(--fg); }
 <!-- LANGNAV:END -->
     </nav>
   </footer>
+</div>
+
+<!-- billing rules and questions; the questions and answers are written in by scripts/build.mjs, so they are in the HTML for search engines -->
+<div class="scrim" id="help" hidden>
+  <div class="dialog help" role="dialog" aria-modal="true" aria-labelledby="helpT">
+    <div class="help-h"><h3 id="helpT" data-i="rules">Billing rules</h3>
+      <button class="icon-btn" data-hclose type="button" aria-label="Close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
+    <div class="help-b">
+<!-- HELP:BEGIN (written by scripts/build.mjs) -->
+      <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">Does inbound traffic use the allowance?</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">Is inbound traffic ever charged?</button>
+        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">How much does overage cost?</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Which instances share a pool?</button>
+        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Do stopped instances still bill?</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Can new instances cancel overage?</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Does recreating an instance reset usage?</button>
+        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Is private IP traffic charged?</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">How exact are the estimates?</button>
+        <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">Official AWS links</button>
+      </nav>
+      <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" aria-label="‹"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" aria-label="›"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
+      <div class="help-c" id="helpC">
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Does inbound traffic use the allowance?</h4><p>Inbound + outbound <b>both use the allowance</b></p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>Is inbound traffic ever charged?</h4><p>Overage is <b>charged on outbound only</b>; inbound is always free</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>How much does overage cost?</h4><p>It depends on the Region: <b>$0.09–$0.17 per GB</b> of outbound traffic beyond the pool. The calculator uses the selected Region’s rate.</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Which instances share a pool?</h4><p>Only same-region, <b>same-size</b> instances pool; dual-stack and IPv6-only of one size pool together</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Do stopped instances still bill?</h4><p>Billed hourly; <b>stopped instances still bill</b>, only deletion stops it</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Can new instances cancel overage?</h4><p class="w">Overage already incurred <b>cannot be offset</b> by new instances; scale up before you run out</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Does recreating an instance reset usage?</h4><p>Deleting and recreating <b>does not reset</b> this month’s usage</p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Is private IP traffic charged?</h4><p>Traffic over <b>private IPs</b> in one region uses allowance but is never charged</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>How exact are the estimates?</h4><p>Estimates use 1 TB = 1024 GB and UTC calendar months; your AWS bill is final</p></section>
+        <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>Official AWS links</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">Pricing</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">Data transfer FAQ</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">Billing FAQ</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">Service terms</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">View bill usage</a></p></section>
+      </div>
+<!-- HELP:END -->
+    </div>
+  </div>
 </div>
 
 <!-- how to use the calculator from an AI agent; tab contents are filled per language by renderAgent() -->
