@@ -223,6 +223,7 @@ public/index.html                 markup and styles, and the English page
 src/app.js                        the page script: prices, translations, calculation, UI
 public/zh-cn/, ja/, … index.html     generated: one pre-rendered page per language
 public/assets/                    logos, self-hosted Geist fonts, favicon and app.<hash>.js (generated)
+public/og/<lang>.png              link-preview images, 1200 × 630 (node scripts/og.mjs)
 public/calc.js, prices.json      generated for agents (calculation module, prices)
 public/llms.txt                   how agents can use the tool
 scripts/build.mjs                 regenerates the language pages, script bundle, calc.js and prices.json

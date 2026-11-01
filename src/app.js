@@ -56,6 +56,7 @@
   const LANG_PATHS = {"en":"","zh-CN":"zh-cn/","zh-TW":"zh-tw/","ja":"ja/","ko":"ko/","es":"es/","fr":"fr/","de":"de/","pt":"pt/","ru":"ru/"};
   const I18N = {
     "zh-CN": {
+      seoTitle: "AWS Lightsail 流量超额与价格计算器 · 流量池省钱方案", ogSub: "预测月底流量超额，算出最省钱的加机方案",
       name: "AWS Lightsail 省钱计算器", tagline: "基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案",
       region: "地区：流量池只在同一地区内合并", lang: "语言", over: "超额", half: "额度减半",
       settings: "高级设置", outRatio: "出站占比", outRatioHint: "超额只对出站收费。不确定就保持 100%。", prorate: "月中开通的额度按时长折算",
@@ -96,6 +97,7 @@
       foot: "数据只保存在当前浏览器 · 价格核对于 {d} · 非 AWS 官方工具", allowLbl: "额度 {v}"
     },
     "zh-TW": {
+      seoTitle: "AWS Lightsail 流量超額與價格計算器 · 流量池省錢方案", ogSub: "預測月底流量超額，算出最省錢的加機方案",
       name: "AWS Lightsail 省錢計算器", tagline: "基於「同地域同規格流量池共享」規則，幫你找出更省錢的彈性流量方案",
       region: "地區：流量池只在同一地區內合併", lang: "語言", over: "超額", half: "額度減半",
       settings: "進階設定", outRatio: "出站占比", outRatioHint: "超額只對出站收費。不確定就保持 100%。", prorate: "月中開通的額度按時長折算",
@@ -136,6 +138,7 @@
       foot: "資料只儲存在目前瀏覽器 · 價格核對於 {d} · 非 AWS 官方工具", allowLbl: "額度 {v}"
     },
     en: {
+      seoTitle: "AWS Lightsail Data Transfer & Overage Calculator", ogSub: "Forecast transfer overage and find the cheapest fix",
       name: "AWS Lightsail Cost Saver", tagline: "Uses the rule that same-region, same-size instances share one transfer pool to find the cheapest plan for elastic traffic.",
       region: "Region: allowances only pool within one region", lang: "Language", over: "overage", half: "half allowance",
       settings: "Advanced settings", outRatio: "Outbound share", outRatioHint: "Only outbound traffic is billed as overage. Keep 100% if unsure.", prorate: "Prorate allowance for mid-month instances",
@@ -175,6 +178,7 @@
       foot: "Data stays in this browser · Prices checked {d} · Not an official AWS tool", allowLbl: "Allowance {v}"
     },
     ja: {
+      seoTitle: "AWS Lightsail 転送量・超過料金 計算ツール", ogSub: "月末の転送量超過を予測し、最も安い対策を計算",
       name: "AWS Lightsail 節約計算機", tagline: "「同じリージョン・同じプランのデータ転送量はプールで共有」というルールで、変動する通信量に最も安いプランを見つけます。",
       region: "リージョン：プールは同じリージョン内でのみ合算", lang: "言語", over: "超過", half: "枠半分",
       settings: "詳細設定", outRatio: "送信の割合", outRatioHint: "超過料金は送信のみ。不明なら 100% のままに。", prorate: "月途中の作成分は枠を時間按分",
@@ -215,6 +219,7 @@
       foot: "データはこのブラウザにのみ保存 · 価格確認 {d} · AWS 公式ツールではありません", allowLbl: "枠 {v}"
     },
     ko: {
+      seoTitle: "AWS Lightsail 데이터 전송·초과 요금 계산기", ogSub: "월말 전송량 초과를 예측하고 가장 저렴한 해법을 계산",
       name: "AWS Lightsail 절약 계산기", tagline: "‘같은 리전·같은 사양 인스턴스는 전송량 풀을 공유’하는 규칙으로 변동 트래픽에 가장 저렴한 구성을 찾아줍니다.",
       region: "리전: 풀은 같은 리전 안에서만 합산", lang: "언어", over: "초과", half: "할당량 절반",
       settings: "고급 설정", outRatio: "아웃바운드 비율", outRatioHint: "초과 요금은 아웃바운드에만 부과됩니다. 모르면 100% 유지.", prorate: "월 중간 생성분 할당량을 시간 비례 계산",
@@ -255,6 +260,7 @@
       foot: "데이터는 이 브라우저에만 저장 · 가격 확인 {d} · AWS 공식 도구 아님", allowLbl: "할당량 {v}"
     },
     es: {
+      seoTitle: "Calculadora de transferencia y exceso de AWS Lightsail", ogSub: "Prevé el exceso de transferencia y halla la opción más barata",
       name: "Calculadora de ahorro AWS Lightsail", tagline: "Aprovecha que las instancias de la misma región y tamaño comparten la transferencia para hallar el plan más barato con tráfico variable.",
       region: "Región: la cuota solo se combina dentro de una región", lang: "Idioma", over: "exceso", half: "cuota a la mitad",
       settings: "Ajustes avanzados", outRatio: "Proporción saliente", outRatioHint: "Solo el tráfico saliente se cobra como exceso. Deja 100 % si no lo sabes.", prorate: "Prorratear la cuota de instancias creadas a mitad de mes",
@@ -295,6 +301,7 @@
       foot: "Los datos se quedan en este navegador · Precios revisados {d} · No es una herramienta oficial de AWS", allowLbl: "Cuota {v}"
     },
     fr: {
+      seoTitle: "Calculateur de transfert et dépassement AWS Lightsail", ogSub: "Anticipez le dépassement et trouvez l’option la moins chère",
       name: "Calculateur d’économies AWS Lightsail", tagline: "S’appuie sur le partage du quota de transfert entre instances de même région et même taille pour trouver le plan le moins cher.",
       region: "Région : les quotas ne se cumulent que dans une région", lang: "Langue", over: "dépassement", half: "quota divisé par deux",
       settings: "Réglages avancés", outRatio: "Part sortante", outRatioHint: "Seul le trafic sortant est facturé en dépassement. Gardez 100 % en cas de doute.", prorate: "Proratiser le quota des instances créées en cours de mois",
@@ -335,6 +342,7 @@
       foot: "Les données restent dans ce navigateur · Tarifs vérifiés {d} · Outil non officiel AWS", allowLbl: "Quota {v}"
     },
     de: {
+      seoTitle: "AWS Lightsail Rechner für Datentransfer und Überziehung", ogSub: "Überziehung vorhersagen, günstigste Lösung finden",
       name: "AWS Lightsail Sparrechner", tagline: "Nutzt die Regel, dass Instanzen gleicher Region und Größe ein Transfervolumen teilen, und findet den günstigsten Plan für schwankenden Traffic.",
       region: "Region: Kontingente werden nur innerhalb einer Region zusammengelegt", lang: "Sprache", over: "Überschreitung", half: "halbes Kontingent",
       settings: "Erweiterte Einstellungen", outRatio: "Ausgehender Anteil", outRatioHint: "Nur ausgehender Traffic wird als Überschreitung berechnet. Im Zweifel 100 % lassen.", prorate: "Kontingent bei Erstellung im Monat anteilig rechnen",
@@ -375,6 +383,7 @@
       foot: "Daten bleiben in diesem Browser · Preise geprüft {d} · Kein offizielles AWS-Tool", allowLbl: "Kontingent {v}"
     },
     pt: {
+      seoTitle: "Calculadora de transferência e excedente do AWS Lightsail", ogSub: "Preveja o excedente e ache a opção mais barata",
       name: "Calculadora de economia AWS Lightsail", tagline: "Usa a regra de que instâncias da mesma região e tamanho compartilham a transferência para achar o plano mais barato para tráfego variável.",
       region: "Região: a cota só é somada dentro de uma região", lang: "Idioma", over: "excedente", half: "metade da cota",
       settings: "Configurações avançadas", outRatio: "Parcela de saída", outRatioHint: "Só o tráfego de saída é cobrado como excedente. Mantenha 100% se não souber.", prorate: "Proporcionalizar a cota de instâncias criadas no meio do mês",
@@ -415,6 +424,7 @@
       foot: "Os dados ficam neste navegador · Preços conferidos em {d} · Não é uma ferramenta oficial da AWS", allowLbl: "Cota {v}"
     },
     ru: {
+      seoTitle: "Калькулятор трафика и превышения AWS Lightsail", ogSub: "Прогноз превышения трафика и самый дешёвый выход",
       name: "Калькулятор экономии AWS Lightsail", tagline: "Использует правило общего пула трафика для инстансов одного региона и размера, чтобы найти самый дешёвый план при переменном трафике.",
       region: "Регион: лимиты суммируются только внутри региона", lang: "Язык", over: "превышение", half: "половина лимита",
       settings: "Дополнительно", outRatio: "Доля исходящего", outRatioHint: "Превышение оплачивается только за исходящий трафик. Если не уверены, оставьте 100%.", prorate: "Пропорциональный лимит для созданных в середине месяца",

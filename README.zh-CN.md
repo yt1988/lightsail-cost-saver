@@ -223,6 +223,7 @@ public/index.html                 页面结构和样式，也是英文页
 src/app.js                        页面脚本：价格、各语言文案、计算和界面
 public/zh-cn/、ja/ … index.html      自动生成：每种语言一个预渲染页面
 public/assets/                    标志、自托管的 Geist 字体、网站图标和 app.<hash>.js（自动生成）
+public/og/<语言>.png              链接预览图，1200 × 630（node scripts/og.mjs 生成）
 public/calc.js, prices.json      为 Agent 生成的计算模块和价格数据
 public/llms.txt                   给 Agent 看的使用说明
 scripts/build.mjs                 重新生成各语言页面、脚本包、calc.js 和 prices.json

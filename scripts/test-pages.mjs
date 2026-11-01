@@ -24,7 +24,8 @@ for (const [lang] of D.LANGS) {
   const L = D.I18N[lang], path = D.LANG_PATHS[lang];
   const html = await readFile(new URL(path + "index.html", pub), "utf8").catch(() => "");
   const ok = html.includes(`<html lang="${lang}">`)
-    && html.includes(`<title>${esc(L.name)}</title>`)
+    && html.includes(`<title>${esc(L.seoTitle)}</title>`)
+    && html.includes(`<meta property="og:image" content="${base}og/${lang.toLowerCase()}.png">`) && html.includes('content="summary_large_image"')
     && html.includes(`data-i="tagline">${esc(L.tagline)}<`)
     && html.includes(plain(L.r[0]).split(" ")[0])
     && html.includes(`id="helpBtn"`) && html.includes(`>${esc(L.helpQ[0])}</button>`) && /"@type": ?"FAQPage"/.test(html)

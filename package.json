@@ -6,7 +6,11 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node scripts/build.mjs --check && node scripts/test-calc.mjs && node scripts/test-pages.mjs",
-    "prices": "node scripts/update-prices.mjs"
+    "prices": "node scripts/update-prices.mjs",
+    "og": "node scripts/og.mjs"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
 }

@@ -18,3 +18,5 @@
   Cache-Control: public, max-age=604800
 /assets/favicon.svg
   Cache-Control: public, max-age=604800
+/og/*
+  Cache-Control: public, max-age=604800

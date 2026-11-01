@@ -108,7 +108,11 @@ function helpHtml(items, t) {
 // the parts of index.html that the build owns: canonical/hreflang, the script tag, the footer text, language links,
 // the help dialog and the FAQ structured data built from it
 function managed(html, lang, D, P, appFile) {
-  const priceDate = P.date, items = helpItems(lang, D, P);
+  const priceDate = P.date, items = helpItems(lang, D, P), L = D.I18N[lang];
+  const og = siteBase(html) + `og/${lang.toLowerCase()}.png`;
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(L.seoTitle)}</title>`)
+    .replace(/(<meta (?:property="og:title"|name="twitter:title") content=")[^"]*/g, (m, a) => a + esc(L.seoTitle))
+    .replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*/g, (m, a) => a + og);
   html = fill(html, "<!-- HELP:BEGIN", "<!-- HELP:END -->", helpHtml(items, k => D.I18N[lang][k]), "HELP");
   html = html.replace(/(<script type="application\/ld\+json">\n)([\s\S]*?)(\n<\/script>)/, (m, a, json, b) => {
     const ld = JSON.parse(json), plain = s => s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
@@ -136,14 +140,11 @@ export function renderPage(src, lang, D, P, appFile) {
   html = html.replace('<html lang="en">', `<html lang="${lang}">`);
   // the page sits one level down, so the shared files are at ../assets/
   html = html.replace(/(["(])assets\//g, "$1../assets/");
-  html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(t("name"))}</title>`);
   meta("name", "description", L.seoDesc ?? t("tagline"));
   meta("name", "keywords", L.seoKw ?? "");
   meta("name", "application-name", t("name"));
   meta("property", "og:site_name", t("name"));
-  meta("property", "og:title", t("name"));
   meta("property", "og:description", t("tagline"));
-  meta("name", "twitter:title", t("name"));
   meta("name", "twitter:description", t("tagline"));
   // og:locale for this page, the others as alternates
   html = html.replace(/\n?<meta property="og:locale:alternate" content="[^"]*">/g, "");
