@@ -1023,7 +1023,7 @@
   applyTheme();
 
   function fitHeader() {
-    const top = $(".top"), tools = $(".tools"), brand = $(".brand-row"), region = $("#regionWrap");
+    const top = $(".top"), tools = $(".tools"), brand = $(".brand-row");
     const gap = parseFloat(getComputedStyle(tools).columnGap);
     // sum the controls: right-aligned overflow spills to the left, which scrollWidth doesn't count
     const rowWidth = () => { const items = [...tools.children].filter(el => el.offsetWidth); return items.reduce((s, el) => s + el.offsetWidth, 0) + (items.length - 1) * gap; };
@@ -1031,17 +1031,14 @@
       const cs = getComputedStyle(top), oneCol = cs.gridTemplateColumns.trim().split(/\s+/).length === 1;
       return rowWidth() + (oneCol ? 0 : brand.scrollWidth + parseFloat(cs.columnGap)) <= top.clientWidth + 1;
     };
-    top.classList.remove("stack", "split", "compact");
+    top.classList.remove("stack", "compact");
     if (fits()) return;
-    // nearly fits: the AI button keeps only its icon and the region picker gets narrower, still in one row
+    // nearly fits: the AI button keeps only its icon, still in one row
     top.classList.add("compact");
     if (fits()) return;
-    // under the logo: one row with a shrinking region picker, or, if that would get too narrow, the picker on its own row
+    // otherwise the controls go under the logo
     top.classList.remove("compact");
-    const row = rowWidth();
     top.classList.add("stack");
-    const room = top.clientWidth - (row - region.offsetWidth);
-    if (room < Math.min(region.offsetWidth, 180)) top.classList.add("split");
   }
   addEventListener("resize", fitHeader);
   // the title and controls change width when the web font arrives or the language changes; stacking itself doesn't resize them
