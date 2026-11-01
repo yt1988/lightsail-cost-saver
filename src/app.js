@@ -73,7 +73,7 @@
       exPred: "额度预计 {t} 用完", exPast: "额度已于 {t} 用完", noAdd: "不加流量实例更省", planMode: "按整月规划", planNote: "每台流量实例 +{a} · {c}/月", optimal: "已是最省配置，剩余超额无法再避免",
       optNone: "不加", optN: "+{n} 台", barTip: "实例 {a} · 超额 {o}", locked: "已超出的 {v} 无法被新实例抵消，已计入。",
       next: "下月", nextLine: "按本月节奏（{v}），配 {cfg}，约 {c}/月", cfgBase: "基石实例", cfgPlus: "基石实例 + {n} 台流量实例",
-      fleet: "实例总览", fleetSum: "{n} 台 · {c}", base: "基石实例", baseHint: "流量池中的地基，新添加的流量实例需要与它规格一致。",
+      fleet: "实例总览", fleetSum: "{n} 台 · {c}", m2c: "先测你到各个 AWS 区域的延迟", base: "基石实例", baseHint: "流量池中的地基，新添加的流量实例需要与它规格一致。",
       best: "最省", v4: "需要公网 IPv4", dual: "双栈", start: "开通时间",
      
       nodes: "流量实例", share: "同地区、同规格实例共享流量池，IPv6-only。", nodeAdd: "现在新增 1 台：+{a} · {c}（按至月底时长）", add: "添加流量实例",
@@ -114,7 +114,7 @@
       exPred: "額度預計 {t} 用完", exPast: "額度已於 {t} 用完", noAdd: "不加流量實例更省", planMode: "按整月規劃", planNote: "每台流量實例 +{a} · {c}/月", optimal: "已是最省配置，剩餘超額無法再避免",
       optNone: "不加", optN: "+{n} 台", barTip: "實例 {a} · 超額 {o}", locked: "已超出的 {v} 無法被新實例抵消，已計入。",
       next: "下月", nextLine: "按本月節奏（{v}），配 {cfg}，約 {c}/月", cfgBase: "基石實例", cfgPlus: "基石實例 + {n} 台流量實例",
-      fleet: "實例總覽", fleetSum: "{n} 台 · {c}", base: "基石實例", baseHint: "流量池中的地基，新增的流量實例需要與它規格一致。",
+      fleet: "實例總覽", fleetSum: "{n} 台 · {c}", m2c: "先測你到各個 AWS 區域的延遲", base: "基石實例", baseHint: "流量池中的地基，新增的流量實例需要與它規格一致。",
       best: "最省", v4: "需要公網 IPv4", dual: "雙棧", start: "開通時間",
      
       nodes: "流量實例", share: "同地區、同規格實例共享流量池，IPv6-only。", nodeAdd: "現在新增 1 台：+{a} · {c}（按至月底時長）", add: "新增流量實例",
@@ -155,7 +155,7 @@
       exPred: "allowance runs out {t}", exPast: "allowance ran out {t}", noAdd: "Adding none is cheaper", planMode: "Full-month plan", planNote: "Each traffic instance: +{a} · {c}/mo", optimal: "Already the cheapest setup; the remaining overage can’t be avoided",
       optNone: "None", optN: "+{n}", barTip: "Instances {a} · Overage {o}", locked: "The {v} already over cannot be offset by new instances and is included.",
       next: "Next month", nextLine: "At this month’s pace ({v}), use {cfg}, about {c}/mo", cfgBase: "the base instance", cfgPlus: "base + {n} traffic instance(s)",
-      fleet: "Instances", fleetSum: "{n} · {c}", base: "Base instance", baseHint: "The foundation of the pool. Every traffic instance you add must match its size.",
+      fleet: "Instances", fleetSum: "{n} · {c}", m2c: "Test your latency to each AWS Region first", base: "Base instance", baseHint: "The foundation of the pool. Every traffic instance you add must match its size.",
       best: "Best", v4: "Needs public IPv4", dual: "Dual-stack", start: "Created",
      
       nodes: "Traffic instances", share: "Same-region, same-size instances share the pool. IPv6-only.", nodeAdd: "Add 1 now: +{a} · {c} (prorated to month end)", add: "Add traffic instance",
@@ -195,7 +195,7 @@
       exPred: "枠は {t} に尽きる見込み", exPast: "枠は {t} に尽きました", noAdd: "追加しない方が安い", planMode: "月全体で計画", planNote: "トラフィック用 1 台あたり +{a} · {c}/月", optimal: "すでに最安の構成です。残りの超過は避けられません",
       optNone: "追加なし", optN: "+{n} 台", barTip: "インスタンス {a} · 超過 {o}", locked: "既に超過した {v} は新規インスタンスで相殺できず、計上済みです。",
       next: "来月", nextLine: "今月のペース ({v}) なら {cfg}、約 {c}/月", cfgBase: "ベースのみ", cfgPlus: "ベース + {n} 台",
-      fleet: "インスタンス一覧", fleetSum: "{n} 台 · {c}", base: "ベースインスタンス", baseHint: "プールの土台。追加するトラフィック用インスタンスは同じプランにする必要があります。",
+      fleet: "インスタンス一覧", fleetSum: "{n} 台 · {c}", m2c: "まず各 AWS リージョンへの遅延を測定", base: "ベースインスタンス", baseHint: "プールの土台。追加するトラフィック用インスタンスは同じプランにする必要があります。",
       best: "最安", v4: "パブリック IPv4 が必要", dual: "デュアルスタック", start: "作成日時",
      
       nodes: "トラフィック用インスタンス", share: "同じリージョン・同じプランのインスタンスはプールを共有。IPv6-only。", nodeAdd: "今 1 台追加：+{a} · {c}（月末まで按分）", add: "トラフィック用インスタンスを追加",
@@ -236,7 +236,7 @@
       exPred: "할당량 {t} 소진 예상", exPast: "할당량 {t}에 소진됨", noAdd: "추가하지 않는 편이 저렴", planMode: "한 달 전체 기준", planNote: "트래픽 인스턴스 1대당 +{a} · {c}/월", optimal: "이미 가장 저렴한 구성입니다. 남은 초과는 피할 수 없습니다",
       optNone: "추가 안 함", optN: "+{n}대", barTip: "인스턴스 {a} · 초과 {o}", locked: "이미 초과한 {v}는 새 인스턴스로 상쇄할 수 없어 포함했습니다.",
       next: "다음 달", nextLine: "이번 달 속도({v})라면 {cfg}, 약 {c}/월", cfgBase: "기본 인스턴스만", cfgPlus: "기본 + 트래픽 {n}대",
-      fleet: "인스턴스 개요", fleetSum: "{n}대 · {c}", base: "기본 인스턴스", baseHint: "풀의 기반. 새로 추가하는 트래픽 인스턴스는 같은 사양이어야 합니다.",
+      fleet: "인스턴스 개요", fleetSum: "{n}대 · {c}", m2c: "먼저 각 AWS 리전까지의 지연 시간 측정", base: "기본 인스턴스", baseHint: "풀의 기반. 새로 추가하는 트래픽 인스턴스는 같은 사양이어야 합니다.",
       best: "최저가", v4: "퍼블릭 IPv4 필요", dual: "듀얼 스택", start: "생성 시각",
      
       nodes: "트래픽 인스턴스", share: "같은 리전·같은 사양 인스턴스는 풀을 공유. IPv6-only.", nodeAdd: "지금 1대 추가: +{a} · {c} (월말까지 비례)", add: "트래픽 인스턴스 추가",
@@ -277,7 +277,7 @@
       exPred: "la cuota se agota el {t}", exPast: "la cuota se agotó el {t}", noAdd: "No añadir es más barato", planMode: "Plan de mes completo", planNote: "Cada instancia de tráfico: +{a} · {c}/mes", optimal: "Ya es la configuración más barata; el exceso restante es inevitable",
       optNone: "Ninguna", optN: "+{n}", barTip: "Instancias {a} · Exceso {o}", locked: "Los {v} ya excedidos no se compensan con instancias nuevas y están incluidos.",
       next: "Próximo mes", nextLine: "Al ritmo de este mes ({v}), usa {cfg}, unos {c}/mes", cfgBase: "solo la base", cfgPlus: "base + {n} de tráfico",
-      fleet: "Resumen de instancias", fleetSum: "{n} · {c}", base: "Instancia base", baseHint: "La base del pool. Cada instancia de tráfico que añadas debe tener su mismo tamaño.",
+      fleet: "Resumen de instancias", fleetSum: "{n} · {c}", m2c: "Mide antes tu latencia a cada región de AWS", base: "Instancia base", baseHint: "La base del pool. Cada instancia de tráfico que añadas debe tener su mismo tamaño.",
       best: "Mejor", v4: "Necesita IPv4 pública", dual: "Doble pila", start: "Creada",
      
       nodes: "Instancias de tráfico", share: "Las instancias de la misma región y tamaño comparten el pool. Solo IPv6.", nodeAdd: "Añadir 1 ahora: +{a} · {c} (prorrateado a fin de mes)", add: "Añadir instancia de tráfico",
@@ -318,7 +318,7 @@
       exPred: "quota épuisé le {t}", exPast: "quota épuisé depuis le {t}", noAdd: "Ne rien ajouter coûte moins", planMode: "Plan sur le mois entier", planNote: "Par instance de trafic : +{a} · {c}/mois", optimal: "Configuration déjà optimale ; le dépassement restant est inévitable",
       optNone: "Aucune", optN: "+{n}", barTip: "Instances {a} · Dépassement {o}", locked: "Les {v} déjà dépassés ne peuvent pas être compensés et sont inclus.",
       next: "Mois prochain", nextLine: "Au rythme actuel ({v}), prévoyez {cfg}, environ {c}/mois", cfgBase: "la base seule", cfgPlus: "base + {n} de trafic",
-      fleet: "Vue des instances", fleetSum: "{n} · {c}", base: "Instance de base", baseHint: "Le socle du pool. Chaque instance de trafic ajoutée doit avoir la même taille.",
+      fleet: "Vue des instances", fleetSum: "{n} · {c}", m2c: "Mesurez d’abord votre latence vers chaque région AWS", base: "Instance de base", baseHint: "Le socle du pool. Chaque instance de trafic ajoutée doit avoir la même taille.",
       best: "Optimal", v4: "IPv4 publique requise", dual: "Double pile", start: "Créée le",
      
       nodes: "Instances de trafic", share: "Même région, même taille : le pool est partagé. IPv6 seul.", nodeAdd: "Ajouter 1 maintenant : +{a} · {c} (au prorata jusqu’à fin de mois)", add: "Ajouter une instance de trafic",
@@ -359,7 +359,7 @@
       exPred: "Kontingent voraussichtlich am {t} aufgebraucht", exPast: "Kontingent seit {t} aufgebraucht", noAdd: "Keine hinzuzufügen ist günstiger", planMode: "Planung für den ganzen Monat", planNote: "Je Traffic-Instanz: +{a} · {c}/Monat", optimal: "Bereits die günstigste Konfiguration; die restliche Überschreitung ist unvermeidbar",
       optNone: "Keine", optN: "+{n}", barTip: "Instanzen {a} · Überschreitung {o}", locked: "Die bereits überschrittenen {v} lassen sich nicht ausgleichen und sind enthalten.",
       next: "Nächster Monat", nextLine: "Beim aktuellen Tempo ({v}) {cfg}, ca. {c}/Monat", cfgBase: "nur die Basis", cfgPlus: "Basis + {n} Traffic",
-      fleet: "Instanzübersicht", fleetSum: "{n} · {c}", base: "Basisinstanz", baseHint: "Das Fundament des Pools. Jede neue Traffic-Instanz muss dieselbe Größe haben.",
+      fleet: "Instanzübersicht", fleetSum: "{n} · {c}", m2c: "Zuerst deine Latenz zu jeder AWS-Region messen", base: "Basisinstanz", baseHint: "Das Fundament des Pools. Jede neue Traffic-Instanz muss dieselbe Größe haben.",
       best: "Günstigste", v4: "Öffentliche IPv4 nötig", dual: "Dual-Stack", start: "Erstellt",
      
       nodes: "Traffic-Instanzen", share: "Gleiche Region, gleiche Größe: gemeinsamer Pool. Nur IPv6.", nodeAdd: "Jetzt 1 hinzufügen: +{a} · {c} (anteilig bis Monatsende)", add: "Traffic-Instanz hinzufügen",
@@ -400,7 +400,7 @@
       exPred: "a cota acaba em {t}", exPast: "a cota acabou em {t}", noAdd: "Não adicionar é mais barato", planMode: "Plano do mês inteiro", planNote: "Cada instância de tráfego: +{a} · {c}/mês", optimal: "Já é a configuração mais barata; o excedente restante é inevitável",
       optNone: "Nenhuma", optN: "+{n}", barTip: "Instâncias {a} · Excedente {o}", locked: "Os {v} já excedidos não podem ser compensados e estão incluídos.",
       next: "Próximo mês", nextLine: "No ritmo deste mês ({v}), use {cfg}, cerca de {c}/mês", cfgBase: "só a base", cfgPlus: "base + {n} de tráfego",
-      fleet: "Visão das instâncias", fleetSum: "{n} · {c}", base: "Instância base", baseHint: "A fundação do pool. Toda instância de tráfego adicionada precisa ter o mesmo tamanho.",
+      fleet: "Visão das instâncias", fleetSum: "{n} · {c}", m2c: "Meça antes sua latência para cada região da AWS", base: "Instância base", baseHint: "A fundação do pool. Toda instância de tráfego adicionada precisa ter o mesmo tamanho.",
       best: "Melhor", v4: "Precisa de IPv4 público", dual: "Pilha dupla", start: "Criada em",
      
       nodes: "Instâncias de tráfego", share: "Mesma região e tamanho compartilham o pool. Só IPv6.", nodeAdd: "Adicionar 1 agora: +{a} · {c} (proporcional até o fim do mês)", add: "Adicionar instância de tráfego",
@@ -441,7 +441,7 @@
       exPred: "лимит закончится {t}", exPast: "лимит закончился {t}", noAdd: "Выгоднее ничего не добавлять", planMode: "План на весь месяц", planNote: "Каждый трафик-инстанс: +{a} · {c}/мес.", optimal: "Это уже самая дешёвая конфигурация; оставшееся превышение неизбежно",
       optNone: "Нет", optN: "+{n}", barTip: "Инстансы {a} · Превышение {o}", locked: "Уже превышенные {v} нельзя компенсировать новыми инстансами, они учтены.",
       next: "Следующий месяц", nextLine: "При текущем темпе ({v}) возьмите {cfg}, около {c}/мес.", cfgBase: "только базовый", cfgPlus: "базовый + {n} трафик",
-      fleet: "Обзор инстансов", fleetSum: "{n} шт. · {c}", base: "Базовый инстанс", baseHint: "Основа пула. Новые трафик-инстансы должны быть того же размера.",
+      fleet: "Обзор инстансов", fleetSum: "{n} шт. · {c}", m2c: "Сначала проверьте задержку до каждого региона AWS", base: "Базовый инстанс", baseHint: "Основа пула. Новые трафик-инстансы должны быть того же размера.",
       best: "Выгодно", v4: "Нужен публичный IPv4", dual: "Двойной стек", start: "Создан",
      
       nodes: "Трафик-инстансы", share: "Инстансы одного региона и размера делят пул. Только IPv6.", nodeAdd: "Добавить 1 сейчас: +{a} · {c} (пропорционально до конца месяца)", add: "Добавить трафик-инстанс",
@@ -1139,6 +1139,11 @@ const link = buildLink(input, base);`;
     });
     $(".ag-body").scrollTop = 0; agMore();
   }
+  // cross-link under the region picker: Me2Cloud's AWS page in this language, only when the 1ms shell
+  // announces its host in <meta name="m2c"> (no hardcoded domain)
+  const m2c = document.querySelector('meta[name="m2c"]')?.content;
+  if (m2c && /^https:\/\/[^/]+\/?$/.test(m2c)) { $("#m2cLink").href = m2c.replace(/\/$/, "") + "/" + LANG_PATHS[LANG] + "aws/"; $("#m2cRow").hidden = false; }
+
   // help: questions on the left, one answer at a time on the right; a picker with previous / next on phones
   let helpIdx = 0;
   const helpQs = $$("#helpNav [data-hq]"), helpN = helpQs.length;

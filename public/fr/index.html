@@ -73,7 +73,7 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.6c3c4ac610.js"></script>
+<script defer src="../assets/js/app.7169518d5b.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -175,6 +175,10 @@ code { font-family: var(--f-num); font-size: 11px; background: var(--soft); bord
 #fleetSum { margin-left: auto; flex: none; padding-left: 8px; }
 #regionWrap { height: 28px; padding: 0 8px; gap: 5px; min-width: 0; flex: 0 1 auto; font-size: 13px; }
 #regionWrap svg { width: 13px; height: 13px; }
+.xlink { margin: 0; padding: 8px 16px; border-bottom: 1px solid var(--line); font-size: 12px; }
+.xlink a { display: inline-flex; align-items: center; gap: 3px; color: var(--muted); text-decoration: none; }
+.xlink svg { width: .95em; height: .95em; flex: none; }
+.xlink a:hover { color: var(--fg); text-decoration: underline; }
 #regionWrap select { max-width: none; min-width: 0; flex: 1 1 auto; font-size: 13px; }
 .sel option, .sel optgroup { background-color: var(--panel); color: var(--fg); }
 .sel option:checked { background-color: var(--soft); }
@@ -628,6 +632,7 @@ footer a:hover { color: var(--fg); }
 
     <section class="panel" id="fleetPanel">
       <div class="panel-h"><h2 class="sr" data-i="fleet">Vue des instances</h2><label class="sel" id="regionWrap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 14.5s5-4.3 5-8.3a5 5 0 0 0-10 0c0 4 5 8.3 5 8.3z"/><circle cx="8" cy="6.2" r="1.8"/></svg><select id="region"></select></label><span class="lbl num" id="fleetSum"></span></div>
+      <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">Mesurez d’abord votre latence vers chaque région AWS</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
           <div class="sec-h"><b><span class="badge" data-i="base">Instance de base</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">Le socle du pool. Chaque instance de trafic ajoutée doit avoir la même taille.</span></div>
