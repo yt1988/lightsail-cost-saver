@@ -94,7 +94,7 @@
       helpQ: ["入站流量也扣额度吗？","入站流量会收费吗？","超额怎么收费？","哪些实例共享额度？","关机的实例还收费吗？","新加实例能抵掉已产生的超额吗？","删掉重建能清零用量吗？","内网流量收费吗？","估算有多准？","AWS 官方链接"],
       overA: "按地区不同，超出共享额度的出站流量<b>每 GB {lo}–{hi}</b>。计算器使用所选地区的价格。",
       links: ["官方定价", "流量额度 FAQ", "计费 FAQ", "服务条款", "查看账单用量"],
-      foot: "数据只保存在当前浏览器 · 价格核对于 {d} · 非 AWS 官方工具", allowLbl: "额度 {v}"
+      foot: "价格核对于 {d} · 非 AWS 官方工具", allowLbl: "额度 {v}"
     },
     "zh-TW": {
       seoTitle: "AWS Lightsail 流量超額與價格計算器 · 流量池省錢方案", ogSub: "預測月底流量超額，算出最省錢的加機方案",
@@ -135,7 +135,7 @@
       helpQ: ["入站流量也扣額度嗎？","入站流量會收費嗎？","超額怎麼收費？","哪些實例共享額度？","關機的實例還收費嗎？","新增實例能抵掉已產生的超額嗎？","刪除重建能清零用量嗎？","內網流量收費嗎？","估算有多準？","AWS 官方連結"],
       overA: "依地區不同，超出共享額度的出站流量<b>每 GB {lo}–{hi}</b>。計算器使用所選地區的價格。",
       links: ["官方定價", "流量額度 FAQ", "計費 FAQ", "服務條款", "查看帳單用量"],
-      foot: "資料只儲存在目前瀏覽器 · 價格核對於 {d} · 非 AWS 官方工具", allowLbl: "額度 {v}"
+      foot: "價格核對於 {d} · 非 AWS 官方工具", allowLbl: "額度 {v}"
     },
     en: {
       seoTitle: "AWS Lightsail Data Transfer & Overage Calculator", ogSub: "Forecast transfer overage and find the cheapest fix",
@@ -175,7 +175,7 @@
       helpQ: ["Does inbound traffic use the allowance?","Is inbound traffic ever charged?","How much does overage cost?","Which instances share a pool?","Do stopped instances still bill?","Can new instances cancel overage?","Does recreating an instance reset usage?","Is private IP traffic charged?","How exact are the estimates?","Official AWS links"],
       overA: "It depends on the Region: <b>{lo}–{hi} per GB</b> of outbound traffic beyond the pool. The calculator uses the selected Region’s rate.",
       links: ["Pricing", "Data transfer FAQ", "Billing FAQ", "Service terms", "View bill usage"],
-      foot: "Data stays in this browser · Prices checked {d} · Not an official AWS tool", allowLbl: "Allowance {v}"
+      foot: "Prices checked {d} · Not an official AWS tool", allowLbl: "Allowance {v}"
     },
     ja: {
       seoTitle: "AWS Lightsail 転送量・超過料金 計算ツール", ogSub: "月末の転送量超過を予測し、最も安い対策を計算",
@@ -216,7 +216,7 @@
       helpQ: ["受信トラフィックも枠を消費しますか？","受信トラフィックは課金されますか？","超過料金はいくらですか？","どのインスタンスが枠を共有しますか？","停止中のインスタンスも課金されますか？","インスタンスを追加すれば超過を相殺できますか？","削除して作り直すと使用量はリセットされますか？","プライベート IP の通信は課金されますか？","見積もりはどのくらい正確ですか？","AWS 公式リンク"],
       overA: "リージョンによって異なり、プールを超えた送信トラフィックは<b>1 GB あたり {lo}–{hi}</b>です。計算には選択中のリージョンの料金を使います。",
       links: ["料金", "データ転送 FAQ", "請求 FAQ", "サービス条件", "請求の使用量を見る"],
-      foot: "データはこのブラウザにのみ保存 · 価格確認 {d} · AWS 公式ツールではありません", allowLbl: "枠 {v}"
+      foot: "価格確認 {d} · AWS 公式ツールではありません", allowLbl: "枠 {v}"
     },
     ko: {
       seoTitle: "AWS Lightsail 데이터 전송·초과 요금 계산기", ogSub: "월말 전송량 초과를 예측하고 가장 저렴한 해법을 계산",
@@ -257,7 +257,7 @@
       helpQ: ["인바운드 트래픽도 할당량을 쓰나요?","인바운드 트래픽도 과금되나요?","초과 요금은 얼마인가요?","어떤 인스턴스가 할당량을 공유하나요?","중지된 인스턴스도 요금이 나오나요?","인스턴스를 추가하면 이미 난 초과를 상쇄할 수 있나요?","삭제 후 다시 만들면 사용량이 초기화되나요?","프라이빗 IP 트래픽도 과금되나요?","추정치는 얼마나 정확한가요?","AWS 공식 링크"],
       overA: "리전마다 다르며, 풀을 넘는 아웃바운드 트래픽은 <b>GB당 {lo}–{hi}</b>입니다. 계산기는 선택한 리전의 요금을 사용합니다.",
       links: ["요금", "데이터 전송 FAQ", "청구 FAQ", "서비스 약관", "청구 사용량 보기"],
-      foot: "데이터는 이 브라우저에만 저장 · 가격 확인 {d} · AWS 공식 도구 아님", allowLbl: "할당량 {v}"
+      foot: "가격 확인 {d} · AWS 공식 도구 아님", allowLbl: "할당량 {v}"
     },
     es: {
       seoTitle: "Calculadora de transferencia y exceso de AWS Lightsail", ogSub: "Prevé el exceso de transferencia y halla la opción más barata",
@@ -298,7 +298,7 @@
       helpQ: ["¿El tráfico entrante consume la cuota?","¿Se cobra el tráfico entrante?","¿Cuánto cuesta el exceso?","¿Qué instancias comparten el pool?","¿Las instancias detenidas siguen cobrando?","¿Añadir instancias compensa el exceso ya generado?","¿Borrar y recrear reinicia el uso?","¿Se cobra el tráfico por IP privada?","¿Qué tan exactas son las estimaciones?","Enlaces oficiales de AWS"],
       overA: "Depende de la región: <b>{lo}–{hi} por GB</b> de tráfico saliente por encima del pool. La calculadora usa la tarifa de la región elegida.",
       links: ["Precios", "FAQ de transferencia", "FAQ de facturación", "Términos del servicio", "Ver uso en la factura"],
-      foot: "Los datos se quedan en este navegador · Precios revisados {d} · No es una herramienta oficial de AWS", allowLbl: "Cuota {v}"
+      foot: "Precios revisados {d} · No es una herramienta oficial de AWS", allowLbl: "Cuota {v}"
     },
     fr: {
       seoTitle: "Calculateur de transfert et dépassement AWS Lightsail", ogSub: "Anticipez le dépassement et trouvez l’option la moins chère",
@@ -339,7 +339,7 @@
       helpQ: ["Le trafic entrant compte-t-il dans le quota ?","Le trafic entrant est-il facturé ?","Combien coûte le dépassement ?","Quelles instances partagent le pool ?","Une instance arrêtée est-elle facturée ?","Ajouter des instances annule-t-il un dépassement déjà subi ?","Supprimer et recréer remet-il l’usage à zéro ?","Le trafic sur IP privée est-il facturé ?","Les estimations sont-elles précises ?","Liens officiels AWS"],
       overA: "Selon la région : <b>{lo}–{hi} par Go</b> de trafic sortant au-delà du pool. Le calculateur utilise le tarif de la région choisie.",
       links: ["Tarifs", "FAQ transfert", "FAQ facturation", "Conditions de service", "Voir l’usage facturé"],
-      foot: "Les données restent dans ce navigateur · Tarifs vérifiés {d} · Outil non officiel AWS", allowLbl: "Quota {v}"
+      foot: "Tarifs vérifiés {d} · Outil non officiel AWS", allowLbl: "Quota {v}"
     },
     de: {
       seoTitle: "AWS Lightsail Rechner für Datentransfer und Überziehung", ogSub: "Überziehung vorhersagen, günstigste Lösung finden",
@@ -380,7 +380,7 @@
       helpQ: ["Zählt eingehender Traffic zum Kontingent?","Wird eingehender Traffic berechnet?","Was kostet Mehrverbrauch?","Welche Instanzen teilen sich den Pool?","Kosten gestoppte Instanzen weiter?","Gleichen neue Instanzen bereits entstandenen Mehrverbrauch aus?","Setzt Löschen und Neuanlegen den Verbrauch zurück?","Wird Traffic über private IPs berechnet?","Wie genau sind die Schätzungen?","Offizielle AWS-Links"],
       overA: "Je nach Region <b>{lo}–{hi} pro GB</b> ausgehenden Traffics über dem Pool. Der Rechner nutzt den Preis der gewählten Region.",
       links: ["Preise", "FAQ Datenübertragung", "FAQ Abrechnung", "Servicebedingungen", "Verbrauch auf der Rechnung"],
-      foot: "Daten bleiben in diesem Browser · Preise geprüft {d} · Kein offizielles AWS-Tool", allowLbl: "Kontingent {v}"
+      foot: "Preise geprüft {d} · Kein offizielles AWS-Tool", allowLbl: "Kontingent {v}"
     },
     pt: {
       seoTitle: "Calculadora de transferência e excedente do AWS Lightsail", ogSub: "Preveja o excedente e ache a opção mais barata",
@@ -421,7 +421,7 @@
       helpQ: ["O tráfego de entrada consome a franquia?","O tráfego de entrada é cobrado?","Quanto custa o excedente?","Quais instâncias compartilham o pool?","Instâncias paradas continuam cobrando?","Adicionar instâncias compensa o excedente já gerado?","Excluir e recriar zera o uso?","O tráfego por IP privado é cobrado?","Quão precisas são as estimativas?","Links oficiais da AWS"],
       overA: "Depende da região: <b>{lo}–{hi} por GB</b> de tráfego de saída acima do pool. A calculadora usa a tarifa da região selecionada.",
       links: ["Preços", "FAQ de transferência", "FAQ de cobrança", "Termos de serviço", "Ver uso na fatura"],
-      foot: "Os dados ficam neste navegador · Preços conferidos em {d} · Não é uma ferramenta oficial da AWS", allowLbl: "Cota {v}"
+      foot: "Preços conferidos em {d} · Não é uma ferramenta oficial da AWS", allowLbl: "Cota {v}"
     },
     ru: {
       seoTitle: "Калькулятор трафика и превышения AWS Lightsail", ogSub: "Прогноз превышения трафика и самый дешёвый выход",
@@ -462,7 +462,7 @@
       helpQ: ["Входящий трафик расходует лимит?","Входящий трафик оплачивается?","Сколько стоит превышение?","Какие инстансы делят пул?","Остановленный инстанс оплачивается?","Можно ли новыми инстансами погасить уже возникшее превышение?","Сбрасывает ли пересоздание расход?","Оплачивается ли трафик по приватным IP?","Насколько точны оценки?","Официальные ссылки AWS"],
       overA: "Зависит от региона: <b>{lo}–{hi} за ГБ</b> исходящего трафика сверх пула. Калькулятор использует тариф выбранного региона.",
       links: ["Цены", "FAQ по трафику", "FAQ по оплате", "Условия сервиса", "Расход в счёте"],
-      foot: "Данные хранятся только в этом браузере · Цены проверены {d} · Не официальный инструмент AWS", allowLbl: "Лимит {v}"
+      foot: "Цены проверены {d} · Не официальный инструмент AWS", allowLbl: "Лимит {v}"
     }
   };
   /* I18N:END */
