@@ -804,6 +804,17 @@
     return head + rows + lock + next;
   }
 
+  // the same servers and traffic as a Cloud Cost Planner result code: "1_<scene>_<vCPU>_<RAM GB>_<disk GB>_<servers>_
+  // <GB a month>_<static %>_<stored GB>_<na|eu|ap>_<flags: 1 shared CPU>_<file KB>". Lightsail bundles are burstable
+  // (shared CPU); vCPU and disk are those of the Linux bundle with this much memory
+  const LS_SPEC = { 0.5: [2, 20], 1: [2, 40], 2: [2, 60], 4: [2, 80], 8: [2, 160], 16: [4, 320], 32: [8, 640], 64: [16, 1280] };
+  function costCode(c) {
+    const [vcpu, disk] = LS_SPEC[c.b.ram] || LS_SPEC[1], n = Math.max(1, c.live);
+    const gb = Math.round(c.has ? c.P : fullAllow(c.b) * n);
+    const aud = /^eu-/.test(c.R.id) ? "eu" : /^ap-/.test(c.R.id) ? "ap" : "na";
+    return ["1", "-", vcpu, c.b.ram, disk, n, gb, 0, 0, aud, 1, 500].join("_");
+  }
+
   function refresh() {
     const c = compute();
     const band = $("#band"), money = v => `<span class="num">${fmtUSD(v)}</span>`;
@@ -836,6 +847,7 @@
     $("#sCost").innerHTML = fmtUSD(c.cost + c.overCost) + (c.overCost > 0 ? `<span class="lbl" style="display:block;white-space:normal;color:var(--bad)">${t("inclOver", { v: fmtUSD(c.overCost) })}</span>` : "");
     $("#act").innerHTML = actHTML(c);
     $("#fleetSum").textContent = t("fleetSum", { n: c.live, c: fmtUSD(c.cost) });
+    const cl = $("#costLink"); if (cl.dataset.base) cl.href = cl.dataset.base + "r/" + costCode(c);
     $("#netLbl").textContent = S.ipv4 ? `${t("dual")} $${c.b.p4}` : `IPv6-only $${c.b.p6}`;
     const hc = $("#halfChip"); hc.hidden = !c.R.half; hc.textContent = t("half");
     $("#nodeSpec").textContent = c.ai <= 0 ? "" : c.plan ? t("planNote", { a: fmtGB(c.ai), c: fmtUSD(c.ci) }) : t("nodeAdd", { a: fmtGB(c.ai), c: fmtUSD(c.ci) });
@@ -1148,7 +1160,7 @@ const link = buildLink(input, base);`;
   };
   const m2c = tool("m2c"), cost = tool("cost");
   if (m2c) { $("#m2cLink").href = m2c + "aws/"; $("#m2cRow").hidden = false; }
-  if (cost) { $("#costLink").href = cost; $("#costRow").hidden = false; }
+  if (cost) { $("#costLink").dataset.base = cost; $("#costRow").hidden = false; refresh(); }
 
   // help: questions on the left, one answer at a time on the right; a picker with previous / next on phones
   let helpIdx = 0;
