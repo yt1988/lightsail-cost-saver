@@ -73,7 +73,7 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.7169518d5b.js"></script>
+<script defer src="../assets/js/app.12e3953ca4.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -176,8 +176,9 @@ code { font-family: var(--f-num); font-size: 11px; background: var(--soft); bord
 #regionWrap { height: 28px; padding: 0 8px; gap: 5px; min-width: 0; flex: 0 1 auto; font-size: 13px; }
 #regionWrap svg { width: 13px; height: 13px; }
 .xlink { margin: 0; padding: 8px 16px; border-bottom: 1px solid var(--line); font-size: 12px; }
-.xlink a { display: inline-flex; align-items: center; gap: 3px; color: var(--muted); text-decoration: none; }
-.xlink svg { width: .95em; height: .95em; flex: none; }
+.xlink.foot { border-bottom: 0; border-top: 1px solid var(--line); }
+.xlink a { color: var(--muted); text-decoration: none; }
+.xlink svg { width: .95em; height: .95em; margin-left: 3px; vertical-align: -.12em; }
 .xlink a:hover { color: var(--fg); text-decoration: underline; }
 #regionWrap select { max-width: none; min-width: 0; flex: 1 1 auto; font-size: 13px; }
 .sel option, .sel optgroup { background-color: var(--panel); color: var(--fg); }
@@ -628,6 +629,7 @@ footer a:hover { color: var(--fg); }
         </div>
         <div class="act" id="act"></div>
       </div>
+      <p class="xlink foot" id="costRow" hidden><a id="costLink" target="_blank" rel="noopener"><span data-i="xcost">Compara tarifas de transferencia y coste total entre nubes</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
     </section>
 
     <section class="panel" id="fleetPanel">
