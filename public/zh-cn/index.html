@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AWS Lightsail 流量超额与价格计算器 · 流量池省钱方案</title>
+<title>AWS Lightsail 流量计算器 · 预测超额费用，算出最省钱的加机方案</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="免费的 AWS Lightsail 流量计算器。同地区同规格实例共享流量池：查看已用和剩余额度，预测月底超额费用，算出加几台 IPv6 实例最省钱。">
+<meta name="description" content="免费的 AWS Lightsail 流量计算器。同地区、同套餐的实例共用流量池：填入本月已用流量，就能看到剩余额度、月底会不会超额、要多付多少，以及加几台 IPv6 实例最省钱。">
 <meta name="keywords" content="AWS Lightsail, Lightsail 流量, Lightsail 超额, 流量池, 流量计算器, Lightsail 价格, IPv6 实例, VPS 流量费用, AWS 账单">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="AWS Lightsail 省钱计算器">
@@ -41,16 +41,16 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AWS Lightsail 省钱计算器">
-<meta property="og:title" content="AWS Lightsail 流量超额与价格计算器 · 流量池省钱方案">
-<meta property="og:description" content="基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案">
+<meta property="og:title" content="AWS Lightsail 流量计算器 · 预测超额费用，算出最省钱的加机方案">
+<meta property="og:description" content="同地区、同套餐的 Lightsail 实例，流量额度可以合起来用。这里帮你算这个月会不会超额、加几台小实例最省钱。">
 <meta property="og:image" content="https://ls.1ms.dog/og/zh-cn.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AWS Lightsail 流量超额与价格计算器 · 流量池省钱方案">
-<meta name="twitter:description" content="基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案">
+<meta name="twitter:title" content="AWS Lightsail 流量计算器 · 预测超额费用，算出最省钱的加机方案">
+<meta name="twitter:description" content="同地区、同套餐的 Lightsail 实例，流量额度可以合起来用。这里帮你算这个月会不会超额、加几台小实例最省钱。">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/zh-cn.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/zh-cn/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 省钱计算器","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"免费的 AWS Lightsail 流量计算器。同地区同规格实例共享流量池：查看已用和剩余额度，预测月底超额费用，算出加几台 IPv6 实例最省钱。","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/zh-cn/"},{"@type":"FAQPage","inLanguage":"zh-CN","mainEntity":[{"@type":"Question","name":"入站流量也扣额度吗？","acceptedAnswer":{"@type":"Answer","text":"入站 + 出站都扣额度"}},{"@type":"Question","name":"入站流量会收费吗？","acceptedAnswer":{"@type":"Answer","text":"超额只收出站，入站永远免费"}},{"@type":"Question","name":"超额怎么收费？","acceptedAnswer":{"@type":"Answer","text":"按地区不同，超出共享额度的出站流量每 GB $0.09–$0.17。计算器使用所选地区的价格。"}},{"@type":"Question","name":"哪些实例共享额度？","acceptedAnswer":{"@type":"Answer","text":"同地区、同规格才合并；同规格双栈与 IPv6-only 可合并"}},{"@type":"Question","name":"关机的实例还收费吗？","acceptedAnswer":{"@type":"Answer","text":"按小时计费，停机照样计费，删除才停止"}},{"@type":"Question","name":"新加实例能抵掉已产生的超额吗？","acceptedAnswer":{"@type":"Answer","text":"已产生的超额，新加实例无法抵消，要在用完前扩容"}},{"@type":"Question","name":"删掉重建能清零用量吗？","acceptedAnswer":{"@type":"Answer","text":"删除后重建不会重置本月已用量"}},{"@type":"Question","name":"内网流量收费吗？","acceptedAnswer":{"@type":"Answer","text":"同地区走私网 IP：扣额度，但超额也免费"}},{"@type":"Question","name":"估算有多准？","acceptedAnswer":{"@type":"Answer","text":"按 1 TB = 1024 GB、UTC 自然月估算，以 AWS 账单为准"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 省钱计算器","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"免费的 AWS Lightsail 流量计算器。同地区、同套餐的实例共用流量池：填入本月已用流量，就能看到剩余额度、月底会不会超额、要多付多少，以及加几台 IPv6 实例最省钱。","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/zh-cn/"},{"@type":"FAQPage","inLanguage":"zh-CN","mainEntity":[{"@type":"Question","name":"入站流量也算额度吗？","acceptedAnswer":{"@type":"Answer","text":"入站和出站流量都算进额度"}},{"@type":"Question","name":"入站流量要收费吗？","acceptedAnswer":{"@type":"Answer","text":"超额只收出站费用，入站永远免费"}},{"@type":"Question","name":"超额怎么收费？","acceptedAnswer":{"@type":"Answer","text":"看地区：超出流量池的出站流量，每 GB $0.09–$0.17。计算器按你选的地区价格算。"}},{"@type":"Question","name":"哪些实例能合用额度？","acceptedAnswer":{"@type":"Answer","text":"只有同地区、同套餐的实例能合用额度；同套餐的双栈和 IPv6-only 实例也能合用"}},{"@type":"Question","name":"关机的实例还收费吗？","acceptedAnswer":{"@type":"Answer","text":"按小时计费，关机也照常收费，删除实例才停止"}},{"@type":"Question","name":"新加实例能抵掉已经产生的超额吗？","acceptedAnswer":{"@type":"Answer","text":"已经产生的超额，新加实例也抵不掉，要在额度用完前加"}},{"@type":"Question","name":"删掉重建能清零用量吗？","acceptedAnswer":{"@type":"Answer","text":"删掉再重建，本月已用流量不会清零"}},{"@type":"Question","name":"内网流量收费吗？","acceptedAnswer":{"@type":"Answer","text":"同地区内走私有 IP 的流量：算进额度，但超额也不收费"}},{"@type":"Question","name":"估算准不准？","acceptedAnswer":{"@type":"Answer","text":"按 1 TB = 1024 GB、UTC 自然月估算，实际以 AWS 账单为准"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -557,7 +557,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">AWS Lightsail 省钱计算器</h1>
       </a>
-      <p class="tagline" data-i="tagline">基于“同地域同规格流量池共享”规则，帮你找出更省钱的弹性流量方案</p>
+      <p class="tagline" data-i="tagline">同地区、同套餐的 Lightsail 实例，流量额度可以合起来用。这里帮你算这个月会不会超额、加几台小实例最省钱。</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">接入 Agent</span></button>
@@ -573,11 +573,11 @@ footer a:hover { color: var(--fg); }
           <section class="pg">
             <div class="pg-h" data-i="secCalc">计算</div>
             <div>
-              <div class="row"><span data-i="outRatio">出站占比</span><span class="num" id="outRatioV"></span></div>
+              <div class="row"><span data-i="outRatio">出站流量占比</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">超额只对出站收费。不确定就保持 100%。</div>
+              <div class="lbl" data-i="outRatioHint">超额只按出站流量（从服务器发出去的）收费。不清楚就保持 100%。</div>
             </div>
-            <div class="row"><span data-i="prorate">月中开通的额度按时长折算</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">月中开通的实例，额度按剩余时长折算</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">主题</div>
@@ -599,7 +599,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">重置全部数据</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>实例、已用流量和设置都会恢复默认，无法撤销。需要的话先在高级设置里导出备份。</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>实例、已用流量和设置都会恢复默认，清空后找不回来。需要的话，先在高级设置里导出备份。</div>
           </section>
         </div>
       </details>
@@ -607,13 +607,13 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">已载入链接中的配置，你原来的数据已备份。</span>
-    <button class="btn sm" id="linkUndo" type="button" data-i="undo">恢复原来的数据</button>
+    <span data-i="linkLoaded">已按链接载入配置。你原来的数据已备份，随时可以恢复。</span>
+    <button class="btn sm" id="linkUndo" type="button" data-i="undo">恢复我的数据</button>
   </div>
 
   <div class="banner" id="rollover" hidden>
     <span id="rolloverText"></span>
-    <button class="btn sm ink" id="rolloverBtn" type="button" data-i="rollBtn">开始新月份</button>
+    <button class="btn sm ink" id="rolloverBtn" type="button" data-i="rollBtn">开始新的一个月</button>
   </div>
 
   <div class="grid">
@@ -648,7 +648,7 @@ footer a:hover { color: var(--fg); }
           <div class="kv"><span class="lbl" data-i="allow">本月额度</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">月底预计</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">本月预估费用</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">本月预计花费</span><span class="v" id="sCost"></span></div>
         </div>
         <div class="act" id="act"></div>
       </div>
@@ -660,7 +660,7 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">先测你到各个 AWS 区域的延迟</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">基石实例</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">流量池中的地基，新添加的流量实例需要与它规格一致。</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">主实例</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">你现在在用的那台。新加的流量实例要和它同一个套餐，额度才能合在一起。</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">需要公网 IPv4</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">开通时间</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
@@ -669,9 +669,9 @@ footer a:hover { color: var(--fg); }
         <div class="sec">
           <div class="sec-h"><b data-i="nodes">流量实例</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">同地区、同规格实例共享流量池，IPv6-only。</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">同地区、同套餐的实例共用一个流量池。流量实例选 IPv6-only，比带公网 IPv4 的便宜。</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
-          <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">添加流量实例</span></button>
+          <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">加一台流量实例</span></button>
         </div>
       </div>
     </section>
@@ -703,28 +703,28 @@ footer a:hover { color: var(--fg); }
     <div class="help-b">
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
-        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">入站流量也扣额度吗？</button>
-        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">入站流量会收费吗？</button>
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">入站流量也算额度吗？</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">入站流量要收费吗？</button>
         <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">超额怎么收费？</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">哪些实例共享额度？</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">哪些实例能合用额度？</button>
         <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">关机的实例还收费吗？</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">新加实例能抵掉已产生的超额吗？</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">新加实例能抵掉已经产生的超额吗？</button>
         <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">删掉重建能清零用量吗？</button>
         <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">内网流量收费吗？</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">估算有多准？</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">估算准不准？</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">AWS 官方链接</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="上一个"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="下一个"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>入站流量也扣额度吗？</h4><p>入站 + 出站<b>都扣额度</b></p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>入站流量会收费吗？</h4><p>超额<b>只收出站</b>，入站永远免费</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>超额怎么收费？</h4><p>按地区不同，超出共享额度的出站流量<b>每 GB $0.09–$0.17</b>。计算器使用所选地区的价格。</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>哪些实例共享额度？</h4><p>同地区、<b>同规格</b>才合并；同规格双栈与 IPv6-only 可合并</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>关机的实例还收费吗？</h4><p>按小时计费，<b>停机照样计费</b>，删除才停止</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>新加实例能抵掉已产生的超额吗？</h4><p class="w">已产生的超额，<b>新加实例无法抵消</b>，要在用完前扩容</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>删掉重建能清零用量吗？</h4><p>删除后重建<b>不会重置</b>本月已用量</p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>内网流量收费吗？</h4><p>同地区走<b>私网 IP</b>：扣额度，但超额也免费</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>估算有多准？</h4><p>按 1 TB = 1024 GB、UTC 自然月估算，以 AWS 账单为准</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>入站流量也算额度吗？</h4><p>入站和出站流量<b>都算进额度</b></p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>入站流量要收费吗？</h4><p>超额<b>只收出站</b>费用，入站永远免费</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>超额怎么收费？</h4><p>看地区：超出流量池的出站流量，<b>每 GB $0.09–$0.17</b>。计算器按你选的地区价格算。</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>哪些实例能合用额度？</h4><p>只有同地区、<b>同套餐</b>的实例能合用额度；同套餐的双栈和 IPv6-only 实例也能合用</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>关机的实例还收费吗？</h4><p>按小时计费，<b>关机也照常收费</b>，删除实例才停止</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>新加实例能抵掉已经产生的超额吗？</h4><p class="w">已经产生的超额，<b>新加实例也抵不掉</b>，要在额度用完前加</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>删掉重建能清零用量吗？</h4><p>删掉再重建，本月已用流量<b>不会清零</b></p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>内网流量收费吗？</h4><p>同地区内走<b>私有 IP</b> 的流量：算进额度，但超额也不收费</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>估算准不准？</h4><p>按 1 TB = 1024 GB、UTC 自然月估算，实际以 AWS 账单为准</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>AWS 官方链接</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">官方定价</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">流量额度 FAQ</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">计费 FAQ</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">服务条款</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">查看账单用量</a></p></section>
       </div>
 <!-- HELP:END -->

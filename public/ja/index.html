@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AWS Lightsail 転送量・超過料金 計算ツール</title>
+<title>AWS Lightsail 転送量計算ツール｜超過料金を予測して最安の対策を計算</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="無料の AWS Lightsail データ転送計算ツール。同じリージョン・同じプランのインスタンスは転送量の枠を共有します。使用量と残りの枠、月末の超過料金を予測し、最も安い IPv6 インスタンスの追加台数を求めます。">
+<meta name="description" content="無料の AWS Lightsail 転送量計算ツール。同じリージョン・同じプランのインスタンスは転送量の枠を合算できます。今月の使用量を入れるだけで、残りの枠、月末に超過するか、IPv6 インスタンスを何台足すと一番安いかがわかります。">
 <meta name="keywords" content="AWS Lightsail, Lightsail 転送量, Lightsail 超過料金, データ転送, 転送量計算, Lightsail 料金, IPv6, VPS">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="AWS Lightsail 節約計算機">
@@ -41,16 +41,16 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AWS Lightsail 節約計算機">
-<meta property="og:title" content="AWS Lightsail 転送量・超過料金 計算ツール">
-<meta property="og:description" content="「同じリージョン・同じプランのデータ転送量はプールで共有」というルールで、変動する通信量に最も安いプランを見つけます。">
+<meta property="og:title" content="AWS Lightsail 転送量計算ツール｜超過料金を予測して最安の対策を計算">
+<meta property="og:description" content="同じリージョン・同じプランの Lightsail インスタンスは、転送量の枠を合算して使えます。今月超過するか、何台足せば一番安いかを計算します。">
 <meta property="og:image" content="https://ls.1ms.dog/og/ja.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AWS Lightsail 転送量・超過料金 計算ツール">
-<meta name="twitter:description" content="「同じリージョン・同じプランのデータ転送量はプールで共有」というルールで、変動する通信量に最も安いプランを見つけます。">
+<meta name="twitter:title" content="AWS Lightsail 転送量計算ツール｜超過料金を予測して最安の対策を計算">
+<meta name="twitter:description" content="同じリージョン・同じプランの Lightsail インスタンスは、転送量の枠を合算して使えます。今月超過するか、何台足せば一番安いかを計算します。">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/ja.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/ja/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 節約計算機","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"無料の AWS Lightsail データ転送計算ツール。同じリージョン・同じプランのインスタンスは転送量の枠を共有します。使用量と残りの枠、月末の超過料金を予測し、最も安い IPv6 インスタンスの追加台数を求めます。","inLanguage":"ja","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/ja/"},{"@type":"FAQPage","inLanguage":"ja","mainEntity":[{"@type":"Question","name":"受信トラフィックも枠を消費しますか？","acceptedAnswer":{"@type":"Answer","text":"受信 + 送信の両方が枠を消費"}},{"@type":"Question","name":"受信トラフィックは課金されますか？","acceptedAnswer":{"@type":"Answer","text":"超過料金は送信のみ、受信は常に無料"}},{"@type":"Question","name":"超過料金はいくらですか？","acceptedAnswer":{"@type":"Answer","text":"リージョンによって異なり、プールを超えた送信トラフィックは1 GB あたり $0.09–$0.17です。計算には選択中のリージョンの料金を使います。"}},{"@type":"Question","name":"どのインスタンスが枠を共有しますか？","acceptedAnswer":{"@type":"Answer","text":"同じリージョン・同じプランのみ合算。同じプランのデュアルスタックと IPv6-only は合算可"}},{"@type":"Question","name":"停止中のインスタンスも課金されますか？","acceptedAnswer":{"@type":"Answer","text":"時間課金。停止中も課金、削除で停止"}},{"@type":"Question","name":"インスタンスを追加すれば超過を相殺できますか？","acceptedAnswer":{"@type":"Answer","text":"発生済みの超過は新規インスタンスで相殺不可。尽きる前に追加を"}},{"@type":"Question","name":"削除して作り直すと使用量はリセットされますか？","acceptedAnswer":{"@type":"Answer","text":"削除して再作成しても今月の使用量はリセットされない"}},{"@type":"Question","name":"プライベート IP の通信は課金されますか？","acceptedAnswer":{"@type":"Answer","text":"同一リージョンのプライベート IP 通信は枠を消費するが超過でも無料"}},{"@type":"Question","name":"見積もりはどのくらい正確ですか？","acceptedAnswer":{"@type":"Answer","text":"1 TB = 1024 GB、UTC の暦月で見積もり。最終的には AWS の請求が基準"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 節約計算機","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"無料の AWS Lightsail 転送量計算ツール。同じリージョン・同じプランのインスタンスは転送量の枠を合算できます。今月の使用量を入れるだけで、残りの枠、月末に超過するか、IPv6 インスタンスを何台足すと一番安いかがわかります。","inLanguage":"ja","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/ja/"},{"@type":"FAQPage","inLanguage":"ja","mainEntity":[{"@type":"Question","name":"受信も枠を消費しますか？","acceptedAnswer":{"@type":"Answer","text":"受信も送信も枠を消費します"}},{"@type":"Question","name":"受信に料金はかかりますか？","acceptedAnswer":{"@type":"Answer","text":"超過料金は送信だけ。受信はいつでも無料"}},{"@type":"Question","name":"超過料金はいくら？","acceptedAnswer":{"@type":"Answer","text":"リージョンによって違い、プールを超えた送信は1 GB あたり $0.09–$0.17です。計算には選んだリージョンの料金を使います。"}},{"@type":"Question","name":"どのインスタンスが枠を合算できますか？","acceptedAnswer":{"@type":"Answer","text":"合算できるのは同じリージョン・同じプランだけ。同じプランならデュアルスタックと IPv6-only も合算可"}},{"@type":"Question","name":"停止中のインスタンスにも料金はかかりますか？","acceptedAnswer":{"@type":"Answer","text":"時間単位の課金。停止中も課金され、止まるのは削除したときだけ"}},{"@type":"Question","name":"インスタンスを足せば超過は消えますか？","acceptedAnswer":{"@type":"Answer","text":"すでに発生した超過はあとから足しても取り消せません。枠を使い切る前に追加を"}},{"@type":"Question","name":"作り直せば使用量はリセットされますか？","acceptedAnswer":{"@type":"Answer","text":"削除して作り直しても、今月の使用量はリセットされません"}},{"@type":"Question","name":"プライベート IP の通信は有料ですか？","acceptedAnswer":{"@type":"Answer","text":"同じリージョン内のプライベート IP 通信は枠を消費しますが、超過しても無料"}},{"@type":"Question","name":"見積もりはどれくらい正確？","acceptedAnswer":{"@type":"Answer","text":"1 TB = 1024 GB、UTC の暦月で計算しています。最終的な金額は AWS の請求書で確認してください"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -557,7 +557,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">AWS Lightsail 節約計算機</h1>
       </a>
-      <p class="tagline" data-i="tagline">「同じリージョン・同じプランのデータ転送量はプールで共有」というルールで、変動する通信量に最も安いプランを見つけます。</p>
+      <p class="tagline" data-i="tagline">同じリージョン・同じプランの Lightsail インスタンスは、転送量の枠を合算して使えます。今月超過するか、何台足せば一番安いかを計算します。</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">AI で使う</span></button>
@@ -565,7 +565,7 @@ footer a:hover { color: var(--fg); }
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c2 2 2 10.4 0 12.4M8 1.8c-2 2-2 10.4 0 12.4"/></svg>
         <select id="lang"></select>
       </label>
-      <button class="icon-btn" id="helpBtn" type="button" aria-haspopup="dialog" aria-controls="help"><span class="sr" data-i="rules">料金ルール早見表</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4M8 11.3v.1"/></svg></button>
+      <button class="icon-btn" id="helpBtn" type="button" aria-haspopup="dialog" aria-controls="help"><span class="sr" data-i="rules">料金ルールまとめ</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4M8 11.3v.1"/></svg></button>
       <a class="icon-btn" id="ghBtn" data-ia="gh" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="GitHub でソースを見る" aria-label="GitHub でソースを見る"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
       <details class="menu" id="settings">
         <summary class="icon-btn" id="settingsBtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h2M7 12h7"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="5.5" cy="12" r="1.6"/></svg></summary>
@@ -575,9 +575,9 @@ footer a:hover { color: var(--fg); }
             <div>
               <div class="row"><span data-i="outRatio">送信の割合</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">超過料金は送信のみ。不明なら 100% のままに。</div>
+              <div class="lbl" data-i="outRatioHint">超過料金がかかるのは送信（サーバーから外へ出る通信）だけです。わからなければ 100% のままで大丈夫です。</div>
             </div>
-            <div class="row"><span data-i="prorate">月途中の作成分は枠を時間按分</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">月の途中で作成したインスタンスの枠を稼働時間で按分</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">テーマ</div>
@@ -599,7 +599,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">全データをリセット</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>インスタンス、使用量、設定が初期状態に戻り、元に戻せません。必要なら先に詳細設定から書き出してください。</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>インスタンス、使用量、設定がすべて初期状態に戻ります。元には戻せません。必要なら先に詳細設定からバックアップを書き出してください。</div>
           </section>
         </div>
       </details>
@@ -607,13 +607,13 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">リンクの設定を読み込みました。以前のデータはバックアップ済みです。</span>
+    <span data-i="linkLoaded">リンクの設定を読み込みました。元のデータはバックアップしてあり、いつでも戻せます。</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">元のデータに戻す</button>
   </div>
 
   <div class="banner" id="rollover" hidden>
     <span id="rolloverText"></span>
-    <button class="btn sm ink" id="rolloverBtn" type="button" data-i="rollBtn">新しい月を開始</button>
+    <button class="btn sm ink" id="rolloverBtn" type="button" data-i="rollBtn">新しい月を始める</button>
   </div>
 
   <div class="grid">
@@ -628,7 +628,7 @@ footer a:hover { color: var(--fg); }
       <div class="body">
         <div class="used">
           <div class="used-l">
-            <label class="big-in" id="usedWrap"><input id="used" class="num" type="number" min="0" step="1" inputmode="decimal" placeholder="0"><span data-i="usedUnit">GB 使用</span></label>
+            <label class="big-in" id="usedWrap"><input id="used" class="num" type="number" min="0" step="1" inputmode="decimal" placeholder="0"><span data-i="usedUnit">GB 使用済み</span></label>
             <span class="note" id="usedRec" hidden></span>
           </div>
           <div class="used-meta">
@@ -648,7 +648,7 @@ footer a:hover { color: var(--fg); }
           <div class="kv"><span class="lbl" data-i="allow">今月の枠</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">月末予測</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">今月の見積額</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">今月の見込み額</span><span class="v" id="sCost"></span></div>
         </div>
         <div class="act" id="act"></div>
       </div>
@@ -660,18 +660,18 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">まず各 AWS リージョンへの遅延を測定</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">ベースインスタンス</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">プールの土台。追加するトラフィック用インスタンスは同じプランにする必要があります。</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">メインのインスタンス</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">いま使っているインスタンスです。追加インスタンスは同じプランにしないと枠を合算できません。</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">パブリック IPv4 が必要</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">作成日時</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
           <div class="note" id="utcNote"></div>
         </div>
         <div class="sec">
-          <div class="sec-h"><b data-i="nodes">トラフィック用インスタンス</b></div>
+          <div class="sec-h"><b data-i="nodes">追加インスタンス</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">同じリージョン・同じプランのインスタンスはプールを共有。IPv6-only。</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">同じリージョン・同じプランなら枠を合算できます。追加分は IPv6-only にすると、パブリック IPv4 付きより安く済みます。</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
-          <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">トラフィック用インスタンスを追加</span></button>
+          <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">追加インスタンスを足す</span></button>
         </div>
       </div>
     </section>
@@ -698,33 +698,33 @@ footer a:hover { color: var(--fg); }
 <!-- billing rules and questions; the questions and answers are written in by scripts/build.mjs, so they are in the HTML for search engines -->
 <div class="scrim" id="help" hidden>
   <div class="dialog help" role="dialog" aria-modal="true" aria-labelledby="helpT">
-    <div class="help-h"><h3 id="helpT" data-i="rules">料金ルール早見表</h3>
+    <div class="help-h"><h3 id="helpT" data-i="rules">料金ルールまとめ</h3>
       <button class="icon-btn" data-hclose data-ia="close" type="button" aria-label="閉じる"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
     <div class="help-b">
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
-        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">受信トラフィックも枠を消費しますか？</button>
-        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">受信トラフィックは課金されますか？</button>
-        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">超過料金はいくらですか？</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">どのインスタンスが枠を共有しますか？</button>
-        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">停止中のインスタンスも課金されますか？</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">インスタンスを追加すれば超過を相殺できますか？</button>
-        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">削除して作り直すと使用量はリセットされますか？</button>
-        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">プライベート IP の通信は課金されますか？</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">見積もりはどのくらい正確ですか？</button>
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">受信も枠を消費しますか？</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">受信に料金はかかりますか？</button>
+        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">超過料金はいくら？</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">どのインスタンスが枠を合算できますか？</button>
+        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">停止中のインスタンスにも料金はかかりますか？</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">インスタンスを足せば超過は消えますか？</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">作り直せば使用量はリセットされますか？</button>
+        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">プライベート IP の通信は有料ですか？</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">見積もりはどれくらい正確？</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">AWS 公式リンク</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="前へ"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="次へ"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>受信トラフィックも枠を消費しますか？</h4><p>受信 + 送信の<b>両方が枠を消費</b></p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>受信トラフィックは課金されますか？</h4><p>超過料金は<b>送信のみ</b>、受信は常に無料</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>超過料金はいくらですか？</h4><p>リージョンによって異なり、プールを超えた送信トラフィックは<b>1 GB あたり $0.09–$0.17</b>です。計算には選択中のリージョンの料金を使います。</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>どのインスタンスが枠を共有しますか？</h4><p>同じリージョン・<b>同じプラン</b>のみ合算。同じプランのデュアルスタックと IPv6-only は合算可</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>停止中のインスタンスも課金されますか？</h4><p>時間課金。<b>停止中も課金</b>、削除で停止</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>インスタンスを追加すれば超過を相殺できますか？</h4><p class="w">発生済みの超過は<b>新規インスタンスで相殺不可</b>。尽きる前に追加を</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>削除して作り直すと使用量はリセットされますか？</h4><p>削除して再作成しても今月の使用量は<b>リセットされない</b></p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>プライベート IP の通信は課金されますか？</h4><p>同一リージョンの<b>プライベート IP</b> 通信は枠を消費するが超過でも無料</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>見積もりはどのくらい正確ですか？</h4><p>1 TB = 1024 GB、UTC の暦月で見積もり。最終的には AWS の請求が基準</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>受信も枠を消費しますか？</h4><p>受信も送信も<b>枠を消費します</b></p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>受信に料金はかかりますか？</h4><p>超過料金は<b>送信だけ</b>。受信はいつでも無料</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>超過料金はいくら？</h4><p>リージョンによって違い、プールを超えた送信は<b>1 GB あたり $0.09–$0.17</b>です。計算には選んだリージョンの料金を使います。</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>どのインスタンスが枠を合算できますか？</h4><p>合算できるのは同じリージョン・<b>同じプラン</b>だけ。同じプランならデュアルスタックと IPv6-only も合算可</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>停止中のインスタンスにも料金はかかりますか？</h4><p>時間単位の課金。<b>停止中も課金</b>され、止まるのは削除したときだけ</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>インスタンスを足せば超過は消えますか？</h4><p class="w">すでに発生した超過は<b>あとから足しても取り消せません</b>。枠を使い切る前に追加を</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>作り直せば使用量はリセットされますか？</h4><p>削除して作り直しても、今月の使用量は<b>リセットされません</b></p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>プライベート IP の通信は有料ですか？</h4><p>同じリージョン内の<b>プライベート IP</b> 通信は枠を消費しますが、超過しても無料</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>見積もりはどれくらい正確？</h4><p>1 TB = 1024 GB、UTC の暦月で計算しています。最終的な金額は AWS の請求書で確認してください</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>AWS 公式リンク</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">料金</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">データ転送 FAQ</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">請求 FAQ</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">サービス条件</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">請求の使用量を見る</a></p></section>
       </div>
 <!-- HELP:END -->

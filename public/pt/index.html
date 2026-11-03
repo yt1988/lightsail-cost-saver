@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Calculadora de transferência e excedente do AWS Lightsail</title>
+<title>Calculadora de tráfego do AWS Lightsail: preveja o excedente e economize</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="Calculadora gratuita de transferência de dados do AWS Lightsail. Instâncias do mesmo tamanho na mesma região compartilham a franquia: acompanhe o uso, preveja o excedente no fim do mês e descubra quantas instâncias IPv6 adicionar pelo menor custo.">
+<meta name="description" content="Calculadora gratuita de tráfego do AWS Lightsail. Instâncias com o mesmo plano em uma região dividem a franquia. Informe o uso deste mês e veja quanto resta, se vai pagar excedente e quantas instâncias IPv6 adicionar para pagar o mínimo.">
 <meta name="keywords" content="AWS Lightsail, transferência de dados Lightsail, excedente Lightsail, calculadora, preços Lightsail, instância IPv6, VPS">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="Calculadora de economia AWS Lightsail">
@@ -41,16 +41,16 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Calculadora de economia AWS Lightsail">
-<meta property="og:title" content="Calculadora de transferência e excedente do AWS Lightsail">
-<meta property="og:description" content="Usa a regra de que instâncias da mesma região e tamanho compartilham a transferência para achar o plano mais barato para tráfego variável.">
+<meta property="og:title" content="Calculadora de tráfego do AWS Lightsail: preveja o excedente e economize">
+<meta property="og:description" content="Instâncias do Lightsail com o mesmo plano na mesma região dividem uma franquia de transferência. Veja se você vai estourar este mês e quantas instâncias baratas adicionar para evitar isso.">
 <meta property="og:image" content="https://ls.1ms.dog/og/pt.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Calculadora de transferência e excedente do AWS Lightsail">
-<meta name="twitter:description" content="Usa a regra de que instâncias da mesma região e tamanho compartilham a transferência para achar o plano mais barato para tráfego variável.">
+<meta name="twitter:title" content="Calculadora de tráfego do AWS Lightsail: preveja o excedente e economize">
+<meta name="twitter:description" content="Instâncias do Lightsail com o mesmo plano na mesma região dividem uma franquia de transferência. Veja se você vai estourar este mês e quantas instâncias baratas adicionar para evitar isso.">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/pt.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/pt/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculadora de economia AWS Lightsail","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Calculadora gratuita de transferência de dados do AWS Lightsail. Instâncias do mesmo tamanho na mesma região compartilham a franquia: acompanhe o uso, preveja o excedente no fim do mês e descubra quantas instâncias IPv6 adicionar pelo menor custo.","inLanguage":"pt","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/pt/"},{"@type":"FAQPage","inLanguage":"pt","mainEntity":[{"@type":"Question","name":"O tráfego de entrada consome a franquia?","acceptedAnswer":{"@type":"Answer","text":"Entrada + saída consomem a cota"}},{"@type":"Question","name":"O tráfego de entrada é cobrado?","acceptedAnswer":{"@type":"Answer","text":"O excedente é cobrado só na saída; a entrada é grátis"}},{"@type":"Question","name":"Quanto custa o excedente?","acceptedAnswer":{"@type":"Answer","text":"Depende da região: $0.09–$0.17 por GB de tráfego de saída acima do pool. A calculadora usa a tarifa da região selecionada."}},{"@type":"Question","name":"Quais instâncias compartilham o pool?","acceptedAnswer":{"@type":"Answer","text":"Só somam instâncias da mesma região e mesmo tamanho; pilha dupla e IPv6 do mesmo tamanho somam juntas"}},{"@type":"Question","name":"Instâncias paradas continuam cobrando?","acceptedAnswer":{"@type":"Answer","text":"Cobrança por hora; parada também é cobrada, só excluir encerra"}},{"@type":"Question","name":"Adicionar instâncias compensa o excedente já gerado?","acceptedAnswer":{"@type":"Answer","text":"Excedente já gerado não é compensado por novas instâncias; amplie antes de acabar"}},{"@type":"Question","name":"Excluir e recriar zera o uso?","acceptedAnswer":{"@type":"Answer","text":"Excluir e recriar não zera o uso do mês"}},{"@type":"Question","name":"O tráfego por IP privado é cobrado?","acceptedAnswer":{"@type":"Answer","text":"Tráfego por IP privado na região consome cota, mas nunca é cobrado"}},{"@type":"Question","name":"Quão precisas são as estimativas?","acceptedAnswer":{"@type":"Answer","text":"Estimativa com 1 TB = 1024 GB e meses UTC; vale a fatura da AWS"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculadora de economia AWS Lightsail","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Calculadora gratuita de tráfego do AWS Lightsail. Instâncias com o mesmo plano em uma região dividem a franquia. Informe o uso deste mês e veja quanto resta, se vai pagar excedente e quantas instâncias IPv6 adicionar para pagar o mínimo.","inLanguage":"pt","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/pt/"},{"@type":"FAQPage","inLanguage":"pt","mainEntity":[{"@type":"Question","name":"O tráfego de entrada conta para a franquia?","acceptedAnswer":{"@type":"Answer","text":"Tráfego de entrada e de saída contam para a franquia"}},{"@type":"Question","name":"O tráfego de entrada é cobrado?","acceptedAnswer":{"@type":"Answer","text":"O excedente é cobrado só na saída; a entrada é sempre grátis"}},{"@type":"Question","name":"Quanto custa o excedente?","acceptedAnswer":{"@type":"Answer","text":"Depende da região: $0.09–$0.17 por GB de saída acima da franquia. A calculadora usa o preço da região escolhida."}},{"@type":"Question","name":"Quais instâncias dividem a franquia?","acceptedAnswer":{"@type":"Answer","text":"Só dividem franquia instâncias da mesma região com o mesmo plano; as versões pilha dupla e IPv6-only de um plano somam juntas"}},{"@type":"Question","name":"Instância parada continua cobrando?","acceptedAnswer":{"@type":"Answer","text":"Cobrança por hora. Instância parada continua cobrando; só a exclusão para a cobrança"}},{"@type":"Question","name":"Adicionar instâncias cancela o excedente?","acceptedAnswer":{"@type":"Answer","text":"O excedente que já aconteceu não é compensado por novas instâncias: adicione antes de a franquia acabar"}},{"@type":"Question","name":"Recriar a instância zera o uso?","acceptedAnswer":{"@type":"Answer","text":"Excluir e recriar uma instância não zera o uso do mês"}},{"@type":"Question","name":"Tráfego por IP privado é cobrado?","acceptedAnswer":{"@type":"Answer","text":"Tráfego por IP privado dentro da região conta para a franquia, mas nunca é cobrado"}},{"@type":"Question","name":"As estimativas são precisas?","acceptedAnswer":{"@type":"Answer","text":"Estimativa com 1 TB = 1024 GB e meses do calendário em UTC. Os valores finais são os da sua fatura da AWS"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -557,7 +557,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">Calculadora de economia AWS Lightsail</h1>
       </a>
-      <p class="tagline" data-i="tagline">Usa a regra de que instâncias da mesma região e tamanho compartilham a transferência para achar o plano mais barato para tráfego variável.</p>
+      <p class="tagline" data-i="tagline">Instâncias do Lightsail com o mesmo plano na mesma região dividem uma franquia de transferência. Veja se você vai estourar este mês e quantas instâncias baratas adicionar para evitar isso.</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">Usar com IA</span></button>
@@ -575,9 +575,9 @@ footer a:hover { color: var(--fg); }
             <div>
               <div class="row"><span data-i="outRatio">Parcela de saída</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">Só o tráfego de saída é cobrado como excedente. Mantenha 100% se não souber.</div>
+              <div class="lbl" data-i="outRatioHint">O excedente só é cobrado sobre o tráfego de saída (o que seus servidores enviam). Se não tiver certeza, deixe em 100%.</div>
             </div>
-            <div class="row"><span data-i="prorate">Proporcionalizar a cota de instâncias criadas no meio do mês</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">Calcular proporcionalmente a franquia de instâncias criadas no meio do mês</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">Tema</div>
@@ -599,7 +599,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">Redefinir tudo</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>Instâncias, uso e configurações voltam ao padrão. Não dá para desfazer. Exporte um backup antes, se precisar.</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>Instâncias, uso e configurações voltam ao padrão, e não dá para desfazer. Se precisar, exporte antes um backup em Configurações avançadas.</div>
           </section>
         </div>
       </details>
@@ -607,7 +607,7 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">Configuração do link carregada. Seus dados anteriores foram salvos.</span>
+    <span data-i="linkLoaded">A configuração do link foi carregada. Seus dados anteriores estão salvos e podem ser restaurados.</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">Restaurar meus dados</button>
   </div>
 
@@ -645,10 +645,10 @@ footer a:hover { color: var(--fg); }
           <div class="flegend" id="flegend"></div>
         </div>
         <div class="stats">
-          <div class="kv"><span class="lbl" data-i="allow">Cota</span><span class="v" id="sAllow"></span></div>
+          <div class="kv"><span class="lbl" data-i="allow">Franquia</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">Previsão fim do mês</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">Custo estimado</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">Custo estimado do mês</span><span class="v" id="sCost"></span></div>
         </div>
         <div class="act" id="act"></div>
       </div>
@@ -660,7 +660,7 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">Meça antes sua latência para cada região da AWS</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">Instância base</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">A fundação do pool. Toda instância de tráfego adicionada precisa ter o mesmo tamanho.</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">Instância principal</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">A instância que você já usa. As instâncias de tráfego precisam ter o mesmo plano para somar as franquias.</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">Precisa de IPv4 público</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">Criada em</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
@@ -669,7 +669,7 @@ footer a:hover { color: var(--fg); }
         <div class="sec">
           <div class="sec-h"><b data-i="nodes">Instâncias de tráfego</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Mesma região e tamanho compartilham o pool. Só IPv6.</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Instâncias com o mesmo plano na mesma região dividem uma única franquia. As de tráfego são só IPv6 (IPv6-only), mais baratas que com IPv4 público.</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
           <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">Adicionar instância de tráfego</span></button>
         </div>
@@ -703,28 +703,28 @@ footer a:hover { color: var(--fg); }
     <div class="help-b">
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
-        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">O tráfego de entrada consome a franquia?</button>
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">O tráfego de entrada conta para a franquia?</button>
         <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">O tráfego de entrada é cobrado?</button>
         <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">Quanto custa o excedente?</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Quais instâncias compartilham o pool?</button>
-        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Instâncias paradas continuam cobrando?</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Adicionar instâncias compensa o excedente já gerado?</button>
-        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Excluir e recriar zera o uso?</button>
-        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">O tráfego por IP privado é cobrado?</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">Quão precisas são as estimativas?</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Quais instâncias dividem a franquia?</button>
+        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Instância parada continua cobrando?</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Adicionar instâncias cancela o excedente?</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Recriar a instância zera o uso?</button>
+        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Tráfego por IP privado é cobrado?</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">As estimativas são precisas?</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">Links oficiais da AWS</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="Anterior"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="Próximo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>O tráfego de entrada consome a franquia?</h4><p>Entrada + saída <b>consomem a cota</b></p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>O tráfego de entrada é cobrado?</h4><p>O excedente é <b>cobrado só na saída</b>; a entrada é grátis</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>Quanto custa o excedente?</h4><p>Depende da região: <b>$0.09–$0.17 por GB</b> de tráfego de saída acima do pool. A calculadora usa a tarifa da região selecionada.</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Quais instâncias compartilham o pool?</h4><p>Só somam instâncias da mesma região e <b>mesmo tamanho</b>; pilha dupla e IPv6 do mesmo tamanho somam juntas</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Instâncias paradas continuam cobrando?</h4><p>Cobrança por hora; <b>parada também é cobrada</b>, só excluir encerra</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Adicionar instâncias compensa o excedente já gerado?</h4><p class="w">Excedente já gerado <b>não é compensado</b> por novas instâncias; amplie antes de acabar</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Excluir e recriar zera o uso?</h4><p>Excluir e recriar <b>não zera</b> o uso do mês</p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>O tráfego por IP privado é cobrado?</h4><p>Tráfego por <b>IP privado</b> na região consome cota, mas nunca é cobrado</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>Quão precisas são as estimativas?</h4><p>Estimativa com 1 TB = 1024 GB e meses UTC; vale a fatura da AWS</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>O tráfego de entrada conta para a franquia?</h4><p>Tráfego de entrada e de saída <b>contam para a franquia</b></p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>O tráfego de entrada é cobrado?</h4><p>O excedente é <b>cobrado só na saída</b>; a entrada é sempre grátis</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>Quanto custa o excedente?</h4><p>Depende da região: <b>$0.09–$0.17 por GB</b> de saída acima da franquia. A calculadora usa o preço da região escolhida.</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Quais instâncias dividem a franquia?</h4><p>Só dividem franquia instâncias da mesma região com o <b>mesmo plano</b>; as versões pilha dupla e IPv6-only de um plano somam juntas</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Instância parada continua cobrando?</h4><p>Cobrança por hora. <b>Instância parada continua cobrando</b>; só a exclusão para a cobrança</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Adicionar instâncias cancela o excedente?</h4><p class="w">O excedente que já aconteceu <b>não é compensado</b> por novas instâncias: adicione antes de a franquia acabar</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Recriar a instância zera o uso?</h4><p>Excluir e recriar uma instância <b>não zera</b> o uso do mês</p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Tráfego por IP privado é cobrado?</h4><p>Tráfego por <b>IP privado</b> dentro da região conta para a franquia, mas nunca é cobrado</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>As estimativas são precisas?</h4><p>Estimativa com 1 TB = 1024 GB e meses do calendário em UTC. Os valores finais são os da sua fatura da AWS</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>Links oficiais da AWS</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">Preços</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">FAQ de transferência</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">FAQ de cobrança</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">Termos de serviço</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">Ver uso na fatura</a></p></section>
       </div>
 <!-- HELP:END -->

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Калькулятор трафика и превышения AWS Lightsail</title>
+<title>Калькулятор трафика AWS Lightsail: прогноз перерасхода и экономия</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="Бесплатный калькулятор трафика AWS Lightsail. Инстансы одного размера в одном регионе делят общий лимит: следите за расходом, прогнозируйте превышение к концу месяца и узнайте, сколько IPv6-инстансов добавить дешевле всего.">
+<meta name="description" content="Бесплатный калькулятор трафика AWS Lightsail. Инстансы на одном тарифе в регионе делят общий лимит. Введите расход за месяц и узнайте, сколько осталось, будет ли перерасход и сколько IPv6-инстансов добавить, чтобы платить меньше всего.">
 <meta name="keywords" content="AWS Lightsail, трафик Lightsail, превышение Lightsail, калькулятор трафика, цены Lightsail, IPv6-инстанс, VPS">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="Калькулятор экономии AWS Lightsail">
@@ -41,16 +41,16 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Калькулятор экономии AWS Lightsail">
-<meta property="og:title" content="Калькулятор трафика и превышения AWS Lightsail">
-<meta property="og:description" content="Использует правило общего пула трафика для инстансов одного региона и размера, чтобы найти самый дешёвый план при переменном трафике.">
+<meta property="og:title" content="Калькулятор трафика AWS Lightsail: прогноз перерасхода и экономия">
+<meta property="og:description" content="Инстансы Lightsail на одном тарифе в одном регионе делят общий лимит трафика. Узнайте, превысите ли вы его в этом месяце и сколько дешёвых инстансов добавить, чтобы этого избежать.">
 <meta property="og:image" content="https://ls.1ms.dog/og/ru.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Калькулятор трафика и превышения AWS Lightsail">
-<meta name="twitter:description" content="Использует правило общего пула трафика для инстансов одного региона и размера, чтобы найти самый дешёвый план при переменном трафике.">
+<meta name="twitter:title" content="Калькулятор трафика AWS Lightsail: прогноз перерасхода и экономия">
+<meta name="twitter:description" content="Инстансы Lightsail на одном тарифе в одном регионе делят общий лимит трафика. Узнайте, превысите ли вы его в этом месяце и сколько дешёвых инстансов добавить, чтобы этого избежать.">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/ru.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/ru/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Калькулятор экономии AWS Lightsail","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Бесплатный калькулятор трафика AWS Lightsail. Инстансы одного размера в одном регионе делят общий лимит: следите за расходом, прогнозируйте превышение к концу месяца и узнайте, сколько IPv6-инстансов добавить дешевле всего.","inLanguage":"ru","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/ru/"},{"@type":"FAQPage","inLanguage":"ru","mainEntity":[{"@type":"Question","name":"Входящий трафик расходует лимит?","acceptedAnswer":{"@type":"Answer","text":"Входящий + исходящий расходуют лимит"}},{"@type":"Question","name":"Входящий трафик оплачивается?","acceptedAnswer":{"@type":"Answer","text":"Превышение оплачивается только за исходящий; входящий бесплатен"}},{"@type":"Question","name":"Сколько стоит превышение?","acceptedAnswer":{"@type":"Answer","text":"Зависит от региона: $0.09–$0.17 за ГБ исходящего трафика сверх пула. Калькулятор использует тариф выбранного региона."}},{"@type":"Question","name":"Какие инстансы делят пул?","acceptedAnswer":{"@type":"Answer","text":"Суммируются только инстансы одного региона и одного размера; двойной стек и IPv6 одного размера тоже"}},{"@type":"Question","name":"Остановленный инстанс оплачивается?","acceptedAnswer":{"@type":"Answer","text":"Почасовая оплата; остановленный тоже оплачивается, только удаление прекращает"}},{"@type":"Question","name":"Можно ли новыми инстансами погасить уже возникшее превышение?","acceptedAnswer":{"@type":"Answer","text":"Уже возникшее превышение не компенсируется новыми инстансами; добавляйте заранее"}},{"@type":"Question","name":"Сбрасывает ли пересоздание расход?","acceptedAnswer":{"@type":"Answer","text":"Удаление и пересоздание не сбрасывает расход месяца"}},{"@type":"Question","name":"Оплачивается ли трафик по приватным IP?","acceptedAnswer":{"@type":"Answer","text":"Трафик по частным IP в регионе расходует лимит, но никогда не оплачивается"}},{"@type":"Question","name":"Насколько точны оценки?","acceptedAnswer":{"@type":"Answer","text":"Оценка при 1 ТБ = 1024 ГБ и месяцах по UTC; окончательно — счёт AWS"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Калькулятор экономии AWS Lightsail","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Бесплатный калькулятор трафика AWS Lightsail. Инстансы на одном тарифе в регионе делят общий лимит. Введите расход за месяц и узнайте, сколько осталось, будет ли перерасход и сколько IPv6-инстансов добавить, чтобы платить меньше всего.","inLanguage":"ru","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/ru/"},{"@type":"FAQPage","inLanguage":"ru","mainEntity":[{"@type":"Question","name":"Входящий трафик расходует лимит?","acceptedAnswer":{"@type":"Answer","text":"Входящий и исходящий трафик расходуют лимит"}},{"@type":"Question","name":"Платят ли за входящий трафик?","acceptedAnswer":{"@type":"Answer","text":"Перерасход оплачивается только за исходящий трафик; входящий всегда бесплатен"}},{"@type":"Question","name":"Сколько стоит перерасход?","acceptedAnswer":{"@type":"Answer","text":"Зависит от региона: $0.09–$0.17 за GB исходящего трафика сверх лимита. Калькулятор берёт цену выбранного региона."}},{"@type":"Question","name":"Какие инстансы делят лимит?","acceptedAnswer":{"@type":"Answer","text":"Лимит делят только инстансы одного региона на одном тарифе; варианты с двойным стеком и IPv6-only одного тарифа суммируются"}},{"@type":"Question","name":"Остановленный инстанс тоже оплачивается?","acceptedAnswer":{"@type":"Answer","text":"Оплата почасовая. Остановленный инстанс тоже оплачивается; списания прекращаются только после удаления"}},{"@type":"Question","name":"Можно ли новыми инстансами погасить перерасход?","acceptedAnswer":{"@type":"Answer","text":"Уже случившийся перерасход не компенсировать новыми инстансами: добавляйте их до того, как лимит кончится"}},{"@type":"Question","name":"Пересоздание инстанса обнуляет расход?","acceptedAnswer":{"@type":"Answer","text":"Удаление и повторное создание инстанса не обнуляет расход за месяц"}},{"@type":"Question","name":"Платят ли за трафик по частным IP?","acceptedAnswer":{"@type":"Answer","text":"Трафик по частным IP внутри региона расходует лимит, но никогда не оплачивается"}},{"@type":"Question","name":"Насколько точны расчёты?","acceptedAnswer":{"@type":"Answer","text":"Расчёт исходит из 1 TB = 1024 GB и календарных месяцев по UTC. Окончательные суммы указаны в вашем счёте AWS"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -557,7 +557,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">Калькулятор экономии AWS Lightsail</h1>
       </a>
-      <p class="tagline" data-i="tagline">Использует правило общего пула трафика для инстансов одного региона и размера, чтобы найти самый дешёвый план при переменном трафике.</p>
+      <p class="tagline" data-i="tagline">Инстансы Lightsail на одном тарифе в одном регионе делят общий лимит трафика. Узнайте, превысите ли вы его в этом месяце и сколько дешёвых инстансов добавить, чтобы этого избежать.</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">ИИ-агент</span></button>
@@ -575,9 +575,9 @@ footer a:hover { color: var(--fg); }
             <div>
               <div class="row"><span data-i="outRatio">Доля исходящего</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">Превышение оплачивается только за исходящий трафик. Если не уверены, оставьте 100%.</div>
+              <div class="lbl" data-i="outRatioHint">Перерасход оплачивается только за исходящий трафик (то, что отправляют ваши серверы). Если не уверены, оставьте 100 %.</div>
             </div>
-            <div class="row"><span data-i="prorate">Пропорциональный лимит для созданных в середине месяца</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">Считать лимит инстансов, созданных в середине месяца, пропорционально</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">Тема</div>
@@ -599,7 +599,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">Сбросить все данные</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>Инстансы, расход и настройки вернутся к исходным. Отменить нельзя. При необходимости сначала экспортируйте копию.</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>Инстансы, расход и настройки вернутся к значениям по умолчанию. Отменить это нельзя. При необходимости сначала экспортируйте резервную копию в дополнительных настройках.</div>
           </section>
         </div>
       </details>
@@ -607,7 +607,7 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">Настройки из ссылки загружены. Прежние данные сохранены.</span>
+    <span data-i="linkLoaded">Настройки загружены из ссылки. Ваши прежние данные сохранены, их можно вернуть.</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">Вернуть мои данные</button>
   </div>
 
@@ -648,7 +648,7 @@ footer a:hover { color: var(--fg); }
           <div class="kv"><span class="lbl" data-i="allow">Лимит</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">Прогноз на месяц</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">Оценка стоимости</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">Примерные расходы за месяц</span><span class="v" id="sCost"></span></div>
         </div>
         <div class="act" id="act"></div>
       </div>
@@ -660,18 +660,18 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">Сначала проверьте задержку до каждого региона AWS</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">Базовый инстанс</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">Основа пула. Новые трафик-инстансы должны быть того же размера.</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">Основной инстанс</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">Инстанс, который у вас уже работает. Инстансы под трафик должны быть на том же тарифе, иначе лимиты не суммируются.</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">Нужен публичный IPv4</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">Создан</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
           <div class="note" id="utcNote"></div>
         </div>
         <div class="sec">
-          <div class="sec-h"><b data-i="nodes">Трафик-инстансы</b></div>
+          <div class="sec-h"><b data-i="nodes">Инстансы под трафик</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Инстансы одного региона и размера делят пул. Только IPv6.</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Инстансы на одном тарифе в одном регионе делят общий лимит. Инстансы под трафик работают только по IPv6 (IPv6-only) и стоят дешевле, чем с публичным IPv4.</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
-          <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">Добавить трафик-инстанс</span></button>
+          <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">Добавить инстанс под трафик</span></button>
         </div>
       </div>
     </section>
@@ -704,27 +704,27 @@ footer a:hover { color: var(--fg); }
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
         <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">Входящий трафик расходует лимит?</button>
-        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">Входящий трафик оплачивается?</button>
-        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">Сколько стоит превышение?</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Какие инстансы делят пул?</button>
-        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Остановленный инстанс оплачивается?</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Можно ли новыми инстансами погасить уже возникшее превышение?</button>
-        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Сбрасывает ли пересоздание расход?</button>
-        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Оплачивается ли трафик по приватным IP?</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">Насколько точны оценки?</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">Платят ли за входящий трафик?</button>
+        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">Сколько стоит перерасход?</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Какие инстансы делят лимит?</button>
+        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Остановленный инстанс тоже оплачивается?</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Можно ли новыми инстансами погасить перерасход?</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Пересоздание инстанса обнуляет расход?</button>
+        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Платят ли за трафик по частным IP?</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">Насколько точны расчёты?</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">Официальные ссылки AWS</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="Назад"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="Далее"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Входящий трафик расходует лимит?</h4><p>Входящий + исходящий <b>расходуют лимит</b></p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>Входящий трафик оплачивается?</h4><p>Превышение <b>оплачивается только за исходящий</b>; входящий бесплатен</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>Сколько стоит превышение?</h4><p>Зависит от региона: <b>$0.09–$0.17 за ГБ</b> исходящего трафика сверх пула. Калькулятор использует тариф выбранного региона.</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Какие инстансы делят пул?</h4><p>Суммируются только инстансы одного региона и <b>одного размера</b>; двойной стек и IPv6 одного размера тоже</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Остановленный инстанс оплачивается?</h4><p>Почасовая оплата; <b>остановленный тоже оплачивается</b>, только удаление прекращает</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Можно ли новыми инстансами погасить уже возникшее превышение?</h4><p class="w">Уже возникшее превышение <b>не компенсируется</b> новыми инстансами; добавляйте заранее</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Сбрасывает ли пересоздание расход?</h4><p>Удаление и пересоздание <b>не сбрасывает</b> расход месяца</p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Оплачивается ли трафик по приватным IP?</h4><p>Трафик по <b>частным IP</b> в регионе расходует лимит, но никогда не оплачивается</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>Насколько точны оценки?</h4><p>Оценка при 1 ТБ = 1024 ГБ и месяцах по UTC; окончательно — счёт AWS</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Входящий трафик расходует лимит?</h4><p>Входящий и исходящий трафик <b>расходуют лимит</b></p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>Платят ли за входящий трафик?</h4><p>Перерасход <b>оплачивается только за исходящий</b> трафик; входящий всегда бесплатен</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>Сколько стоит перерасход?</h4><p>Зависит от региона: <b>$0.09–$0.17 за GB</b> исходящего трафика сверх лимита. Калькулятор берёт цену выбранного региона.</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Какие инстансы делят лимит?</h4><p>Лимит делят только инстансы одного региона на <b>одном тарифе</b>; варианты с двойным стеком и IPv6-only одного тарифа суммируются</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Остановленный инстанс тоже оплачивается?</h4><p>Оплата почасовая. <b>Остановленный инстанс тоже оплачивается</b>; списания прекращаются только после удаления</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Можно ли новыми инстансами погасить перерасход?</h4><p class="w">Уже случившийся перерасход <b>не компенсировать</b> новыми инстансами: добавляйте их до того, как лимит кончится</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Пересоздание инстанса обнуляет расход?</h4><p>Удаление и повторное создание инстанса <b>не обнуляет</b> расход за месяц</p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Платят ли за трафик по частным IP?</h4><p>Трафик по <b>частным IP</b> внутри региона расходует лимит, но никогда не оплачивается</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>Насколько точны расчёты?</h4><p>Расчёт исходит из 1 TB = 1024 GB и календарных месяцев по UTC. Окончательные суммы указаны в вашем счёте AWS</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>Официальные ссылки AWS</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">Цены</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">FAQ по трафику</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">FAQ по оплате</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">Условия сервиса</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">Расход в счёте</a></p></section>
       </div>
 <!-- HELP:END -->

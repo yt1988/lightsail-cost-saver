@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AWS Lightsail Data Transfer &amp; Overage Calculator</title>
+<title>AWS Lightsail data transfer calculator: forecast overage and cut costs</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="Free AWS Lightsail data transfer calculator. Same-region, same-size instances share one transfer allowance pool: track usage, forecast month-end overage and find the cheapest number of IPv6-only instances to add. 10 languages, data stays in your browser.">
+<meta name="description" content="Free AWS Lightsail data transfer calculator. Instances with the same bundle in one region share an allowance pool. Enter this month’s usage to see what’s left, whether you’ll pay overage, and how many IPv6 instances to add to pay the least.">
 <meta name="keywords" content="AWS Lightsail, Lightsail data transfer, Lightsail bandwidth calculator, Lightsail overage, data transfer allowance, transfer pool, Lightsail pricing, IPv6-only instance, VPS bandwidth cost, TotalDataXfer">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="AWS Lightsail Cost Saver">
@@ -41,8 +41,8 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AWS Lightsail Cost Saver">
-<meta property="og:title" content="AWS Lightsail Data Transfer &amp; Overage Calculator">
-<meta property="og:description" content="Same-region, same-size Lightsail instances share one transfer pool. Forecast overage and find the cheapest way to add bandwidth.">
+<meta property="og:title" content="AWS Lightsail data transfer calculator: forecast overage and cut costs">
+<meta property="og:description" content="Lightsail instances with the same bundle in the same region share one data transfer allowance. See whether you’ll go over this month and how many cheap instances to add to avoid it.">
 <meta property="og:image" content="https://ls.1ms.dog/og/en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -50,8 +50,8 @@
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR">
 <meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AWS Lightsail Data Transfer &amp; Overage Calculator">
-<meta name="twitter:description" content="Forecast Lightsail data transfer overage and find the cheapest way to add bandwidth.">
+<meta name="twitter:title" content="AWS Lightsail data transfer calculator: forecast overage and cut costs">
+<meta name="twitter:description" content="Lightsail instances with the same bundle in the same region share one data transfer allowance. See whether you’ll go over this month and how many cheap instances to add to avoid it.">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/en.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/">
@@ -79,7 +79,7 @@
    "applicationCategory": "FinanceApplication",
    "operatingSystem": "Any",
    "browserRequirements": "Requires JavaScript",
-   "description": "Calculator for Amazon Lightsail data transfer pools: track used and remaining allowance, forecast month-end overage and find the cheapest number of same-size IPv6-only instances to add.",
+   "description": "Free AWS Lightsail data transfer calculator. Instances with the same bundle in one region share an allowance pool. Enter this month’s usage to see what’s left, whether you’ll pay overage, and how many IPv6 instances to add to pay the least.",
    "inLanguage": [
     "en",
     "zh-CN",
@@ -112,10 +112,10 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "Does inbound traffic use the allowance?",
+     "name": "Does inbound traffic count toward the allowance?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Inbound + outbound both use the allowance"
+      "text": "Inbound and outbound traffic both count toward the allowance"
      }
     },
     {
@@ -131,7 +131,7 @@
      "name": "How much does overage cost?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "It depends on the Region: $0.09–$0.17 per GB of outbound traffic beyond the pool. The calculator uses the selected Region’s rate."
+      "text": "It depends on the region: $0.09–$0.17 per GB of outbound traffic beyond the pool. The calculator uses the rate for the region you picked."
      }
     },
     {
@@ -139,7 +139,7 @@
      "name": "Which instances share a pool?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Only same-region, same-size instances pool; dual-stack and IPv6-only of one size pool together"
+      "text": "Only instances in the same region with the same bundle share a pool; dual-stack and IPv6-only versions of one bundle pool together"
      }
     },
     {
@@ -147,15 +147,15 @@
      "name": "Do stopped instances still bill?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Billed hourly; stopped instances still bill, only deletion stops it"
+      "text": "Billed by the hour. Stopped instances still bill; only deleting stops it"
      }
     },
     {
      "@type": "Question",
-     "name": "Can new instances cancel overage?",
+     "name": "Can new instances cancel out overage?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Overage already incurred cannot be offset by new instances; scale up before you run out"
+      "text": "Overage you’ve already run up can’t be offset by new instances, so add them before you run out"
      }
     },
     {
@@ -163,7 +163,7 @@
      "name": "Does recreating an instance reset usage?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Deleting and recreating does not reset this month’s usage"
+      "text": "Deleting and recreating an instance doesn’t reset this month’s usage"
      }
     },
     {
@@ -171,15 +171,15 @@
      "name": "Is private IP traffic charged?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Traffic over private IPs in one region uses allowance but is never charged"
+      "text": "Traffic over private IPs within a region counts toward the allowance but is never charged"
      }
     },
     {
      "@type": "Question",
-     "name": "How exact are the estimates?",
+     "name": "How accurate are the estimates?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Estimates use 1 TB = 1024 GB and UTC calendar months; your AWS bill is final"
+      "text": "Estimates use 1 TB = 1024 GB and UTC calendar months. Your AWS bill has the final numbers"
      }
     }
    ]
@@ -189,7 +189,7 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="assets/js/app.786edd642a.js"></script>
+<script defer src="assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -673,7 +673,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">AWS Lightsail Cost Saver</h1>
       </a>
-      <p class="tagline" data-i="tagline">Uses the rule that same-region, same-size instances share one transfer pool to find the cheapest plan for elastic traffic.</p>
+      <p class="tagline" data-i="tagline">Lightsail instances with the same bundle in the same region share one data transfer allowance. See whether you’ll go over this month and how many cheap instances to add to avoid it.</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">Use with AI</span></button>
@@ -691,9 +691,9 @@ footer a:hover { color: var(--fg); }
             <div>
               <div class="row"><span data-i="outRatio">Outbound share</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">Only outbound traffic is billed as overage. Keep 100% if unsure.</div>
+              <div class="lbl" data-i="outRatioHint">Overage is charged on outbound traffic only (data your servers send). Leave it at 100% if unsure.</div>
             </div>
-            <div class="row"><span data-i="prorate">Prorate allowance for mid-month instances</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">Prorate the allowance of instances created mid-month</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">Theme</div>
@@ -715,7 +715,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">Reset all data</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>Instances, usage and settings return to defaults. This cannot be undone.</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>Instances, usage and settings go back to defaults, and this can’t be undone. Export a backup in Advanced settings first if you need one.</div>
           </section>
         </div>
       </details>
@@ -723,7 +723,7 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">Loaded the configuration from the link. Your previous data is backed up.</span>
+    <span data-i="linkLoaded">Loaded the setup from the link. Your previous data is backed up and can be restored.</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">Restore my data</button>
   </div>
 
@@ -764,7 +764,7 @@ footer a:hover { color: var(--fg); }
           <div class="kv"><span class="lbl" data-i="allow">Allowance</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">Month-end forecast</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">Estimated cost</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">Estimated cost this month</span><span class="v" id="sCost"></span></div>
         </div>
         <div class="act" id="act"></div>
       </div>
@@ -776,7 +776,7 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">Test your latency to each AWS Region first</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">Base instance</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">The foundation of the pool. Every traffic instance you add must match its size.</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">Main instance</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">The instance you already run. Traffic instances must use the same bundle so their allowances combine.</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">Needs public IPv4</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">Created</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
@@ -785,7 +785,7 @@ footer a:hover { color: var(--fg); }
         <div class="sec">
           <div class="sec-h"><b data-i="nodes">Traffic instances</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Same-region, same-size instances share the pool. IPv6-only.</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Instances with the same bundle in the same region share one pool. Traffic instances are IPv6-only, which costs less than public IPv4.</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
           <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">Add traffic instance</span></button>
         </div>
@@ -819,28 +819,28 @@ footer a:hover { color: var(--fg); }
     <div class="help-b">
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
-        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">Does inbound traffic use the allowance?</button>
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">Does inbound traffic count toward the allowance?</button>
         <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">Is inbound traffic ever charged?</button>
         <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">How much does overage cost?</button>
         <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Which instances share a pool?</button>
         <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Do stopped instances still bill?</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Can new instances cancel overage?</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Can new instances cancel out overage?</button>
         <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Does recreating an instance reset usage?</button>
         <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Is private IP traffic charged?</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">How exact are the estimates?</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">How accurate are the estimates?</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">Official AWS links</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Does inbound traffic use the allowance?</h4><p>Inbound + outbound <b>both use the allowance</b></p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Does inbound traffic count toward the allowance?</h4><p>Inbound and outbound traffic <b>both count</b> toward the allowance</p></section>
         <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>Is inbound traffic ever charged?</h4><p>Overage is <b>charged on outbound only</b>; inbound is always free</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>How much does overage cost?</h4><p>It depends on the Region: <b>$0.09–$0.17 per GB</b> of outbound traffic beyond the pool. The calculator uses the selected Region’s rate.</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Which instances share a pool?</h4><p>Only same-region, <b>same-size</b> instances pool; dual-stack and IPv6-only of one size pool together</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Do stopped instances still bill?</h4><p>Billed hourly; <b>stopped instances still bill</b>, only deletion stops it</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Can new instances cancel overage?</h4><p class="w">Overage already incurred <b>cannot be offset</b> by new instances; scale up before you run out</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Does recreating an instance reset usage?</h4><p>Deleting and recreating <b>does not reset</b> this month’s usage</p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Is private IP traffic charged?</h4><p>Traffic over <b>private IPs</b> in one region uses allowance but is never charged</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>How exact are the estimates?</h4><p>Estimates use 1 TB = 1024 GB and UTC calendar months; your AWS bill is final</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>How much does overage cost?</h4><p>It depends on the region: <b>$0.09–$0.17 per GB</b> of outbound traffic beyond the pool. The calculator uses the rate for the region you picked.</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Which instances share a pool?</h4><p>Only instances in the same region with the <b>same bundle</b> share a pool; dual-stack and IPv6-only versions of one bundle pool together</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Do stopped instances still bill?</h4><p>Billed by the hour. <b>Stopped instances still bill</b>; only deleting stops it</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Can new instances cancel out overage?</h4><p class="w">Overage you’ve already run up <b>can’t be offset</b> by new instances, so add them before you run out</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Does recreating an instance reset usage?</h4><p>Deleting and recreating an instance <b>doesn’t reset</b> this month’s usage</p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Is private IP traffic charged?</h4><p>Traffic over <b>private IPs</b> within a region counts toward the allowance but is never charged</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>How accurate are the estimates?</h4><p>Estimates use 1 TB = 1024 GB and UTC calendar months. Your AWS bill has the final numbers</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>Official AWS links</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">Pricing</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">Data transfer FAQ</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">Billing FAQ</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">Service terms</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">View bill usage</a></p></section>
       </div>
 <!-- HELP:END -->

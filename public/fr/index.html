@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Calculateur de transfert et dépassement AWS Lightsail</title>
+<title>Calculateur de transfert AWS Lightsail : anticipez le dépassement et payez moins</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="Calculateur gratuit du transfert de données AWS Lightsail. Les instances de même taille dans une même région partagent leur quota : suivez la consommation, anticipez le dépassement de fin de mois et trouvez combien d’instances IPv6 ajouter au moindre coût.">
+<meta name="description" content="Calculateur gratuit du transfert de données AWS Lightsail. Les instances du même forfait dans une région partagent un quota. Saisissez votre consommation du mois pour voir ce qui reste, si vous paierez un dépassement et combien d’instances IPv6 ajouter pour payer le moins possible.">
 <meta name="keywords" content="AWS Lightsail, transfert de données Lightsail, dépassement Lightsail, calculateur, tarifs Lightsail, instance IPv6, VPS">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="Calculateur d’économies AWS Lightsail">
@@ -41,16 +41,16 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Calculateur d’économies AWS Lightsail">
-<meta property="og:title" content="Calculateur de transfert et dépassement AWS Lightsail">
-<meta property="og:description" content="S’appuie sur le partage du quota de transfert entre instances de même région et même taille pour trouver le plan le moins cher.">
+<meta property="og:title" content="Calculateur de transfert AWS Lightsail : anticipez le dépassement et payez moins">
+<meta property="og:description" content="Les instances Lightsail du même forfait dans la même région partagent un quota de transfert. Voyez si vous allez le dépasser ce mois-ci et combien d’instances bon marché ajouter pour l’éviter.">
 <meta property="og:image" content="https://ls.1ms.dog/og/fr.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Calculateur de transfert et dépassement AWS Lightsail">
-<meta name="twitter:description" content="S’appuie sur le partage du quota de transfert entre instances de même région et même taille pour trouver le plan le moins cher.">
+<meta name="twitter:title" content="Calculateur de transfert AWS Lightsail : anticipez le dépassement et payez moins">
+<meta name="twitter:description" content="Les instances Lightsail du même forfait dans la même région partagent un quota de transfert. Voyez si vous allez le dépasser ce mois-ci et combien d’instances bon marché ajouter pour l’éviter.">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/fr.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/fr/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculateur d’économies AWS Lightsail","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Calculateur gratuit du transfert de données AWS Lightsail. Les instances de même taille dans une même région partagent leur quota : suivez la consommation, anticipez le dépassement de fin de mois et trouvez combien d’instances IPv6 ajouter au moindre coût.","inLanguage":"fr","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/fr/"},{"@type":"FAQPage","inLanguage":"fr","mainEntity":[{"@type":"Question","name":"Le trafic entrant compte-t-il dans le quota ?","acceptedAnswer":{"@type":"Answer","text":"Entrant + sortant consomment le quota"}},{"@type":"Question","name":"Le trafic entrant est-il facturé ?","acceptedAnswer":{"@type":"Answer","text":"Le dépassement est facturé en sortant uniquement ; l’entrant est gratuit"}},{"@type":"Question","name":"Combien coûte le dépassement ?","acceptedAnswer":{"@type":"Answer","text":"Selon la région : $0.09–$0.17 par Go de trafic sortant au-delà du pool. Le calculateur utilise le tarif de la région choisie."}},{"@type":"Question","name":"Quelles instances partagent le pool ?","acceptedAnswer":{"@type":"Answer","text":"Seules les instances de même région et même taille se cumulent ; double pile et IPv6 de même taille aussi"}},{"@type":"Question","name":"Une instance arrêtée est-elle facturée ?","acceptedAnswer":{"@type":"Answer","text":"Facturation à l’heure ; arrêtée, elle est facturée, seule la suppression l’arrête"}},{"@type":"Question","name":"Ajouter des instances annule-t-il un dépassement déjà subi ?","acceptedAnswer":{"@type":"Answer","text":"Un dépassement déjà subi n’est pas compensé par de nouvelles instances ; ajoutez avant l’épuisement"}},{"@type":"Question","name":"Supprimer et recréer remet-il l’usage à zéro ?","acceptedAnswer":{"@type":"Answer","text":"Supprimer puis recréer ne remet pas à zéro l’usage du mois"}},{"@type":"Question","name":"Le trafic sur IP privée est-il facturé ?","acceptedAnswer":{"@type":"Answer","text":"Le trafic par IP privée dans la région consomme le quota mais n’est jamais facturé"}},{"@type":"Question","name":"Les estimations sont-elles précises ?","acceptedAnswer":{"@type":"Answer","text":"Estimation avec 1 To = 1024 Go et mois UTC ; la facture AWS fait foi"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculateur d’économies AWS Lightsail","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Calculateur gratuit du transfert de données AWS Lightsail. Les instances du même forfait dans une région partagent un quota. Saisissez votre consommation du mois pour voir ce qui reste, si vous paierez un dépassement et combien d’instances IPv6 ajouter pour payer le moins possible.","inLanguage":"fr","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/fr/"},{"@type":"FAQPage","inLanguage":"fr","mainEntity":[{"@type":"Question","name":"Le trafic entrant compte-t-il dans le quota ?","acceptedAnswer":{"@type":"Answer","text":"Le trafic entrant et sortant compte dans le quota"}},{"@type":"Question","name":"Le trafic entrant est-il facturé ?","acceptedAnswer":{"@type":"Answer","text":"Le dépassement est facturé sur le sortant uniquement ; l’entrant est toujours gratuit"}},{"@type":"Question","name":"Combien coûte le dépassement ?","acceptedAnswer":{"@type":"Answer","text":"Cela dépend de la région : $0.09–$0.17 par GB de trafic sortant au-delà du quota. Le calculateur utilise le tarif de la région choisie."}},{"@type":"Question","name":"Quelles instances partagent un quota ?","acceptedAnswer":{"@type":"Answer","text":"Seules les instances de la même région et du même forfait partagent un quota ; les versions double pile et IPv6-only d’un même forfait se cumulent"}},{"@type":"Question","name":"Une instance arrêtée est-elle facturée ?","acceptedAnswer":{"@type":"Answer","text":"Facturation à l’heure. Une instance arrêtée reste facturée ; seule la suppression arrête la facturation"}},{"@type":"Question","name":"Ajouter des instances annule-t-il un dépassement ?","acceptedAnswer":{"@type":"Answer","text":"Un dépassement déjà constaté ne peut pas être compensé par de nouvelles instances : ajoutez-les avant d’épuiser le quota"}},{"@type":"Question","name":"Recréer une instance remet-elle la consommation à zéro ?","acceptedAnswer":{"@type":"Answer","text":"Supprimer puis recréer une instance ne remet pas à zéro la consommation du mois"}},{"@type":"Question","name":"Le trafic par IP privée est-il facturé ?","acceptedAnswer":{"@type":"Answer","text":"Le trafic par IP privée dans une région compte dans le quota mais n’est jamais facturé"}},{"@type":"Question","name":"Les estimations sont-elles fiables ?","acceptedAnswer":{"@type":"Answer","text":"Estimations sur la base de 1 TB = 1024 GB et de mois calendaires en UTC. Votre facture AWS fait foi"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -557,7 +557,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">Calculateur d’économies AWS Lightsail</h1>
       </a>
-      <p class="tagline" data-i="tagline">S’appuie sur le partage du quota de transfert entre instances de même région et même taille pour trouver le plan le moins cher.</p>
+      <p class="tagline" data-i="tagline">Les instances Lightsail du même forfait dans la même région partagent un quota de transfert. Voyez si vous allez le dépasser ce mois-ci et combien d’instances bon marché ajouter pour l’éviter.</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">Utiliser avec l’IA</span></button>
@@ -575,9 +575,9 @@ footer a:hover { color: var(--fg); }
             <div>
               <div class="row"><span data-i="outRatio">Part sortante</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">Seul le trafic sortant est facturé en dépassement. Gardez 100 % en cas de doute.</div>
+              <div class="lbl" data-i="outRatioHint">Le dépassement n’est facturé que sur le trafic sortant (ce que vos serveurs envoient). Dans le doute, laissez 100 %.</div>
             </div>
-            <div class="row"><span data-i="prorate">Proratiser le quota des instances créées en cours de mois</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">Calculer au prorata le quota des instances créées en cours de mois</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">Thème</div>
@@ -599,7 +599,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">Tout réinitialiser</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>Instances, usage et réglages reviennent aux valeurs par défaut, sans retour possible. Exportez une sauvegarde avant si besoin.</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>Les instances, la consommation et les réglages reviennent aux valeurs par défaut, sans retour possible. Exportez d’abord une sauvegarde dans les Réglages avancés si besoin.</div>
           </section>
         </div>
       </details>
@@ -607,7 +607,7 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">Configuration du lien chargée. Vos données précédentes sont sauvegardées.</span>
+    <span data-i="linkLoaded">Configuration chargée depuis le lien. Vos données précédentes sont sauvegardées et peuvent être restaurées.</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">Restaurer mes données</button>
   </div>
 
@@ -648,7 +648,7 @@ footer a:hover { color: var(--fg); }
           <div class="kv"><span class="lbl" data-i="allow">Quota</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">Prévision fin de mois</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">Coût estimé</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">Coût estimé ce mois-ci</span><span class="v" id="sCost"></span></div>
         </div>
         <div class="act" id="act"></div>
       </div>
@@ -660,7 +660,7 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">Mesurez d’abord votre latence vers chaque région AWS</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">Instance de base</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">Le socle du pool. Chaque instance de trafic ajoutée doit avoir la même taille.</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">Instance principale</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">L’instance que vous avez déjà. Les instances de trafic doivent avoir le même forfait pour que leurs quotas se cumulent.</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">IPv4 publique requise</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">Créée le</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
@@ -669,7 +669,7 @@ footer a:hover { color: var(--fg); }
         <div class="sec">
           <div class="sec-h"><b data-i="nodes">Instances de trafic</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Même région, même taille : le pool est partagé. IPv6 seul.</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Les instances du même forfait dans la même région partagent un seul quota. Les instances de trafic sont en IPv6 uniquement (IPv6-only), moins chères qu’avec une IPv4 publique.</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
           <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">Ajouter une instance de trafic</span></button>
         </div>
@@ -703,28 +703,28 @@ footer a:hover { color: var(--fg); }
     <div class="help-b">
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
-        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">Le trafic entrant compte-t-il dans le quota ?</button>
-        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">Le trafic entrant est-il facturé ?</button>
-        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">Combien coûte le dépassement ?</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Quelles instances partagent le pool ?</button>
-        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Une instance arrêtée est-elle facturée ?</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Ajouter des instances annule-t-il un dépassement déjà subi ?</button>
-        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Supprimer et recréer remet-il l’usage à zéro ?</button>
-        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Le trafic sur IP privée est-il facturé ?</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">Les estimations sont-elles précises ?</button>
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">Le trafic entrant compte-t-il dans le quota ?</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">Le trafic entrant est-il facturé ?</button>
+        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">Combien coûte le dépassement ?</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Quelles instances partagent un quota ?</button>
+        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Une instance arrêtée est-elle facturée ?</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Ajouter des instances annule-t-il un dépassement ?</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Recréer une instance remet-elle la consommation à zéro ?</button>
+        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Le trafic par IP privée est-il facturé ?</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">Les estimations sont-elles fiables ?</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">Liens officiels AWS</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="Précédent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="Suivant"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Le trafic entrant compte-t-il dans le quota ?</h4><p>Entrant + sortant <b>consomment le quota</b></p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>Le trafic entrant est-il facturé ?</h4><p>Le dépassement est <b>facturé en sortant uniquement</b> ; l’entrant est gratuit</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>Combien coûte le dépassement ?</h4><p>Selon la région : <b>$0.09–$0.17 par Go</b> de trafic sortant au-delà du pool. Le calculateur utilise le tarif de la région choisie.</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Quelles instances partagent le pool ?</h4><p>Seules les instances de même région et <b>même taille</b> se cumulent ; double pile et IPv6 de même taille aussi</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Une instance arrêtée est-elle facturée ?</h4><p>Facturation à l’heure ; <b>arrêtée, elle est facturée</b>, seule la suppression l’arrête</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Ajouter des instances annule-t-il un dépassement déjà subi ?</h4><p class="w">Un dépassement déjà subi <b>n’est pas compensé</b> par de nouvelles instances ; ajoutez avant l’épuisement</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Supprimer et recréer remet-il l’usage à zéro ?</h4><p>Supprimer puis recréer <b>ne remet pas à zéro</b> l’usage du mois</p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Le trafic sur IP privée est-il facturé ?</h4><p>Le trafic par <b>IP privée</b> dans la région consomme le quota mais n’est jamais facturé</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>Les estimations sont-elles précises ?</h4><p>Estimation avec 1 To = 1024 Go et mois UTC ; la facture AWS fait foi</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Le trafic entrant compte-t-il dans le quota ?</h4><p>Le trafic entrant et sortant <b>compte dans le quota</b></p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>Le trafic entrant est-il facturé ?</h4><p>Le dépassement est <b>facturé sur le sortant uniquement</b> ; l’entrant est toujours gratuit</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>Combien coûte le dépassement ?</h4><p>Cela dépend de la région : <b>$0.09–$0.17 par GB</b> de trafic sortant au-delà du quota. Le calculateur utilise le tarif de la région choisie.</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Quelles instances partagent un quota ?</h4><p>Seules les instances de la même région et du <b>même forfait</b> partagent un quota ; les versions double pile et IPv6-only d’un même forfait se cumulent</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Une instance arrêtée est-elle facturée ?</h4><p>Facturation à l’heure. <b>Une instance arrêtée reste facturée</b> ; seule la suppression arrête la facturation</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Ajouter des instances annule-t-il un dépassement ?</h4><p class="w">Un dépassement déjà constaté <b>ne peut pas être compensé</b> par de nouvelles instances : ajoutez-les avant d’épuiser le quota</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Recréer une instance remet-elle la consommation à zéro ?</h4><p>Supprimer puis recréer une instance <b>ne remet pas à zéro</b> la consommation du mois</p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Le trafic par IP privée est-il facturé ?</h4><p>Le trafic par <b>IP privée</b> dans une région compte dans le quota mais n’est jamais facturé</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>Les estimations sont-elles fiables ?</h4><p>Estimations sur la base de 1 TB = 1024 GB et de mois calendaires en UTC. Votre facture AWS fait foi</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>Liens officiels AWS</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">Tarifs</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">FAQ transfert</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">FAQ facturation</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">Conditions de service</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">Voir l’usage facturé</a></p></section>
       </div>
 <!-- HELP:END -->

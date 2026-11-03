@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AWS Lightsail 데이터 전송·초과 요금 계산기</title>
+<title>AWS Lightsail 전송량 계산기: 초과 요금 예측과 가장 싼 해결책</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="무료 AWS Lightsail 데이터 전송 계산기. 같은 리전·같은 플랜 인스턴스는 전송량 할당을 공유합니다. 사용량과 남은 할당량, 월말 초과 요금을 예측하고 가장 저렴한 IPv6 인스턴스 추가 대수를 찾아줍니다.">
+<meta name="description" content="무료 AWS Lightsail 전송량 계산기. 같은 리전·같은 플랜의 인스턴스는 전송량 한도를 함께 씁니다. 이번 달 사용량만 넣으면 남은 한도, 초과 요금 여부, IPv6 인스턴스를 몇 대 더해야 가장 싼지 알려 줍니다.">
 <meta name="keywords" content="AWS Lightsail, Lightsail 데이터 전송, Lightsail 초과 요금, 전송량 계산기, Lightsail 요금, IPv6 인스턴스, VPS">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="AWS Lightsail 절약 계산기">
@@ -41,16 +41,16 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AWS Lightsail 절약 계산기">
-<meta property="og:title" content="AWS Lightsail 데이터 전송·초과 요금 계산기">
-<meta property="og:description" content="‘같은 리전·같은 사양 인스턴스는 전송량 풀을 공유’하는 규칙으로 변동 트래픽에 가장 저렴한 구성을 찾아줍니다.">
+<meta property="og:title" content="AWS Lightsail 전송량 계산기: 초과 요금 예측과 가장 싼 해결책">
+<meta property="og:description" content="같은 리전·같은 플랜의 Lightsail 인스턴스는 전송량 한도를 합쳐서 써요. 이번 달 초과 여부와, 몇 대를 더하면 가장 싼지 계산해 드려요.">
 <meta property="og:image" content="https://ls.1ms.dog/og/ko.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AWS Lightsail 데이터 전송·초과 요금 계산기">
-<meta name="twitter:description" content="‘같은 리전·같은 사양 인스턴스는 전송량 풀을 공유’하는 규칙으로 변동 트래픽에 가장 저렴한 구성을 찾아줍니다.">
+<meta name="twitter:title" content="AWS Lightsail 전송량 계산기: 초과 요금 예측과 가장 싼 해결책">
+<meta name="twitter:description" content="같은 리전·같은 플랜의 Lightsail 인스턴스는 전송량 한도를 합쳐서 써요. 이번 달 초과 여부와, 몇 대를 더하면 가장 싼지 계산해 드려요.">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/ko.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/ko/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 절약 계산기","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"무료 AWS Lightsail 데이터 전송 계산기. 같은 리전·같은 플랜 인스턴스는 전송량 할당을 공유합니다. 사용량과 남은 할당량, 월말 초과 요금을 예측하고 가장 저렴한 IPv6 인스턴스 추가 대수를 찾아줍니다.","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/ko/"},{"@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"인바운드 트래픽도 할당량을 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"인바운드 + 아웃바운드 모두 할당량 차감"}},{"@type":"Question","name":"인바운드 트래픽도 과금되나요?","acceptedAnswer":{"@type":"Answer","text":"초과 요금은 아웃바운드만, 인바운드는 항상 무료"}},{"@type":"Question","name":"초과 요금은 얼마인가요?","acceptedAnswer":{"@type":"Answer","text":"리전마다 다르며, 풀을 넘는 아웃바운드 트래픽은 GB당 $0.09–$0.17입니다. 계산기는 선택한 리전의 요금을 사용합니다."}},{"@type":"Question","name":"어떤 인스턴스가 할당량을 공유하나요?","acceptedAnswer":{"@type":"Answer","text":"같은 리전·같은 사양만 합산. 같은 사양의 듀얼 스택과 IPv6-only는 합산 가능"}},{"@type":"Question","name":"중지된 인스턴스도 요금이 나오나요?","acceptedAnswer":{"@type":"Answer","text":"시간 단위 과금. 중지해도 과금, 삭제해야 중단"}},{"@type":"Question","name":"인스턴스를 추가하면 이미 난 초과를 상쇄할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"이미 발생한 초과는 새 인스턴스로 상쇄 불가. 소진 전에 추가하세요"}},{"@type":"Question","name":"삭제 후 다시 만들면 사용량이 초기화되나요?","acceptedAnswer":{"@type":"Answer","text":"삭제 후 재생성해도 이번 달 사용량은 초기화되지 않음"}},{"@type":"Question","name":"프라이빗 IP 트래픽도 과금되나요?","acceptedAnswer":{"@type":"Answer","text":"같은 리전 프라이빗 IP 트래픽은 할당량을 차감하지만 초과해도 무료"}},{"@type":"Question","name":"추정치는 얼마나 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"1 TB = 1024 GB, UTC 달력 월 기준 추정. 최종 금액은 AWS 청구서 기준"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 절약 계산기","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"무료 AWS Lightsail 전송량 계산기. 같은 리전·같은 플랜의 인스턴스는 전송량 한도를 함께 씁니다. 이번 달 사용량만 넣으면 남은 한도, 초과 요금 여부, IPv6 인스턴스를 몇 대 더해야 가장 싼지 알려 줍니다.","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/ko/"},{"@type":"FAQPage","inLanguage":"ko","mainEntity":[{"@type":"Question","name":"인바운드도 한도에서 빠지나요?","acceptedAnswer":{"@type":"Answer","text":"인바운드와 아웃바운드 모두 한도에서 차감돼요"}},{"@type":"Question","name":"인바운드에 요금이 붙나요?","acceptedAnswer":{"@type":"Answer","text":"초과 요금은 아웃바운드에만 붙고, 인바운드는 항상 무료예요"}},{"@type":"Question","name":"초과 요금은 얼마인가요?","acceptedAnswer":{"@type":"Answer","text":"리전마다 달라요. 풀을 넘은 아웃바운드는 GB당 $0.09–$0.17이고, 계산기는 선택한 리전의 요금을 써요."}},{"@type":"Question","name":"어떤 인스턴스가 한도를 함께 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"같은 리전·같은 플랜만 한도를 합칠 수 있어요. 같은 플랜이면 듀얼 스택과 IPv6-only도 합쳐져요"}},{"@type":"Question","name":"중지한 인스턴스도 요금이 나가나요?","acceptedAnswer":{"@type":"Answer","text":"시간 단위 과금이에요. 중지해도 요금이 나가고, 삭제해야 멈춰요"}},{"@type":"Question","name":"인스턴스를 더하면 이미 생긴 초과가 사라지나요?","acceptedAnswer":{"@type":"Answer","text":"이미 생긴 초과는 나중에 추가해도 상쇄되지 않아요. 한도를 다 쓰기 전에 추가하세요"}},{"@type":"Question","name":"다시 만들면 사용량이 초기화되나요?","acceptedAnswer":{"@type":"Answer","text":"삭제 후 다시 만들어도 이번 달 사용량은 초기화되지 않아요"}},{"@type":"Question","name":"프라이빗 IP 트래픽은 유료인가요?","acceptedAnswer":{"@type":"Answer","text":"같은 리전 안의 프라이빗 IP 트래픽은 한도에서 차감되지만 초과해도 무료예요"}},{"@type":"Question","name":"추정은 얼마나 정확한가요?","acceptedAnswer":{"@type":"Answer","text":"1 TB = 1024 GB, UTC 달력 월 기준 추정이에요. 최종 금액은 AWS 청구서를 확인하세요"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -557,7 +557,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">AWS Lightsail 절약 계산기</h1>
       </a>
-      <p class="tagline" data-i="tagline">‘같은 리전·같은 사양 인스턴스는 전송량 풀을 공유’하는 규칙으로 변동 트래픽에 가장 저렴한 구성을 찾아줍니다.</p>
+      <p class="tagline" data-i="tagline">같은 리전·같은 플랜의 Lightsail 인스턴스는 전송량 한도를 합쳐서 써요. 이번 달 초과 여부와, 몇 대를 더하면 가장 싼지 계산해 드려요.</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">AI로 사용</span></button>
@@ -575,9 +575,9 @@ footer a:hover { color: var(--fg); }
             <div>
               <div class="row"><span data-i="outRatio">아웃바운드 비율</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">초과 요금은 아웃바운드에만 부과됩니다. 모르면 100% 유지.</div>
+              <div class="lbl" data-i="outRatioHint">초과 요금은 아웃바운드(서버에서 내보내는 트래픽)에만 붙어요. 잘 모르겠으면 100%로 두세요.</div>
             </div>
-            <div class="row"><span data-i="prorate">월 중간 생성분 할당량을 시간 비례 계산</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">월 중간에 만든 인스턴스는 한도를 사용 시간만큼 나눠 계산</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">테마</div>
@@ -599,7 +599,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">모든 데이터 초기화</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>인스턴스, 사용량, 설정이 기본값으로 돌아가며 되돌릴 수 없습니다. 필요하면 먼저 고급 설정에서 내보내세요.</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>인스턴스, 사용량, 설정이 모두 기본값으로 돌아가며 되돌릴 수 없어요. 필요하면 먼저 고급 설정에서 백업을 내보내세요.</div>
           </section>
         </div>
       </details>
@@ -607,7 +607,7 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">링크의 설정을 불러왔습니다. 이전 데이터는 백업되었습니다.</span>
+    <span data-i="linkLoaded">링크의 설정을 불러왔어요. 기존 데이터는 백업해 두었으니 언제든 되돌릴 수 있어요.</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">이전 데이터 복원</button>
   </div>
 
@@ -645,7 +645,7 @@ footer a:hover { color: var(--fg); }
           <div class="flegend" id="flegend"></div>
         </div>
         <div class="stats">
-          <div class="kv"><span class="lbl" data-i="allow">이번 달 할당량</span><span class="v" id="sAllow"></span></div>
+          <div class="kv"><span class="lbl" data-i="allow">이번 달 한도</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">월말 예상</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
           <div class="kv"><span class="lbl" data-i="cost">이번 달 예상 비용</span><span class="v" id="sCost"></span></div>
@@ -660,7 +660,7 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">먼저 각 AWS 리전까지의 지연 시간 측정</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">기본 인스턴스</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">풀의 기반. 새로 추가하는 트래픽 인스턴스는 같은 사양이어야 합니다.</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">메인 인스턴스</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">지금 쓰고 있는 인스턴스예요. 트래픽 인스턴스는 같은 플랜이어야 한도가 합쳐져요.</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">퍼블릭 IPv4 필요</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">생성 시각</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
@@ -669,7 +669,7 @@ footer a:hover { color: var(--fg); }
         <div class="sec">
           <div class="sec-h"><b data-i="nodes">트래픽 인스턴스</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">같은 리전·같은 사양 인스턴스는 풀을 공유. IPv6-only.</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">같은 리전·같은 플랜이면 한도를 함께 써요. 트래픽 인스턴스는 IPv6-only라 퍼블릭 IPv4보다 저렴해요.</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
           <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">트래픽 인스턴스 추가</span></button>
         </div>
@@ -703,28 +703,28 @@ footer a:hover { color: var(--fg); }
     <div class="help-b">
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
-        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">인바운드 트래픽도 할당량을 쓰나요?</button>
-        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">인바운드 트래픽도 과금되나요?</button>
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">인바운드도 한도에서 빠지나요?</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">인바운드에 요금이 붙나요?</button>
         <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">초과 요금은 얼마인가요?</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">어떤 인스턴스가 할당량을 공유하나요?</button>
-        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">중지된 인스턴스도 요금이 나오나요?</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">인스턴스를 추가하면 이미 난 초과를 상쇄할 수 있나요?</button>
-        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">삭제 후 다시 만들면 사용량이 초기화되나요?</button>
-        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">프라이빗 IP 트래픽도 과금되나요?</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">추정치는 얼마나 정확한가요?</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">어떤 인스턴스가 한도를 함께 쓰나요?</button>
+        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">중지한 인스턴스도 요금이 나가나요?</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">인스턴스를 더하면 이미 생긴 초과가 사라지나요?</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">다시 만들면 사용량이 초기화되나요?</button>
+        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">프라이빗 IP 트래픽은 유료인가요?</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">추정은 얼마나 정확한가요?</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">AWS 공식 링크</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="이전"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="다음"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>인바운드 트래픽도 할당량을 쓰나요?</h4><p>인바운드 + 아웃바운드 <b>모두 할당량 차감</b></p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>인바운드 트래픽도 과금되나요?</h4><p>초과 요금은 <b>아웃바운드만</b>, 인바운드는 항상 무료</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>초과 요금은 얼마인가요?</h4><p>리전마다 다르며, 풀을 넘는 아웃바운드 트래픽은 <b>GB당 $0.09–$0.17</b>입니다. 계산기는 선택한 리전의 요금을 사용합니다.</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>어떤 인스턴스가 할당량을 공유하나요?</h4><p>같은 리전·<b>같은 사양</b>만 합산. 같은 사양의 듀얼 스택과 IPv6-only는 합산 가능</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>중지된 인스턴스도 요금이 나오나요?</h4><p>시간 단위 과금. <b>중지해도 과금</b>, 삭제해야 중단</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>인스턴스를 추가하면 이미 난 초과를 상쇄할 수 있나요?</h4><p class="w">이미 발생한 초과는 <b>새 인스턴스로 상쇄 불가</b>. 소진 전에 추가하세요</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>삭제 후 다시 만들면 사용량이 초기화되나요?</h4><p>삭제 후 재생성해도 이번 달 사용량은 <b>초기화되지 않음</b></p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>프라이빗 IP 트래픽도 과금되나요?</h4><p>같은 리전 <b>프라이빗 IP</b> 트래픽은 할당량을 차감하지만 초과해도 무료</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>추정치는 얼마나 정확한가요?</h4><p>1 TB = 1024 GB, UTC 달력 월 기준 추정. 최종 금액은 AWS 청구서 기준</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>인바운드도 한도에서 빠지나요?</h4><p>인바운드와 아웃바운드 <b>모두 한도에서 차감</b>돼요</p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>인바운드에 요금이 붙나요?</h4><p>초과 요금은 <b>아웃바운드에만</b> 붙고, 인바운드는 항상 무료예요</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>초과 요금은 얼마인가요?</h4><p>리전마다 달라요. 풀을 넘은 아웃바운드는 <b>GB당 $0.09–$0.17</b>이고, 계산기는 선택한 리전의 요금을 써요.</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>어떤 인스턴스가 한도를 함께 쓰나요?</h4><p>같은 리전·<b>같은 플랜</b>만 한도를 합칠 수 있어요. 같은 플랜이면 듀얼 스택과 IPv6-only도 합쳐져요</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>중지한 인스턴스도 요금이 나가나요?</h4><p>시간 단위 과금이에요. <b>중지해도 요금이 나가고</b>, 삭제해야 멈춰요</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>인스턴스를 더하면 이미 생긴 초과가 사라지나요?</h4><p class="w">이미 생긴 초과는 <b>나중에 추가해도 상쇄되지 않아요</b>. 한도를 다 쓰기 전에 추가하세요</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>다시 만들면 사용량이 초기화되나요?</h4><p>삭제 후 다시 만들어도 이번 달 사용량은 <b>초기화되지 않아요</b></p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>프라이빗 IP 트래픽은 유료인가요?</h4><p>같은 리전 안의 <b>프라이빗 IP</b> 트래픽은 한도에서 차감되지만 초과해도 무료예요</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>추정은 얼마나 정확한가요?</h4><p>1 TB = 1024 GB, UTC 달력 월 기준 추정이에요. 최종 금액은 AWS 청구서를 확인하세요</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>AWS 공식 링크</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">요금</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">데이터 전송 FAQ</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">청구 FAQ</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">서비스 약관</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">청구 사용량 보기</a></p></section>
       </div>
 <!-- HELP:END -->

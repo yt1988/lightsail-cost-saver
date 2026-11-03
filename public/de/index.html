@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AWS Lightsail Rechner für Datentransfer und Überziehung</title>
+<title>AWS Lightsail Traffic-Rechner: Mehrkosten vorhersagen und sparen</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="Kostenloser Rechner für den Datentransfer von AWS Lightsail. Gleich große Instanzen in derselben Region teilen sich ein Kontingent: Verbrauch verfolgen, Überziehung zum Monatsende vorhersagen und die günstigste Zahl zusätzlicher IPv6-Instanzen finden.">
+<meta name="description" content="Kostenloser Traffic-Rechner für AWS Lightsail. Instanzen mit demselben Tarif in einer Region teilen sich ein Traffic-Kontingent. Trag den Verbrauch dieses Monats ein und sieh, was übrig bleibt, ob Mehrkosten drohen und wie viele IPv6-Instanzen am günstigsten sind.">
 <meta name="keywords" content="AWS Lightsail, Lightsail Datentransfer, Lightsail Überziehung, Rechner, Lightsail Preise, IPv6-Instanz, VPS">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="AWS Lightsail Sparrechner">
@@ -41,16 +41,16 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AWS Lightsail Sparrechner">
-<meta property="og:title" content="AWS Lightsail Rechner für Datentransfer und Überziehung">
-<meta property="og:description" content="Nutzt die Regel, dass Instanzen gleicher Region und Größe ein Transfervolumen teilen, und findet den günstigsten Plan für schwankenden Traffic.">
+<meta property="og:title" content="AWS Lightsail Traffic-Rechner: Mehrkosten vorhersagen und sparen">
+<meta property="og:description" content="Lightsail-Instanzen mit demselben Tarif in derselben Region teilen sich ein Traffic-Kontingent. Sieh, ob du es diesen Monat überschreitest und wie viele günstige Instanzen das verhindern.">
 <meta property="og:image" content="https://ls.1ms.dog/og/de.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="de_DE">
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AWS Lightsail Rechner für Datentransfer und Überziehung">
-<meta name="twitter:description" content="Nutzt die Regel, dass Instanzen gleicher Region und Größe ein Transfervolumen teilen, und findet den günstigsten Plan für schwankenden Traffic.">
+<meta name="twitter:title" content="AWS Lightsail Traffic-Rechner: Mehrkosten vorhersagen und sparen">
+<meta name="twitter:description" content="Lightsail-Instanzen mit demselben Tarif in derselben Region teilen sich ein Traffic-Kontingent. Sieh, ob du es diesen Monat überschreitest und wie viele günstige Instanzen das verhindern.">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/de.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/de/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail Sparrechner","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Kostenloser Rechner für den Datentransfer von AWS Lightsail. Gleich große Instanzen in derselben Region teilen sich ein Kontingent: Verbrauch verfolgen, Überziehung zum Monatsende vorhersagen und die günstigste Zahl zusätzlicher IPv6-Instanzen finden.","inLanguage":"de","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/de/"},{"@type":"FAQPage","inLanguage":"de","mainEntity":[{"@type":"Question","name":"Zählt eingehender Traffic zum Kontingent?","acceptedAnswer":{"@type":"Answer","text":"Eingehend + ausgehend zählen beide zum Kontingent"}},{"@type":"Question","name":"Wird eingehender Traffic berechnet?","acceptedAnswer":{"@type":"Answer","text":"Überschreitung wird nur ausgehend berechnet; eingehend ist kostenlos"}},{"@type":"Question","name":"Was kostet Mehrverbrauch?","acceptedAnswer":{"@type":"Answer","text":"Je nach Region $0.09–$0.17 pro GB ausgehenden Traffics über dem Pool. Der Rechner nutzt den Preis der gewählten Region."}},{"@type":"Question","name":"Welche Instanzen teilen sich den Pool?","acceptedAnswer":{"@type":"Answer","text":"Nur Instanzen gleicher Region und gleicher Größe werden zusammengelegt; Dual-Stack und IPv6 gleicher Größe auch"}},{"@type":"Question","name":"Kosten gestoppte Instanzen weiter?","acceptedAnswer":{"@type":"Answer","text":"Stundenabrechnung; gestoppte Instanzen kosten weiter, erst Löschen beendet es"}},{"@type":"Question","name":"Gleichen neue Instanzen bereits entstandenen Mehrverbrauch aus?","acceptedAnswer":{"@type":"Answer","text":"Bereits angefallene Überschreitung ist nicht ausgleichbar; rechtzeitig erweitern"}},{"@type":"Question","name":"Setzt Löschen und Neuanlegen den Verbrauch zurück?","acceptedAnswer":{"@type":"Answer","text":"Löschen und neu erstellen setzt den Verbrauch nicht zurück"}},{"@type":"Question","name":"Wird Traffic über private IPs berechnet?","acceptedAnswer":{"@type":"Answer","text":"Traffic über private IPs in der Region zählt zum Kontingent, kostet aber nie extra"}},{"@type":"Question","name":"Wie genau sind die Schätzungen?","acceptedAnswer":{"@type":"Answer","text":"Schätzung mit 1 TB = 1024 GB und UTC-Monaten; maßgeblich ist die AWS-Rechnung"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail Sparrechner","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Kostenloser Traffic-Rechner für AWS Lightsail. Instanzen mit demselben Tarif in einer Region teilen sich ein Traffic-Kontingent. Trag den Verbrauch dieses Monats ein und sieh, was übrig bleibt, ob Mehrkosten drohen und wie viele IPv6-Instanzen am günstigsten sind.","inLanguage":"de","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/de/"},{"@type":"FAQPage","inLanguage":"de","mainEntity":[{"@type":"Question","name":"Zählt eingehender Traffic zum Kontingent?","acceptedAnswer":{"@type":"Answer","text":"Ein- und ausgehender Traffic zählen beide zum Kontingent"}},{"@type":"Question","name":"Kostet eingehender Traffic jemals etwas?","acceptedAnswer":{"@type":"Answer","text":"Mehrkosten gibt es nur für ausgehenden Traffic; eingehender ist immer kostenlos"}},{"@type":"Question","name":"Wie teuer ist Traffic über dem Kontingent?","acceptedAnswer":{"@type":"Answer","text":"Das hängt von der Region ab: $0.09–$0.17 pro GB ausgehender Traffic über dem Kontingent. Der Rechner nutzt den Preis der gewählten Region."}},{"@type":"Question","name":"Welche Instanzen teilen sich ein Kontingent?","acceptedAnswer":{"@type":"Answer","text":"Nur Instanzen in derselben Region mit demselben Tarif teilen sich ein Kontingent; Dual-Stack- und IPv6-only-Varianten eines Tarifs zählen zusammen"}},{"@type":"Question","name":"Kosten gestoppte Instanzen weiter?","acceptedAnswer":{"@type":"Answer","text":"Abrechnung pro Stunde. Gestoppte Instanzen kosten weiter; erst Löschen beendet die Abrechnung"}},{"@type":"Question","name":"Gleichen neue Instanzen Mehrkosten aus?","acceptedAnswer":{"@type":"Answer","text":"Bereits entstandene Mehrkosten lassen sich nicht ausgleichen; füge Instanzen hinzu, bevor das Kontingent aufgebraucht ist"}},{"@type":"Question","name":"Setzt Neuerstellen den Verbrauch zurück?","acceptedAnswer":{"@type":"Answer","text":"Löschen und neu erstellen setzt den Monatsverbrauch nicht zurück"}},{"@type":"Question","name":"Kostet Traffic über private IPs etwas?","acceptedAnswer":{"@type":"Answer","text":"Traffic über private IPs innerhalb einer Region zählt zum Kontingent, kostet aber nie extra"}},{"@type":"Question","name":"Wie genau sind die Schätzungen?","acceptedAnswer":{"@type":"Answer","text":"Gerechnet mit 1 TB = 1024 GB und Kalendermonaten in UTC. Maßgeblich ist deine AWS-Rechnung"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -557,7 +557,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">AWS Lightsail Sparrechner</h1>
       </a>
-      <p class="tagline" data-i="tagline">Nutzt die Regel, dass Instanzen gleicher Region und Größe ein Transfervolumen teilen, und findet den günstigsten Plan für schwankenden Traffic.</p>
+      <p class="tagline" data-i="tagline">Lightsail-Instanzen mit demselben Tarif in derselben Region teilen sich ein Traffic-Kontingent. Sieh, ob du es diesen Monat überschreitest und wie viele günstige Instanzen das verhindern.</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">Mit KI nutzen</span></button>
@@ -575,9 +575,9 @@ footer a:hover { color: var(--fg); }
             <div>
               <div class="row"><span data-i="outRatio">Ausgehender Anteil</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">Nur ausgehender Traffic wird als Überschreitung berechnet. Im Zweifel 100 % lassen.</div>
+              <div class="lbl" data-i="outRatioHint">Mehrkosten fallen nur für ausgehenden Traffic an (was deine Server senden). Im Zweifel 100 % lassen.</div>
             </div>
-            <div class="row"><span data-i="prorate">Kontingent bei Erstellung im Monat anteilig rechnen</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">Kontingent von Instanzen, die im Laufe des Monats erstellt wurden, anteilig rechnen</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">Design</div>
@@ -599,7 +599,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">Alle Daten zurücksetzen</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>Instanzen, Verbrauch und Einstellungen werden zurückgesetzt. Das lässt sich nicht rückgängig machen. Bei Bedarf vorher ein Backup exportieren.</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>Instanzen, Verbrauch und Einstellungen werden zurückgesetzt. Das lässt sich nicht rückgängig machen. Exportiere bei Bedarf vorher ein Backup in den erweiterten Einstellungen.</div>
           </section>
         </div>
       </details>
@@ -607,7 +607,7 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">Konfiguration aus dem Link geladen. Deine vorherigen Daten sind gesichert.</span>
+    <span data-i="linkLoaded">Einstellungen aus dem Link geladen. Deine bisherigen Daten sind gesichert und lassen sich wiederherstellen.</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">Meine Daten wiederherstellen</button>
   </div>
 
@@ -648,7 +648,7 @@ footer a:hover { color: var(--fg); }
           <div class="kv"><span class="lbl" data-i="allow">Kontingent</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">Prognose Monatsende</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">Geschätzte Kosten</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">Geschätzte Kosten diesen Monat</span><span class="v" id="sCost"></span></div>
         </div>
         <div class="act" id="act"></div>
       </div>
@@ -660,7 +660,7 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">Zuerst deine Latenz zu jeder AWS-Region messen</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">Basisinstanz</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">Das Fundament des Pools. Jede neue Traffic-Instanz muss dieselbe Größe haben.</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">Hauptinstanz</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">Die Instanz, die du schon betreibst. Traffic-Instanzen brauchen denselben Tarif, damit sich die Kontingente addieren.</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">Öffentliche IPv4 nötig</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">Erstellt</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
@@ -669,7 +669,7 @@ footer a:hover { color: var(--fg); }
         <div class="sec">
           <div class="sec-h"><b data-i="nodes">Traffic-Instanzen</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Gleiche Region, gleiche Größe: gemeinsamer Pool. Nur IPv6.</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Instanzen mit demselben Tarif in derselben Region teilen sich ein Kontingent. Traffic-Instanzen laufen nur mit IPv6 (IPv6-only) und kosten weniger als mit öffentlicher IPv4.</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
           <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">Traffic-Instanz hinzufügen</span></button>
         </div>
@@ -704,27 +704,27 @@ footer a:hover { color: var(--fg); }
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
         <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">Zählt eingehender Traffic zum Kontingent?</button>
-        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">Wird eingehender Traffic berechnet?</button>
-        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">Was kostet Mehrverbrauch?</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Welche Instanzen teilen sich den Pool?</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">Kostet eingehender Traffic jemals etwas?</button>
+        <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">Wie teuer ist Traffic über dem Kontingent?</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">Welche Instanzen teilen sich ein Kontingent?</button>
         <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">Kosten gestoppte Instanzen weiter?</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Gleichen neue Instanzen bereits entstandenen Mehrverbrauch aus?</button>
-        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Setzt Löschen und Neuanlegen den Verbrauch zurück?</button>
-        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Wird Traffic über private IPs berechnet?</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">Gleichen neue Instanzen Mehrkosten aus?</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">Setzt Neuerstellen den Verbrauch zurück?</button>
+        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">Kostet Traffic über private IPs etwas?</button>
         <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">Wie genau sind die Schätzungen?</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">Offizielle AWS-Links</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="Zurück"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="Weiter"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Zählt eingehender Traffic zum Kontingent?</h4><p>Eingehend + ausgehend <b>zählen beide</b> zum Kontingent</p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>Wird eingehender Traffic berechnet?</h4><p>Überschreitung wird <b>nur ausgehend berechnet</b>; eingehend ist kostenlos</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>Was kostet Mehrverbrauch?</h4><p>Je nach Region <b>$0.09–$0.17 pro GB</b> ausgehenden Traffics über dem Pool. Der Rechner nutzt den Preis der gewählten Region.</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Welche Instanzen teilen sich den Pool?</h4><p>Nur Instanzen gleicher Region und <b>gleicher Größe</b> werden zusammengelegt; Dual-Stack und IPv6 gleicher Größe auch</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Kosten gestoppte Instanzen weiter?</h4><p>Stundenabrechnung; <b>gestoppte Instanzen kosten weiter</b>, erst Löschen beendet es</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Gleichen neue Instanzen bereits entstandenen Mehrverbrauch aus?</h4><p class="w">Bereits angefallene Überschreitung ist <b>nicht ausgleichbar</b>; rechtzeitig erweitern</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Setzt Löschen und Neuanlegen den Verbrauch zurück?</h4><p>Löschen und neu erstellen <b>setzt den Verbrauch nicht zurück</b></p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Wird Traffic über private IPs berechnet?</h4><p>Traffic über <b>private IPs</b> in der Region zählt zum Kontingent, kostet aber nie extra</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>Wie genau sind die Schätzungen?</h4><p>Schätzung mit 1 TB = 1024 GB und UTC-Monaten; maßgeblich ist die AWS-Rechnung</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>Zählt eingehender Traffic zum Kontingent?</h4><p>Ein- und ausgehender Traffic <b>zählen beide</b> zum Kontingent</p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>Kostet eingehender Traffic jemals etwas?</h4><p>Mehrkosten gibt es <b>nur für ausgehenden Traffic</b>; eingehender ist immer kostenlos</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>Wie teuer ist Traffic über dem Kontingent?</h4><p>Das hängt von der Region ab: <b>$0.09–$0.17 pro GB</b> ausgehender Traffic über dem Kontingent. Der Rechner nutzt den Preis der gewählten Region.</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>Welche Instanzen teilen sich ein Kontingent?</h4><p>Nur Instanzen in derselben Region mit <b>demselben Tarif</b> teilen sich ein Kontingent; Dual-Stack- und IPv6-only-Varianten eines Tarifs zählen zusammen</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>Kosten gestoppte Instanzen weiter?</h4><p>Abrechnung pro Stunde. <b>Gestoppte Instanzen kosten weiter</b>; erst Löschen beendet die Abrechnung</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>Gleichen neue Instanzen Mehrkosten aus?</h4><p class="w">Bereits entstandene Mehrkosten <b>lassen sich nicht ausgleichen</b>; füge Instanzen hinzu, bevor das Kontingent aufgebraucht ist</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>Setzt Neuerstellen den Verbrauch zurück?</h4><p>Löschen und neu erstellen <b>setzt den Monatsverbrauch nicht zurück</b></p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>Kostet Traffic über private IPs etwas?</h4><p>Traffic über <b>private IPs</b> innerhalb einer Region zählt zum Kontingent, kostet aber nie extra</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>Wie genau sind die Schätzungen?</h4><p>Gerechnet mit 1 TB = 1024 GB und Kalendermonaten in UTC. Maßgeblich ist deine AWS-Rechnung</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>Offizielle AWS-Links</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">Preise</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">FAQ Datenübertragung</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">FAQ Abrechnung</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">Servicebedingungen</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">Verbrauch auf der Rechnung</a></p></section>
       </div>
 <!-- HELP:END -->

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Calculadora de transferencia y exceso de AWS Lightsail</title>
+<title>Calculadora de transferencia de AWS Lightsail: prevé el exceso y ahorra</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,7 +33,7 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="Calculadora gratuita de transferencia de datos de AWS Lightsail. Las instancias del mismo tamaño en la misma región comparten la asignación: controla el uso, prevé el exceso a fin de mes y encuentra cuántas instancias IPv6 añadir al menor coste.">
+<meta name="description" content="Calculadora gratuita de transferencia de datos de AWS Lightsail. Las instancias con el mismo plan en una región comparten la cuota. Escribe el uso de este mes y verás cuánto te queda, si pagarás exceso y cuántas instancias IPv6 añadir para pagar lo mínimo.">
 <meta name="keywords" content="AWS Lightsail, transferencia de datos Lightsail, exceso Lightsail, calculadora, precios Lightsail, instancia IPv6, VPS">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="Calculadora de ahorro AWS Lightsail">
@@ -41,16 +41,16 @@
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Calculadora de ahorro AWS Lightsail">
-<meta property="og:title" content="Calculadora de transferencia y exceso de AWS Lightsail">
-<meta property="og:description" content="Aprovecha que las instancias de la misma región y tamaño comparten la transferencia para hallar el plan más barato con tráfico variable.">
+<meta property="og:title" content="Calculadora de transferencia de AWS Lightsail: prevé el exceso y ahorra">
+<meta property="og:description" content="Las instancias de Lightsail con el mismo plan y en la misma región comparten la cuota de transferencia. Descubre si te pasarás este mes y cuántas instancias baratas añadir para evitarlo.">
 <meta property="og:image" content="https://ls.1ms.dog/og/es.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_ES">
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Calculadora de transferencia y exceso de AWS Lightsail">
-<meta name="twitter:description" content="Aprovecha que las instancias de la misma región y tamaño comparten la transferencia para hallar el plan más barato con tráfico variable.">
+<meta name="twitter:title" content="Calculadora de transferencia de AWS Lightsail: prevé el exceso y ahorra">
+<meta name="twitter:description" content="Las instancias de Lightsail con el mismo plan y en la misma región comparten la cuota de transferencia. Descubre si te pasarás este mes y cuántas instancias baratas añadir para evitarlo.">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/es.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/es/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculadora de ahorro AWS Lightsail","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Calculadora gratuita de transferencia de datos de AWS Lightsail. Las instancias del mismo tamaño en la misma región comparten la asignación: controla el uso, prevé el exceso a fin de mes y encuentra cuántas instancias IPv6 añadir al menor coste.","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/es/"},{"@type":"FAQPage","inLanguage":"es","mainEntity":[{"@type":"Question","name":"¿El tráfico entrante consume la cuota?","acceptedAnswer":{"@type":"Answer","text":"Entrante + saliente consumen la cuota"}},{"@type":"Question","name":"¿Se cobra el tráfico entrante?","acceptedAnswer":{"@type":"Answer","text":"El exceso solo se cobra en saliente; el entrante es gratis"}},{"@type":"Question","name":"¿Cuánto cuesta el exceso?","acceptedAnswer":{"@type":"Answer","text":"Depende de la región: $0.09–$0.17 por GB de tráfico saliente por encima del pool. La calculadora usa la tarifa de la región elegida."}},{"@type":"Question","name":"¿Qué instancias comparten el pool?","acceptedAnswer":{"@type":"Answer","text":"Solo se combinan instancias de la misma región y mismo tamaño; doble pila e IPv6 del mismo tamaño se combinan"}},{"@type":"Question","name":"¿Las instancias detenidas siguen cobrando?","acceptedAnswer":{"@type":"Answer","text":"Facturación por hora; detenida también cobra, solo eliminarla lo detiene"}},{"@type":"Question","name":"¿Añadir instancias compensa el exceso ya generado?","acceptedAnswer":{"@type":"Answer","text":"El exceso ya generado no se compensa con instancias nuevas; amplía antes de agotar"}},{"@type":"Question","name":"¿Borrar y recrear reinicia el uso?","acceptedAnswer":{"@type":"Answer","text":"Eliminar y recrear no reinicia el uso del mes"}},{"@type":"Question","name":"¿Se cobra el tráfico por IP privada?","acceptedAnswer":{"@type":"Answer","text":"El tráfico por IP privada en la región consume cuota pero nunca se cobra"}},{"@type":"Question","name":"¿Qué tan exactas son las estimaciones?","acceptedAnswer":{"@type":"Answer","text":"Estimación con 1 TB = 1024 GB y meses UTC; manda la factura de AWS"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculadora de ahorro AWS Lightsail","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Calculadora gratuita de transferencia de datos de AWS Lightsail. Las instancias con el mismo plan en una región comparten la cuota. Escribe el uso de este mes y verás cuánto te queda, si pagarás exceso y cuántas instancias IPv6 añadir para pagar lo mínimo.","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/es/"},{"@type":"FAQPage","inLanguage":"es","mainEntity":[{"@type":"Question","name":"¿El tráfico de entrada cuenta para la cuota?","acceptedAnswer":{"@type":"Answer","text":"El tráfico de entrada y el de salida cuentan para la cuota"}},{"@type":"Question","name":"¿Se cobra alguna vez el tráfico de entrada?","acceptedAnswer":{"@type":"Answer","text":"El exceso solo se cobra sobre la salida; la entrada siempre es gratis"}},{"@type":"Question","name":"¿Cuánto cuesta el exceso?","acceptedAnswer":{"@type":"Answer","text":"Depende de la región: $0.09–$0.17 por GB de salida por encima de la cuota. La calculadora usa la tarifa de la región que elegiste."}},{"@type":"Question","name":"¿Qué instancias comparten cuota?","acceptedAnswer":{"@type":"Answer","text":"Solo comparten cuota las instancias de la misma región y el mismo plan; las versiones de doble pila e IPv6-only de un mismo plan se suman"}},{"@type":"Question","name":"¿Una instancia detenida sigue cobrando?","acceptedAnswer":{"@type":"Answer","text":"Se cobra por hora. Una instancia detenida sigue cobrando; solo deja de hacerlo al eliminarla"}},{"@type":"Question","name":"¿Añadir instancias anula el exceso?","acceptedAnswer":{"@type":"Answer","text":"El exceso ya generado no se compensa con instancias nuevas: añádelas antes de agotar la cuota"}},{"@type":"Question","name":"¿Recrear una instancia reinicia el uso?","acceptedAnswer":{"@type":"Answer","text":"Eliminar y volver a crear una instancia no reinicia el uso del mes"}},{"@type":"Question","name":"¿Se cobra el tráfico por IP privada?","acceptedAnswer":{"@type":"Answer","text":"El tráfico por IP privada dentro de una región cuenta para la cuota, pero nunca se cobra"}},{"@type":"Question","name":"¿Qué tan precisas son las estimaciones?","acceptedAnswer":{"@type":"Answer","text":"Se calcula con 1 TB = 1024 GB y meses naturales en UTC. Las cifras finales son las de tu factura de AWS"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -557,7 +557,7 @@ footer a:hover { color: var(--fg); }
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
         <h1 data-i="name">Calculadora de ahorro AWS Lightsail</h1>
       </a>
-      <p class="tagline" data-i="tagline">Aprovecha que las instancias de la misma región y tamaño comparten la transferencia para hallar el plan más barato con tráfico variable.</p>
+      <p class="tagline" data-i="tagline">Las instancias de Lightsail con el mismo plan y en la misma región comparten la cuota de transferencia. Descubre si te pasarás este mes y cuántas instancias baratas añadir para evitarlo.</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">Usar con IA</span></button>
@@ -575,9 +575,9 @@ footer a:hover { color: var(--fg); }
             <div>
               <div class="row"><span data-i="outRatio">Proporción saliente</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">Solo el tráfico saliente se cobra como exceso. Deja 100 % si no lo sabes.</div>
+              <div class="lbl" data-i="outRatioHint">El exceso solo se cobra sobre el tráfico de salida (lo que envían tus servidores). Si no estás seguro, déjalo en 100 %.</div>
             </div>
-            <div class="row"><span data-i="prorate">Prorratear la cuota de instancias creadas a mitad de mes</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">Prorratear la cuota de las instancias creadas a mitad de mes</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">Tema</div>
@@ -599,7 +599,7 @@ footer a:hover { color: var(--fg); }
           </section>
           <section class="pg">
             <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">Restablecer todo</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>Instancias, uso y ajustes vuelven a los valores iniciales. No se puede deshacer. Exporta una copia antes si la necesitas.</div>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>Las instancias, el uso y los ajustes vuelven a sus valores iniciales, y no se puede deshacer. Si lo necesitas, exporta antes una copia en Ajustes avanzados.</div>
           </section>
         </div>
       </details>
@@ -607,7 +607,7 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">Se cargó la configuración del enlace. Tus datos anteriores están respaldados.</span>
+    <span data-i="linkLoaded">Se cargó la configuración del enlace. Tus datos anteriores están guardados y puedes recuperarlos.</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">Restaurar mis datos</button>
   </div>
 
@@ -648,7 +648,7 @@ footer a:hover { color: var(--fg); }
           <div class="kv"><span class="lbl" data-i="allow">Cuota</span><span class="v" id="sAllow"></span></div>
           <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
           <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">Previsión a fin de mes</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">Coste estimado</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">Costo estimado de este mes</span><span class="v" id="sCost"></span></div>
         </div>
         <div class="act" id="act"></div>
       </div>
@@ -660,7 +660,7 @@ footer a:hover { color: var(--fg); }
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">Mide antes tu latencia a cada región de AWS</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">Instancia base</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">La base del pool. Cada instancia de tráfico que añadas debe tener su mismo tamaño.</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">Instancia principal</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">La instancia que ya tienes. Las instancias de tráfico deben usar el mismo plan para sumar sus cuotas.</span></div>
           <div class="sizes" id="sizes"></div>
           <div class="line-kv"><span data-i="v4">Necesita IPv4 pública</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
           <div class="line-kv"><span><span data-i="start">Creada</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
@@ -669,7 +669,7 @@ footer a:hover { color: var(--fg); }
         <div class="sec">
           <div class="sec-h"><b data-i="nodes">Instancias de tráfico</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Las instancias de la misma región y tamaño comparten el pool. Solo IPv6.</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">Las instancias con el mismo plan en la misma región comparten una sola cuota. Las de tráfico son solo IPv6 (IPv6-only), más baratas que con IPv4 pública.</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
           <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">Añadir instancia de tráfico</span></button>
         </div>
@@ -703,28 +703,28 @@ footer a:hover { color: var(--fg); }
     <div class="help-b">
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
-        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">¿El tráfico entrante consume la cuota?</button>
-        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">¿Se cobra el tráfico entrante?</button>
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">¿El tráfico de entrada cuenta para la cuota?</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">¿Se cobra alguna vez el tráfico de entrada?</button>
         <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">¿Cuánto cuesta el exceso?</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">¿Qué instancias comparten el pool?</button>
-        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">¿Las instancias detenidas siguen cobrando?</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">¿Añadir instancias compensa el exceso ya generado?</button>
-        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">¿Borrar y recrear reinicia el uso?</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">¿Qué instancias comparten cuota?</button>
+        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">¿Una instancia detenida sigue cobrando?</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">¿Añadir instancias anula el exceso?</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">¿Recrear una instancia reinicia el uso?</button>
         <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">¿Se cobra el tráfico por IP privada?</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">¿Qué tan exactas son las estimaciones?</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">¿Qué tan precisas son las estimaciones?</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">Enlaces oficiales de AWS</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="Anterior"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="Siguiente"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>¿El tráfico entrante consume la cuota?</h4><p>Entrante + saliente <b>consumen la cuota</b></p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>¿Se cobra el tráfico entrante?</h4><p>El exceso <b>solo se cobra en saliente</b>; el entrante es gratis</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>¿Cuánto cuesta el exceso?</h4><p>Depende de la región: <b>$0.09–$0.17 por GB</b> de tráfico saliente por encima del pool. La calculadora usa la tarifa de la región elegida.</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>¿Qué instancias comparten el pool?</h4><p>Solo se combinan instancias de la misma región y <b>mismo tamaño</b>; doble pila e IPv6 del mismo tamaño se combinan</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>¿Las instancias detenidas siguen cobrando?</h4><p>Facturación por hora; <b>detenida también cobra</b>, solo eliminarla lo detiene</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>¿Añadir instancias compensa el exceso ya generado?</h4><p class="w">El exceso ya generado <b>no se compensa</b> con instancias nuevas; amplía antes de agotar</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>¿Borrar y recrear reinicia el uso?</h4><p>Eliminar y recrear <b>no reinicia</b> el uso del mes</p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>¿Se cobra el tráfico por IP privada?</h4><p>El tráfico por <b>IP privada</b> en la región consume cuota pero nunca se cobra</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>¿Qué tan exactas son las estimaciones?</h4><p>Estimación con 1 TB = 1024 GB y meses UTC; manda la factura de AWS</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>¿El tráfico de entrada cuenta para la cuota?</h4><p>El tráfico de entrada y el de salida <b>cuentan para la cuota</b></p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>¿Se cobra alguna vez el tráfico de entrada?</h4><p>El exceso <b>solo se cobra sobre la salida</b>; la entrada siempre es gratis</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>¿Cuánto cuesta el exceso?</h4><p>Depende de la región: <b>$0.09–$0.17 por GB</b> de salida por encima de la cuota. La calculadora usa la tarifa de la región que elegiste.</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>¿Qué instancias comparten cuota?</h4><p>Solo comparten cuota las instancias de la misma región y el <b>mismo plan</b>; las versiones de doble pila e IPv6-only de un mismo plan se suman</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>¿Una instancia detenida sigue cobrando?</h4><p>Se cobra por hora. <b>Una instancia detenida sigue cobrando</b>; solo deja de hacerlo al eliminarla</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>¿Añadir instancias anula el exceso?</h4><p class="w">El exceso ya generado <b>no se compensa</b> con instancias nuevas: añádelas antes de agotar la cuota</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>¿Recrear una instancia reinicia el uso?</h4><p>Eliminar y volver a crear una instancia <b>no reinicia</b> el uso del mes</p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>¿Se cobra el tráfico por IP privada?</h4><p>El tráfico por <b>IP privada</b> dentro de una región cuenta para la cuota, pero nunca se cobra</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>¿Qué tan precisas son las estimaciones?</h4><p>Se calcula con 1 TB = 1024 GB y meses naturales en UTC. Las cifras finales son las de tu factura de AWS</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>Enlaces oficiales de AWS</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">Precios</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">FAQ de transferencia</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">FAQ de facturación</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">Términos del servicio</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">Ver uso en la factura</a></p></section>
       </div>
 <!-- HELP:END -->

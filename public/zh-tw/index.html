@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AWS Lightsail 流量超額與價格計算器 · 流量池省錢方案</title>
+<title>AWS Lightsail 流量計算機｜預測超額費用，算出最省錢的加機方案</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
   // Runs before first paint. Every language is a pre-rendered static page (see LANG_PATHS in the main script;
@@ -33,24 +33,24 @@
     } catch (e) {}
   })();
 </script>
-<meta name="description" content="免費的 AWS Lightsail 流量計算器。同區域同方案執行個體共享流量池：查看已用與剩餘額度，預測月底超額費用，算出加幾台 IPv6 執行個體最省錢。">
+<meta name="description" content="免費的 AWS Lightsail 流量計算機。同區域、同方案的執行個體共用流量池：填入本月已用流量，就能看到剩餘額度、月底會不會超額、要多付多少，以及加幾台 IPv6 執行個體最省錢。">
 <meta name="keywords" content="AWS Lightsail, Lightsail 流量, Lightsail 超額, 流量池, 流量計算器, Lightsail 價格, IPv6 執行個體, VPS 流量費用, AWS 帳單">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="application-name" content="AWS Lightsail 省錢計算器">
+<meta name="application-name" content="AWS Lightsail 省錢計算機">
 <meta name="theme-color" content="#f6f6f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="AWS Lightsail 省錢計算器">
-<meta property="og:title" content="AWS Lightsail 流量超額與價格計算器 · 流量池省錢方案">
-<meta property="og:description" content="基於「同地域同規格流量池共享」規則，幫你找出更省錢的彈性流量方案">
+<meta property="og:site_name" content="AWS Lightsail 省錢計算機">
+<meta property="og:title" content="AWS Lightsail 流量計算機｜預測超額費用，算出最省錢的加機方案">
+<meta property="og:description" content="同區域、同方案的 Lightsail 執行個體，流量額度可以合起來用。這裡幫你算這個月會不會超額、加幾台小執行個體最划算。">
 <meta property="og:image" content="https://ls.1ms.dog/og/zh-tw.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AWS Lightsail 流量超額與價格計算器 · 流量池省錢方案">
-<meta name="twitter:description" content="基於「同地域同規格流量池共享」規則，幫你找出更省錢的彈性流量方案">
+<meta name="twitter:title" content="AWS Lightsail 流量計算機｜預測超額費用，算出最省錢的加機方案">
+<meta name="twitter:description" content="同區域、同方案的 Lightsail 執行個體，流量額度可以合起來用。這裡幫你算這個月會不會超額、加幾台小執行個體最划算。">
 <meta name="twitter:image" content="https://ls.1ms.dog/og/zh-tw.png">
 <!-- SITE:BEGIN (written by scripts/build.mjs from the site URL set with scripts/set-site-url.mjs) -->
 <link rel="canonical" href="https://ls.1ms.dog/zh-tw/">
@@ -69,11 +69,11 @@
 <link rel="sitemap" type="application/xml" href="https://ls.1ms.dog/sitemap.xml">
 <!-- SITE:END -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 省錢計算器","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"免費的 AWS Lightsail 流量計算器。同區域同方案執行個體共享流量池：查看已用與剩餘額度，預測月底超額費用，算出加幾台 IPv6 執行個體最省錢。","inLanguage":"zh-TW","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/zh-tw/"},{"@type":"FAQPage","inLanguage":"zh-TW","mainEntity":[{"@type":"Question","name":"入站流量也扣額度嗎？","acceptedAnswer":{"@type":"Answer","text":"入站 + 出站都扣額度"}},{"@type":"Question","name":"入站流量會收費嗎？","acceptedAnswer":{"@type":"Answer","text":"超額只收出站，入站永遠免費"}},{"@type":"Question","name":"超額怎麼收費？","acceptedAnswer":{"@type":"Answer","text":"依地區不同，超出共享額度的出站流量每 GB $0.09–$0.17。計算器使用所選地區的價格。"}},{"@type":"Question","name":"哪些實例共享額度？","acceptedAnswer":{"@type":"Answer","text":"同地區、同規格才合併；同規格雙棧與 IPv6-only 可合併"}},{"@type":"Question","name":"關機的實例還收費嗎？","acceptedAnswer":{"@type":"Answer","text":"按小時計費，停機照樣計費，刪除才停止"}},{"@type":"Question","name":"新增實例能抵掉已產生的超額嗎？","acceptedAnswer":{"@type":"Answer","text":"已產生的超額，新加實例無法抵消，要在用完前擴容"}},{"@type":"Question","name":"刪除重建能清零用量嗎？","acceptedAnswer":{"@type":"Answer","text":"刪除後重建不會重設本月已用量"}},{"@type":"Question","name":"內網流量收費嗎？","acceptedAnswer":{"@type":"Answer","text":"同地區走私網 IP：扣額度，但超額也免費"}},{"@type":"Question","name":"估算有多準？","acceptedAnswer":{"@type":"Answer","text":"按 1 TB = 1024 GB、UTC 自然月估算，以 AWS 帳單為準"}}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AWS Lightsail 省錢計算機","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"免費的 AWS Lightsail 流量計算機。同區域、同方案的執行個體共用流量池：填入本月已用流量，就能看到剩餘額度、月底會不會超額、要多付多少，以及加幾台 IPv6 執行個體最省錢。","inLanguage":"zh-TW","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Used and remaining transfer allowance","Month-end usage forecast","Cheapest scale-up plan","Prices for 19 AWS regions","Data stored only in the browser"],"url":"https://ls.1ms.dog/zh-tw/"},{"@type":"FAQPage","inLanguage":"zh-TW","mainEntity":[{"@type":"Question","name":"入站流量也算額度嗎？","acceptedAnswer":{"@type":"Answer","text":"入站和出站流量都會算進額度"}},{"@type":"Question","name":"入站流量要收費嗎？","acceptedAnswer":{"@type":"Answer","text":"超額只收出站費用，入站永遠免費"}},{"@type":"Question","name":"超額怎麼收費？","acceptedAnswer":{"@type":"Answer","text":"依區域而定：超出流量池的出站流量，每 GB $0.09–$0.17。計算機會用你選的區域價格。"}},{"@type":"Question","name":"哪些執行個體能合用額度？","acceptedAnswer":{"@type":"Answer","text":"只有同區域、同方案的執行個體能合用額度；同方案的雙堆疊和 IPv6-only 執行個體也能合用"}},{"@type":"Question","name":"關機的執行個體還會收費嗎？","acceptedAnswer":{"@type":"Answer","text":"按小時計費，關機一樣收費，刪除執行個體才會停止"}},{"@type":"Question","name":"新加執行個體能抵掉已經產生的超額嗎？","acceptedAnswer":{"@type":"Answer","text":"已經產生的超額，新加執行個體也抵不掉，要在額度用完前加"}},{"@type":"Question","name":"刪掉重建能讓用量歸零嗎？","acceptedAnswer":{"@type":"Answer","text":"刪掉再重建，本月已用流量不會歸零"}},{"@type":"Question","name":"內網流量要收費嗎？","acceptedAnswer":{"@type":"Answer","text":"同區域內走私有 IP 的流量：會算進額度，但超額也不收費"}},{"@type":"Question","name":"估算準不準？","acceptedAnswer":{"@type":"Answer","text":"以 1 TB = 1024 GB、UTC 自然月估算，實際以 AWS 帳單為準"}}]}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.786edd642a.js"></script>
+<script defer src="../assets/js/app.f9cf32b4d5.js"></script>
 <!-- APP:END -->
 <style>
 /* Geist and Geist Mono, self-hosted in public/assets/fonts/ */
@@ -555,9 +555,9 @@ footer a:hover { color: var(--fg); }
     <div class="brand">
       <a class="brand-row" href="./">
         <span class="logo" id="brandLogo"><img class="logo-light" src="../assets/logo-light.svg" width="90" height="36" alt="1ms"><img class="logo-dark" src="../assets/logo-dark.svg" width="90" height="36" alt="1ms"></span>
-        <h1 data-i="name">AWS Lightsail 省錢計算器</h1>
+        <h1 data-i="name">AWS Lightsail 省錢計算機</h1>
       </a>
-      <p class="tagline" data-i="tagline">基於「同地域同規格流量池共享」規則，幫你找出更省錢的彈性流量方案</p>
+      <p class="tagline" data-i="tagline">同區域、同方案的 Lightsail 執行個體，流量額度可以合起來用。這裡幫你算這個月會不會超額、加幾台小執行個體最划算。</p>
     </div>
     <div class="tools">
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">接入 Agent</span></button>
@@ -573,11 +573,11 @@ footer a:hover { color: var(--fg); }
           <section class="pg">
             <div class="pg-h" data-i="secCalc">計算</div>
             <div>
-              <div class="row"><span data-i="outRatio">出站占比</span><span class="num" id="outRatioV"></span></div>
+              <div class="row"><span data-i="outRatio">出站流量比例</span><span class="num" id="outRatioV"></span></div>
               <input type="range" id="outRatio" min="0" max="100" step="5">
-              <div class="lbl" data-i="outRatioHint">超額只對出站收費。不確定就保持 100%。</div>
+              <div class="lbl" data-i="outRatioHint">超額只看出站流量（從伺服器送出去的）收費。不確定的話維持 100% 就好。</div>
             </div>
-            <div class="row"><span data-i="prorate">月中開通的額度按時長折算</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">月中才建立的執行個體，額度依剩餘時數折算</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">主題</div>
@@ -598,8 +598,8 @@ footer a:hover { color: var(--fg); }
             <input type="file" id="importFile" accept="application/json,.json" hidden>
           </section>
           <section class="pg">
-            <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">重設全部資料</span></button>
-            <div class="lbl" id="resetHint" data-i="cB" hidden>實例、已用流量和設定都會恢復預設，無法復原。需要的話先在進階設定裡匯出備份。</div>
+            <button class="danger-row" id="resetBtn" type="button"><i class="fill"></i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9"/></svg><span data-i="reset">重設所有資料</span></button>
+            <div class="lbl" id="resetHint" data-i="cB" hidden>執行個體、已用流量和設定都會恢復預設，清除後無法復原。需要的話，請先在進階設定匯出備份。</div>
           </section>
         </div>
       </details>
@@ -607,13 +607,13 @@ footer a:hover { color: var(--fg); }
   </header>
 
   <div class="banner" id="linkBanner" hidden>
-    <span data-i="linkLoaded">已載入連結中的設定，你原本的資料已備份。</span>
-    <button class="btn sm" id="linkUndo" type="button" data-i="undo">恢復原本的資料</button>
+    <span data-i="linkLoaded">已依連結載入設定。你原本的資料已備份，隨時可以還原。</span>
+    <button class="btn sm" id="linkUndo" type="button" data-i="undo">還原我的資料</button>
   </div>
 
   <div class="banner" id="rollover" hidden>
     <span id="rolloverText"></span>
-    <button class="btn sm ink" id="rolloverBtn" type="button" data-i="rollBtn">開始新月份</button>
+    <button class="btn sm ink" id="rolloverBtn" type="button" data-i="rollBtn">開始新的月份</button>
   </div>
 
   <div class="grid">
@@ -656,22 +656,22 @@ footer a:hover { color: var(--fg); }
     </section>
 
     <section class="panel" id="fleetPanel">
-      <div class="panel-h"><h2 class="sr" data-i="fleet">實例總覽</h2><label class="sel" id="regionWrap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 14.5s5-4.3 5-8.3a5 5 0 0 0-10 0c0 4 5 8.3 5 8.3z"/><circle cx="8" cy="6.2" r="1.8"/></svg><select id="region"></select></label><span class="lbl num" id="fleetSum"></span></div>
+      <div class="panel-h"><h2 class="sr" data-i="fleet">執行個體總覽</h2><label class="sel" id="regionWrap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 14.5s5-4.3 5-8.3a5 5 0 0 0-10 0c0 4 5 8.3 5 8.3z"/><circle cx="8" cy="6.2" r="1.8"/></svg><select id="region"></select></label><span class="lbl num" id="fleetSum"></span></div>
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">先測你到各個 AWS 區域的延遲</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
-          <div class="sec-h"><b><span class="badge" data-i="base">基石實例</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">流量池中的地基，新增的流量實例需要與它規格一致。</span></div>
+          <div class="sec-h"><b><span class="badge" data-i="base">主執行個體</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">你現在在用的那台。新加的流量執行個體要跟它同一個方案，額度才能合在一起。</span></div>
           <div class="sizes" id="sizes"></div>
-          <div class="line-kv"><span data-i="v4">需要公網 IPv4</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
-          <div class="line-kv"><span><span data-i="start">開通時間</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
+          <div class="line-kv"><span data-i="v4">需要公用 IPv4</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
+          <div class="line-kv"><span><span data-i="start">建立時間</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
           <div class="note" id="utcNote"></div>
         </div>
         <div class="sec">
-          <div class="sec-h"><b data-i="nodes">流量實例</b></div>
+          <div class="sec-h"><b data-i="nodes">流量執行個體</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">同地區、同規格實例共享流量池，IPv6-only。</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">同區域、同方案的執行個體共用一個流量池。流量執行個體選 IPv6-only，比附公用 IPv4 的便宜。</span><span class="num lbl" id="nodeSpec"></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
-          <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">新增流量實例</span></button>
+          <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">加一台流量執行個體</span></button>
         </div>
       </div>
     </section>
@@ -703,28 +703,28 @@ footer a:hover { color: var(--fg); }
     <div class="help-b">
 <!-- HELP:BEGIN (written by scripts/build.mjs) -->
       <nav class="help-nav" id="helpNav" role="tablist" aria-orientation="vertical">
-        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">入站流量也扣額度嗎？</button>
-        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">入站流量會收費嗎？</button>
+        <button type="button" role="tab" id="hq0" data-hq="0" aria-controls="ha0" aria-selected="true">入站流量也算額度嗎？</button>
+        <button type="button" role="tab" id="hq1" data-hq="1" aria-controls="ha1" aria-selected="false">入站流量要收費嗎？</button>
         <button type="button" role="tab" id="hq2" data-hq="2" aria-controls="ha2" aria-selected="false">超額怎麼收費？</button>
-        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">哪些實例共享額度？</button>
-        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">關機的實例還收費嗎？</button>
-        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">新增實例能抵掉已產生的超額嗎？</button>
-        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">刪除重建能清零用量嗎？</button>
-        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">內網流量收費嗎？</button>
-        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">估算有多準？</button>
+        <button type="button" role="tab" id="hq3" data-hq="3" aria-controls="ha3" aria-selected="false">哪些執行個體能合用額度？</button>
+        <button type="button" role="tab" id="hq4" data-hq="4" aria-controls="ha4" aria-selected="false">關機的執行個體還會收費嗎？</button>
+        <button type="button" role="tab" id="hq5" data-hq="5" aria-controls="ha5" aria-selected="false">新加執行個體能抵掉已經產生的超額嗎？</button>
+        <button type="button" role="tab" id="hq6" data-hq="6" aria-controls="ha6" aria-selected="false">刪掉重建能讓用量歸零嗎？</button>
+        <button type="button" role="tab" id="hq7" data-hq="7" aria-controls="ha7" aria-selected="false">內網流量要收費嗎？</button>
+        <button type="button" role="tab" id="hq8" data-hq="8" aria-controls="ha8" aria-selected="false">估算準不準？</button>
         <button type="button" role="tab" id="hq9" data-hq="9" aria-controls="ha9" aria-selected="false">AWS 官方連結</button>
       </nav>
       <div class="help-pick"><button class="icon-btn" type="button" data-hstep="-1" data-ia="qPrev" aria-label="上一個"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg></button><select id="helpSel" aria-labelledby="helpT"></select><button class="icon-btn" type="button" data-hstep="1" data-ia="qNext" aria-label="下一個"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></button></div>
       <div class="help-c" id="helpC">
-        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>入站流量也扣額度嗎？</h4><p>入站 + 出站<b>都扣額度</b></p></section>
-        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>入站流量會收費嗎？</h4><p>超額<b>只收出站</b>，入站永遠免費</p></section>
-        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>超額怎麼收費？</h4><p>依地區不同，超出共享額度的出站流量<b>每 GB $0.09–$0.17</b>。計算器使用所選地區的價格。</p></section>
-        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>哪些實例共享額度？</h4><p>同地區、<b>同規格</b>才合併；同規格雙棧與 IPv6-only 可合併</p></section>
-        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>關機的實例還收費嗎？</h4><p>按小時計費，<b>停機照樣計費</b>，刪除才停止</p></section>
-        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>新增實例能抵掉已產生的超額嗎？</h4><p class="w">已產生的超額，<b>新加實例無法抵消</b>，要在用完前擴容</p></section>
-        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>刪除重建能清零用量嗎？</h4><p>刪除後重建<b>不會重設</b>本月已用量</p></section>
-        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>內網流量收費嗎？</h4><p>同地區走<b>私網 IP</b>：扣額度，但超額也免費</p></section>
-        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>估算有多準？</h4><p>按 1 TB = 1024 GB、UTC 自然月估算，以 AWS 帳單為準</p></section>
+        <section role="tabpanel" id="ha0" data-hqb="0" aria-labelledby="hq0"><h4>入站流量也算額度嗎？</h4><p>入站和出站流量<b>都會算進額度</b></p></section>
+        <section role="tabpanel" id="ha1" data-hqb="1" aria-labelledby="hq1" hidden><h4>入站流量要收費嗎？</h4><p>超額<b>只收出站</b>費用，入站永遠免費</p></section>
+        <section role="tabpanel" id="ha2" data-hqb="2" aria-labelledby="hq2" hidden><h4>超額怎麼收費？</h4><p>依區域而定：超出流量池的出站流量，<b>每 GB $0.09–$0.17</b>。計算機會用你選的區域價格。</p></section>
+        <section role="tabpanel" id="ha3" data-hqb="3" aria-labelledby="hq3" hidden><h4>哪些執行個體能合用額度？</h4><p>只有同區域、<b>同方案</b>的執行個體能合用額度；同方案的雙堆疊和 IPv6-only 執行個體也能合用</p></section>
+        <section role="tabpanel" id="ha4" data-hqb="4" aria-labelledby="hq4" hidden><h4>關機的執行個體還會收費嗎？</h4><p>按小時計費，<b>關機一樣收費</b>，刪除執行個體才會停止</p></section>
+        <section role="tabpanel" id="ha5" data-hqb="5" aria-labelledby="hq5" hidden><h4>新加執行個體能抵掉已經產生的超額嗎？</h4><p class="w">已經產生的超額，<b>新加執行個體也抵不掉</b>，要在額度用完前加</p></section>
+        <section role="tabpanel" id="ha6" data-hqb="6" aria-labelledby="hq6" hidden><h4>刪掉重建能讓用量歸零嗎？</h4><p>刪掉再重建，本月已用流量<b>不會歸零</b></p></section>
+        <section role="tabpanel" id="ha7" data-hqb="7" aria-labelledby="hq7" hidden><h4>內網流量要收費嗎？</h4><p>同區域內走<b>私有 IP</b> 的流量：會算進額度，但超額也不收費</p></section>
+        <section role="tabpanel" id="ha8" data-hqb="8" aria-labelledby="hq8" hidden><h4>估算準不準？</h4><p>以 1 TB = 1024 GB、UTC 自然月估算，實際以 AWS 帳單為準</p></section>
         <section role="tabpanel" id="ha9" data-hqb="9" aria-labelledby="hq9" hidden><h4>AWS 官方連結</h4><p class="links"><a href="https://aws.amazon.com/lightsail/pricing/" target="_blank" rel="noopener">官方定價</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html" target="_blank" rel="noopener">流量額度 FAQ</a><a href="https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html" target="_blank" rel="noopener">計費 FAQ</a><a href="https://aws.amazon.com/service-terms/" target="_blank" rel="noopener">服務條款</a><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener">查看帳單用量</a></p></section>
       </div>
 <!-- HELP:END -->
