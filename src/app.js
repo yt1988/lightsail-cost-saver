@@ -786,7 +786,7 @@
 
   function actHTML(c) {
     const codes = { in: `<code>${IN}</code>`, out: `<code>${OUT}</code>`, a: `<a href="${BILL}" target="_blank" rel="noopener noreferrer">`, "/a": "</a>" };
-    if (!c.has) return `<div class="act-h"><strong>${t("fill")}</strong></div><div class="note">${t("fillHint", codes)}</div>`;
+    if (!c.has) return `<div class="act-h"><strong>${t("fill")}</strong></div><p class="note">${t("fillHint", codes)}</p>`;
     const cfg = c.nextNodes ? t("cfgPlus", { n: c.nextNodes }) : t("cfgBase");
     const next = `<div class="next"><span class="tag">${t("next")}</span><span>${t("nextLine", { v: fmtGB(c.P), cfg: `<b>${cfg}</b>`, c: `<b class="num">${fmtUSD(c.nextCost)}</b>` })}</span></div>`;
     if (!c.opts.length) return `<div class="act-h"><strong>${t("enough")}</strong><span class="save">${t("leftEnd", { v: fmtGB(c.allow - c.P) })}</span></div>` + next;
