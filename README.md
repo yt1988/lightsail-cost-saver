@@ -31,7 +31,7 @@ No sign-up. Open it and go; your data stays in your own browser. Available in 10
 >
 > **IP & privacy**: [EgressLens](https://github.com/yt1988/egresslens "Every exit IP your traffic uses, and which sites see which") · [IP Quality Test](https://github.com/yt1988/ip-quality-test "How clean your IP is, scored 0–100 from a dozen sources") · [Who Are You](https://github.com/yt1988/who-are-you "What any website can tell about you without asking") · [ASN Lookup](https://github.com/yt1988/asn-lookup "Who owns an IP, and the prefixes and peers of every AS") · [Streaming & AI Unlock Check](https://github.com/yt1988/unlock-check "Which streaming and AI services work on your IP")
 >
-> **Cloud & costs**: [Me2Cloud](https://github.com/yt1988/me2cloud "Latency, jitter and loss to every region of the big clouds") · [Cloud Cost Planner](https://github.com/yt1988/cloud-cost-planner "The cheapest VPS, storage and CDN setup for your traffic")
+> **Cloud & costs**: [Me2Cloud](https://github.com/yt1988/me2cloud "Latency, jitter and timeouts to every region of the big clouds") · [Cloud Cost Planner](https://github.com/yt1988/cloud-cost-planner "The cheapest VPS, storage and CDN setup for your traffic")
 >
 > **Command line**: [`httpslatency`](https://github.com/yt1988/https-latency-test-cli "1ms.dog's latency test, run from a server or router") · [`vps2cloud`](https://github.com/yt1988/vps2cloud "Me2Cloud from a server: latency to every region of the big clouds") · [`dnstest`](https://github.com/yt1988/dns-test-cli "DNS Test from a server, over UDP, TCP, DoT, DoH and DoQ")
 <!-- /1ms-repos -->

@@ -31,7 +31,7 @@
 >
 > **IP 与隐私**：[出口照妖镜](https://github.com/yt1988/egresslens "你的流量用了哪些出口 IP，各网站分别看到哪个") · [IP 质量测试](https://github.com/yt1988/ip-quality-test "你的 IP 有多干净，汇总十几个来源打 0–100 分") · [你是谁](https://github.com/yt1988/who-are-you "网站不用你授权，就能看出你的哪些信息") · [ASN 查询](https://github.com/yt1988/asn-lookup "IP 归谁，以及每个 AS 的前缀和上下游") · [流媒体/AI 解锁检测](https://github.com/yt1988/unlock-check "你的 IP 能用哪些流媒体和 AI 服务")
 >
-> **选云与成本**：[Me2Cloud](https://github.com/yt1988/me2cloud "到各大云厂商每个区域的延迟、抖动和丢包") · [云成本规划器](https://github.com/yt1988/cloud-cost-planner "按你的流量，算出最便宜的 VPS、存储和 CDN 组合")
+> **选云与成本**：[Me2Cloud](https://github.com/yt1988/me2cloud "到各大云厂商每个区域的延迟、抖动和超时率") · [云成本规划器](https://github.com/yt1988/cloud-cost-planner "按你的流量，算出最便宜的 VPS、存储和 CDN 组合")
 >
 > **命令行**：[`httpslatency`](https://github.com/yt1988/https-latency-test-cli "在服务器或路由器上跑 1ms.dog 的延迟测试") · [`vps2cloud`](https://github.com/yt1988/vps2cloud "在服务器上测到各大云厂商每个区域的延迟") · [`dnstest`](https://github.com/yt1988/dns-test-cli "在服务器上测 DNS，覆盖 UDP、TCP、DoT、DoH 和 DoQ")
 <!-- /1ms-repos -->
