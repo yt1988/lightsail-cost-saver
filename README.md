@@ -244,7 +244,8 @@ scripts/test-pages.mjs            checks every language page is pre-rendered (np
 scripts/update-prices.mjs         refresh prices from the AWS Price List API
 scripts/set-site-url.mjs          canonical / hreflang / sitemap / robots for your domain
 assets/                           1ms logo masters (light and dark), kept for reference
-docs/                             README preview screenshots
+docs/                             README preview screenshots, design.md (why the code is built this way)
+AGENTS.md                         how to build, test and deploy, for people and AI agents
 Dockerfile, nginx.conf            container image
 .github/workflows/docker.yml      builds and pushes the Docker Hub image
 .github/workflows/pages.yml       optional GitHub Pages deployment

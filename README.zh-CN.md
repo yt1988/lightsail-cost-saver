@@ -244,7 +244,8 @@ scripts/test-pages.mjs            检查每种语言的页面都已预渲染（n
 scripts/update-prices.mjs         从 AWS Price List API 更新价格
 scripts/set-site-url.mjs          为你的域名生成 canonical / hreflang / sitemap / robots
 assets/                           1ms 标志母版（浅色、深色），留档用
-docs/                             README 预览截图
+docs/                             README 预览截图，design.md（技术设计理由）
+AGENTS.md                         构建、测试、部署说明，写给人和 AI 代理
 Dockerfile, nginx.conf            容器镜像
 .github/workflows/docker.yml      构建并推送 Docker Hub 镜像
 .github/workflows/pages.yml       可选的 GitHub Pages 部署
