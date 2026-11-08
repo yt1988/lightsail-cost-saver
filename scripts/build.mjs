@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Generates files from the two sources: public/index.html (the markup, and the English page) and src/app.js (the script).
-//   public/assets/js/app.<hash>.js  src/app.js, named by its content so it can be cached for a year
+//   public/assets/js/app.<hash>.js  src/app.js lowered to ES2019, named by its content so it can be cached for a year
 //   public/assets/favicon.svg       head crop of public/assets/logo-light.svg
 //   public/calc.js                  the CALC:BEGIN…CALC:END block as an ES module
 //   public/prices.json              the PRICES block in a readable format
@@ -12,11 +12,19 @@
 import { readFile, writeFile, mkdir, readdir, unlink } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { transform } from "esbuild";
 
 const root = new URL("../public/", import.meta.url);
 const appSrc = new URL("../src/app.js", import.meta.url);
 const EXPORTS = ["CALC_VERSION", "GB_PER_TB", "monthKey", "monthRange", "normalizePrices", "regionInfo",
   "computeCore", "toState", "fromState", "calculate", "buildLink", "parseLink"];
+// Old browsers and in-app browsers (Safari 13.1, Chrome 80 and older) reject ES2020 syntax such as ?. and ??,
+// and one syntax error stops the whole script. Shipped scripts are lowered to this target. No "safari12": esbuild
+// treats destructuring as unsupported before Safari 14.1 (an edge case with defaults) and can't lower it, while
+// Safari 12 runs the plain destructuring used here; "es2019" already lowers ?. and ??.
+const TARGET = ["es2019", "chrome70", "firefox68", "edge79"];
+const lower = async code => (await transform(code, { target: TARGET, charset: "utf8", legalComments: "inline" })).code;
+
 const OG_LOCALE = { en: "en_US", "zh-CN": "zh_CN", "zh-TW": "zh_TW", ja: "ja_JP", ko: "ko_KR", es: "es_ES", fr: "fr_FR", de: "de_DE", pt: "pt_BR", ru: "ru_RU" };
 
 function between(text, begin, end, label) {
@@ -174,7 +182,8 @@ export async function build({ check = false } = {}) {
     .replace("/* PRICES:BEGIN */", "").replace("/* PRICES:END */", "").trim()
     .replace(/^const PRICES =\s*/, "").replace(/;$/, "");
   const P = JSON.parse(pricesSrc);
-  const appFile = `app.${createHash("sha256").update(app).digest("hex").slice(0, 10)}.js`;
+  const appJs = await lower(app);
+  const appFile = `app.${createHash("sha256").update(appJs).digest("hex").slice(0, 10)}.js`;
   const html = managed(src, "en", D, P, appFile);
 
   // favicon: the dog's head from the light logo, wordmark hidden
@@ -184,7 +193,7 @@ export async function build({ check = false } = {}) {
 
   const block = between(app, "/* CALC:BEGIN", "/* CALC:END */", "CALC");
   const body = block.split("\n").map(l => l.replace(/^ {2}/, "")).join("\n");
-  const calc = `// AWS Lightsail Cost Saver — calculation core (ES module).
+  const calc = await lower(`// AWS Lightsail Cost Saver — calculation core (ES module).
 // Generated from src/app.js by scripts/build.mjs; edit that, not this file.
 // Docs: https://ls.1ms.dog/llms.txt · Source: https://github.com/yt1988/lightsail-cost-saver
 //
@@ -195,7 +204,7 @@ export async function build({ check = false } = {}) {
 ${body}
 
 export { ${EXPORTS.join(", ")} };
-`;
+`);
 
   const prices = {
     schema: 1,
@@ -215,7 +224,7 @@ export { ${EXPORTS.join(", ")} };
   const json = JSON.stringify(prices, null, 2) + "\n";
 
   const targets = [["index.html", html], ["calc.js", calc], ["prices.json", json],
-    ["assets/js/" + appFile, app], ["assets/favicon.svg", favicon],
+    ["assets/js/" + appFile, appJs], ["assets/favicon.svg", favicon],
     ...D.LANGS.filter(([l]) => l !== "en").map(([l]) => [D.LANG_PATHS[l] + "index.html", renderPage(html, l, D, P, appFile)])];
   let stale = [];
   // bundles left from earlier builds

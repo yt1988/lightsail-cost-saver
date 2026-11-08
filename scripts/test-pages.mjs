@@ -38,5 +38,12 @@ for (const [lang] of D.LANGS) {
   check(`/${path} labels are in ${lang}`, ia.length >= 5 && ia.every(([tag, k]) => tag.includes(`aria-label="${esc(L[k])}"`)));
 }
 
+// shipped scripts are ES2019: ?. and ?? are syntax errors in Safari 13.1, Chrome 80 and older in-app browsers
+const appFile = src.match(/assets\/js\/(app\.\w+\.js)/)[1];
+const headJs = src.match(/<script>([\s\S]*?)<\/script>/)[1];
+for (const [name, code] of [["assets/js/" + appFile, await readFile(new URL("assets/js/" + appFile, pub), "utf8")],
+  ["calc.js", await readFile(new URL("calc.js", pub), "utf8")], ["head script in index.html", headJs]])
+  check(`${name} has no ?. or ??`, !/\?\.(?!\d)|\?\?/.test(code.replace(/\/\/.*$/gm, "")));
+
 if (failed) { console.error(`\n${failed} check(s) failed`); process.exit(1); }
 console.log("\nall page checks passed");

@@ -20,7 +20,7 @@ There are two modes, because people come with two different kinds of numbers:
 
 ## One calculation core
 
-The `CALC` block in `src/app.js` is copied verbatim into `public/calc.js` by the build, and the page calls the same functions. So the page, an agent importing `calc.js` and the regression tests always get the same numbers, and there is only one place to fix a rule. `npm test` fails if the copy drifts.
+The `CALC` block in `src/app.js` is copied into `public/calc.js` by the build, and the page calls the same functions. So the page, an agent importing `calc.js` and the regression tests always get the same numbers, and there is only one place to fix a rule. `npm test` fails if the copy drifts.
 
 `calculate(input, prices, now)` takes `now` as an argument so tests can pin the clock. The page passes `Date.now()`.
 
@@ -59,3 +59,7 @@ Each language is its own pre-rendered page (`/zh-cn/`, `/ja/`, …) with its tex
 - No third-party requests (no font CDN, no analytics in this repository), so the page works the same anywhere it is deployed.
 - The logos are SVG files referenced by `<img>`, not inlined, so they are cached across pages. They were minified at one decimal of precision: rounding further turns the gradients' stop opacities into 0 or 1 and loses the shading.
 - The same cache and CORS headers are written in three places: `public/_headers`, `nginx.conf` and `vercel.json`. Change all three together.
+
+## Old browsers
+
+Shipped scripts are lowered to ES2019 by esbuild (`TARGET` in `scripts/build.mjs`). Optional chaining (`?.`) and `??` are syntax errors in Safari before 13.1, Chrome before 80 and the in-app browsers built on them, and a single syntax error stops the whole script, so the page would show nothing but its pre-rendered text. The target leaves out `safari12`: esbuild treats destructuring as unsupported before Safari 14.1 (because of an edge case with default values) and can't lower it, while the plain destructuring in this code runs in Safari 12. The inline head script in `index.html` isn't processed, so it is written in ES2019 by hand. `scripts/test-pages.mjs` checks all three shipped scripts.

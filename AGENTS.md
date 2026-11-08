@@ -18,8 +18,8 @@ Edit only these two by hand:
 `npm run build` (`scripts/build.mjs`) writes everything else from them, so never edit these by hand:
 
 - `public/<lang>/index.html`, one page per language with its text written into the HTML
-- `public/assets/js/app.<hash>.js` (a copy of `src/app.js` named by its content) and `public/assets/favicon.svg`
-- `public/calc.js` (the `CALC` block as an ES module) and `public/prices.json`
+- `public/assets/js/app.<hash>.js` (`src/app.js` lowered to ES2019 by esbuild, named by its content) and `public/assets/favicon.svg`
+- `public/calc.js` (the `CALC` block as an ES module, also lowered to ES2019) and `public/prices.json`
 - the build-managed blocks inside `public/index.html`: `SITE`, `APP`, `HELP`, `LANGNAV`, the footer text and the JSON-LD FAQ
 
 Other scripts: `scripts/update-prices.mjs` (refreshes `PRICES` from the AWS Price List API), `scripts/set-site-url.mjs` (canonical, hreflang, sitemap, robots for a domain), `scripts/og.mjs` (link-preview images in `public/og/`).
@@ -76,6 +76,7 @@ The cross-links to other tools (Me2Cloud, Cloud Cost Planner) only appear when t
 ## Conventions
 
 - Keep the site static: no server code, no build step at deploy time, no third-party requests (fonts are self-hosted).
+- Write modern JavaScript in `src/app.js`; the build lowers it to ES2019. `npm test` fails if `?.` or `??` reach a shipped script, including the inline head script in `index.html`, which is not lowered: write that one in ES2019 by hand.
 - Any change to visible text goes into all 10 language packs. Words that visitors compare with the AWS console follow AWS's own wording in that language (see [docs/design.md](docs/design.md#translations)).
 - Do not rename the `localStorage` keys (`lightsail-pool:v2` for the setup, `lightsail-pool:v1` read once for migration, `lightsail-pool:theme`, `lightsail-pool:lang`): existing visitors would lose their saved setup. The head script in `index.html` reads the last two too.
 - Generated files are committed. Run `npm run build` and commit them together with the source change.
