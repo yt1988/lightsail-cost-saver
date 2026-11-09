@@ -189,7 +189,11 @@
       overA: "看地区：超出流量池的出站流量，<b>每 GB {lo}–{hi}</b>。计算器按你选的地区价格算。",
       links: ["官方定价", "流量额度 FAQ", "计费 FAQ", "服务条款", "查看账单用量"],
       foot: "价格核对于 {d} · 非 AWS 官方工具",
-      allowLbl: "额度 {v}"
+      allowLbl: "额度 {v}",
+      rpBtn: "结果不对？",
+      rpPre: "计算结果不对：",
+      rpRegion: "地区",
+      rpPrice: "价格核对"
     },
     "zh-TW": {
       seoTitle: "AWS Lightsail 流量計算機｜預測超額費用，算出最省錢的加機方案",
@@ -314,7 +318,11 @@
       overA: "依區域而定：超出流量池的出站流量，<b>每 GB {lo}–{hi}</b>。計算機會用你選的區域價格。",
       links: ["官方定價", "流量額度 FAQ", "計費 FAQ", "服務條款", "查看帳單用量"],
       foot: "價格核對於 {d} · 非 AWS 官方工具",
-      allowLbl: "額度 {v}"
+      allowLbl: "額度 {v}",
+      rpBtn: "結果不對？",
+      rpPre: "計算結果不對：",
+      rpRegion: "區域",
+      rpPrice: "價格核對"
     },
     en: {
       seoTitle: "AWS Lightsail data transfer calculator: forecast overage and cut costs",
@@ -438,7 +446,11 @@
       overA: "It depends on the region: <b>{lo}–{hi} per GB</b> of outbound traffic beyond the pool. The calculator uses the rate for the region you picked.",
       links: ["Pricing", "Data transfer FAQ", "Billing FAQ", "Service terms", "View bill usage"],
       foot: "Prices checked {d} · Not an official AWS tool",
-      allowLbl: "Allowance {v}"
+      allowLbl: "Allowance {v}",
+      rpBtn: "Result wrong?",
+      rpPre: "The result is wrong:",
+      rpRegion: "Region",
+      rpPrice: "Prices checked"
     },
     ja: {
       seoTitle: "AWS Lightsail 転送量計算ツール｜超過料金を予測して最安の対策を計算",
@@ -563,7 +575,11 @@
       overA: "リージョンによって違い、プールを超えた送信は<b>1 GB あたり {lo}–{hi}</b>です。計算には選んだリージョンの料金を使います。",
       links: ["料金", "データ転送 FAQ", "請求 FAQ", "サービス条件", "請求の使用量を見る"],
       foot: "価格確認 {d} · AWS 公式ツールではありません",
-      allowLbl: "枠 {v}"
+      allowLbl: "枠 {v}",
+      rpBtn: "結果が違いますか？",
+      rpPre: "計算結果が違います：",
+      rpRegion: "リージョン",
+      rpPrice: "価格確認"
     },
     ko: {
       seoTitle: "AWS Lightsail 전송량 계산기: 초과 요금 예측과 가장 싼 해결책",
@@ -688,7 +704,11 @@
       overA: "리전마다 달라요. 풀을 넘은 아웃바운드는 <b>GB당 {lo}–{hi}</b>이고, 계산기는 선택한 리전의 요금을 써요.",
       links: ["요금", "데이터 전송 FAQ", "청구 FAQ", "서비스 약관", "청구 사용량 보기"],
       foot: "가격 확인 {d} · AWS 공식 도구 아님",
-      allowLbl: "한도 {v}"
+      allowLbl: "한도 {v}",
+      rpBtn: "결과가 다른가요?",
+      rpPre: "계산 결과가 다릅니다:",
+      rpRegion: "리전",
+      rpPrice: "가격 확인"
     },
     es: {
       seoTitle: "Calculadora de transferencia de AWS Lightsail: prevé el exceso y ahorra",
@@ -813,7 +833,11 @@
       overA: "Depende de la región: <b>{lo}–{hi} por GB</b> de salida por encima de la cuota. La calculadora usa la tarifa de la región que elegiste.",
       links: ["Precios", "FAQ de transferencia", "FAQ de facturación", "Términos del servicio", "Ver uso en la factura"],
       foot: "Precios revisados {d} · No es una herramienta oficial de AWS",
-      allowLbl: "Cuota {v}"
+      allowLbl: "Cuota {v}",
+      rpBtn: "¿El resultado no cuadra?",
+      rpPre: "El resultado no cuadra:",
+      rpRegion: "Región",
+      rpPrice: "Precios verificados"
     },
     fr: {
       seoTitle: "Calculateur de transfert AWS Lightsail : anticipez le dépassement et payez moins",
@@ -938,7 +962,11 @@
       overA: "Cela dépend de la région : <b>{lo}–{hi} par GB</b> de trafic sortant au-delà du quota. Le calculateur utilise le tarif de la région choisie.",
       links: ["Tarifs", "FAQ transfert", "FAQ facturation", "Conditions de service", "Voir l’usage facturé"],
       foot: "Tarifs vérifiés {d} · Outil non officiel AWS",
-      allowLbl: "Quota {v}"
+      allowLbl: "Quota {v}",
+      rpBtn: "Résultat faux ?",
+      rpPre: "Le résultat est faux :",
+      rpRegion: "Région",
+      rpPrice: "Prix vérifiés"
     },
     de: {
       seoTitle: "AWS Lightsail Traffic-Rechner: Mehrkosten vorhersagen und sparen",
@@ -1063,7 +1091,11 @@
       overA: "Das hängt von der Region ab: <b>{lo}–{hi} pro GB</b> ausgehender Traffic über dem Kontingent. Der Rechner nutzt den Preis der gewählten Region.",
       links: ["Preise", "FAQ Datenübertragung", "FAQ Abrechnung", "Servicebedingungen", "Verbrauch auf der Rechnung"],
       foot: "Preise geprüft {d} · Kein offizielles AWS-Tool",
-      allowLbl: "Kontingent {v}"
+      allowLbl: "Kontingent {v}",
+      rpBtn: "Ergebnis falsch?",
+      rpPre: "Das Ergebnis stimmt nicht:",
+      rpRegion: "Region",
+      rpPrice: "Preise geprüft"
     },
     pt: {
       seoTitle: "Calculadora de tráfego do AWS Lightsail: preveja o excedente e economize",
@@ -1188,7 +1220,11 @@
       overA: "Depende da região: <b>{lo}–{hi} por GB</b> de saída acima da franquia. A calculadora usa o preço da região escolhida.",
       links: ["Preços", "FAQ de transferência", "FAQ de cobrança", "Termos de serviço", "Ver uso na fatura"],
       foot: "Preços conferidos em {d} · Não é uma ferramenta oficial da AWS",
-      allowLbl: "Franquia {v}"
+      allowLbl: "Franquia {v}",
+      rpBtn: "Resultado errado?",
+      rpPre: "O resultado está errado:",
+      rpRegion: "Região",
+      rpPrice: "Preços verificados"
     },
     ru: {
       seoTitle: "Калькулятор трафика AWS Lightsail: прогноз перерасхода и экономия",
@@ -1313,7 +1349,11 @@
       overA: "Зависит от региона: <b>{lo}–{hi} за GB</b> исходящего трафика сверх лимита. Калькулятор берёт цену выбранного региона.",
       links: ["Цены", "FAQ по трафику", "FAQ по оплате", "Условия сервиса", "Расход в счёте"],
       foot: "Цены проверены {d} · Не официальный инструмент AWS",
-      allowLbl: "Лимит {v}"
+      allowLbl: "Лимит {v}",
+      rpBtn: "Результат неверный?",
+      rpPre: "Результат неверный:",
+      rpRegion: "Регион",
+      rpPrice: "Цены проверены"
     }
   };
   const KEY = "lightsail-pool:v2", OLD_KEY = "lightsail-pool:v1", LANG_KEY = "lightsail-pool:lang", THEME_KEY = "lightsail-pool:theme";
@@ -1727,6 +1767,45 @@
       n._gone = r.gone;
     });
     return c;
+  }
+  if (typeof window.msOpenReport === "function") {
+    $("#rpRow").hidden = false;
+    $("#rpBtn").setAttribute("data-ms-report", t("rpPre"));
+    window.msReport = () => {
+      const c = compute(), sep = /^(zh|ja)/.test(LANG) ? "：" : ": ", now = Date.now();
+      const price = S.ipv4 ? c.b.p4 : c.b.p6, bundle2 = `${fmtUSD(price)} / ${c.b.tb} TB · ${S.ipv4 ? t("dual") : "IPv6-only"}`;
+      const verdict = c.status === "idle" ? t("bandIdle") : t(c.status === "good" ? "bandGood" : c.status === "warn" ? "bandWarn" : "bandBad", { v: fmtUSD(c.overCost) });
+      const rec = !c.best ? "" : c.best.N > 0 ? t("suggest", { n: c.best.N }) + " · " + t("saveV", { v: fmtUSD(c.opts[0].total - c.best.total) }) : t("noAdd");
+      const summary = [
+        "Lightsail",
+        regionName(c.R.id),
+        bundle2,
+        c.hasU ? t("lgUsed", { v: fmtGB(c.Unow) }) : t("planMode"),
+        c.has ? t("lgEnd", { v: fmtGB(c.P) }) : "",
+        verdict,
+        rec
+      ].filter(Boolean).join(" · ").slice(0, 300);
+      const input = fromState(S);
+      const data = { at: new Date(now).toISOString(), lang: LANG, prices: PRICES.date, calc: CALC_VERSION, state: input, result: calculate(input, PRICES, now) };
+      const pick = (k, v) => v ? k + sep + v : null;
+      const picks = [
+        pick(t("base"), bundle2),
+        pick(t("rpRegion"), regionName(c.R.id) + " · " + fmtUSD(c.R.price) + "/GB"),
+        pick(t("cost"), fmtUSD(c.cost + c.overCost) + (c.overCost > 0 ? " · " + t("over") + " " + fmtUSD(c.overCost) : "")),
+        pick(t("rpPrice"), PRICES.date),
+        c.hasU ? t("lgUsed", { v: fmtGB(c.Unow) }) : t("planMode"),
+        c.has ? t("lgEnd", { v: fmtGB(c.P) }) : null,
+        rec || null,
+        c.R.half ? t("half") : null
+      ].filter(Boolean).slice(0, 8).map((s) => s.slice(0, 60));
+      const all = input.trafficInstances || [];
+      for (let keep = all.length; keep > 0 && new Blob([JSON.stringify(data, null, 1)]).size > 5900; ) {
+        keep = Math.floor(keep / 2);
+        input.trafficInstances = all.slice(0, keep);
+        input.trafficInstancesOmitted = all.length - keep;
+      }
+      return { summary, data, picks };
+    };
   }
   function renderSizes() {
     const v4 = S.ipv4, all = bundles(), costs = all.map((b) => perTB(b, v4)), min = Math.min(...costs);

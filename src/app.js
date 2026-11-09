@@ -94,7 +94,7 @@
       helpQ: ["入站流量也算额度吗？","入站流量要收费吗？","超额怎么收费？","哪些实例能合用额度？","关机的实例还收费吗？","新加实例能抵掉已经产生的超额吗？","删掉重建能清零用量吗？","内网流量收费吗？","估算准不准？","AWS 官方链接"],
       overA: "看地区：超出流量池的出站流量，<b>每 GB {lo}–{hi}</b>。计算器按你选的地区价格算。",
       links: ["官方定价", "流量额度 FAQ", "计费 FAQ", "服务条款", "查看账单用量"],
-      foot: "价格核对于 {d} · 非 AWS 官方工具", allowLbl: "额度 {v}"
+      foot: "价格核对于 {d} · 非 AWS 官方工具", allowLbl: "额度 {v}", rpBtn: "结果不对？", rpPre: "计算结果不对：", rpRegion: "地区", rpPrice: "价格核对"
     },
     "zh-TW": {
       seoTitle: "AWS Lightsail 流量計算機｜預測超額費用，算出最省錢的加機方案", ogSub: "這個月會不會超額？加幾台執行個體最划算？",
@@ -135,7 +135,7 @@
       helpQ: ["入站流量也算額度嗎？","入站流量要收費嗎？","超額怎麼收費？","哪些執行個體能合用額度？","關機的執行個體還會收費嗎？","新加執行個體能抵掉已經產生的超額嗎？","刪掉重建能讓用量歸零嗎？","內網流量要收費嗎？","估算準不準？","AWS 官方連結"],
       overA: "依區域而定：超出流量池的出站流量，<b>每 GB {lo}–{hi}</b>。計算機會用你選的區域價格。",
       links: ["官方定價", "流量額度 FAQ", "計費 FAQ", "服務條款", "查看帳單用量"],
-      foot: "價格核對於 {d} · 非 AWS 官方工具", allowLbl: "額度 {v}"
+      foot: "價格核對於 {d} · 非 AWS 官方工具", allowLbl: "額度 {v}", rpBtn: "結果不對？", rpPre: "計算結果不對：", rpRegion: "區域", rpPrice: "價格核對"
     },
     en: {
       seoTitle: "AWS Lightsail data transfer calculator: forecast overage and cut costs", ogSub: "Will you go over your allowance this month, and what’s the cheapest fix?",
@@ -176,7 +176,7 @@
       helpQ: ["Does inbound traffic count toward the allowance?","Is inbound traffic ever charged?","How much does overage cost?","Which instances share a pool?","Do stopped instances still bill?","Can new instances cancel out overage?","Does recreating an instance reset usage?","Is private IP traffic charged?","How accurate are the estimates?","Official AWS links"],
       overA: "It depends on the region: <b>{lo}–{hi} per GB</b> of outbound traffic beyond the pool. The calculator uses the rate for the region you picked.",
       links: ["Pricing", "Data transfer FAQ", "Billing FAQ", "Service terms", "View bill usage"],
-      foot: "Prices checked {d} · Not an official AWS tool", allowLbl: "Allowance {v}"
+      foot: "Prices checked {d} · Not an official AWS tool", allowLbl: "Allowance {v}", rpBtn: "Result wrong?", rpPre: "The result is wrong:", rpRegion: "Region", rpPrice: "Prices checked"
     },
     ja: {
       seoTitle: "AWS Lightsail 転送量計算ツール｜超過料金を予測して最安の対策を計算", ogSub: "今月は枠を超える？何台足せば一番安い？",
@@ -217,7 +217,7 @@
       helpQ: ["受信も枠を消費しますか？","受信に料金はかかりますか？","超過料金はいくら？","どのインスタンスが枠を合算できますか？","停止中のインスタンスにも料金はかかりますか？","インスタンスを足せば超過は消えますか？","作り直せば使用量はリセットされますか？","プライベート IP の通信は有料ですか？","見積もりはどれくらい正確？","AWS 公式リンク"],
       overA: "リージョンによって違い、プールを超えた送信は<b>1 GB あたり {lo}–{hi}</b>です。計算には選んだリージョンの料金を使います。",
       links: ["料金", "データ転送 FAQ", "請求 FAQ", "サービス条件", "請求の使用量を見る"],
-      foot: "価格確認 {d} · AWS 公式ツールではありません", allowLbl: "枠 {v}"
+      foot: "価格確認 {d} · AWS 公式ツールではありません", allowLbl: "枠 {v}", rpBtn: "結果が違いますか？", rpPre: "計算結果が違います：", rpRegion: "リージョン", rpPrice: "価格確認"
     },
     ko: {
       seoTitle: "AWS Lightsail 전송량 계산기: 초과 요금 예측과 가장 싼 해결책", ogSub: "이번 달 한도를 넘을까요? 몇 대를 더하면 가장 쌀까요?",
@@ -258,7 +258,7 @@
       helpQ: ["인바운드도 한도에서 빠지나요?","인바운드에 요금이 붙나요?","초과 요금은 얼마인가요?","어떤 인스턴스가 한도를 함께 쓰나요?","중지한 인스턴스도 요금이 나가나요?","인스턴스를 더하면 이미 생긴 초과가 사라지나요?","다시 만들면 사용량이 초기화되나요?","프라이빗 IP 트래픽은 유료인가요?","추정은 얼마나 정확한가요?","AWS 공식 링크"],
       overA: "리전마다 달라요. 풀을 넘은 아웃바운드는 <b>GB당 {lo}–{hi}</b>이고, 계산기는 선택한 리전의 요금을 써요.",
       links: ["요금", "데이터 전송 FAQ", "청구 FAQ", "서비스 약관", "청구 사용량 보기"],
-      foot: "가격 확인 {d} · AWS 공식 도구 아님", allowLbl: "한도 {v}"
+      foot: "가격 확인 {d} · AWS 공식 도구 아님", allowLbl: "한도 {v}", rpBtn: "결과가 다른가요?", rpPre: "계산 결과가 다릅니다:", rpRegion: "리전", rpPrice: "가격 확인"
     },
     es: {
       seoTitle: "Calculadora de transferencia de AWS Lightsail: prevé el exceso y ahorra", ogSub: "¿Te pasarás de la cuota este mes? ¿Cuántas instancias te conviene añadir?",
@@ -299,7 +299,7 @@
       helpQ: ["¿El tráfico de entrada cuenta para la cuota?","¿Se cobra alguna vez el tráfico de entrada?","¿Cuánto cuesta el exceso?","¿Qué instancias comparten cuota?","¿Una instancia detenida sigue cobrando?","¿Añadir instancias anula el exceso?","¿Recrear una instancia reinicia el uso?","¿Se cobra el tráfico por IP privada?","¿Qué tan precisas son las estimaciones?","Enlaces oficiales de AWS"],
       overA: "Depende de la región: <b>{lo}–{hi} por GB</b> de salida por encima de la cuota. La calculadora usa la tarifa de la región que elegiste.",
       links: ["Precios", "FAQ de transferencia", "FAQ de facturación", "Términos del servicio", "Ver uso en la factura"],
-      foot: "Precios revisados {d} · No es una herramienta oficial de AWS", allowLbl: "Cuota {v}"
+      foot: "Precios revisados {d} · No es una herramienta oficial de AWS", allowLbl: "Cuota {v}", rpBtn: "¿El resultado no cuadra?", rpPre: "El resultado no cuadra:", rpRegion: "Región", rpPrice: "Precios verificados"
     },
     fr: {
       seoTitle: "Calculateur de transfert AWS Lightsail : anticipez le dépassement et payez moins", ogSub: "Allez-vous dépasser votre quota ce mois-ci ? Combien d’instances ajouter ?",
@@ -340,7 +340,7 @@
       helpQ: ["Le trafic entrant compte-t-il dans le quota ?","Le trafic entrant est-il facturé ?","Combien coûte le dépassement ?","Quelles instances partagent un quota ?","Une instance arrêtée est-elle facturée ?","Ajouter des instances annule-t-il un dépassement ?","Recréer une instance remet-elle la consommation à zéro ?","Le trafic par IP privée est-il facturé ?","Les estimations sont-elles fiables ?","Liens officiels AWS"],
       overA: "Cela dépend de la région : <b>{lo}–{hi} par GB</b> de trafic sortant au-delà du quota. Le calculateur utilise le tarif de la région choisie.",
       links: ["Tarifs", "FAQ transfert", "FAQ facturation", "Conditions de service", "Voir l’usage facturé"],
-      foot: "Tarifs vérifiés {d} · Outil non officiel AWS", allowLbl: "Quota {v}"
+      foot: "Tarifs vérifiés {d} · Outil non officiel AWS", allowLbl: "Quota {v}", rpBtn: "Résultat faux ?", rpPre: "Le résultat est faux :", rpRegion: "Région", rpPrice: "Prix vérifiés"
     },
     de: {
       seoTitle: "AWS Lightsail Traffic-Rechner: Mehrkosten vorhersagen und sparen", ogSub: "Reicht dein Traffic-Kontingent diesen Monat? Wie viele Instanzen lohnen sich?",
@@ -381,7 +381,7 @@
       helpQ: ["Zählt eingehender Traffic zum Kontingent?","Kostet eingehender Traffic jemals etwas?","Wie teuer ist Traffic über dem Kontingent?","Welche Instanzen teilen sich ein Kontingent?","Kosten gestoppte Instanzen weiter?","Gleichen neue Instanzen Mehrkosten aus?","Setzt Neuerstellen den Verbrauch zurück?","Kostet Traffic über private IPs etwas?","Wie genau sind die Schätzungen?","Offizielle AWS-Links"],
       overA: "Das hängt von der Region ab: <b>{lo}–{hi} pro GB</b> ausgehender Traffic über dem Kontingent. Der Rechner nutzt den Preis der gewählten Region.",
       links: ["Preise", "FAQ Datenübertragung", "FAQ Abrechnung", "Servicebedingungen", "Verbrauch auf der Rechnung"],
-      foot: "Preise geprüft {d} · Kein offizielles AWS-Tool", allowLbl: "Kontingent {v}"
+      foot: "Preise geprüft {d} · Kein offizielles AWS-Tool", allowLbl: "Kontingent {v}", rpBtn: "Ergebnis falsch?", rpPre: "Das Ergebnis stimmt nicht:", rpRegion: "Region", rpPrice: "Preise geprüft"
     },
     pt: {
       seoTitle: "Calculadora de tráfego do AWS Lightsail: preveja o excedente e economize", ogSub: "Sua franquia vai estourar este mês? Quantas instâncias vale a pena adicionar?",
@@ -422,7 +422,7 @@
       helpQ: ["O tráfego de entrada conta para a franquia?","O tráfego de entrada é cobrado?","Quanto custa o excedente?","Quais instâncias dividem a franquia?","Instância parada continua cobrando?","Adicionar instâncias cancela o excedente?","Recriar a instância zera o uso?","Tráfego por IP privado é cobrado?","As estimativas são precisas?","Links oficiais da AWS"],
       overA: "Depende da região: <b>{lo}–{hi} por GB</b> de saída acima da franquia. A calculadora usa o preço da região escolhida.",
       links: ["Preços", "FAQ de transferência", "FAQ de cobrança", "Termos de serviço", "Ver uso na fatura"],
-      foot: "Preços conferidos em {d} · Não é uma ferramenta oficial da AWS", allowLbl: "Franquia {v}"
+      foot: "Preços conferidos em {d} · Não é uma ferramenta oficial da AWS", allowLbl: "Franquia {v}", rpBtn: "Resultado errado?", rpPre: "O resultado está errado:", rpRegion: "Região", rpPrice: "Preços verificados"
     },
     ru: {
       seoTitle: "Калькулятор трафика AWS Lightsail: прогноз перерасхода и экономия", ogSub: "Хватит ли лимита трафика в этом месяце и сколько инстансов добавить?",
@@ -463,7 +463,7 @@
       helpQ: ["Входящий трафик расходует лимит?","Платят ли за входящий трафик?","Сколько стоит перерасход?","Какие инстансы делят лимит?","Остановленный инстанс тоже оплачивается?","Можно ли новыми инстансами погасить перерасход?","Пересоздание инстанса обнуляет расход?","Платят ли за трафик по частным IP?","Насколько точны расчёты?","Официальные ссылки AWS"],
       overA: "Зависит от региона: <b>{lo}–{hi} за GB</b> исходящего трафика сверх лимита. Калькулятор берёт цену выбранного региона.",
       links: ["Цены", "FAQ по трафику", "FAQ по оплате", "Условия сервиса", "Расход в счёте"],
-      foot: "Цены проверены {d} · Не официальный инструмент AWS", allowLbl: "Лимит {v}"
+      foot: "Цены проверены {d} · Не официальный инструмент AWS", allowLbl: "Лимит {v}", rpBtn: "Результат неверный?", rpPre: "Результат неверный:", rpRegion: "Регион", rpPrice: "Цены проверены"
     }
   };
   /* I18N:END */
@@ -758,6 +758,49 @@
     const c = computeCore(S, PRICES, Date.now());
     S.nodes.forEach((n, i) => { const r = c.nodes[i]; n._allow = r.allow; n._cost = r.cost; n._planned = r.planned; n._gone = r.gone; });
     return c;
+  }
+
+  // ---------- reporting a problem (the host's dialog) ----------
+  // When the host provides the dialog (msOpenReport), an entry beside the result starts the visitor's text box, and
+  // the dialog asks this page what the visitor saw: the setup and its numbers as a config link carries them (nothing
+  // to mask: the page never reads an address and keeps no location), plus the readings people most often say are
+  // wrong, offered as one-tap answers. The host drops the data if it grows past its 6 KB budget.
+  if (typeof window.msOpenReport === "function") {
+    $("#rpRow").hidden = false;
+    $("#rpBtn").setAttribute("data-ms-report", t("rpPre"));
+    window.msReport = () => {
+      const c = compute(), sep = /^(zh|ja)/.test(LANG) ? "：" : ": ", now = Date.now();
+      const price = S.ipv4 ? c.b.p4 : c.b.p6, bundle = `${fmtUSD(price)} / ${c.b.tb} TB · ${S.ipv4 ? t("dual") : "IPv6-only"}`;
+      const verdict = c.status === "idle" ? t("bandIdle")
+        : t(c.status === "good" ? "bandGood" : c.status === "warn" ? "bandWarn" : "bandBad", { v: fmtUSD(c.overCost) });
+      const rec = !c.best ? "" : c.best.N > 0 ? t("suggest", { n: c.best.N }) + " · " + t("saveV", { v: fmtUSD(c.opts[0].total - c.best.total) }) : t("noAdd");
+      const summary = ["Lightsail", regionName(c.R.id), bundle, c.hasU ? t("lgUsed", { v: fmtGB(c.Unow) }) : t("planMode"),
+        c.has ? t("lgEnd", { v: fmtGB(c.P) }) : "", verdict, rec].filter(Boolean).join(" · ").slice(0, 300);
+      const input = fromState(S);
+      const data = { at: new Date(now).toISOString(), lang: LANG, prices: PRICES.date, calc: CALC_VERSION, state: input, result: calculate(input, PRICES, now) };
+      // the readings a visitor most often says are wrong, as "label: value" to pick from: the bundle and its price,
+      // the region's overage price, the cost, the price-check date, then the usage, the forecast and the advice
+      const pick = (k, v) => v ? k + sep + v : null;
+      const picks = [
+        pick(t("base"), bundle),
+        pick(t("rpRegion"), regionName(c.R.id) + " · " + fmtUSD(c.R.price) + "/GB"),
+        pick(t("cost"), fmtUSD(c.cost + c.overCost) + (c.overCost > 0 ? " · " + t("over") + " " + fmtUSD(c.overCost) : "")),
+        pick(t("rpPrice"), PRICES.date),
+        c.hasU ? t("lgUsed", { v: fmtGB(c.Unow) }) : t("planMode"),
+        c.has ? t("lgEnd", { v: fmtGB(c.P) }) : null,
+        rec || null,
+        c.R.half ? t("half") : null,
+      ].filter(Boolean).slice(0, 8).map(s => s.slice(0, 60));
+      // the host sends at most 6 KB of data: a very large fleet would not fit, so the instance list is cut and the
+      // count left out is recorded (the result's totals still cover every instance)
+      const all = input.trafficInstances || [];
+      for (let keep = all.length; keep > 0 && new Blob([JSON.stringify(data, null, 1)]).size > 5900;) {
+        keep = Math.floor(keep / 2);
+        input.trafficInstances = all.slice(0, keep);
+        input.trafficInstancesOmitted = all.length - keep;
+      }
+      return { summary, data, picks };
+    };
   }
 
   // ---------- render ----------
