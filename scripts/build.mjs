@@ -113,6 +113,73 @@ function helpHtml(items, t) {
     `      </div>`
   ].join("\n");
 }
+// The blocks that fill in after the page script runs: bundle prices, the action card, the gauge legend, the bill
+// link, the UTC note, the per-instance allowance and the network label. They are written here in their default
+// (nothing entered yet) state, so the first paint already has the final height and the script only replaces text in
+// place — the page must not grow under the visitor while it starts. Same markup as src/app.js renders, so the swap
+// costs no layout (tool-contract.md §4, "the page must not jump").
+// The reference time is the price date, not "now": the output has to be identical on every machine so that
+// `build --check` passes, and the script writes today's numbers a moment later.
+function firstBlocks(lang, D, P) {
+  const L = D.I18N[lang], t = (k, v) => { let s = L[k]; if (v) for (const p in v) s = s.split("{" + p + "}").join(v[p]); return s; };
+  const region = P.regions["us-east-1"] || P.regions[Object.keys(P.regions)[0]];
+  const bundles = region.q.map(([ram, p4, p6, tb]) => ({ ram, p4, p6, tb }));
+  const base = bundles.find(b => b.ram === 1) || bundles[0];
+  const GB = 1024, HOUR = 36e5;
+  const [y, m, d] = P.date.split("-").map(Number), now = Date.UTC(y, m - 1, d, 12);
+  const [m0, m1] = [Date.UTC(y, m - 1, 1), Date.UTC(y, m, 1)];
+  const fmtGB = g => { g = Math.max(0, g || 0); return g >= GB ? (g / GB).toFixed(g >= 10 * GB ? 1 : 2) + " TB" : Math.round(g) + " GB"; };
+  const fmtUSD = x => "$" + (x >= 1000 ? Math.round(x).toLocaleString("en-US") : x.toFixed(2));
+  const ramLabel = r => r < 1 ? "512M" : r + "G";
+  // the page shows the month start in the visitor's local time through Intl; a fixed "10/1 00:00" shape is enough
+  // here, and it keeps the build independent of the machine's time zone and ICU version
+  const date = `${m}/${1} 00:00`;
+  const pct = Math.max(0, (m1 - Math.ceil(now / HOUR) * HOUR) / (m1 - m0));
+  const ai = base.tb * GB * pct, ci = base.p6 * pct;
+  const perTB = (b, v4) => (v4 ? b.p4 : b.p6) / b.tb;
+  const costs = bundles.map(b => perTB(b, true)), min = Math.min(...costs);
+  const sizes = bundles.map((b, i) => `<button type="button" class="size${b.ram === 1 ? " on" : ""}" data-size="${b.ram}" aria-pressed="${b.ram === 1}" title="${ramLabel(b.ram)}B RAM">` +
+    `${Math.abs(costs[i] - min) < 1e-9 ? `<span class="star">${t("best")}</span>` : ""}` +
+    `<span class="p"><b>$${b.p4}</b><span>${b.tb}TB</span></span><span class="u">$${costs[i].toFixed(2)}/TB</span></button>`).join("");
+  const codes = { in: "<code>TotalDataXfer-In-Bytes</code>", out: "<code>TotalDataXfer-Out-Bytes</code>",
+    a: '<a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener noreferrer">', "/a": "</a>" };
+  const label = k => t(k, { v: "" }).replace(/[\s:：(（]+$/, "");
+  const allow = base.tb * GB;
+  // the language and region menus: the page script writes the same options, but an empty <select> is narrower, so
+  // filling them here keeps the toolbar and the fleet header from moving when it runs
+  const langOpts = D.LANGS.map(([c, n]) => `<option value="${c}"${c === lang ? " selected" : ""}>${n}</option>`).join("");
+  const regionOpts = D.REGION_ORDER.filter(id => P.regions[id]).map(id => {
+    const r = P.regions[id], one = r.q.find(x => x[0] === 1), name = D.REGION_NAMES[lang][D.REGION_ORDER.indexOf(id)];
+    return `<option value="${id}"${id === "us-east-1" ? " selected" : ""}>${name} · ${t("over")} $${r.over}/GB${one && one[3] < 2 ? " · " + t("half") : ""}</option>`;
+  }).join("");
+  // the web font is what the layout is measured with; fetching it only when layout asks for it caused a reflow
+  const fontSets = lang === "ru" ? ["latin", "cyrillic", "cyrillic-ext"]
+    : lang === "fr" ? ["latin", "latin-ext"] : ["latin"];
+  const fonts = fontSets.map(s => `<link rel="preload" href="assets/fonts/geist-${s}.woff2" as="font" type="font/woff2" crossorigin>`).join("")
+    + `<link rel="preload" href="assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>`;
+  return {
+    FONTS: fonts,
+    SIZES: sizes,
+    ACT: `<div class="act-h"><strong>${t("fill")}</strong></div><p class="note">${t("fillHint", codes)}</p>`,
+    FLEGEND: `<span><i style="background:var(--pool)"></i>${label("lgUsed")}</span>`
+      + `<span><i style="background:var(--fg);width:3px"></i>${label("allowLbl")}</span>`,
+    BILL: t("toBill") + " ↗",
+    UTCNOTE: t("utcNote", { t: date }),
+    NODESPEC: ai > 0 ? t("nodeAdd", { a: fmtGB(ai), c: fmtUSD(ci) }) : "",
+    NETLBL: `${t("dual")} $${base.p4}`,
+    // a clock offset cannot be known at build time; the shape is what keeps the line from reflowing
+    TZLBL: `(${t("localTime")} UTC+1)`,
+    BAND: t("bandIdle"),
+    BANDIC: "?",
+    FLEETSUM: t("fleetSum", { n: 1, c: fmtUSD(base.p4) }),
+    SALLOW: fmtGB(allow),
+    SREMAINL: t("remain"),
+    SREMAIN: fmtGB(allow),
+    SCOST: fmtUSD(base.p4),
+    LANGOPTS: langOpts,
+    REGIONOPTS: regionOpts
+  };
+}
 // the parts of index.html that the build owns: canonical/hreflang, the script tag, the footer text, language links,
 // the help dialog and the FAQ structured data built from it
 function managed(html, lang, D, P, appFile) {
@@ -122,6 +189,9 @@ function managed(html, lang, D, P, appFile) {
     .replace(/(<meta (?:property="og:title"|name="twitter:title") content=")[^"]*/g, (m, a) => a + esc(L.seoTitle))
     .replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*/g, (m, a) => a + og);
   html = fill(html, "<!-- HELP:BEGIN", "<!-- HELP:END -->", helpHtml(items, k => D.I18N[lang][k]), "HELP");
+  const first = firstBlocks(lang, D, P);
+  for (const [name, content] of Object.entries(first))
+    html = fill(html, `<!-- ${name}:BEGIN`, `<!-- ${name}:END -->`, content, name);
   html = html.replace(/(<script type="application\/ld\+json">\n)([\s\S]*?)(\n<\/script>)/, (m, a, json, b) => {
     const ld = JSON.parse(json), plain = s => s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
     const faq = { "@type": "FAQPage", inLanguage: lang, mainEntity: items.slice(0, -1).map(x => ({ "@type": "Question", name: x.q, acceptedAnswer: { "@type": "Answer", text: plain(x.a) } })) };

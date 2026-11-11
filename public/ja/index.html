@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- FONTS:BEGIN (written by scripts/build.mjs) -->
+<link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- FONTS:END -->
 <title>AWS Lightsail 転送量計算ツール｜超過料金を予測して最安の対策を計算</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>
@@ -358,6 +361,7 @@ input[type="range"] { width: 100%; accent-color: var(--sel); }
 .size.on { border-color: var(--sel); box-shadow: 0 0 0 1px var(--sel) inset; background: var(--sel-soft); }
 .size .star { position: absolute; top: -8px; right: -4px; font-size: 12px; padding: 0 5px; border-radius: 4px; background: var(--sel); font-family: var(--f-ui); line-height: 16px; color: var(--on-sel); }
 .line-kv { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; }
+#baseStart { width: 170px; }
 .time { height: 30px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel); padding: 0 6px; font-family: var(--f-num); font-size: 12px; min-width: 0; }
 .share { display: flex; gap: 8px; align-items: flex-start; padding: 10px; border-radius: 9px; background: var(--soft); font-size: 12px; color: var(--fg); }
 .share svg { width: 15px; height: 15px; flex: none; margin-top: 1px; color: var(--muted); }
@@ -567,7 +571,9 @@ footer a:hover { color: var(--fg); }
       <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">AI で使う</span></button>
       <label class="sel" id="langWrap">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c2 2 2 10.4 0 12.4M8 1.8c-2 2-2 10.4 0 12.4"/></svg>
-        <select id="lang"></select>
+        <select id="lang"><!-- LANGOPTS:BEGIN -->
+<option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="en">English</option><option value="ja" selected>日本語</option><option value="ko">한국어</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="pt">Português</option><option value="ru">Русский</option>
+<!-- LANGOPTS:END --></select>
       </label>
       <button class="icon-btn" id="helpBtn" type="button" aria-haspopup="dialog" aria-controls="help"><span class="sr" data-i="rules">料金ルールまとめ</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4M8 11.3v.1"/></svg></button>
       <a class="icon-btn" id="ghBtn" data-ia="gh" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="GitHub でソースを見る" aria-label="GitHub でソースを見る"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
@@ -577,11 +583,11 @@ footer a:hover { color: var(--fg); }
           <section class="pg">
             <div class="pg-h" data-i="secCalc">計算</div>
             <div>
-              <div class="row"><span data-i="outRatio">送信の割合</span><span class="num" id="outRatioV"></span></div>
-              <input type="range" id="outRatio" min="0" max="100" step="5">
+              <div class="row"><span data-i="outRatio">送信の割合</span><span class="num" id="outRatioV">100%</span></div>
+              <input type="range" id="outRatio" min="0" max="100" step="5" value="100">
               <div class="lbl" data-i="outRatioHint">超過料金がかかるのは送信（サーバーから外へ出る通信）だけです。わからなければ 100% のままで大丈夫です。</div>
             </div>
-            <div class="row"><span data-i="prorate">月の途中で作成したインスタンスの枠を稼働時間で按分</span><span class="sw"><input type="checkbox" id="prorate"><span></span></span></div>
+            <div class="row"><span data-i="prorate">月の途中で作成したインスタンスの枠を稼働時間で按分</span><span class="sw"><input type="checkbox" id="prorate" checked><span></span></span></div>
           </section>
           <section class="pg">
             <div class="pg-h" data-i="theme">テーマ</div>
@@ -623,16 +629,20 @@ footer a:hover { color: var(--fg); }
   <div class="grid">
     <section class="panel" id="poolPanel">
       <div class="band idle" id="band">
-        <span class="band-ic" id="bandIc" aria-hidden="true"></span>
+        <span class="band-ic" id="bandIc" aria-hidden="true"><!-- BANDIC:BEGIN -->
+?
+<!-- BANDIC:END --></span>
         <div class="band-tx">
-          <h2 id="bandT"></h2>
+          <h2 id="bandT"><!-- BAND:BEGIN -->
+使用量を入力してください
+<!-- BAND:END --></h2>
         </div>
         <div class="band-sub" id="bandSub"></div>
       </div>
       <div class="body">
         <div class="used">
           <div class="used-l">
-            <label class="big-in" id="usedWrap"><input id="used" class="num" type="number" min="0" step="1" inputmode="decimal" placeholder="0"><span data-i="usedUnit">GB 使用済み</span></label>
+            <label class="big-in need" id="usedWrap"><input id="used" class="num" type="number" min="0" step="1" inputmode="decimal" placeholder="0"><span data-i="usedUnit">GB 使用済み</span></label>
             <span class="note" id="usedRec" hidden></span>
           </div>
           <div class="used-meta">
@@ -641,40 +651,68 @@ footer a:hover { color: var(--fg); }
               <span class="plus">+</span>
               <label class="part"><code>TotalDataXfer-Out-Bytes</code><input id="usedOut" class="num" type="number" min="0" step="1" inputmode="decimal" placeholder="0"><span>GB</span></label>
             </div>
-            <a id="billLink" target="_blank" rel="noopener"></a>
+            <a id="billLink" target="_blank" rel="noopener"><!-- BILL:BEGIN -->
+請求書を開く ↗
+<!-- BILL:END --></a>
           </div>
         </div>
         <div class="fbar">
-          <div class="gauge" id="gauge"><div class="g-used"></div><div class="g-uover"></div><div class="g-proj"></div><div class="g-pover"></div><div class="g-cap"></div></div>
-          <div class="flegend" id="flegend"></div>
+          <div class="gauge" id="gauge"><div class="g-used"></div><div class="g-uover"></div><div class="g-proj"></div><div class="g-pover"></div><div class="g-cap" style="left:98.04%"></div></div>
+          <div class="flegend" id="flegend"><!-- FLEGEND:BEGIN -->
+<span><i style="background:var(--pool)"></i>使用</span><span><i style="background:var(--fg);width:3px"></i>枠</span>
+<!-- FLEGEND:END --></div>
         </div>
         <div class="stats">
-          <div class="kv"><span class="lbl" data-i="allow">今月の枠</span><span class="v" id="sAllow"></span></div>
-          <div class="kv"><span class="lbl" id="sRemainL"></span><span class="v" id="sRemain"></span></div>
-          <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">月末予測</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
-          <div class="kv"><span class="lbl" data-i="cost">今月の見込み額</span><span class="v" id="sCost"></span></div>
+          <div class="kv"><span class="lbl" data-i="allow">今月の枠</span><span class="v" id="sAllow"><!-- SALLOW:BEGIN -->
+2.00 TB
+<!-- SALLOW:END --></span></div>
+          <div class="kv"><span class="lbl" id="sRemainL"><!-- SREMAINL:BEGIN -->
+残り
+<!-- SREMAINL:END --></span><span class="v good" id="sRemain"><!-- SREMAIN:BEGIN -->
+2.00 TB
+<!-- SREMAIN:END --></span></div>
+          <div class="kv"><label class="lbl" for="forecast"><span data-i="forecast">月末予測</span> ✎</label><span class="fc"><input class="v num" id="forecast" type="number" placeholder="—" min="0" step="1" inputmode="decimal" aria-describedby="fcErr"><span>GB</span></span><span class="fc-err" id="fcErr" role="alert" hidden></span></div>
+          <div class="kv"><span class="lbl" data-i="cost">今月の見込み額</span><span class="v" id="sCost"><!-- SCOST:BEGIN -->
+$7.00
+<!-- SCOST:END --></span></div>
         </div>
-        <div class="act" id="act"></div>
+        <div class="act" id="act"><!-- ACT:BEGIN -->
+<div class="act-h"><strong>まず今月の使用量を入力</strong></div><p class="note"><a href="https://console.aws.amazon.com/billing/home#/bills" target="_blank" rel="noopener noreferrer">AWS の請求書 (Bills → Lightsail)</a> にある <code>TotalDataXfer-In-Bytes</code> と <code>TotalDataXfer-Out-Bytes</code> を足した値です。</p>
+<!-- ACT:END --></div>
         <p class="rp-line" id="rpRow" hidden><button class="rp-btn" id="rpBtn" type="button" data-i="rpBtn">結果が違いますか？</button></p>
       </div>
       <p class="xlink foot" id="costRow" hidden><a id="costLink" target="_blank" rel="noopener"><span data-i="xcost">各クラウドの転送料金と総コストを比較</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
     </section>
 
     <section class="panel" id="fleetPanel">
-      <div class="panel-h"><h2 class="sr" data-i="fleet">インスタンス一覧</h2><label class="sel" id="regionWrap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 14.5s5-4.3 5-8.3a5 5 0 0 0-10 0c0 4 5 8.3 5 8.3z"/><circle cx="8" cy="6.2" r="1.8"/></svg><select id="region"></select></label><span class="lbl num" id="fleetSum"></span></div>
+      <div class="panel-h"><h2 class="sr" data-i="fleet">インスタンス一覧</h2><label class="sel" id="regionWrap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 14.5s5-4.3 5-8.3a5 5 0 0 0-10 0c0 4 5 8.3 5 8.3z"/><circle cx="8" cy="6.2" r="1.8"/></svg><select id="region"><!-- REGIONOPTS:BEGIN -->
+<option value="us-east-1" selected>米国東部 (バージニア北部) · 超過 $0.09/GB</option><option value="us-east-2">米国東部 (オハイオ) · 超過 $0.09/GB</option><option value="us-west-2">米国西部 (オレゴン) · 超過 $0.09/GB</option><option value="ca-central-1">カナダ (中部) · 超過 $0.09/GB</option><option value="eu-central-1">欧州 (フランクフルト) · 超過 $0.09/GB</option><option value="eu-west-1">欧州 (アイルランド) · 超過 $0.09/GB</option><option value="eu-west-2">欧州 (ロンドン) · 超過 $0.09/GB</option><option value="eu-west-3">欧州 (パリ) · 超過 $0.09/GB</option><option value="eu-north-1">欧州 (ストックホルム) · 超過 $0.09/GB</option><option value="eu-south-2">欧州 (スペイン) · 超過 $0.12/GB</option><option value="ap-northeast-1">アジアパシフィック (東京) · 超過 $0.14/GB</option><option value="ap-northeast-2">アジアパシフィック (ソウル) · 超過 $0.13/GB</option><option value="ap-southeast-1">アジアパシフィック (シンガポール) · 超過 $0.12/GB</option><option value="ap-east-1">アジアパシフィック (香港) · 超過 $0.09/GB · 枠が半分</option><option value="ap-south-1">アジアパシフィック (ムンバイ) · 超過 $0.13/GB · 枠が半分</option><option value="ap-southeast-2">アジアパシフィック (シドニー) · 超過 $0.17/GB · 枠が半分</option><option value="ap-southeast-3">アジアパシフィック (ジャカルタ) · 超過 $0.132/GB · 枠が半分</option><option value="ap-southeast-5">アジアパシフィック (マレーシア) · 超過 $0.108/GB · 枠が半分</option><option value="sa-east-1">南米 (サンパウロ) · 超過 $0.15/GB · 枠が半分</option>
+<!-- REGIONOPTS:END --></select></label><span class="lbl num" id="fleetSum"><!-- FLEETSUM:BEGIN -->
+1 台 · $7.00
+<!-- FLEETSUM:END --></span></div>
       <p class="xlink" id="m2cRow" hidden><a id="m2cLink" target="_blank" rel="noopener"><span data-i="m2c">まず各 AWS リージョンへの遅延を測定</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2.5h4.5V7M13.5 2.5 7.5 8.5M12 10v3.5H2.5V4H6"/></svg></a></p>
       <div class="body">
         <div class="sec">
           <div class="sec-h"><b><span class="badge" data-i="base">メインのインスタンス</span><span class="chip" id="halfChip" hidden></span></b><span class="lbl" data-i="baseHint">いま使っているインスタンスです。追加インスタンスは同じプランにしないと枠を合算できません。</span></div>
-          <div class="sizes" id="sizes"></div>
-          <div class="line-kv"><span data-i="v4">パブリック IPv4 が必要</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"></span><span class="sw"><input type="checkbox" id="ipv4"><span></span></span></span></div>
-          <div class="line-kv"><span><span data-i="start">作成日時</span> <span class="lbl" id="tzLbl"></span></span><input class="time" type="datetime-local" id="baseStart"></div>
-          <div class="note" id="utcNote"></div>
+          <div class="sizes" id="sizes"><!-- SIZES:BEGIN -->
+<button type="button" class="size" data-size="0.5" aria-pressed="false" title="512MB RAM"><span class="p"><b>$5</b><span>1TB</span></span><span class="u">$5.00/TB</span></button><button type="button" class="size on" data-size="1" aria-pressed="true" title="1GB RAM"><span class="star">最安</span><span class="p"><b>$7</b><span>2TB</span></span><span class="u">$3.50/TB</span></button><button type="button" class="size" data-size="2" aria-pressed="false" title="2GB RAM"><span class="p"><b>$12</b><span>3TB</span></span><span class="u">$4.00/TB</span></button><button type="button" class="size" data-size="4" aria-pressed="false" title="4GB RAM"><span class="p"><b>$24</b><span>4TB</span></span><span class="u">$6.00/TB</span></button><button type="button" class="size" data-size="8" aria-pressed="false" title="8GB RAM"><span class="p"><b>$44</b><span>5TB</span></span><span class="u">$8.80/TB</span></button><button type="button" class="size" data-size="16" aria-pressed="false" title="16GB RAM"><span class="p"><b>$84</b><span>6TB</span></span><span class="u">$14.00/TB</span></button><button type="button" class="size" data-size="32" aria-pressed="false" title="32GB RAM"><span class="p"><b>$164</b><span>7TB</span></span><span class="u">$23.43/TB</span></button><button type="button" class="size" data-size="64" aria-pressed="false" title="64GB RAM"><span class="p"><b>$384</b><span>8TB</span></span><span class="u">$48.00/TB</span></button>
+<!-- SIZES:END --></div>
+          <div class="line-kv"><span data-i="v4">パブリック IPv4 が必要</span><span style="display:flex;align-items:center;gap:8px"><span class="lbl" id="netLbl"><!-- NETLBL:BEGIN -->
+デュアルスタック $7
+<!-- NETLBL:END --></span><span class="sw"><input type="checkbox" id="ipv4" checked><span></span></span></span></div>
+          <div class="line-kv"><span><span data-i="start">作成日時</span> <span class="lbl" id="tzLbl"><!-- TZLBL:BEGIN -->
+(ローカル時間 UTC+1)
+<!-- TZLBL:END --></span></span><input class="time" type="datetime-local" id="baseStart"></div>
+          <div class="note" id="utcNote"><!-- UTCNOTE:BEGIN -->
+AWS は UTC の暦月で請求します。今月はあなたの時間で 10/1 00:00 から始まりました
+<!-- UTCNOTE:END --></div>
         </div>
         <div class="sec">
           <div class="sec-h"><b data-i="nodes">追加インスタンス</b></div>
           <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg>
-            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">同じリージョン・同じプランなら枠を合算できます。追加分は IPv6-only にすると、パブリック IPv4 付きより安く済みます。</span><span class="num lbl" id="nodeSpec"></span></span></div>
+            <span style="display:flex;flex-direction:column;gap:2px"><span data-i="share">同じリージョン・同じプランなら枠を合算できます。追加分は IPv6-only にすると、パブリック IPv4 付きより安く済みます。</span><span class="num lbl" id="nodeSpec"><!-- NODESPEC:BEGIN -->
+今 1 台足すと：枠 +429 GB · $1.05（月末まで按分）
+<!-- NODESPEC:END --></span></span></div>
           <div id="nodes" class="sec" style="gap:6px"></div>
           <button class="btn add" id="addNode" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg><span data-i="add">追加インスタンスを足す</span></button>
         </div>
