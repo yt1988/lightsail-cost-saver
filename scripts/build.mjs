@@ -10,11 +10,16 @@
 // Usage: node scripts/build.mjs          write the files
 //        node scripts/build.mjs --check  exit 1 if they are out of date (used in CI)
 import { readFile, writeFile, mkdir, readdir, unlink } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { transform } from "esbuild";
 
 const root = new URL("../public/", import.meta.url);
+// the page's styles: the shared base.css (tokens, reset, top bar, shared components — kept in step with the suite by
+// `npm run design` in 1ms-shell) then this page's own rules, still inline so the first paint has them
+const CSS = readFileSync(new URL("../src/base.css", import.meta.url), "utf8") + "\n"
+  + readFileSync(new URL("../src/style.css", import.meta.url), "utf8");
 const appSrc = new URL("../src/app.js", import.meta.url);
 const EXPORTS = ["CALC_VERSION", "GB_PER_TB", "monthKey", "monthRange", "normalizePrices", "regionInfo",
   "computeCore", "toState", "fromState", "calculate", "buildLink", "parseLink"];
@@ -202,6 +207,11 @@ function managed(html, lang, D, P, appFile) {
   html = html.replace(/(<span id="footTxt">)[^<]*(<\/span>)/, (m, a, b) => a + esc(foot) + b);
   html = fill(html, "<!-- SITE:BEGIN", "<!-- SITE:END -->", siteTags(siteBase(html), lang, D), "SITE");
   html = fill(html, "<!-- APP:BEGIN", "<!-- APP:END -->", `<script defer src="assets/js/${appFile}"></script>`, "APP");
+  // the markers are CSS comments, not HTML ones: inside <style> an HTML marker is CSS text, and `CSS:BEGIN` would glue
+  // itself onto the first rule's selector and take that rule (the :root token block) down with it
+  { const a = html.indexOf("/* CSS:BEGIN */"), b = html.indexOf("/* CSS:END */");
+    if (a < 0 || b < 0) throw new Error("CSS markers not found");
+    html = html.slice(0, a + 15) + "\n" + CSS + "\n" + html.slice(b); }
   return fill(html, "<!-- LANGNAV:BEGIN", "<!-- LANGNAV:END -->", langNav(lang, D), "LANGNAV");
 }
 
