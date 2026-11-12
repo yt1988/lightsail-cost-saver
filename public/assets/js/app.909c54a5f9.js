@@ -149,6 +149,7 @@
       base: "主实例",
       baseHint: "你现在在用的那台。新加的流量实例要和它同一个套餐，额度才能合在一起。",
       best: "最省",
+      sizeT: "{v} 内存",
       v4: "需要公网 IPv4",
       dual: "双栈",
       start: "开通时间",
@@ -278,6 +279,7 @@
       base: "主執行個體",
       baseHint: "你現在在用的那台。新加的流量執行個體要跟它同一個方案，額度才能合在一起。",
       best: "最省",
+      sizeT: "{v} 記憶體",
       v4: "需要公用 IPv4",
       dual: "雙堆疊",
       start: "建立時間",
@@ -407,6 +409,7 @@
       base: "Main instance",
       baseHint: "The instance you already run. Traffic instances must use the same bundle so their allowances combine.",
       best: "Best",
+      sizeT: "{v} RAM",
       v4: "Needs public IPv4",
       dual: "Dual-stack",
       start: "Created",
@@ -535,6 +538,7 @@
       base: "メインのインスタンス",
       baseHint: "いま使っているインスタンスです。追加インスタンスは同じプランにしないと枠を合算できません。",
       best: "最安",
+      sizeT: "{v} メモリ",
       v4: "パブリック IPv4 が必要",
       dual: "デュアルスタック",
       start: "作成日時",
@@ -664,6 +668,7 @@
       base: "메인 인스턴스",
       baseHint: "지금 쓰고 있는 인스턴스예요. 트래픽 인스턴스는 같은 플랜이어야 한도가 합쳐져요.",
       best: "최저가",
+      sizeT: "{v} 메모리",
       v4: "퍼블릭 IPv4 필요",
       dual: "듀얼 스택",
       start: "생성 시각",
@@ -793,6 +798,7 @@
       base: "Instancia principal",
       baseHint: "La instancia que ya tienes. Las instancias de tráfico deben usar el mismo plan para sumar sus cuotas.",
       best: "Mejor",
+      sizeT: "{v} de RAM",
       v4: "Necesita IPv4 pública",
       dual: "Doble pila",
       start: "Creada",
@@ -922,6 +928,7 @@
       base: "Instance principale",
       baseHint: "L’instance que vous avez déjà. Les instances de trafic doivent avoir le même forfait pour que leurs quotas se cumulent.",
       best: "Optimal",
+      sizeT: "{v} de RAM",
       v4: "IPv4 publique requise",
       dual: "Double pile",
       start: "Créée le",
@@ -1051,6 +1058,7 @@
       base: "Hauptinstanz",
       baseHint: "Die Instanz, die du schon betreibst. Traffic-Instanzen brauchen denselben Tarif, damit sich die Kontingente addieren.",
       best: "Günstigste",
+      sizeT: "{v} Arbeitsspeicher",
       v4: "Öffentliche IPv4 nötig",
       dual: "Dual-Stack",
       start: "Erstellt",
@@ -1180,6 +1188,7 @@
       base: "Instância principal",
       baseHint: "A instância que você já usa. As instâncias de tráfego precisam ter o mesmo plano para somar as franquias.",
       best: "Melhor",
+      sizeT: "{v} de RAM",
       v4: "Precisa de IPv4 público",
       dual: "Pilha dupla",
       start: "Criada em",
@@ -1309,6 +1318,7 @@
       base: "Основной инстанс",
       baseHint: "Инстанс, который у вас уже работает. Инстансы под трафик должны быть на том же тарифе, иначе лимиты не суммируются.",
       best: "Выгодно",
+      sizeT: "{v} ОЗУ",
       v4: "Нужен публичный IPv4",
       dual: "Двойной стек",
       start: "Создан",
@@ -1809,7 +1819,7 @@
   }
   function renderSizes() {
     const v4 = S.ipv4, all = bundles(), costs = all.map((b) => perTB(b, v4)), min = Math.min(...costs);
-    $("#sizes").innerHTML = all.map((b, i) => `<button type="button" class="size${b.ram === S.size ? " on" : ""}" data-size="${b.ram}" aria-pressed="${b.ram === S.size}" title="${ramLabel(b.ram)}B RAM">
+    $("#sizes").innerHTML = all.map((b, i) => `<button type="button" class="size${b.ram === S.size ? " on" : ""}" data-size="${b.ram}" aria-pressed="${b.ram === S.size}" title="${t("sizeT", { v: ramLabel(b.ram) + "B" })}">
       ${Math.abs(costs[i] - min) < 1e-9 ? `<span class="star">${t("best")}</span>` : ""}
       <span class="p"><b>$${v4 ? b.p4 : b.p6}</b><span>${b.tb}TB</span></span><span class="u">$${costs[i].toFixed(2)}/TB</span></button>`).join("");
   }

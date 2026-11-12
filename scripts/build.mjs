@@ -138,7 +138,7 @@ function firstBlocks(lang, D, P) {
   const ai = base.tb * GB * pct, ci = base.p6 * pct;
   const perTB = (b, v4) => (v4 ? b.p4 : b.p6) / b.tb;
   const costs = bundles.map(b => perTB(b, true)), min = Math.min(...costs);
-  const sizes = bundles.map((b, i) => `<button type="button" class="size${b.ram === 1 ? " on" : ""}" data-size="${b.ram}" aria-pressed="${b.ram === 1}" title="${ramLabel(b.ram)}B RAM">` +
+  const sizes = bundles.map((b, i) => `<button type="button" class="size${b.ram === 1 ? " on" : ""}" data-size="${b.ram}" aria-pressed="${b.ram === 1}" title="${t("sizeT", { v: ramLabel(b.ram) + "B" })}">` +
     `${Math.abs(costs[i] - min) < 1e-9 ? `<span class="star">${t("best")}</span>` : ""}` +
     `<span class="p"><b>$${b.p4}</b><span>${b.tb}TB</span></span><span class="u">$${costs[i].toFixed(2)}/TB</span></button>`).join("");
   const codes = { in: "<code>TotalDataXfer-In-Bytes</code>", out: "<code>TotalDataXfer-Out-Bytes</code>",

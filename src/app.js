@@ -74,7 +74,8 @@
       optNone: "不加", optN: "+{n} 台", barTip: "实例费 {a} · 超额费 {o}", locked: "已经超出的 {v}，新加实例也抵不掉，已算进费用。",
       next: "下个月", nextLine: "照这个月的用量（{v}），用 {cfg}，约 {c}/月", cfgBase: "只用主实例", cfgPlus: "主实例 + {n} 台流量实例",
       fleet: "实例总览", fleetSum: "{n} 台 · {c}", m2c: "先测你到各个 AWS 区域的延迟", xcost: "对比各家云的流量费和总成本", base: "主实例", baseHint: "你现在在用的那台。新加的流量实例要和它同一个套餐，额度才能合在一起。",
-      best: "最省", v4: "需要公网 IPv4", dual: "双栈", start: "开通时间",
+      best: "最省",
+      sizeT: "{v} 内存", v4: "需要公网 IPv4", dual: "双栈", start: "开通时间",
      
       nodes: "流量实例", share: "同地区、同套餐的实例共用一个流量池。流量实例选 IPv6-only，比带公网 IPv4 的便宜。", nodeAdd: "现在加 1 台：+{a} 额度 · {c}（按到月底的时长计费）", add: "加一台流量实例",
       nStart: "开通", nEnd: "删除（还在运行就留空）", planned: "计划中", gone: "已删除", dec: "减少", inc: "增加", count: "台数", del: "删除",
@@ -115,7 +116,8 @@
       optNone: "不加", optN: "+{n} 台", barTip: "執行個體費 {a} · 超額費 {o}", locked: "已經超出的 {v}，新加執行個體也抵不掉，已算進費用。",
       next: "下個月", nextLine: "照這個月的用量（{v}），用 {cfg}，約 {c}/月", cfgBase: "只用主執行個體", cfgPlus: "主執行個體 + {n} 台流量執行個體",
       fleet: "執行個體總覽", fleetSum: "{n} 台 · {c}", m2c: "先測你到各個 AWS 區域的延遲", xcost: "比較各家雲端的流量費和總成本", base: "主執行個體", baseHint: "你現在在用的那台。新加的流量執行個體要跟它同一個方案，額度才能合在一起。",
-      best: "最省", v4: "需要公用 IPv4", dual: "雙堆疊", start: "建立時間",
+      best: "最省",
+      sizeT: "{v} 記憶體", v4: "需要公用 IPv4", dual: "雙堆疊", start: "建立時間",
      
       nodes: "流量執行個體", share: "同區域、同方案的執行個體共用一個流量池。流量執行個體選 IPv6-only，比附公用 IPv4 的便宜。", nodeAdd: "現在加 1 台：+{a} 額度 · {c}（依到月底的時數計費）", add: "加一台流量執行個體",
       nStart: "建立", nEnd: "刪除（還在執行就留空）", planned: "規劃中", gone: "已刪除", dec: "減少", inc: "增加", count: "台數", del: "刪除",
@@ -156,7 +158,8 @@
       optNone: "None", optN: "+{n}", barTip: "Instances {a} · Overage {o}", locked: "The {v} you’re already over can’t be covered by new instances, so it’s included.",
       next: "Next month", nextLine: "At this month’s pace ({v}), run {cfg} for about {c}/mo", cfgBase: "just your main instance", cfgPlus: "your main instance + {n} traffic instance(s)",
       fleet: "Instances", fleetSum: "{n} · {c}", m2c: "Test your latency to each AWS Region first", xcost: "Compare transfer fees and total cost across clouds", base: "Main instance", baseHint: "The instance you already run. Traffic instances must use the same bundle so their allowances combine.",
-      best: "Best", v4: "Needs public IPv4", dual: "Dual-stack", start: "Created",
+      best: "Best",
+      sizeT: "{v} RAM", v4: "Needs public IPv4", dual: "Dual-stack", start: "Created",
      
       nodes: "Traffic instances", share: "Instances with the same bundle in the same region share one pool. Traffic instances are IPv6-only, which costs less than public IPv4.", nodeAdd: "Add 1 now: +{a} allowance · {c} (prorated to month end)", add: "Add traffic instance",
       nStart: "Created", nEnd: "Deleted (leave blank if running)", planned: "Planned", gone: "Deleted", dec: "Decrease", inc: "Increase", count: "Count", del: "Remove",
@@ -197,7 +200,8 @@
       optNone: "なし", optN: "+{n} 台", barTip: "インスタンス代 {a} · 超過料金 {o}", locked: "すでに超過した {v} は、インスタンスを足しても取り消せないため含めています。",
       next: "来月", nextLine: "今月のペース ({v}) なら {cfg}、月 約 {c}", cfgBase: "メインのみ", cfgPlus: "メイン + 追加 {n} 台",
       fleet: "インスタンス一覧", fleetSum: "{n} 台 · {c}", m2c: "まず各 AWS リージョンへの遅延を測定", xcost: "各クラウドの転送料金と総コストを比較", base: "メインのインスタンス", baseHint: "いま使っているインスタンスです。追加インスタンスは同じプランにしないと枠を合算できません。",
-      best: "最安", v4: "パブリック IPv4 が必要", dual: "デュアルスタック", start: "作成日時",
+      best: "最安",
+      sizeT: "{v} メモリ", v4: "パブリック IPv4 が必要", dual: "デュアルスタック", start: "作成日時",
      
       nodes: "追加インスタンス", share: "同じリージョン・同じプランなら枠を合算できます。追加分は IPv6-only にすると、パブリック IPv4 付きより安く済みます。", nodeAdd: "今 1 台足すと：枠 +{a} · {c}（月末まで按分）", add: "追加インスタンスを足す",
       nStart: "作成", nEnd: "削除（稼働中なら空欄）", planned: "予定", gone: "削除済み", dec: "減らす", inc: "増やす", count: "台数", del: "削除",
@@ -238,7 +242,8 @@
       optNone: "추가 안 함", optN: "+{n}대", barTip: "인스턴스 {a} · 초과 {o}", locked: "이미 넘은 {v}는 인스턴스를 더해도 상쇄되지 않아 비용에 포함했어요.",
       next: "다음 달", nextLine: "이번 달 속도({v})라면 {cfg}, 월 약 {c}", cfgBase: "메인 인스턴스만", cfgPlus: "메인 + 트래픽 {n}대",
       fleet: "인스턴스 개요", fleetSum: "{n}대 · {c}", m2c: "먼저 각 AWS 리전까지의 지연 시간 측정", xcost: "클라우드별 전송 요금과 총비용 비교", base: "메인 인스턴스", baseHint: "지금 쓰고 있는 인스턴스예요. 트래픽 인스턴스는 같은 플랜이어야 한도가 합쳐져요.",
-      best: "최저가", v4: "퍼블릭 IPv4 필요", dual: "듀얼 스택", start: "생성 시각",
+      best: "최저가",
+      sizeT: "{v} 메모리", v4: "퍼블릭 IPv4 필요", dual: "듀얼 스택", start: "생성 시각",
      
       nodes: "트래픽 인스턴스", share: "같은 리전·같은 플랜이면 한도를 함께 써요. 트래픽 인스턴스는 IPv6-only라 퍼블릭 IPv4보다 저렴해요.", nodeAdd: "지금 1대 추가: 한도 +{a} · {c} (월말까지 시간 비례)", add: "트래픽 인스턴스 추가",
       nStart: "생성", nEnd: "삭제 (실행 중이면 비워 두기)", planned: "예정", gone: "삭제됨", dec: "줄이기", inc: "늘리기", count: "대수", del: "삭제",
@@ -279,7 +284,8 @@
       optNone: "Ninguna", optN: "+{n}", barTip: "Instancias {a} · Exceso {o}", locked: "Los {v} que ya superaste no se compensan con instancias nuevas, así que están incluidos.",
       next: "Próximo mes", nextLine: "Al ritmo de este mes ({v}), usa {cfg}: unos {c}/mes", cfgBase: "solo tu instancia principal", cfgPlus: "tu instancia principal + {n} de tráfico",
       fleet: "Resumen de instancias", fleetSum: "{n} · {c}", m2c: "Mide antes tu latencia a cada región de AWS", xcost: "Compara tarifas de transferencia y coste total entre nubes", base: "Instancia principal", baseHint: "La instancia que ya tienes. Las instancias de tráfico deben usar el mismo plan para sumar sus cuotas.",
-      best: "Mejor", v4: "Necesita IPv4 pública", dual: "Doble pila", start: "Creada",
+      best: "Mejor",
+      sizeT: "{v} de RAM", v4: "Necesita IPv4 pública", dual: "Doble pila", start: "Creada",
      
       nodes: "Instancias de tráfico", share: "Las instancias con el mismo plan en la misma región comparten una sola cuota. Las de tráfico son solo IPv6 (IPv6-only), más baratas que con IPv4 pública.", nodeAdd: "Añade 1 ahora: +{a} de cuota · {c} (prorrateado hasta fin de mes)", add: "Añadir instancia de tráfico",
       nStart: "Creada", nEnd: "Eliminada (vacío si sigue activa)", planned: "Prevista", gone: "Eliminada", dec: "Restar", inc: "Sumar", count: "Cantidad", del: "Quitar",
@@ -320,7 +326,8 @@
       optNone: "Aucune", optN: "+{n}", barTip: "Instances {a} · Dépassement {o}", locked: "Les {v} déjà dépassés ne peuvent pas être compensés par de nouvelles instances ; ils sont inclus.",
       next: "Mois prochain", nextLine: "Au rythme de ce mois ({v}), prévoyez {cfg}, environ {c}/mois", cfgBase: "votre instance principale seule", cfgPlus: "votre instance principale + {n} de trafic",
       fleet: "Vue des instances", fleetSum: "{n} · {c}", m2c: "Mesurez d’abord votre latence vers chaque région AWS", xcost: "Comparez frais de transfert et coût total entre clouds", base: "Instance principale", baseHint: "L’instance que vous avez déjà. Les instances de trafic doivent avoir le même forfait pour que leurs quotas se cumulent.",
-      best: "Optimal", v4: "IPv4 publique requise", dual: "Double pile", start: "Créée le",
+      best: "Optimal",
+      sizeT: "{v} de RAM", v4: "IPv4 publique requise", dual: "Double pile", start: "Créée le",
      
       nodes: "Instances de trafic", share: "Les instances du même forfait dans la même région partagent un seul quota. Les instances de trafic sont en IPv6 uniquement (IPv6-only), moins chères qu’avec une IPv4 publique.", nodeAdd: "En ajouter 1 maintenant : +{a} de quota · {c} (au prorata jusqu’à la fin du mois)", add: "Ajouter une instance de trafic",
       nStart: "Créée", nEnd: "Supprimée (vide si active)", planned: "Prévue", gone: "Supprimée", dec: "Moins", inc: "Plus", count: "Nombre", del: "Retirer",
@@ -361,7 +368,8 @@
       optNone: "Keine", optN: "+{n}", barTip: "Instanzen {a} · Überschreitung {o}", locked: "Die bereits überschrittenen {v} lassen sich mit neuen Instanzen nicht ausgleichen und sind eingerechnet.",
       next: "Nächster Monat", nextLine: "Beim Tempo dieses Monats ({v}): {cfg}, ca. {c}/Monat", cfgBase: "nur deine Hauptinstanz", cfgPlus: "Hauptinstanz + {n} Traffic-Instanz(en)",
       fleet: "Instanzübersicht", fleetSum: "{n} · {c}", m2c: "Zuerst deine Latenz zu jeder AWS-Region messen", xcost: "Transfergebühren und Gesamtkosten der Clouds vergleichen", base: "Hauptinstanz", baseHint: "Die Instanz, die du schon betreibst. Traffic-Instanzen brauchen denselben Tarif, damit sich die Kontingente addieren.",
-      best: "Günstigste", v4: "Öffentliche IPv4 nötig", dual: "Dual-Stack", start: "Erstellt",
+      best: "Günstigste",
+      sizeT: "{v} Arbeitsspeicher", v4: "Öffentliche IPv4 nötig", dual: "Dual-Stack", start: "Erstellt",
      
       nodes: "Traffic-Instanzen", share: "Instanzen mit demselben Tarif in derselben Region teilen sich ein Kontingent. Traffic-Instanzen laufen nur mit IPv6 (IPv6-only) und kosten weniger als mit öffentlicher IPv4.", nodeAdd: "Jetzt 1 hinzufügen: +{a} Kontingent · {c} (anteilig bis Monatsende)", add: "Traffic-Instanz hinzufügen",
       nStart: "Erstellt", nEnd: "Gelöscht (leer, wenn sie läuft)", planned: "Geplant", gone: "Gelöscht", dec: "Weniger", inc: "Mehr", count: "Anzahl", del: "Entfernen",
@@ -402,7 +410,8 @@
       optNone: "Nenhuma", optN: "+{n}", barTip: "Instâncias {a} · Excedente {o}", locked: "Os {v} que já estouraram não são compensados por novas instâncias e já estão incluídos.",
       next: "Próximo mês", nextLine: "No ritmo deste mês ({v}), use {cfg}: cerca de {c}/mês", cfgBase: "só sua instância principal", cfgPlus: "sua instância principal + {n} de tráfego",
       fleet: "Visão das instâncias", fleetSum: "{n} · {c}", m2c: "Meça antes sua latência para cada região da AWS", xcost: "Compare taxas de transferência e custo total entre nuvens", base: "Instância principal", baseHint: "A instância que você já usa. As instâncias de tráfego precisam ter o mesmo plano para somar as franquias.",
-      best: "Melhor", v4: "Precisa de IPv4 público", dual: "Pilha dupla", start: "Criada em",
+      best: "Melhor",
+      sizeT: "{v} de RAM", v4: "Precisa de IPv4 público", dual: "Pilha dupla", start: "Criada em",
      
       nodes: "Instâncias de tráfego", share: "Instâncias com o mesmo plano na mesma região dividem uma única franquia. As de tráfego são só IPv6 (IPv6-only), mais baratas que com IPv4 público.", nodeAdd: "Adicionar 1 agora: +{a} de franquia · {c} (proporcional até o fim do mês)", add: "Adicionar instância de tráfego",
       nStart: "Criada", nEnd: "Excluída (vazio se ainda estiver ativa)", planned: "Planejada", gone: "Excluída", dec: "Diminuir", inc: "Aumentar", count: "Quantidade", del: "Remover",
@@ -443,7 +452,8 @@
       optNone: "Нет", optN: "+{n}", barTip: "Инстансы {a} · Превышение {o}", locked: "Уже превышенные {v} новыми инстансами не компенсировать, они учтены.",
       next: "Следующий месяц", nextLine: "При темпе этого месяца ({v}) берите {cfg}, около {c}/мес.", cfgBase: "только основной инстанс", cfgPlus: "основной + {n} под трафик",
       fleet: "Обзор инстансов", fleetSum: "{n} шт. · {c}", m2c: "Сначала проверьте задержку до каждого региона AWS", xcost: "Сравните плату за трафик и общую стоимость в разных облаках", base: "Основной инстанс", baseHint: "Инстанс, который у вас уже работает. Инстансы под трафик должны быть на том же тарифе, иначе лимиты не суммируются.",
-      best: "Выгодно", v4: "Нужен публичный IPv4", dual: "Двойной стек", start: "Создан",
+      best: "Выгодно",
+      sizeT: "{v} ОЗУ", v4: "Нужен публичный IPv4", dual: "Двойной стек", start: "Создан",
      
       nodes: "Инстансы под трафик", share: "Инстансы на одном тарифе в одном регионе делят общий лимит. Инстансы под трафик работают только по IPv6 (IPv6-only) и стоят дешевле, чем с публичным IPv4.", nodeAdd: "Добавить 1 сейчас: +{a} лимита · {c} (пропорционально до конца месяца)", add: "Добавить инстанс под трафик",
       nStart: "Создан", nEnd: "Удалён (пусто, если работает)", planned: "План", gone: "Удалён", dec: "Меньше", inc: "Больше", count: "Количество", del: "Убрать",
@@ -806,7 +816,7 @@
   // ---------- render ----------
   function renderSizes() {
     const v4 = S.ipv4, all = bundles(), costs = all.map(b => perTB(b, v4)), min = Math.min(...costs);
-    $("#sizes").innerHTML = all.map((b, i) => `<button type="button" class="size${b.ram === S.size ? " on" : ""}" data-size="${b.ram}" aria-pressed="${b.ram === S.size}" title="${ramLabel(b.ram)}B RAM">
+    $("#sizes").innerHTML = all.map((b, i) => `<button type="button" class="size${b.ram === S.size ? " on" : ""}" data-size="${b.ram}" aria-pressed="${b.ram === S.size}" title="${t("sizeT", { v: ramLabel(b.ram) + "B" })}">
       ${Math.abs(costs[i] - min) < 1e-9 ? `<span class="star">${t("best")}</span>` : ""}
       <span class="p"><b>$${v4 ? b.p4 : b.p6}</b><span>${b.tb}TB</span></span><span class="u">$${costs[i].toFixed(2)}/TB</span></button>`).join("");
   }
