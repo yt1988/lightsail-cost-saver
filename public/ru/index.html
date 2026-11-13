@@ -588,9 +588,6 @@ input[type="range"] { width: 100%; accent-color: var(--sel); }
 footer { font-size: 12px; color: var(--muted); text-align: center; }
 footer a { color: var(--muted); }
 footer a:hover { color: var(--fg); }
-.langs { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; margin-top: 10px; }
-.langs a { text-decoration: none; }
-.langs a[aria-current="page"] { color: var(--fg); font-weight: 500; }
 
 @media (max-width: 880px) {
   .top { grid-template-columns: minmax(0, 1fr); }
@@ -632,8 +629,7 @@ footer a:hover { color: var(--fg); }
   .stepper button, .stepper input { width: 36px; height: 100%; }
   .btn.sm, .seg button { height: 34px; }
   .node .x { width: 32px; height: 32px; }
-  .used-meta a, footer a, .langs a, .rp-btn { display: inline-flex; align-items: center; min-height: 32px; }
-  .langs { gap: 0 14px; margin-top: 4px; }
+  .used-meta a, footer a, .rp-btn { display: inline-flex; align-items: center; min-height: 32px; }
   .sw input { inset: -8px -6px; }
   /* date and time at 16px need the full width: the field under its label */
   .line-kv { flex-wrap: wrap; }
@@ -809,20 +805,6 @@ AWS выставляет счёт за календарный месяц по UT
   </div>
 
   <footer><span id="footTxt">Цены проверены 2026-10-25 · Не официальный инструмент AWS</span> · <a href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <nav class="langs" data-ia="lang" aria-label="Язык">
-<!-- LANGNAV:BEGIN (written by scripts/build.mjs) -->
-      <a href="../zh-cn/" hreflang="zh-CN" lang="zh-CN">简体中文</a>
-      <a href="../zh-tw/" hreflang="zh-TW" lang="zh-TW">繁體中文</a>
-      <a href="../" hreflang="en" lang="en">English</a>
-      <a href="../ja/" hreflang="ja" lang="ja">日本語</a>
-      <a href="../ko/" hreflang="ko" lang="ko">한국어</a>
-      <a href="../es/" hreflang="es" lang="es">Español</a>
-      <a href="../fr/" hreflang="fr" lang="fr">Français</a>
-      <a href="../de/" hreflang="de" lang="de">Deutsch</a>
-      <a href="../pt/" hreflang="pt" lang="pt">Português</a>
-      <a href="../ru/" hreflang="ru" lang="ru" aria-current="page">Русский</a>
-<!-- LANGNAV:END -->
-    </nav>
   </footer>
 </div>
 

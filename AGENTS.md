@@ -20,7 +20,7 @@ Edit only these two by hand:
 - `public/<lang>/index.html`, one page per language with its text written into the HTML
 - `public/assets/js/app.<hash>.js` (`src/app.js` lowered to ES2019 by esbuild, named by its content) and `public/assets/favicon.svg`
 - `public/calc.js` (the `CALC` block as an ES module, also lowered to ES2019) and `public/prices.json`
-- the build-managed blocks inside `public/index.html`: `SITE`, `APP`, `HELP`, `LANGNAV`, the footer text, the JSON-LD FAQ, and the first-paint blocks (`FONTS`, `SIZES`, `ACT`, `FLEGEND`, `BILL`, `UTCNOTE`, `NODESPEC`, `NETLBL`, `TZLBL`, `BAND`, `SALLOW`, `SREMAINL`, `SREMAIN`, `SCOST`, `LANGOPTS`, `REGIONOPTS`); see `firstBlocks()` in `scripts/build.mjs` and "First paint" in docs/design.md before moving a marker
+- the build-managed blocks inside `public/index.html`: `SITE`, `APP`, `HELP`, the footer text, the JSON-LD FAQ, and the first-paint blocks (`FONTS`, `SIZES`, `ACT`, `FLEGEND`, `BILL`, `UTCNOTE`, `NODESPEC`, `NETLBL`, `TZLBL`, `BAND`, `SALLOW`, `SREMAINL`, `SREMAIN`, `SCOST`, `LANGOPTS`, `REGIONOPTS`); see `firstBlocks()` in `scripts/build.mjs` and "First paint" in docs/design.md before moving a marker
 
 Other scripts: `scripts/update-prices.mjs` (refreshes `PRICES` from the AWS Price List API), `scripts/set-site-url.mjs` (canonical, hreflang, sitemap, robots for a domain), `scripts/og.mjs` (link-preview images in `public/og/`).
 

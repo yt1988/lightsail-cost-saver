@@ -31,11 +31,11 @@ for (const [lang] of D.LANGS) {
     && html.includes(`id="helpBtn"`) && html.includes(`>${esc(L.helpQ[0])}</button>`) && /"@type": ?"FAQPage"/.test(html)
     && html.includes(`<link rel="canonical" href="${base + path}">`)
     && (html.match(/<link rel="alternate" hreflang=/g) || []).length === D.LANGS.length + 1
-    && html.includes('aria-current="page">' + D.LANGS.find(([l]) => l === lang)[1] + "<");
+    && html.includes(`<option value="${lang}" selected>`);
   check(`/${path} is pre-rendered in ${lang}`, ok);
   // labels the script would set (data-ia) are already in this language in the HTML
   const ia = [...html.matchAll(/<[a-z]+\b[^>]*\sdata-ia="(\w+)"[^>]*>/g)];
-  check(`/${path} labels are in ${lang}`, ia.length >= 5 && ia.every(([tag, k]) => tag.includes(`aria-label="${esc(L[k])}"`)));
+  check(`/${path} labels are in ${lang}`, ia.length >= 4 && ia.every(([tag, k]) => tag.includes(`aria-label="${esc(L[k])}"`)));
 }
 
 // shipped scripts are ES2019: ?. and ?? are syntax errors in Safari 13.1, Chrome 80 and older in-app browsers

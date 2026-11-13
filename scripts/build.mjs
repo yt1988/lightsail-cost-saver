@@ -6,7 +6,7 @@
 //   public/prices.json              the PRICES block in a readable format
 //   public/<lang>/index.html        one pre-rendered page per language (zh-cn/, ja/, …), with that language's text
 //                                   written into the HTML so crawlers that don't run JS (Baidu) can index it
-// It also keeps index.html's own SITE block (canonical, hreflang), script tag and footer language links in sync.
+// It also keeps index.html's own SITE block (canonical, hreflang) and script tag in sync.
 // Usage: node scripts/build.mjs          write the files
 //        node scripts/build.mjs --check  exit 1 if they are out of date (used in CI)
 import { readFile, writeFile, mkdir, readdir, unlink } from "node:fs/promises";
@@ -88,11 +88,6 @@ export function siteTags(base, lang, D) {
     `<link rel="alternate" hreflang="x-default" href="${base}">`,
     `<link rel="sitemap" type="application/xml" href="${base}sitemap.xml">`
   ].join("\n");
-}
-// footer links to every language page, relative so the site also works below a path
-function langNav(lang, D) {
-  const up = lang === "en" ? "" : "../";
-  return D.LANGS.map(([l, name]) => `      <a href="${up + D.LANG_PATHS[l] || "./"}" hreflang="${l}" lang="${l}"${l === lang ? ' aria-current="page"' : ""}>${name}</a>`).join("\n");
 }
 // the help dialog's questions and answers: billing rules, the overage price range and the official links
 function helpItems(lang, D, P) {
@@ -185,7 +180,7 @@ function firstBlocks(lang, D, P) {
     REGIONOPTS: regionOpts
   };
 }
-// the parts of index.html that the build owns: canonical/hreflang, the script tag, the footer text, language links,
+// the parts of index.html that the build owns: canonical/hreflang, the script tag, the footer text,
 // the help dialog and the FAQ structured data built from it
 function managed(html, lang, D, P, appFile) {
   const priceDate = P.date, items = helpItems(lang, D, P), L = D.I18N[lang];
@@ -212,7 +207,7 @@ function managed(html, lang, D, P, appFile) {
   { const a = html.indexOf("/* CSS:BEGIN */"), b = html.indexOf("/* CSS:END */");
     if (a < 0 || b < 0) throw new Error("CSS markers not found");
     html = html.slice(0, a + 15) + "\n" + CSS + "\n" + html.slice(b); }
-  return fill(html, "<!-- LANGNAV:BEGIN", "<!-- LANGNAV:END -->", langNav(lang, D), "LANGNAV");
+  return html;
 }
 
 // index.html (English) -> the same page with another language written in
