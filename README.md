@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-> **Live demo: [ls.1ms.dog](https://ls.1ms.dog/)**. Open it and go, no sign-up. Or [hand it to your AI agent](#use-it-with-your-ai-agent).
+> **Live demo: [ls.1ms.dog](https://ls.1ms.dog/)**. Open it and go, no sign-up.
 
 <a href="https://ls.1ms.dog/"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/preview-en-dark.png">
@@ -56,36 +56,7 @@ No sign-up. Open it and go; your data stays in your own browser. Available in 10
 | Actual usage | You entered usage | Daily pace is measured from the first instance's start; overage already incurred can't be offset; new instances are prorated from the next full hour |
 | Full-month plan | Only a month-end forecast | Nothing before today counts as used; every running instance counts for the whole month, so the answer is "how many for the full month" |
 
-## Use it with your AI agent
-
-Rather not fill it in yourself? Hand it to an agent that can browse the web, such as ChatGPT, Claude, Gemini or Cursor. The agent reads one short guide, does the math and gives you a pre-filled link you can check in the app. The **Use with AI** button at the top of the page has the same content with copy buttons.
-
-### One-minute start
-
-Send this to your agent and fill in the blanks:
-
-```text
-Read https://ls.1ms.dog/llms.txt first, then use its Lightsail billing rules to work out my data transfer pool.
-My setup: region ___, bundle ___ (e.g. $7 / 2 TB transfer), ___ GB used this month (as of ___).
-Tell me whether I'll go over this month and the cheapest number of traffic instances to add, and give me a pre-filled calculator link so I can check.
-```
-
-Opening the link loads that setup; your previous data is backed up first and can be restored. In the app, **Settings → Copy config link** does the reverse, so you can send your current setup to the agent.
-
-### Use cases
-
-| Use case | Ask something like | Access needed |
-|---|---|---|
-| Will I go over? | I'm on the $12 / 3 TB bundle in Tokyo and have used 2800 GB this month. Will I go over, and how many traffic instances should I add? | None |
-| Choose a setup | About 8 TB a month, mostly to users in Southeast Asia. What's the cheapest Lightsail setup? | None |
-| Plan next month | Next month I expect about 12,000 GB in Frankfurt on the $7 / 2 TB bundle. How many traffic instances keep the cost lowest? | None |
-| Explain my bill | Here are the Lightsail data transfer lines from my bill (paste). How much allowance is left, and will I be charged? | None |
-| Usage alerts | Every morning, read my instances' network metrics and warn me if this month is heading for overage. | AWS read-only |
-| Auto scale-up | If overage is expected, create the recommended number of IPv6-only instances of my bundle in the same region. Ask me to confirm first. | AWS write, costs money |
-
-Add "Rules and method: https://ls.1ms.dog/llms.txt" to any question so the agent uses the same rules as the app.
-
-### For developers
+## For developers
 
 Everything is a static file, readable from any origin. There is no server API and no key.
 
@@ -130,11 +101,9 @@ Common link parameters:
 
 All parameters are in [llms.txt](https://ls.1ms.dog/llms.txt). Node.js can't import from a URL: download `calc.js` or use `public/calc.js` from this repository. `calc.js` and `prices.json` are generated from `src/app.js` by `node scripts/build.mjs`; `npm test` checks they're in sync and runs the regression tests.
 
-### Safety notes
+## Safety notes
 
 - Config links contain your usage numbers, so check before sharing them.
-- Usage alerts only need read access; give the agent a separate read-only IAM user or role.
-- Auto scale-up creates real, billed instances: grant only the permissions it needs, require the agent to confirm first and cap the instance count.
 - Results are estimates; your AWS bill is final.
 
 ## Billing rules used

@@ -167,10 +167,8 @@
       del: "删除",
       seoDesc: "免费的 AWS Lightsail 流量计算器。同地区、同套餐的实例共用流量池：填入本月已用流量，就能看到剩余额度、月底会不会超额、要多付多少，以及加几台 IPv6 实例最省钱。",
       seoKw: "AWS Lightsail, Lightsail 流量, Lightsail 超额, 流量池, 流量计算器, Lightsail 价格, IPv6 实例, VPS 流量费用, AWS 账单",
-      agent: "接入 Agent",
       secCalc: "计算",
       secData: "数据",
-      ag: { "title": "在 AI Agent 里使用", "sub": "把一份简短说明交给 AI Agent，它就能替你算，最后给你一个链接，在这里打开就能核对。", "close": "关闭", "tabs": ["快速开始", "常见用法", "开发者"], "s1": "复制这段提示词", "prompt": "请先阅读 {url}，按其中的 Lightsail 计费规则帮我计算流量池。\n我的情况：区域 ___，套餐 ___（如 $7 / 2 TB 流量），本月已用 ___ GB（截至 ___）。\n请告诉我这个月会不会超额、加几台流量实例最省钱，并给我一个预填好的计算器链接方便核对。", "copyPrompt": "复制提示词", "s2": "粘贴到能联网的 Agent 里", "s2n": "ChatGPT、Claude、Gemini、Cursor 等都可以。把空白处填上，或者直接粘贴账单里的流量明细。", "s3": "打开它给你的链接", "s3n": "打开链接会把配置载入这个页面，方便核对数字。你原来的数据会先备份，一键就能恢复。", "privacy": "这个页面不会上传任何数据。配置链接里有你的用量数字，分享前留意一下。", "casesIntro": "复制一句提问，改成你的数字，发给 Agent 即可。每句都已带上说明文档地址。", "does": "Agent 会：", "copyQ": "复制这句提问", "ref": "（规则和算法见 {url}）", "perm": { "none": "无需权限", "ro": "需 AWS 只读权限", "rw": "需 AWS 写权限 · 产生费用" }, "cases": [["会不会超", "月中想知道这个月的额度够不够。", "我在东京用 $12 / 3 TB 的 Lightsail 套餐，本月已用 2800 GB，这个月会超吗？要加几台流量实例？", "按日均用量预测月底，给出最省钱的方案。"], ["部署选型", "新项目上线前，选区域和套餐。", "我的应用每月大约 8 TB 流量，用户主要在东南亚，用 Lightsail 怎么配最便宜？", "对比各地区的单价、额度减半的地区，以及套餐加流量实例的各种组合。"], ["下月规划", "月初按预计总量定好实例数。", "下个月预计在法兰克福跑 12000 GB，用 $7 / 2 TB 的套餐，开几台流量实例成本最低？", "用整月规划模式算出台数和月成本。"], ["账单解读", "看不懂账单里的流量明细。", "这是我 AWS 账单里 Lightsail 的流量明细：（粘贴）。还剩多少额度？会被收费吗？", "汇总 DataXfer-In/Out 两项，并给你一个核对链接。"], ["流量预警", "每天自动检查，快超额前提醒你。", "每天早上读取我 Lightsail 实例的网络流量指标，如果这个月预计会超额就提醒我。", "用 AWS CLI 或 SDK 读取 NetworkIn/Out，代入计算后通知你。"], ["自动扩容", "预计超额时自动加流量实例。", "如果预计会超额，就在同一区域按推荐数量创建同套餐的 IPv6 实例。创建前先让我确认。", "根据推荐结果调用 Lightsail API 创建实例。"]], "scaleWarn": "自动扩容会创建真实收费的实例。只给 Agent 必要的权限，要求它创建前确认，并设好实例数上限。", "devIntro": "所有文件都是静态的，可以跨域读取。没有服务端 API，也不需要密钥。", "files": ["给 Agent 读的说明：计费规则、链接参数、返回字段", "各区域的价格与额度", "计算模块（ES Module），和这个页面同一套代码"], "copyUrl": "复制地址", "codeH": "在代码里调用", "copy": "复制", "paramsH": "预填链接参数", "params": ["AWS 区域代码，如 us-east-1", "套餐，以内存 GB 标识，如 $7 / 2 TB 为 1", "本月已用 GB（入站 + 出站）", "预计月底总量 GB；单独使用时按整月规划", "流量实例，格式 数量@开始[~结束]，UTC"], "more": "完整参数和返回字段见 llms.txt。Node.js 不能直接从网址导入，可以下载 calc.js 或从仓库复制。" },
       cT: "清空全部数据？",
       cB: "实例、已用流量和设置都会恢复默认，清空后找不回来。需要的话，先在高级设置里导出备份。",
       cancel: "取消",
@@ -297,10 +295,8 @@
       del: "刪除",
       seoDesc: "免費的 AWS Lightsail 流量計算機。同區域、同方案的執行個體共用流量池：填入本月已用流量，就能看到剩餘額度、月底會不會超額、要多付多少，以及加幾台 IPv6 執行個體最省錢。",
       seoKw: "AWS Lightsail, Lightsail 流量, Lightsail 超額, 流量池, 流量計算器, Lightsail 價格, IPv6 執行個體, VPS 流量費用, AWS 帳單",
-      agent: "接入 Agent",
       secCalc: "計算",
       secData: "資料",
-      ag: { "title": "在 AI Agent 裡使用", "sub": "把一份簡短說明交給 AI Agent，它就能幫你算，最後給你一個連結，在這裡打開就能核對。", "close": "關閉", "tabs": ["快速開始", "常見用法", "開發者"], "s1": "複製這段提示詞", "prompt": "請先閱讀 {url}，按其中的 Lightsail 計費規則幫我計算流量池。\n我的情況：區域 ___，方案 ___（如 $7 / 2 TB 流量），本月已用 ___ GB（截至 ___）。\n請告訴我這個月會不會超額、加幾台流量執行個體最省錢，並給我一個預先填好的計算器連結方便核對。", "copyPrompt": "複製提示詞", "s2": "貼到能連網的 Agent 裡", "s2n": "ChatGPT、Claude、Gemini、Cursor 等都可以。把空白處填上，或直接貼上帳單裡的流量明細。", "s3": "開啟它給你的連結", "s3n": "打開連結會把設定載入這個頁面，方便核對數字。你原本的資料會先備份，一鍵就能還原。", "privacy": "這個頁面不會上傳任何資料。設定連結裡有你的用量數字，分享前請留意。", "casesIntro": "複製一句提問，改成你的數字，傳給 Agent 即可。每句都已帶上說明文件網址。", "does": "Agent 會：", "copyQ": "複製這句提問", "ref": "（規則和演算法見 {url}）", "perm": { "none": "無需權限", "ro": "需 AWS 唯讀權限", "rw": "需 AWS 寫入權限 · 產生費用" }, "cases": [["會不會超", "月中想知道這個月的額度夠不夠。", "我在東京用 $12 / 3 TB 的 Lightsail 方案，本月已用 2800 GB，這個月會超嗎？要加幾台流量執行個體？", "按日均用量預測月底，給出最省錢的方案。"], ["選擇配置", "新專案上線前，選區域和方案。", "我的服務每月大約 8 TB 流量，使用者主要在東南亞，用 Lightsail 怎麼配最便宜？", "比較各區域的單價、額度減半的區域，以及方案加流量執行個體的各種組合。"], ["下月規劃", "月初按預計總量定好執行個體數。", "下個月預計在法蘭克福跑 12000 GB，用 $7 / 2 TB 的方案，開幾台流量執行個體成本最低？", "用整月規劃模式算出台數和月成本。"], ["帳單解讀", "看不懂帳單裡的流量明細。", "這是我 AWS 帳單裡 Lightsail 的流量明細：（貼上）。還剩多少額度？會被收費嗎？", "加總 DataXfer-In/Out 兩項，並給你一個核對連結。"], ["流量預警", "每天自動檢查，快超額前提醒你。", "每天早上讀取我 Lightsail 執行個體的網路流量指標，如果這個月預計會超額就提醒我。", "用 AWS CLI 或 SDK 讀取 NetworkIn/Out，代入計算後通知你。"], ["自動擴充", "預計超額時自動加流量執行個體。", "如果預計會超額，就在同一區域按建議數量建立同方案的 IPv6 執行個體。建立前先讓我確認。", "根據建議結果呼叫 Lightsail API 建立執行個體。"]], "scaleWarn": "自動擴充會建立真實計費的執行個體。只給 Agent 必要的權限，要求它建立前確認，並設好執行個體數上限。", "devIntro": "所有檔案都是靜態的，可以跨網域讀取。沒有伺服器 API，也不需要金鑰。", "files": ["給 Agent 讀的說明：計費規則、連結參數、回傳欄位", "各區域的價格與額度", "計算模組（ES Module），和這個頁面同一套程式碼"], "copyUrl": "複製網址", "codeH": "在程式碼裡呼叫", "copy": "複製", "paramsH": "預填連結參數", "params": ["AWS 區域代碼，如 us-east-1", "方案，以記憶體 GB 標識，如 $7 / 2 TB 為 1", "本月已用 GB（入站 + 出站）", "預計月底總量 GB；單獨使用時按整月規劃", "流量執行個體，格式 數量@開始[~結束]，UTC"], "more": "完整參數和回傳欄位見 llms.txt。Node.js 不能直接從網址匯入，可以下載 calc.js 或從儲存庫複製。" },
       cT: "清除所有資料？",
       cB: "執行個體、已用流量和設定都會恢復預設，清除後無法復原。需要的話，請先在進階設定匯出備份。",
       cancel: "取消",
@@ -426,10 +422,8 @@
       count: "Count",
       del: "Remove",
       seoDesc: "Free AWS Lightsail data transfer calculator. Instances with the same bundle in one region share an allowance pool. Enter this month’s usage to see what’s left, whether you’ll pay overage, and how many IPv6 instances to add to pay the least.",
-      agent: "Use with AI",
       secCalc: "Calculation",
       secData: "Data",
-      ag: { "title": "Use it with an AI agent", "sub": "Your agent reads one short guide, does the math for you and hands back a link you can check here.", "close": "Close", "tabs": ["Quick start", "Use cases", "Developers"], "s1": "Copy this prompt", "prompt": "Read {url} first, then use its Lightsail billing rules to work out my data transfer pool.\nMy setup: region ___, bundle ___ (e.g. $7 / 2 TB transfer), ___ GB used this month (as of ___).\nTell me whether I'll go over this month and the cheapest number of traffic instances to add, and give me a pre-filled calculator link so I can check.", "copyPrompt": "Copy prompt", "s2": "Paste it into an agent that can browse the web", "s2n": "ChatGPT, Claude, Gemini, Cursor and similar all work. Fill in the blanks, or paste the data transfer lines from your bill instead.", "s3": "Open the link it returns", "s3n": "The link loads the setup here so you can check the numbers. Your current data is backed up first and can be restored.", "privacy": "This page uploads nothing. Config links contain your usage numbers, so check before sharing them.", "casesIntro": "Copy a question, change the numbers and send it to your agent. Each one already points it at the guide.", "does": "Agent: ", "copyQ": "Copy question", "ref": " (Rules and method: {url})", "perm": { "none": "No access needed", "ro": "AWS read-only", "rw": "AWS write · costs money" }, "cases": [["Will I go over?", "A mid-month check on whether the pool will last.", "I'm on the $12 / 3 TB Lightsail bundle in Tokyo and have used 2800 GB this month. Will I go over, and how many traffic instances should I add?", "projects month-end use from the daily pace and finds the cheapest fix."], ["Choose a setup", "Planning a new project before you deploy.", "My app will push about 8 TB a month, mostly to users in Southeast Asia. What's the cheapest Lightsail region and bundle setup?", "compares region prices, half-allowance regions and bundle plus traffic-instance combinations."], ["Plan next month", "Sizing the fleet at the start of the month.", "Next month I expect about 12,000 GB in Frankfurt on the $7 / 2 TB bundle. How many traffic instances keep the cost lowest?", "runs a full-month plan and returns the count and monthly cost."], ["Explain my bill", "The data transfer lines on the bill are hard to read.", "Here are the Lightsail data transfer lines from my AWS bill: (paste). How much allowance is left, and will I be charged?", "adds up the DataXfer-In/Out items and gives you a link to verify."], ["Usage alerts", "A daily check that warns you before overage.", "Every morning, read the network metrics of my Lightsail instances and warn me if this month is heading for overage.", "reads NetworkIn/Out with the AWS CLI or SDK, runs the numbers and notifies you."], ["Auto scale-up", "Add traffic instances automatically when overage is coming.", "If overage is expected, create the recommended number of IPv6-only instances of my bundle in the same region. Ask me to confirm before creating anything.", "uses the recommendation to call the Lightsail API and create instances."]], "scaleWarn": "Auto scale-up creates real, billed instances. Give the agent only the permissions it needs, require confirmation and cap the instance count.", "devIntro": "Everything is static and readable from any origin. There is no server API and no key.", "files": ["Guide for agents: rules, link parameters, result fields", "Prices and allowances for every region", "The calculation module (ES module), the same code as this page"], "copyUrl": "Copy URL", "codeH": "Call it from code", "copy": "Copy", "paramsH": "Pre-filled link parameters", "params": ["AWS Region code, e.g. us-east-1", "Bundle, identified by RAM in GB; $7 / 2 TB is 1", "GB used so far this month (in + out)", "Expected month-end total in GB; on its own, plans the full month", "Traffic instances as count@start[~end], UTC"], "more": "All parameters and result fields are in llms.txt. Node.js can't import from a URL: download calc.js or copy it from the repository." },
       cT: "Clear all data?",
       cB: "Instances, usage and settings go back to defaults, and this can’t be undone. Export a backup in Advanced settings first if you need one.",
       cancel: "Cancel",
@@ -556,10 +550,8 @@
       del: "削除",
       seoDesc: "無料の AWS Lightsail 転送量計算ツール。同じリージョン・同じプランのインスタンスは転送量の枠を合算できます。今月の使用量を入れるだけで、残りの枠、月末に超過するか、IPv6 インスタンスを何台足すと一番安いかがわかります。",
       seoKw: "AWS Lightsail, Lightsail 転送量, Lightsail 超過料金, データ転送, 転送量計算, Lightsail 料金, IPv6, VPS",
-      agent: "AI で使う",
       secCalc: "計算",
       secData: "データ",
-      ag: { "title": "AI エージェントで使う", "sub": "短いガイドを読ませるだけで、エージェントが計算し、ここで確認できるリンクを返します。", "close": "閉じる", "tabs": ["クイックスタート", "使い方の例", "開発者向け"], "s1": "このプロンプトをコピー", "prompt": "まず {url} を読み、その Lightsail の課金ルールでデータ転送プールを計算してください。\n私の構成：リージョン ___、プラン ___（例：$7 / 転送量 2 TB）、今月の使用量 ___ GB（___ 時点）。\n今月超過するか、最も安く済む追加インスタンスの追加台数を教えてください。確認用に入力済みの計算機リンクもください。", "copyPrompt": "プロンプトをコピー", "s2": "Web を閲覧できるエージェントに貼り付ける", "s2n": "ChatGPT、Claude、Gemini、Cursor などで使えます。空欄を埋めるか、請求書の転送量の明細をそのまま貼り付けてください。", "s3": "返ってきたリンクを開く", "s3n": "リンクを開くと構成がこのページに読み込まれ、数値を確認できます。元のデータは先にバックアップされ、復元できます。", "privacy": "このページは何もアップロードしません。設定リンクには使用量が含まれるので、共有前に確認してください。", "casesIntro": "質問をコピーして数値を書き換え、エージェントに送るだけです。どの質問にもガイドの URL が入っています。", "does": "エージェント：", "copyQ": "質問をコピー", "ref": "（ルールと計算方法：{url}）", "perm": { "none": "権限不要", "ro": "AWS 読み取り権限", "rw": "AWS 書き込み権限・費用発生" }, "cases": [["超過する？", "月の途中で、枠が足りるか確認したい。", "東京で $12 / 3 TB の Lightsail プランを使っていて、今月は 2800 GB 使いました。今月超過しますか？追加インスタンスを何台追加すべき？", "1 日あたりのペースから月末を予測し、最も安い対策を出します。"], ["構成を選ぶ", "新規プロジェクトのデプロイ前に検討したい。", "月に約 8 TB 転送するアプリで、ユーザーは主に東南アジアです。Lightsail で最も安いリージョンとプランの組み合わせは？", "リージョン単価、枠半分のリージョン、プランと追加インスタンスの組み合わせを比較します。"], ["来月の計画", "月初に台数を決めたい。", "来月はフランクフルトの $7 / 2 TB プランで約 12000 GB を見込んでいます。追加インスタンスは何台が最安ですか？", "月全体の計画モードで台数と月額を出します。"], ["請求書を読む", "請求書の転送量の明細がわかりにくい。", "AWS 請求書の Lightsail 転送量の明細です：（貼り付け）。枠はあとどれくらいで、課金されますか？", "DataXfer-In/Out を合計し、確認用リンクを返します。"], ["使用量アラート", "毎日チェックして、超過前に知らせてほしい。", "毎朝 Lightsail インスタンスのネットワーク指標を読み取り、今月超過しそうなら知らせてください。", "AWS CLI または SDK で NetworkIn/Out を読み、計算して通知します。"], ["自動スケールアップ", "超過しそうなときに自動で追加したい。", "超過が見込まれる場合、同じリージョンに同じプランの IPv6 インスタンスを推奨台数だけ作成してください。作成前に必ず確認を求めてください。", "推奨結果に従って Lightsail API でインスタンスを作成します。"]], "scaleWarn": "自動スケールアップは実際に課金されるインスタンスを作成します。必要最小限の権限だけを与え、作成前の確認と台数の上限を設定してください。", "devIntro": "すべて静的ファイルで、どのオリジンからも読み込めます。サーバー API もキーもありません。", "files": ["エージェント向けガイド：ルール、リンクのパラメータ、結果のフィールド", "全リージョンの料金と転送枠", "計算モジュール（ES Module）、このページと同じコード"], "copyUrl": "URL をコピー", "codeH": "コードから呼び出す", "copy": "コピー", "paramsH": "入力済みリンクのパラメータ", "params": ["AWS リージョンコード（例 us-east-1）", "プラン（メモリ GB で指定）。$7 / 2 TB は 1", "今月の使用量 GB（受信 + 送信）", "月末の見込み合計 GB。単独なら月全体の計画", "追加インスタンス：台数@開始[~終了]、UTC"], "more": "すべてのパラメータと結果のフィールドは llms.txt にあります。Node.js は URL から直接 import できないため、calc.js をダウンロードするかリポジトリからコピーしてください。" },
       cT: "全データを消去しますか？",
       cB: "インスタンス、使用量、設定がすべて初期状態に戻ります。元には戻せません。必要なら先に詳細設定からバックアップを書き出してください。",
       cancel: "キャンセル",
@@ -686,10 +678,8 @@
       del: "삭제",
       seoDesc: "무료 AWS Lightsail 전송량 계산기. 같은 리전·같은 플랜의 인스턴스는 전송량 한도를 함께 씁니다. 이번 달 사용량만 넣으면 남은 한도, 초과 요금 여부, IPv6 인스턴스를 몇 대 더해야 가장 싼지 알려 줍니다.",
       seoKw: "AWS Lightsail, Lightsail 데이터 전송, Lightsail 초과 요금, 전송량 계산기, Lightsail 요금, IPv6 인스턴스, VPS",
-      agent: "AI로 사용",
       secCalc: "계산",
       secData: "데이터",
-      ag: { "title": "AI 에이전트에서 사용하기", "sub": "짧은 안내 문서만 읽히면 에이전트가 대신 계산하고, 여기서 확인할 수 있는 링크를 돌려줍니다.", "close": "닫기", "tabs": ["빠른 시작", "활용 예시", "개발자"], "s1": "이 프롬프트를 복사하세요", "prompt": "먼저 {url} 을 읽고, 그 Lightsail 과금 규칙으로 내 데이터 전송 풀을 계산해 주세요.\n내 구성: 리전 ___, 플랜 ___(예: $7 / 전송량 2 TB), 이번 달 사용량 ___ GB(___ 기준).\n이번 달 초과 여부와 가장 저렴한 트래픽 인스턴스 추가 대수를 알려 주고, 확인용으로 값이 채워진 계산기 링크도 주세요.", "copyPrompt": "프롬프트 복사", "s2": "웹 검색이 되는 에이전트에 붙여 넣기", "s2n": "ChatGPT, Claude, Gemini, Cursor 등 모두 됩니다. 빈칸을 채우거나 청구서의 전송량 항목을 그대로 붙여 넣으세요.", "s3": "돌려받은 링크 열기", "s3n": "링크를 열면 구성이 이 페이지에 불러와져 숫자를 확인할 수 있습니다. 기존 데이터는 먼저 백업되며 복원할 수 있습니다.", "privacy": "이 페이지는 아무것도 업로드하지 않습니다. 설정 링크에는 사용량이 들어 있으니 공유 전에 확인하세요.", "casesIntro": "질문을 복사해 숫자만 바꿔 에이전트에 보내세요. 모든 질문에 안내 문서 주소가 들어 있습니다.", "does": "에이전트: ", "copyQ": "질문 복사", "ref": " (규칙과 계산 방법: {url})", "perm": { "none": "권한 불필요", "ro": "AWS 읽기 권한", "rw": "AWS 쓰기 권한 · 비용 발생" }, "cases": [["초과할까?", "월 중간에 한도가 충분한지 확인.", "도쿄에서 $12 / 3 TB Lightsail 플랜을 쓰고 이번 달 2800 GB를 썼습니다. 이번 달 초과하나요? 트래픽 인스턴스를 몇 대 추가해야 하나요?", "일평균 속도로 월말을 예측하고 가장 저렴한 해결책을 찾습니다."], ["구성 선택", "새 프로젝트 배포 전에 검토.", "월 약 8 TB를 전송하는 앱이고 사용자는 주로 동남아시아에 있습니다. Lightsail에서 가장 저렴한 리전과 플랜 구성은?", "리전 단가, 한도 절반 리전, 플랜과 트래픽 인스턴스 조합을 비교합니다."], ["다음 달 계획", "월초에 인스턴스 수를 정하기.", "다음 달 프랑크푸르트 $7 / 2 TB 플랜으로 약 12000 GB를 예상합니다. 트래픽 인스턴스를 몇 대 두면 가장 저렴한가요?", "월 전체 계획 모드로 대수와 월 비용을 계산합니다."], ["청구서 해석", "청구서의 전송량 항목이 이해하기 어려움.", "AWS 청구서의 Lightsail 전송량 항목입니다: (붙여 넣기). 남은 한도는 얼마이고 요금이 나오나요?", "DataXfer-In/Out 항목을 합산하고 확인용 링크를 줍니다."], ["사용량 알림", "매일 점검해 초과 전에 알림.", "매일 아침 내 Lightsail 인스턴스의 네트워크 지표를 읽고, 이번 달 초과가 예상되면 알려 주세요.", "AWS CLI 또는 SDK로 NetworkIn/Out을 읽어 계산한 뒤 알려 줍니다."], ["자동 확장", "초과가 예상되면 트래픽 인스턴스를 자동 추가.", "초과가 예상되면 같은 리전에 같은 플랜의 IPv6 인스턴스를 추천 대수만큼 만들어 주세요. 만들기 전에 반드시 확인을 받으세요.", "추천 결과에 따라 Lightsail API로 인스턴스를 만듭니다."]], "scaleWarn": "자동 확장은 실제로 과금되는 인스턴스를 만듭니다. 필요한 권한만 주고, 생성 전 확인과 인스턴스 수 상한을 설정하세요.", "devIntro": "모든 파일은 정적이며 어느 출처에서나 읽을 수 있습니다. 서버 API도 키도 없습니다.", "files": ["에이전트용 안내: 규칙, 링크 매개변수, 결과 필드", "모든 리전의 가격과 한도", "계산 모듈(ES Module), 이 페이지와 같은 코드"], "copyUrl": "URL 복사", "codeH": "코드에서 호출", "copy": "복사", "paramsH": "미리 채운 링크 매개변수", "params": ["AWS 리전 코드(예: us-east-1)", "플랜(메모리 GB로 지정). $7 / 2 TB는 1", "이번 달 사용량 GB(수신 + 송신)", "예상 월말 총량 GB; 단독으로 쓰면 월 전체 계획", "트래픽 인스턴스: 대수@시작[~종료], UTC"], "more": "모든 매개변수와 결과 필드는 llms.txt에 있습니다. Node.js는 URL에서 바로 import할 수 없으니 calc.js를 내려받거나 저장소에서 복사하세요." },
       cT: "모든 데이터를 지울까요?",
       cB: "인스턴스, 사용량, 설정이 모두 기본값으로 돌아가며 되돌릴 수 없어요. 필요하면 먼저 고급 설정에서 백업을 내보내세요.",
       cancel: "취소",
@@ -816,10 +806,8 @@
       del: "Quitar",
       seoDesc: "Calculadora gratuita de transferencia de datos de AWS Lightsail. Las instancias con el mismo plan en una región comparten la cuota. Escribe el uso de este mes y verás cuánto te queda, si pagarás exceso y cuántas instancias IPv6 añadir para pagar lo mínimo.",
       seoKw: "AWS Lightsail, transferencia de datos Lightsail, exceso Lightsail, calculadora, precios Lightsail, instancia IPv6, VPS",
-      agent: "Usar con IA",
       secCalc: "Cálculo",
       secData: "Datos",
-      ag: { "title": "Úsalo con un agente de IA", "sub": "Tu agente lee una guía breve, hace las cuentas por ti y te devuelve un enlace para comprobarlas aquí.", "close": "Cerrar", "tabs": ["Inicio rápido", "Casos de uso", "Desarrolladores"], "s1": "Copia este prompt", "prompt": "Lee primero {url} y usa sus reglas de facturación de Lightsail para calcular mi pool de transferencia de datos.\nMi configuración: región ___, plan ___ (p. ej. $7 / 2 TB de transferencia), ___ GB usados este mes (a fecha de ___).\nDime si me pasaré este mes y cuántas instancias de tráfico añadir para pagar lo mínimo, y dame un enlace de la calculadora ya rellenado para comprobarlo.", "copyPrompt": "Copiar prompt", "s2": "Pégalo en un agente con acceso a la web", "s2n": "Sirven ChatGPT, Claude, Gemini, Cursor y similares. Completa los huecos o pega las líneas de transferencia de tu factura.", "s3": "Abre el enlace que te devuelve", "s3n": "El enlace carga la configuración aquí para que compruebes los números. Tus datos actuales se guardan antes y puedes restaurarlos.", "privacy": "Esta página no sube nada. Los enlaces de configuración incluyen tus cifras de uso: revísalos antes de compartirlos.", "casesIntro": "Copia una pregunta, cambia los números y envíala a tu agente. Todas incluyen ya la dirección de la guía.", "does": "El agente: ", "copyQ": "Copiar pregunta", "ref": " (Reglas y método: {url})", "perm": { "none": "Sin permisos", "ro": "AWS solo lectura", "rw": "AWS escritura · genera costes" }, "cases": [["¿Me pasaré?", "A mitad de mes, saber si el pool aguanta.", "Tengo el plan Lightsail de $12 / 3 TB en Tokio y llevo 2800 GB este mes. ¿Me pasaré? ¿Cuántas instancias de tráfico debo añadir?", "proyecta el fin de mes con el ritmo diario y busca la solución más barata."], ["Elegir configuración", "Planificar un proyecto nuevo antes de desplegar.", "Mi app moverá unos 8 TB al mes, sobre todo a usuarios del sudeste asiático. ¿Qué región y plan de Lightsail sale más barato?", "compara precios por región, regiones con media asignación y combinaciones de plan e instancias de tráfico."], ["Planificar el mes", "Dimensionar la flota a principio de mes.", "El mes que viene espero unos 12 000 GB en Fráncfort con el plan de $7 / 2 TB. ¿Cuántas instancias de tráfico minimizan el coste?", "hace un plan de mes completo y devuelve el número y el coste mensual."], ["Entender la factura", "Las líneas de transferencia de la factura cuestan de leer.", "Estas son las líneas de transferencia de Lightsail de mi factura de AWS: (pegar). ¿Cuánta asignación me queda y me cobrarán?", "suma los conceptos DataXfer-In/Out y te da un enlace para verificar."], ["Alertas de uso", "Una comprobación diaria que avisa antes del exceso.", "Cada mañana, lee las métricas de red de mis instancias Lightsail y avísame si este mes va camino de pasarse.", "lee NetworkIn/Out con la CLI o el SDK de AWS, hace el cálculo y te avisa."], ["Escalado automático", "Añadir instancias de tráfico solas cuando se acerca el exceso.", "Si se prevé exceso, crea en la misma región el número recomendado de instancias solo IPv6 de mi plan. Pídeme confirmación antes de crear nada.", "usa la recomendación para llamar a la API de Lightsail y crear instancias."]], "scaleWarn": "El escalado automático crea instancias reales que se facturan. Da al agente solo los permisos necesarios, exige confirmación y fija un máximo de instancias.", "devIntro": "Todo es estático y se puede leer desde cualquier origen. No hay API de servidor ni clave.", "files": ["Guía para agentes: reglas, parámetros del enlace, campos del resultado", "Precios y asignaciones de todas las regiones", "El módulo de cálculo (ES module), el mismo código que esta página"], "copyUrl": "Copiar URL", "codeH": "Llamarlo desde código", "copy": "Copiar", "paramsH": "Parámetros del enlace prellenado", "params": ["Código de región de AWS, p. ej. us-east-1", "Plan, identificado por su RAM en GB; $7 / 2 TB es 1", "GB usados este mes (entrada + salida)", "Total previsto a fin de mes en GB; solo, planifica el mes completo", "Instancias de tráfico: cantidad@inicio[~fin], UTC"], "more": "Todos los parámetros y campos del resultado están en llms.txt. Node.js no puede importar desde una URL: descarga calc.js o cópialo del repositorio." },
       cT: "¿Borrar todos los datos?",
       cB: "Las instancias, el uso y los ajustes vuelven a sus valores iniciales, y no se puede deshacer. Si lo necesitas, exporta antes una copia en Ajustes avanzados.",
       cancel: "Cancelar",
@@ -946,10 +934,8 @@
       del: "Retirer",
       seoDesc: "Calculateur gratuit du transfert de données AWS Lightsail. Les instances du même forfait dans une région partagent un quota. Saisissez votre consommation du mois pour voir ce qui reste, si vous paierez un dépassement et combien d’instances IPv6 ajouter pour payer le moins possible.",
       seoKw: "AWS Lightsail, transfert de données Lightsail, dépassement Lightsail, calculateur, tarifs Lightsail, instance IPv6, VPS",
-      agent: "Utiliser avec l’IA",
       secCalc: "Calcul",
       secData: "Données",
-      ag: { "title": "L’utiliser avec un agent IA", "sub": "Votre agent lit un court guide, fait le calcul et vous renvoie un lien à vérifier ici.", "close": "Fermer", "tabs": ["Démarrage", "Cas d’usage", "Développeurs"], "s1": "Copiez ce prompt", "prompt": "Lis d’abord {url}, puis applique ses règles de facturation Lightsail pour calculer mon pool de transfert de données.\nMa configuration : région ___, forfait ___ (ex. 7 $ / 2 To de transfert), ___ Go utilisés ce mois-ci (au ___).\nDis-moi si je vais dépasser ce mois-ci et combien d’instances de trafic ajouter au moindre coût, et donne-moi un lien de calculatrice pré-rempli pour vérifier.", "copyPrompt": "Copier le prompt", "s2": "Collez-le dans un agent qui accède au web", "s2n": "ChatGPT, Claude, Gemini, Cursor et équivalents conviennent. Remplissez les blancs ou collez les lignes de transfert de votre facture.", "s3": "Ouvrez le lien qu’il renvoie", "s3n": "Le lien charge la configuration ici pour vérifier les chiffres. Vos données actuelles sont d’abord sauvegardées et restaurables.", "privacy": "Cette page n’envoie rien. Les liens de configuration contiennent vos chiffres d’usage : vérifiez avant de les partager.", "casesIntro": "Copiez une question, changez les chiffres et envoyez-la à votre agent. Chacune indique déjà l’adresse du guide.", "does": "L’agent : ", "copyQ": "Copier la question", "ref": " (Règles et méthode : {url})", "perm": { "none": "Aucun accès requis", "ro": "AWS lecture seule", "rw": "AWS écriture · payant" }, "cases": [["Vais-je dépasser ?", "En milieu de mois, savoir si le pool tiendra.", "J’ai le forfait Lightsail à 12 $ / 3 To à Tokyo et j’ai utilisé 2800 Go ce mois-ci. Vais-je dépasser ? Combien d’instances de trafic ajouter ?", "projette la fin du mois au rythme quotidien et trouve la solution la moins chère."], ["Choisir une config", "Préparer un nouveau projet avant le déploiement.", "Mon app enverra environ 8 To par mois, surtout vers l’Asie du Sud-Est. Quelle région et quel forfait Lightsail coûtent le moins ?", "compare les prix par région, les régions à quota réduit de moitié et les combinaisons forfait + instances de trafic."], ["Planifier le mois", "Dimensionner la flotte en début de mois.", "Le mois prochain, je prévois environ 12 000 Go à Francfort avec le forfait à 7 $ / 2 To. Combien d’instances de trafic pour le coût le plus bas ?", "fait un plan sur le mois entier et renvoie le nombre et le coût mensuel."], ["Lire ma facture", "Les lignes de transfert de la facture sont peu lisibles.", "Voici les lignes de transfert Lightsail de ma facture AWS : (coller). Combien de quota me reste-t-il et serai-je facturé ?", "additionne les postes DataXfer-In/Out et vous donne un lien de vérification."], ["Alertes d’usage", "Un contrôle quotidien qui prévient avant le dépassement.", "Chaque matin, lis les métriques réseau de mes instances Lightsail et préviens-moi si ce mois-ci s’oriente vers un dépassement.", "lit NetworkIn/Out via l’AWS CLI ou le SDK, fait le calcul et vous prévient."], ["Montée en charge auto", "Ajouter des instances de trafic automatiquement avant un dépassement.", "Si un dépassement est prévu, crée dans la même région le nombre recommandé d’instances IPv6 seulement de mon forfait. Demande-moi confirmation avant toute création.", "s’appuie sur la recommandation pour appeler l’API Lightsail et créer les instances."]], "scaleWarn": "La montée en charge auto crée de vraies instances facturées. Donnez à l’agent le strict nécessaire, exigez une confirmation et plafonnez le nombre d’instances.", "devIntro": "Tout est statique et lisible depuis n’importe quelle origine. Pas d’API serveur, pas de clé.", "files": ["Guide pour agents : règles, paramètres de lien, champs du résultat", "Prix et quotas de chaque région", "Le module de calcul (module ES), le même code que cette page"], "copyUrl": "Copier l’URL", "codeH": "L’appeler depuis du code", "copy": "Copier", "paramsH": "Paramètres du lien pré-rempli", "params": ["Code de région AWS, ex. us-east-1", "Forfait, identifié par sa RAM en Go ; 7 $ / 2 To vaut 1", "Go utilisés ce mois-ci (entrant + sortant)", "Total prévu en fin de mois en Go ; seul, planifie le mois entier", "Instances de trafic : nombre@début[~fin], UTC"], "more": "Tous les paramètres et champs du résultat sont dans llms.txt. Node.js ne peut pas importer depuis une URL : téléchargez calc.js ou copiez-le depuis le dépôt." },
       cT: "Effacer toutes les données ?",
       cB: "Les instances, la consommation et les réglages reviennent aux valeurs par défaut, sans retour possible. Exportez d’abord une sauvegarde dans les Réglages avancés si besoin.",
       cancel: "Annuler",
@@ -1076,10 +1062,8 @@
       del: "Entfernen",
       seoDesc: "Kostenloser Traffic-Rechner für AWS Lightsail. Instanzen mit demselben Tarif in einer Region teilen sich ein Traffic-Kontingent. Trag den Verbrauch dieses Monats ein und sieh, was übrig bleibt, ob Mehrkosten drohen und wie viele IPv6-Instanzen am günstigsten sind.",
       seoKw: "AWS Lightsail, Lightsail Datentransfer, Lightsail Überziehung, Rechner, Lightsail Preise, IPv6-Instanz, VPS",
-      agent: "Mit KI nutzen",
       secCalc: "Berechnung",
       secData: "Daten",
-      ag: { "title": "Mit einem KI-Agenten nutzen", "sub": "Ihr Agent liest eine kurze Anleitung, rechnet für Sie und gibt einen Link zurück, den Sie hier prüfen können.", "close": "Schließen", "tabs": ["Schnellstart", "Anwendungsfälle", "Entwickler"], "s1": "Diesen Prompt kopieren", "prompt": "Lies zuerst {url} und berechne mit den dortigen Lightsail-Abrechnungsregeln meinen Datentransfer-Pool.\nMein Setup: Region ___, Paket ___ (z. B. $7 / 2 TB Transfer), diesen Monat ___ GB verbraucht (Stand ___).\nSag mir, ob ich diesen Monat überziehe und wie viele Traffic-Instanzen ich am günstigsten hinzufüge, und gib mir einen vorausgefüllten Rechner-Link zum Prüfen.", "copyPrompt": "Prompt kopieren", "s2": "In einen Agenten mit Webzugriff einfügen", "s2n": "ChatGPT, Claude, Gemini, Cursor und ähnliche funktionieren. Füllen Sie die Lücken aus oder fügen Sie die Transferzeilen Ihrer Rechnung ein.", "s3": "Den zurückgegebenen Link öffnen", "s3n": "Der Link lädt das Setup hier, damit Sie die Zahlen prüfen können. Ihre bisherigen Daten werden vorher gesichert und lassen sich wiederherstellen.", "privacy": "Diese Seite lädt nichts hoch. Konfigurationslinks enthalten Ihre Verbrauchszahlen – prüfen Sie sie vor dem Teilen.", "casesIntro": "Frage kopieren, Zahlen anpassen und an den Agenten senden. Jede Frage enthält bereits die Adresse der Anleitung.", "does": "Der Agent: ", "copyQ": "Frage kopieren", "ref": " (Regeln und Methode: {url})", "perm": { "none": "Kein Zugriff nötig", "ro": "AWS nur lesen", "rw": "AWS schreiben · kostet Geld" }, "cases": [["Überziehe ich?", "Zur Monatsmitte prüfen, ob der Pool reicht.", "Ich nutze das Lightsail-Paket für $12 / 3 TB in Tokio und habe diesen Monat 2800 GB verbraucht. Überziehe ich? Wie viele Traffic-Instanzen sollte ich hinzufügen?", "hochrechnet das Monatsende aus dem Tagesschnitt und findet die günstigste Lösung."], ["Setup wählen", "Ein neues Projekt vor dem Deployment planen.", "Meine App überträgt etwa 8 TB im Monat, vor allem nach Südostasien. Welche Lightsail-Region und welches Paket sind am günstigsten?", "vergleicht Regionspreise, Regionen mit halbem Kontingent und Kombinationen aus Paket und Traffic-Instanzen."], ["Nächsten Monat planen", "Die Flotte zu Monatsbeginn dimensionieren.", "Nächsten Monat erwarte ich etwa 12.000 GB in Frankfurt mit dem Paket für $7 / 2 TB. Wie viele Traffic-Instanzen sind am günstigsten?", "rechnet einen ganzen Monat durch und liefert Anzahl und Monatskosten."], ["Rechnung verstehen", "Die Transferzeilen der Rechnung sind schwer zu lesen.", "Hier die Lightsail-Transferzeilen meiner AWS-Rechnung: (einfügen). Wie viel Kontingent bleibt, und wird mir etwas berechnet?", "summiert die Posten DataXfer-In/Out und gibt Ihnen einen Prüf-Link."], ["Verbrauchswarnung", "Eine tägliche Prüfung, die vor dem Überziehen warnt.", "Lies jeden Morgen die Netzwerkmetriken meiner Lightsail-Instanzen und warne mich, wenn dieser Monat auf eine Überziehung zuläuft.", "liest NetworkIn/Out per AWS CLI oder SDK, rechnet und benachrichtigt Sie."], ["Auto-Skalierung", "Traffic-Instanzen automatisch hinzufügen, wenn eine Überziehung droht.", "Wenn eine Überziehung erwartet wird, erstelle in derselben Region die empfohlene Anzahl reiner IPv6-Instanzen meines Pakets. Frag mich vor jeder Erstellung um Bestätigung.", "ruft anhand der Empfehlung die Lightsail-API auf und erstellt Instanzen."]], "scaleWarn": "Erstellt echte, kostenpflichtige Instanzen: nur nötige Rechte vergeben, Bestätigung verlangen, Anzahl begrenzen.", "devIntro": "Alles ist statisch und von jedem Origin lesbar. Es gibt keine Server-API und keinen Schlüssel.", "files": ["Anleitung für Agenten: Regeln, Link-Parameter, Ergebnisfelder", "Preise und Kontingente aller Regionen", "Das Rechenmodul (ES-Modul), derselbe Code wie diese Seite"], "copyUrl": "URL kopieren", "codeH": "Aus Code aufrufen", "copy": "Kopieren", "paramsH": "Parameter für vorausgefüllte Links", "params": ["AWS-Regionscode, z. B. us-east-1", "Paket, angegeben über RAM in GB; $7 / 2 TB ist 1", "Diesen Monat verbrauchte GB (ein + aus)", "Erwartete Gesamtmenge zum Monatsende in GB; allein plant es den ganzen Monat", "Traffic-Instanzen als Anzahl@Start[~Ende], UTC"], "more": "Alle Parameter und Ergebnisfelder stehen in llms.txt. Node.js kann nicht von einer URL importieren: calc.js herunterladen oder aus dem Repository kopieren." },
       cT: "Alle Daten löschen?",
       cB: "Instanzen, Verbrauch und Einstellungen werden zurückgesetzt. Das lässt sich nicht rückgängig machen. Exportiere bei Bedarf vorher ein Backup in den erweiterten Einstellungen.",
       cancel: "Abbrechen",
@@ -1206,10 +1190,8 @@
       del: "Remover",
       seoDesc: "Calculadora gratuita de tráfego do AWS Lightsail. Instâncias com o mesmo plano em uma região dividem a franquia. Informe o uso deste mês e veja quanto resta, se vai pagar excedente e quantas instâncias IPv6 adicionar para pagar o mínimo.",
       seoKw: "AWS Lightsail, transferência de dados Lightsail, excedente Lightsail, calculadora, preços Lightsail, instância IPv6, VPS",
-      agent: "Usar com IA",
       secCalc: "Cálculo",
       secData: "Dados",
-      ag: { "title": "Use com um agente de IA", "sub": "Seu agente lê um guia curto, faz as contas por você e devolve um link para conferir aqui.", "close": "Fechar", "tabs": ["Início rápido", "Casos de uso", "Desenvolvedores"], "s1": "Copie este prompt", "prompt": "Leia primeiro {url} e use as regras de cobrança do Lightsail descritas lá para calcular meu pool de transferência de dados.\nMinha configuração: região ___, plano ___ (ex. $7 / 2 TB de transferência), ___ GB usados este mês (até ___).\nDiga se vou ultrapassar este mês e quantas instâncias de tráfego adicionar pelo menor custo, e me dê um link da calculadora já preenchido para conferir.", "copyPrompt": "Copiar prompt", "s2": "Cole em um agente com acesso à web", "s2n": "ChatGPT, Claude, Gemini, Cursor e similares funcionam. Preencha as lacunas ou cole as linhas de transferência da sua fatura.", "s3": "Abra o link que ele devolver", "s3n": "O link carrega a configuração aqui para você conferir os números. Seus dados atuais são salvos antes e podem ser restaurados.", "privacy": "Esta página não envia nada. Links de configuração contêm seus números de uso: confira antes de compartilhar.", "casesIntro": "Copie uma pergunta, troque os números e envie ao seu agente. Todas já incluem o endereço do guia.", "does": "O agente: ", "copyQ": "Copiar pergunta", "ref": " (Regras e método: {url})", "perm": { "none": "Sem permissões", "ro": "AWS somente leitura", "rw": "AWS escrita · gera custos" }, "cases": [["Vou ultrapassar?", "No meio do mês, saber se o pool vai durar.", "Uso o plano Lightsail de $12 / 3 TB em Tóquio e já gastei 2800 GB este mês. Vou ultrapassar? Quantas instâncias de tráfego devo adicionar?", "projeta o fim do mês pelo ritmo diário e encontra a solução mais barata."], ["Escolher a configuração", "Planejar um projeto novo antes de implantar.", "Meu app vai transferir cerca de 8 TB por mês, principalmente para o Sudeste Asiático. Qual região e plano do Lightsail saem mais baratos?", "compara preços por região, regiões com metade da franquia e combinações de plano e instâncias de tráfego."], ["Planejar o mês", "Dimensionar a frota no início do mês.", "No próximo mês espero cerca de 12.000 GB em Frankfurt no plano de $7 / 2 TB. Quantas instâncias de tráfego deixam o custo mais baixo?", "faz um plano do mês inteiro e devolve a quantidade e o custo mensal."], ["Entender a fatura", "As linhas de transferência da fatura são difíceis de ler.", "Estas são as linhas de transferência do Lightsail da minha fatura da AWS: (colar). Quanto de franquia sobra e serei cobrado?", "soma os itens DataXfer-In/Out e dá um link para conferir."], ["Alertas de uso", "Uma verificação diária que avisa antes do excedente.", "Toda manhã, leia as métricas de rede das minhas instâncias Lightsail e me avise se este mês estiver a caminho de ultrapassar.", "lê NetworkIn/Out com a AWS CLI ou SDK, faz o cálculo e avisa você."], ["Escalar automaticamente", "Adicionar instâncias de tráfego sozinho quando o excedente se aproxima.", "Se houver excedente previsto, crie na mesma região a quantidade recomendada de instâncias só IPv6 do meu plano. Peça minha confirmação antes de criar qualquer coisa.", "usa a recomendação para chamar a API do Lightsail e criar instâncias."]], "scaleWarn": "Escalar automaticamente cria instâncias reais e cobradas. Dê ao agente só as permissões necessárias, exija confirmação e limite o número de instâncias.", "devIntro": "Tudo é estático e pode ser lido de qualquer origem. Não há API de servidor nem chave.", "files": ["Guia para agentes: regras, parâmetros do link, campos do resultado", "Preços e franquias de todas as regiões", "O módulo de cálculo (ES module), o mesmo código desta página"], "copyUrl": "Copiar URL", "codeH": "Chamar pelo código", "copy": "Copiar", "paramsH": "Parâmetros do link pré-preenchido", "params": ["Código da região AWS, ex. us-east-1", "Plano, identificado pela RAM em GB; $7 / 2 TB é 1", "GB usados este mês (entrada + saída)", "Total previsto no fim do mês em GB; sozinho, planeja o mês inteiro", "Instâncias de tráfego: quantidade@início[~fim], UTC"], "more": "Todos os parâmetros e campos do resultado estão no llms.txt. O Node.js não importa de uma URL: baixe o calc.js ou copie do repositório." },
       cT: "Apagar todos os dados?",
       cB: "Instâncias, uso e configurações voltam ao padrão, e não dá para desfazer. Se precisar, exporte antes um backup em Configurações avançadas.",
       cancel: "Cancelar",
@@ -1336,10 +1318,8 @@
       del: "Убрать",
       seoDesc: "Бесплатный калькулятор трафика AWS Lightsail. Инстансы на одном тарифе в регионе делят общий лимит. Введите расход за месяц и узнайте, сколько осталось, будет ли перерасход и сколько IPv6-инстансов добавить, чтобы платить меньше всего.",
       seoKw: "AWS Lightsail, трафик Lightsail, превышение Lightsail, калькулятор трафика, цены Lightsail, IPv6-инстанс, VPS",
-      agent: "ИИ-агент",
       secCalc: "Расчёт",
       secData: "Данные",
-      ag: { "title": "Использовать с ИИ-агентом", "sub": "Агент читает короткую инструкцию, считает за вас и возвращает ссылку, которую можно проверить здесь.", "close": "Закрыть", "tabs": ["Быстрый старт", "Сценарии", "Разработчикам"], "s1": "Скопируйте этот промпт", "prompt": "Сначала прочитай {url} и по описанным там правилам тарификации Lightsail рассчитай мой пул трафика.\nМоя конфигурация: регион ___, тариф ___ (напр. $7 / 2 ТБ трафика), в этом месяце израсходовано ___ ГБ (на ___).\nСкажи, превышу ли я лимит в этом месяце и сколько инстансов под трафик добавить, чтобы заплатить меньше всего, и дай заполненную ссылку на калькулятор для проверки.", "copyPrompt": "Копировать промпт", "s2": "Вставьте его в агента с доступом к вебу", "s2n": "Подойдут ChatGPT, Claude, Gemini, Cursor и подобные. Заполните пропуски или вставьте строки трафика из счёта.", "s3": "Откройте ссылку, которую он вернёт", "s3n": "Ссылка загрузит конфигурацию сюда, чтобы вы проверили цифры. Ваши текущие данные сначала сохраняются, их можно восстановить.", "privacy": "Эта страница ничего не отправляет. Ссылки на конфигурацию содержат цифры расхода — проверьте их, прежде чем делиться.", "casesIntro": "Скопируйте вопрос, подставьте свои цифры и отправьте агенту. В каждом уже есть адрес инструкции.", "does": "Агент: ", "copyQ": "Копировать вопрос", "ref": " (Правила и методика: {url})", "perm": { "none": "Доступ не нужен", "ro": "AWS только чтение", "rw": "AWS запись · платно" }, "cases": [["Превышу ли?", "В середине месяца понять, хватит ли пула.", "У меня тариф Lightsail $12 / 3 ТБ в Токио, в этом месяце израсходовано 2800 ГБ. Превышу ли я лимит? Сколько инстансов под трафик добавить?", "прогнозирует конец месяца по дневному темпу и находит самое дешёвое решение."], ["Выбор конфигурации", "Спланировать новый проект до развёртывания.", "Моё приложение будет отдавать около 8 ТБ в месяц, в основном в Юго-Восточную Азию. Какой регион и тариф Lightsail выйдут дешевле всего?", "сравнивает цены регионов, регионы с половинным лимитом и сочетания тарифа с инстансами под трафик."], ["План на месяц", "Определить число инстансов в начале месяца.", "В следующем месяце ожидаю около 12 000 ГБ во Франкфурте на тарифе $7 / 2 ТБ. Сколько инстансов под трафик дадут минимальную стоимость?", "строит план на весь месяц и возвращает количество и месячную стоимость."], ["Разбор счёта", "Строки трафика в счёте трудно понять.", "Вот строки трафика Lightsail из моего счёта AWS: (вставить). Сколько лимита осталось и будут ли списания?", "суммирует статьи DataXfer-In/Out и даёт ссылку для проверки."], ["Оповещения", "Ежедневная проверка с предупреждением до превышения.", "Каждое утро читай сетевые метрики моих инстансов Lightsail и предупреди меня, если в этом месяце намечается превышение.", "читает NetworkIn/Out через AWS CLI или SDK, считает и уведомляет вас."], ["Автомасштаб", "Автоматически добавлять инстансы под трафик перед превышением.", "Если ожидается превышение, создай в том же регионе рекомендованное число инстансов моего тарифа только с IPv6. Перед созданием обязательно спроси подтверждение.", "по рекомендации вызывает API Lightsail и создаёт инстансы."]], "scaleWarn": "Создаёт настоящие платные инстансы: давайте только нужные права, требуйте подтверждения и ограничьте их число.", "devIntro": "Всё статично и доступно с любого источника. Нет серверного API и ключей.", "files": ["Инструкция для агентов: правила, параметры ссылки, поля результата", "Цены и лимиты всех регионов", "Модуль расчёта (ES-модуль), тот же код, что на этой странице"], "copyUrl": "Копировать URL", "codeH": "Вызов из кода", "copy": "Копировать", "paramsH": "Параметры заполненной ссылки", "params": ["Код региона AWS, напр. us-east-1", "Тариф, задаётся объёмом RAM в ГБ; $7 / 2 ТБ — это 1", "Израсходовано в этом месяце, ГБ (вход + выход)", "Ожидаемый итог на конец месяца, ГБ; отдельно — план на весь месяц", "Инстансы под трафик: количество@начало[~конец], UTC"], "more": "Все параметры и поля результата — в llms.txt. Node.js не импортирует по URL: скачайте calc.js или скопируйте его из репозитория." },
       cT: "Удалить все данные?",
       cB: "Инстансы, расход и настройки вернутся к значениям по умолчанию. Отменить это нельзя. При необходимости сначала экспортируйте резервную копию в дополнительных настройках.",
       cancel: "Отмена",
@@ -1646,6 +1626,7 @@
   };
   const fmtDate = (ms) => new Intl.DateTimeFormat(LANG, { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false }).format(ms);
   const regionName = (id) => REGION_NAMES[LANG][REGION_ORDER.indexOf(id)];
+  const escH = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   function applyLang() {
     document.querySelectorAll("[data-i]").forEach((el) => {
       el.textContent = t(el.dataset.i);
@@ -1655,9 +1636,6 @@
       if (el.hasAttribute("title")) el.title = t(el.dataset.ia);
     });
     $("#footTxt").textContent = t("foot", { d: PRICES.date });
-    $("#agentBtn").title = t("agent");
-    $("#agentBtn").setAttribute("aria-label", t("agent"));
-    renderAgent();
     fitHeader();
     $("#regionWrap").title = t("region");
     $("#region").setAttribute("aria-label", t("region"));
@@ -2159,7 +2137,6 @@
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     if (!$("#help").hidden) closeHelp();
-    else if (!$("#agent").hidden) closeAgent();
     else $("#settings").open = false;
   });
   $("#linkUndo").addEventListener("click", () => {
@@ -2295,112 +2272,6 @@
     const ro = new ResizeObserver(fitHeader);
     [$(".brand-row h1"), ...$(".tools").children].forEach((el) => ro.observe(el));
   }
-  const CASE_PERM = ["none", "none", "none", "none", "ro", "rw"];
-  const AG_ICON_INFO = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.2v3.6M8 5.2v.1"/></svg>';
-  const AG_ICON_WARN = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.2l6.2 11H1.8z"/><path d="M8 6.6v3M8 11.4v.1"/></svg>';
-  const AG_ICON_COPY = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5A1.5 1.5 0 0 0 9 1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></svg>';
-  const AG_ICON_OK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg>';
-  let agTab = "start", agCopies = [];
-  const escH = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  function renderAgent() {
-    const A = I18N[LANG].ag, base = siteBase(), llms = base + "llms.txt";
-    const copyBtn = (text, label) => {
-      agCopies.push(text);
-      return `<button class="btn sm" type="button" data-copy="${agCopies.length - 1}" data-label="${escH(label)}">${escH(label)}</button>`;
-    };
-    const copyIc = (text, label) => {
-      agCopies.push(text);
-      return `<button class="copy-ic" type="button" data-copy="${agCopies.length - 1}" data-icon="1" title="${escH(label)}" aria-label="${escH(label)}">${AG_ICON_COPY}</button>`;
-    };
-    const sub = (s, v) => {
-      for (const p in v) s = s.split("{" + p + "}").join(v[p]);
-      return s;
-    };
-    agCopies = [];
-    $("#agentT").textContent = A.title;
-    $("#agentSub").textContent = A.sub;
-    $("#agentX").title = A.close;
-    $("#agentX").setAttribute("aria-label", A.close);
-    $("#tab-start").textContent = A.tabs[0];
-    $("#tab-cases").textContent = A.tabs[1];
-    $("#tab-dev").textContent = A.tabs[2];
-    const prompt = sub(A.prompt, { url: llms });
-    $("#pane-start").innerHTML = `<ol class="steps">
-      <li><div><b>${escH(A.s1)}</b><div class="prompt"><pre>${escH(prompt)}</pre><div class="prompt-f">${copyBtn(prompt, A.copyPrompt)}</div></div></div></li>
-      <li><div><b>${escH(A.s2)}</b><div class="note">${escH(A.s2n)}</div></div></li>
-      <li><div><b>${escH(A.s3)}</b><div class="note">${escH(A.s3n)}</div></div></li></ol>
-      <div class="callout">${AG_ICON_INFO}<span>${escH(A.privacy)}</span></div>`;
-    $("#pane-cases").innerHTML = `<div class="cases">${A.cases.map((c, i) => {
-      const p = CASE_PERM[i], q = c[2] + sub(A.ref, { url: llms });
-      return `<div class="case${p === "rw" ? " rw" : ""}"><div class="case-h"><b title="${escH(c[1])}">${escH(c[0])}</b><span class="tag${p === "none" ? "" : " " + p}">${escH(A.perm[p])}</span></div>
-        <div class="prompt"><pre>${escH(c[2])}</pre>${copyIc(q, A.copyQ)}</div>
-        <div class="lbl">${escH(A.does)}${escH(c[3])}</div></div>`;
-    }).join("")}</div><div class="callout w">${AG_ICON_WARN}<span>${escH(A.scaleWarn)}</span></div>`;
-    const code = `const base = "${base}";
-const { calculate, buildLink } =
-  await import(base + "calc.js");
-const prices =
-  await (await fetch(base + "prices.json")).json();
-
-const input = {
-  region: "us-east-1",
-  sizeGB: 1,              // the $7 / 2 TB bundle
-  usedGB: 3150,
-  trafficInstances: [
-    { count: 1, start: "2026-10-11T00:00Z" }
-  ]
-};
-const result = calculate(input, prices);
-// result.status, .overageCost, .recommendation …
-const link = buildLink(input, base);`;
-    const files = [["llms.txt", A.files[0]], ["prices.json", A.files[1]], ["calc.js", A.files[2]]];
-    const params = ["region", "size", "used", "forecast", "nodes"];
-    $("#pane-dev").innerHTML = `<div class="note">${escH(A.devIntro)}</div>
-      <div class="dev"><div class="dev-col">
-        <div class="files">${files.map(([n, d]) => `<div class="file"><a class="file-n" href="${base + n}" target="_blank" rel="noopener" title="${escH(base + n)}">${n} ↗</a>${copyBtn(base + n, A.copyUrl)}<span class="lbl file-m">${escH(d)}</span></div>`).join("")}</div>
-        <div class="ag-h">${escH(A.paramsH)}</div>
-        <table class="params">${params.map((p, i) => `<tr><td>${p}</td><td>${escH(A.params[i])}</td></tr>`).join("")}</table>
-      </div><div class="dev-col">
-        <div class="ag-h"><span>${escH(A.codeH)}</span>${copyBtn(code, A.copy)}</div><div class="code"><pre>${escH(code)}</pre></div>
-        <div class="note">${escH(A.more)}</div>
-        <div class="ag-links"><a href="${llms}" target="_blank" rel="noopener">llms.txt ↗</a><a href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
-      </div></div>`;
-    showAgentTab(agTab, false);
-    sizeAgent();
-  }
-  function sizeAgent() {
-    if ($("#agent").hidden) return;
-    const body = $(".ag-body"), cs = getComputedStyle(body);
-    body.style.height = "";
-    let max = 0;
-    document.querySelectorAll(".ag-body [role=tabpanel]").forEach((p) => {
-      const was = p.hidden;
-      p.hidden = false;
-      max = Math.max(max, p.offsetHeight);
-      p.hidden = was;
-    });
-    body.style.height = Math.ceil(max + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) + "px";
-    body.style.height = body.offsetHeight + "px";
-    agMore();
-  }
-  function agMore() {
-    const bd = $(".ag-body");
-    $(".dialog.ag").classList.toggle("more", bd.scrollTop + bd.clientHeight < bd.scrollHeight - 2);
-  }
-  $(".ag-body").addEventListener("scroll", agMore, { passive: true });
-  addEventListener("resize", sizeAgent);
-  function showAgentTab(id, focus) {
-    agTab = id;
-    document.querySelectorAll("#agentTabs [role=tab]").forEach((b) => {
-      const on = b.dataset.tab === id;
-      b.setAttribute("aria-selected", String(on));
-      b.tabIndex = on ? 0 : -1;
-      $("#pane-" + b.dataset.tab).hidden = !on;
-      if (on && focus) b.focus();
-    });
-    $(".ag-body").scrollTop = 0;
-    agMore();
-  }
   const tool = (id) => {
     var _a;
     const host = (_a = document.querySelector(`meta[name="${id}"]`)) == null ? void 0 : _a.content;
@@ -2458,49 +2329,6 @@ const link = buildLink(input, base);`;
   });
   $("#helpSel").addEventListener("change", (e) => showHelp(+e.target.value));
   $$("[data-hstep]").forEach((b) => b.addEventListener("click", () => showHelp(helpIdx + +b.dataset.hstep)));
-  function openAgent() {
-    $("#settings").open = false;
-    $("#agent").hidden = false;
-    sizeAgent();
-    document.documentElement.style.overflow = "hidden";
-    $("#tab-" + agTab).focus();
-  }
-  function closeAgent() {
-    $("#agent").hidden = true;
-    document.documentElement.style.overflow = "";
-    $("#agentBtn").focus();
-  }
-  $("#agentBtn").addEventListener("click", openAgent);
-  $("#agentX").addEventListener("click", closeAgent);
-  $("#agent").addEventListener("click", async (e) => {
-    if (e.target === e.currentTarget) return closeAgent();
-    const tab = e.target.closest("[role=tab]");
-    if (tab) return showAgentTab(tab.dataset.tab, false);
-    const b = e.target.closest("[data-copy]");
-    if (!b) return;
-    const ok = await copyText(agCopies[+b.dataset.copy]);
-    clearTimeout(b._t);
-    if (b.dataset.icon) {
-      b.innerHTML = ok ? AG_ICON_OK : "✕";
-      b.classList.toggle("ok", ok);
-      b._t = setTimeout(() => {
-        b.innerHTML = AG_ICON_COPY;
-        b.classList.remove("ok");
-      }, 1600);
-    } else {
-      b.textContent = ok ? t("copied") : "✕";
-      b._t = setTimeout(() => {
-        b.textContent = b.dataset.label;
-      }, 1600);
-    }
-  });
-  $("#agentTabs").addEventListener("keydown", (e) => {
-    const ids = ["start", "cases", "dev"], i = ids.indexOf(agTab);
-    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-      e.preventDefault();
-      showAgentTab(ids[(i + (e.key === "ArrowRight" ? 1 : 2)) % 3], true);
-    }
-  });
   full();
   setInterval(refresh, 6e4);
 })();

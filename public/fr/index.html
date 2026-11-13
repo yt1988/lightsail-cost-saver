@@ -76,7 +76,7 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.909c54a5f9.js"></script>
+<script defer src="../assets/js/app.155f07cc5d.js"></script>
 <!-- APP:END -->
 <style>
 /* CSS:BEGIN */
@@ -562,85 +562,6 @@ input[type="range"] { width: 100%; accent-color: var(--sel); }
 .dialog h3 { margin: 0; font-size: 15px; }
 .dialog .btns { justify-content: flex-end; }
 
-/* agent dialog: centered on desktop, bottom sheet on phones */
-/* fixed top; the body is sized to the tallest tab (sizeAgent), so switching tabs never moves or resizes the dialog.
-   It only scrolls when the viewport is too short to show everything. */
-.scrim.sheet { --ag-top: clamp(16px, 16vh, 168px); align-items: start; padding-top: var(--ag-top); }
-@media (max-height: 860px) { .scrim.sheet { --ag-top: max(16px, 5vh); } }
-@media (max-height: 780px) { .scrim.sheet { --ag-top: 16px; } }
-.dialog.ag { width: min(1040px, 100%); max-height: calc(100vh - var(--ag-top) - 24px); padding: 0; gap: 0; overflow: hidden; }
-.ag-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 22px 28px 14px; }
-.ag-head h3 { font-size: 18px; }
-.ag-head .note { margin-top: 6px; font-size: 13.5px; }
-.ag-head .icon-btn { border-color: transparent; flex: none; margin: -4px -8px 0 0; }
-.ag-head .icon-btn:hover { background: var(--soft); }
-.tabs { display: flex; gap: 24px; padding: 0 28px; border-bottom: 1px solid var(--line); flex: none; }
-.tabs button { height: 40px; border: 0; background: none; padding: 0; cursor: pointer; color: var(--muted); font-weight: 500; position: relative; white-space: nowrap; }
-.tabs button:hover { color: var(--fg); }
-.tabs button[aria-selected="true"] { color: var(--fg); }
-.tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 2px; background: var(--sel); }
-.ag-body { flex: 0 1 auto; min-height: 0; overflow-y: auto; padding: 22px 28px 26px; overscroll-behavior: contain; scrollbar-width: none; }
-.ag-body::-webkit-scrollbar { display: none; }
-.dialog.ag { position: relative; }
-.dialog.ag.more::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 48px; pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--panel)); border-radius: 0 0 var(--r) var(--r); }
-.ag-body [role="tabpanel"] { display: flex; flex-direction: column; gap: 16px; }
-/* every tab fills the body (sized to the tallest); Quick start keeps its note at the bottom */
-.ag-body [role="tabpanel"] { min-height: 100%; }
-#pane-start .callout { margin-top: auto; }
-.steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 24px; counter-reset: st; }
-.steps > li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 14px; counter-increment: st; }
-.steps > li::before { content: counter(st); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--sel-soft); color: var(--sel); font: 600 12.5px var(--f-num); }
-.steps b { font-weight: 600; font-size: 14.5px; line-height: 26px; }
-.steps .note { margin-top: 4px; font-size: 13.5px; line-height: 1.65; }
-.prompt { margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); overflow: hidden; }
-.prompt pre { margin: 0; padding: 16px 18px 8px; white-space: pre-wrap; word-break: break-word; font: 13.5px/1.8 var(--f-ui); }
-.prompt-f { display: flex; justify-content: flex-end; gap: 8px; padding: 0 10px 10px; }
-.callout { display: flex; gap: 10px; padding: 12px 14px; border-radius: 10px; background: var(--soft); font-size: 13px; line-height: 1.6; color: var(--muted); }
-.callout.w { background: var(--warn-soft); color: var(--fg); }
-.callout svg { width: 15px; height: 15px; flex: none; margin-top: 3px; color: var(--muted); }
-.callout.w svg { color: var(--warn); }
-.cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.case { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
-.case-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.case-h b { font-weight: 600; font-size: 14.5px; }
-.tag { font-size: 12px; height: 20px; padding: 0 8px; border-radius: 10px; display: inline-flex; align-items: center; white-space: nowrap; background: var(--sel-soft); color: var(--sel); }
-.tag.ro { background: var(--warn-soft); color: var(--warn); }
-.tag.rw { background: var(--bad-soft); color: var(--bad); }
-.case .lbl { font-size: 12px; line-height: 1.55; }
-.case .prompt { margin-top: 0; flex: 1; position: relative; border-radius: 10px; }
-.case .prompt pre { padding: 9px 40px 9px 12px; font-size: 12.5px; line-height: 1.6; }
-.copy-ic { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 7px;
-  background: var(--panel); color: var(--muted); cursor: pointer; padding: 0; }
-.copy-ic:hover { color: var(--fg); border-color: var(--muted); }
-.copy-ic svg { width: 14px; height: 14px; }
-.copy-ic.ok { color: var(--sel); border-color: var(--sel); }
-.case.rw { border-color: color-mix(in srgb, var(--bad) 45%, var(--line)); }
-.dev { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 24px; align-items: start; }
-.dev-col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-.dev-col + .dev-col .ag-h { margin-top: 0; }
-.files { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-.file { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding: 12px 14px; }
-.file-m { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.file + .file { border-top: 1px solid var(--line); }
-.file .file-n { font: 600 13px var(--f-num); color: var(--fg); text-decoration: none; justify-self: start; }
-.file .file-n:hover { color: var(--sel); }
-.file .lbl { font-size: 12.5px; }
-.code { border-radius: 12px; background: var(--soft); border: 1px solid var(--line); }
-.code pre { margin: 0; padding: 14px 16px; overflow-x: auto; font: 12px/1.65 var(--f-num); }
-.ag-h { font-size: 13px; font-weight: 600; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 28px; }
-.params { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-.params td { padding: 7px 0; border-top: 1px solid var(--line); vertical-align: top; line-height: 1.5; }
-.params td:first-child { width: 80px; font: 500 12px var(--f-num); padding-top: 8px; }
-.params tr:first-child td { border-top: 0; }
-.ag-links { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; }
-.ag-links a { color: var(--sel); text-decoration: none; }
-.ag-links a:hover { text-decoration: underline; }
-@media (max-width: 900px) {
-  .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .dev { grid-template-columns: minmax(0, 1fr); }
-}
-
 /* rules */
 /* help: questions on the left, one answer at a time on the right; a picker with previous / next on phones */
 .dialog.help { width: min(860px, 100%); height: min(470px, calc(100vh - 32px)); padding: 0; gap: 0; overflow: hidden; }
@@ -688,12 +609,6 @@ footer a:hover { color: var(--fg); }
 @media (max-width: 560px) {
   .tool-btn { width: 34px; padding: 0; justify-content: center; }
   .tool-btn span { display: none; }
-  .scrim.sheet { align-items: end; padding: 0; }
-  .ag-head { padding: 20px 20px 14px; }
-  .tabs { padding: 0 20px; gap: 20px; }
-  .ag-body { padding: 20px 20px 24px; }
-  .dialog.ag { width: 100%; max-height: 88vh; max-height: 88dvh; border-radius: 16px 16px 0 0; border-bottom: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
-  .cases { grid-template-columns: minmax(0, 1fr); }
   .brand-row { flex-wrap: wrap; gap: 12px; }
   .brand-row h1 { white-space: normal; }
   .band { flex-wrap: wrap; }
@@ -742,7 +657,6 @@ footer a:hover { color: var(--fg); }
       <p class="tagline" data-i="tagline">Les instances Lightsail du même forfait dans la même région partagent un quota de transfert. Voyez si vous allez le dépasser ce mois-ci et combien d’instances bon marché ajouter pour l’éviter.</p>
     </div>
     <div class="tools">
-      <button class="tool-btn" id="agentBtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M7 1.8l1.3 3.9 3.9 1.3-3.9 1.3L7 12.2 5.7 8.3 1.8 7l3.9-1.3z"/><path d="M12.5 10.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/></svg><span data-i="agent">Utiliser avec l’IA</span></button>
       <label class="sel" id="langWrap">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c2 2 2 10.4 0 12.4M8 1.8c-2 2-2 10.4 0 12.4"/></svg>
         <select id="lang"><!-- LANGOPTS:BEGIN -->
@@ -750,7 +664,7 @@ footer a:hover { color: var(--fg); }
 <!-- LANGOPTS:END --></select>
       </label>
       <button class="icon-btn" id="helpBtn" type="button" aria-haspopup="dialog" aria-controls="help"><span class="sr" data-i="rules">Règles de facturation</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4M8 11.3v.1"/></svg></button>
-      <a class="icon-btn" id="ghBtn" data-ia="gh" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="Voir le code sur GitHub" aria-label="Voir le code sur GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <a class="icon-btn gh" id="ghBtn" data-ia="gh" href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer" title="Voir le code sur GitHub" aria-label="Voir le code sur GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
       <details class="menu" id="settings">
         <summary class="icon-btn" id="settingsBtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h2M7 12h7"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="5.5" cy="12" r="1.6"/></svg></summary>
         <div class="pop">
@@ -949,24 +863,5 @@ En ajouter 1 maintenant : +429 GB de quota · $1.05 (au prorata jusqu’à la f
   </div>
 </div>
 
-<!-- how to use the calculator from an AI agent; tab contents are filled per language by renderAgent() -->
-<div class="scrim sheet" id="agent" hidden>
-  <div class="dialog ag" role="dialog" aria-modal="true" aria-labelledby="agentT">
-    <div class="ag-head">
-      <div><h3 id="agentT"></h3><div class="note" id="agentSub"></div></div>
-      <button class="icon-btn" id="agentX" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
-    </div>
-    <div class="tabs" role="tablist" id="agentTabs">
-      <button type="button" role="tab" data-tab="start" id="tab-start" aria-controls="pane-start"></button>
-      <button type="button" role="tab" data-tab="cases" id="tab-cases" aria-controls="pane-cases"></button>
-      <button type="button" role="tab" data-tab="dev" id="tab-dev" aria-controls="pane-dev"></button>
-    </div>
-    <div class="ag-body">
-      <div role="tabpanel" id="pane-start" aria-labelledby="tab-start"></div>
-      <div role="tabpanel" id="pane-cases" aria-labelledby="tab-cases" hidden></div>
-      <div role="tabpanel" id="pane-dev" aria-labelledby="tab-dev" hidden></div>
-    </div>
-  </div>
-</div>
 </body>
 </html>
