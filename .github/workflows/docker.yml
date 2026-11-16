@@ -23,7 +23,7 @@ jobs:
         if: env.HAS_CREDS != 'true'
         run: echo "::warning::Add a DOCKERHUB_TOKEN repository secret (Docker Hub access token) to publish the image."
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         if: env.HAS_CREDS == 'true'
 
       - uses: docker/setup-qemu-action@v3
