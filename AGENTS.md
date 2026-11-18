@@ -83,3 +83,8 @@ The cross-links to other tools (Me2Cloud, Cloud Cost Planner) only appear when t
 - Text files use LF line endings (`.gitattributes`).
 
 1ms.dog's operations notes are in the private repository 1ms-shell.
+
+## 提交说明
+
+- 用英文，一句话说清改了什么。
+- 引用站内 issue 时只写 `#<数字>`，不要写 `yt1988/<私有仓库>#<数字>`，也不要写出私有仓库的名字；公开仓库的历史里不该出现内部仓库。
