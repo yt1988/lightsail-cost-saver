@@ -76,7 +76,7 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- APP:BEGIN (written by scripts/build.mjs) -->
-<script defer src="../assets/js/app.155f07cc5d.js"></script>
+<script defer src="../assets/js/app.583fe905b4.js"></script>
 <!-- APP:END -->
 <style>
 /* CSS:BEGIN */
@@ -301,6 +301,11 @@ h2 { font-size: var(--fs-title); font-weight: 700; }
 @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url(../assets/fonts/geist-mono-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
 @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url(../assets/fonts/geist-mono-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 html { scrollbar-gutter: stable; }
+/* Skip link: first in the body, out of sight until it gets focus. Fixed, so it never takes part in the layout
+   (nothing moves at 375px); #main carries tabindex="-1" so the jump also moves keyboard focus there. */
+.skip { position: fixed; top: 8px; left: 8px; z-index: 60; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--fg); font-size: 13px; font-weight: 600; text-decoration: none; transform: translateY(-200%); }
+.skip:focus { transform: none; }
+main:focus { outline: none; }
 /* Layout: toolbar + tagline, then the pool (what you read) left and the fleet (what you set) right, rules below; one column on phones. */
 
 /* Dark (Supabase-style): charcoal surfaces, hairline borders, one emerald shared by data, primary buttons and selection. */
@@ -643,6 +648,7 @@ footer a:hover { color: var(--fg); }
 </style>
 </head>
 <body>
+<a class="skip" href="#main" data-i="skip">Ir para o conteúdo principal</a>
 <div class="app">
   <header class="top">
     <div class="brand">
@@ -700,6 +706,7 @@ footer a:hover { color: var(--fg); }
     </div>
   </header>
 
+  <main id="main" tabindex="-1">
   <div class="banner" id="linkBanner" hidden>
     <span data-i="linkLoaded">A configuração do link foi carregada. Seus dados anteriores estão salvos e podem ser restaurados.</span>
     <button class="btn sm" id="linkUndo" type="button" data-i="undo">Restaurar meus dados</button>
@@ -803,6 +810,7 @@ Adicionar 1 agora: +429 GB de franquia · $1.05 (proporcional até o fim do mês
       </div>
     </section>
   </div>
+  </main>
 
   <footer><span id="footTxt">Preços conferidos em 2026-10-25 · Não é uma ferramenta oficial da AWS</span> · <a href="https://github.com/yt1988/lightsail-cost-saver" target="_blank" rel="noopener noreferrer">GitHub</a>
   </footer>

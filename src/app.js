@@ -56,6 +56,7 @@
   const LANG_PATHS = {"en":"","zh-CN":"zh-cn/","zh-TW":"zh-tw/","ja":"ja/","ko":"ko/","es":"es/","fr":"fr/","de":"de/","pt":"pt/","ru":"ru/"};
   const I18N = {
     "zh-CN": {
+      skip: "跳到主要内容",
       seoTitle: "AWS Lightsail 流量计算器 · 预测超额费用，算出最省钱的加机方案", ogSub: "这个月会不会超额？加几台实例最省钱？",
       name: "AWS Lightsail 省钱计算器", tagline: "同地区、同套餐的 Lightsail 实例，流量额度可以合起来用。这里帮你算这个月会不会超额、加几台小实例最省钱。",
       region: "地区（只有同一地区的实例能合用额度）", lang: "语言", over: "超额", half: "额度减半",
@@ -98,6 +99,7 @@ secCalc: "计算", secData: "数据",
       foot: "价格核对于 {d} · 非 AWS 官方工具", allowLbl: "额度 {v}", rpBtn: "结果不对？", rpPre: "计算结果不对：", rpRegion: "地区", rpPrice: "价格核对"
     },
     "zh-TW": {
+      skip: "跳至主要內容",
       seoTitle: "AWS Lightsail 流量計算機｜預測超額費用，算出最省錢的加機方案", ogSub: "這個月會不會超額？加幾台執行個體最划算？",
       name: "AWS Lightsail 省錢計算機", tagline: "同區域、同方案的 Lightsail 執行個體，流量額度可以合起來用。這裡幫你算這個月會不會超額、加幾台小執行個體最划算。",
       region: "區域（只有同一區域的執行個體能合用額度）", lang: "語言", over: "超額", half: "額度減半",
@@ -140,6 +142,7 @@ secCalc: "計算", secData: "資料",
       foot: "價格核對於 {d} · 非 AWS 官方工具", allowLbl: "額度 {v}", rpBtn: "結果不對？", rpPre: "計算結果不對：", rpRegion: "區域", rpPrice: "價格核對"
     },
     en: {
+      skip: "Skip to main content",
       seoTitle: "AWS Lightsail data transfer calculator: forecast overage and cut costs", ogSub: "Will you go over your allowance this month, and what’s the cheapest fix?",
       name: "AWS Lightsail Cost Saver", tagline: "Lightsail instances with the same bundle in the same region share one data transfer allowance. See whether you’ll go over this month and how many cheap instances to add to avoid it.",
       region: "Region (allowances only combine within one region)", lang: "Language", over: "overage", half: "half allowance",
@@ -182,6 +185,7 @@ secCalc: "Calculation", secData: "Data",
       foot: "Prices checked {d} · Not an official AWS tool", allowLbl: "Allowance {v}", rpBtn: "Result wrong?", rpPre: "The result is wrong:", rpRegion: "Region", rpPrice: "Prices checked"
     },
     ja: {
+      skip: "メインコンテンツへスキップ",
       seoTitle: "AWS Lightsail 転送量計算ツール｜超過料金を予測して最安の対策を計算", ogSub: "今月は枠を超える？何台足せば一番安い？",
       name: "AWS Lightsail 節約計算機", tagline: "同じリージョン・同じプランの Lightsail インスタンスは、転送量の枠を合算して使えます。今月超過するか、何台足せば一番安いかを計算します。",
       region: "リージョン（枠を合算できるのは同じリージョン内だけ）", lang: "言語", over: "超過", half: "枠が半分",
@@ -224,6 +228,7 @@ secCalc: "計算", secData: "データ",
       foot: "価格確認 {d} · AWS 公式ツールではありません", allowLbl: "枠 {v}", rpBtn: "結果が違いますか？", rpPre: "計算結果が違います：", rpRegion: "リージョン", rpPrice: "価格確認"
     },
     ko: {
+      skip: "본문으로 건너뛰기",
       seoTitle: "AWS Lightsail 전송량 계산기: 초과 요금 예측과 가장 싼 해결책", ogSub: "이번 달 한도를 넘을까요? 몇 대를 더하면 가장 쌀까요?",
       name: "AWS Lightsail 절약 계산기", tagline: "같은 리전·같은 플랜의 Lightsail 인스턴스는 전송량 한도를 합쳐서 써요. 이번 달 초과 여부와, 몇 대를 더하면 가장 싼지 계산해 드려요.",
       region: "리전 (한도는 같은 리전 안에서만 합쳐져요)", lang: "언어", over: "초과", half: "한도 절반",
@@ -266,6 +271,7 @@ secCalc: "계산", secData: "데이터",
       foot: "가격 확인 {d} · AWS 공식 도구 아님", allowLbl: "한도 {v}", rpBtn: "결과가 다른가요?", rpPre: "계산 결과가 다릅니다:", rpRegion: "리전", rpPrice: "가격 확인"
     },
     es: {
+      skip: "Saltar al contenido principal",
       seoTitle: "Calculadora de transferencia de AWS Lightsail: prevé el exceso y ahorra", ogSub: "¿Te pasarás de la cuota este mes? ¿Cuántas instancias te conviene añadir?",
       name: "Calculadora de ahorro AWS Lightsail", tagline: "Las instancias de Lightsail con el mismo plan y en la misma región comparten la cuota de transferencia. Descubre si te pasarás este mes y cuántas instancias baratas añadir para evitarlo.",
       region: "Región (las cuotas solo se suman dentro de una región)", lang: "Idioma", over: "exceso", half: "cuota a la mitad",
@@ -308,6 +314,7 @@ secCalc: "Cálculo", secData: "Datos",
       foot: "Precios revisados {d} · No es una herramienta oficial de AWS", allowLbl: "Cuota {v}", rpBtn: "¿El resultado no cuadra?", rpPre: "El resultado no cuadra:", rpRegion: "Región", rpPrice: "Precios verificados"
     },
     fr: {
+      skip: "Aller au contenu principal",
       seoTitle: "Calculateur de transfert AWS Lightsail : anticipez le dépassement et payez moins", ogSub: "Allez-vous dépasser votre quota ce mois-ci ? Combien d’instances ajouter ?",
       name: "Calculateur d’économies AWS Lightsail", tagline: "Les instances Lightsail du même forfait dans la même région partagent un quota de transfert. Voyez si vous allez le dépasser ce mois-ci et combien d’instances bon marché ajouter pour l’éviter.",
       region: "Région (les quotas ne se cumulent qu’au sein d’une région)", lang: "Langue", over: "dépassement", half: "quota divisé par deux",
@@ -350,6 +357,7 @@ secCalc: "Calcul", secData: "Données",
       foot: "Tarifs vérifiés {d} · Outil non officiel AWS", allowLbl: "Quota {v}", rpBtn: "Résultat faux ?", rpPre: "Le résultat est faux :", rpRegion: "Région", rpPrice: "Prix vérifiés"
     },
     de: {
+      skip: "Zum Hauptinhalt springen",
       seoTitle: "AWS Lightsail Traffic-Rechner: Mehrkosten vorhersagen und sparen", ogSub: "Reicht dein Traffic-Kontingent diesen Monat? Wie viele Instanzen lohnen sich?",
       name: "AWS Lightsail Sparrechner", tagline: "Lightsail-Instanzen mit demselben Tarif in derselben Region teilen sich ein Traffic-Kontingent. Sieh, ob du es diesen Monat überschreitest und wie viele günstige Instanzen das verhindern.",
       region: "Region (Kontingente werden nur innerhalb einer Region zusammengelegt)", lang: "Sprache", over: "Überschreitung", half: "halbes Kontingent",
@@ -392,6 +400,7 @@ secCalc: "Berechnung", secData: "Daten",
       foot: "Preise geprüft {d} · Kein offizielles AWS-Tool", allowLbl: "Kontingent {v}", rpBtn: "Ergebnis falsch?", rpPre: "Das Ergebnis stimmt nicht:", rpRegion: "Region", rpPrice: "Preise geprüft"
     },
     pt: {
+      skip: "Ir para o conteúdo principal",
       seoTitle: "Calculadora de tráfego do AWS Lightsail: preveja o excedente e economize", ogSub: "Sua franquia vai estourar este mês? Quantas instâncias vale a pena adicionar?",
       name: "Calculadora de economia AWS Lightsail", tagline: "Instâncias do Lightsail com o mesmo plano na mesma região dividem uma franquia de transferência. Veja se você vai estourar este mês e quantas instâncias baratas adicionar para evitar isso.",
       region: "Região (as franquias só se somam dentro de uma região)", lang: "Idioma", over: "excedente", half: "metade da franquia",
@@ -434,6 +443,7 @@ secCalc: "Cálculo", secData: "Dados",
       foot: "Preços conferidos em {d} · Não é uma ferramenta oficial da AWS", allowLbl: "Franquia {v}", rpBtn: "Resultado errado?", rpPre: "O resultado está errado:", rpRegion: "Região", rpPrice: "Preços verificados"
     },
     ru: {
+      skip: "Перейти к основному содержимому",
       seoTitle: "Калькулятор трафика AWS Lightsail: прогноз перерасхода и экономия", ogSub: "Хватит ли лимита трафика в этом месяце и сколько инстансов добавить?",
       name: "Калькулятор экономии AWS Lightsail", tagline: "Инстансы Lightsail на одном тарифе в одном регионе делят общий лимит трафика. Узнайте, превысите ли вы его в этом месяце и сколько дешёвых инстансов добавить, чтобы этого избежать.",
       region: "Регион (лимиты суммируются только внутри одного региона)", lang: "Язык", over: "превышение", half: "половина лимита",
