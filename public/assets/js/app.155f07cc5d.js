@@ -67,7 +67,6 @@
   const LANG_PATHS = { "en": "", "zh-CN": "zh-cn/", "zh-TW": "zh-tw/", "ja": "ja/", "ko": "ko/", "es": "es/", "fr": "fr/", "de": "de/", "pt": "pt/", "ru": "ru/" };
   const I18N = {
     "zh-CN": {
-      skip: "跳到主要内容",
       seoTitle: "AWS Lightsail 流量计算器 · 预测超额费用，算出最省钱的加机方案",
       ogSub: "这个月会不会超额？加几台实例最省钱？",
       name: "AWS Lightsail 省钱计算器",
@@ -196,7 +195,6 @@
       rpPrice: "价格核对"
     },
     "zh-TW": {
-      skip: "跳至主要內容",
       seoTitle: "AWS Lightsail 流量計算機｜預測超額費用，算出最省錢的加機方案",
       ogSub: "這個月會不會超額？加幾台執行個體最划算？",
       name: "AWS Lightsail 省錢計算機",
@@ -325,7 +323,6 @@
       rpPrice: "價格核對"
     },
     en: {
-      skip: "Skip to main content",
       seoTitle: "AWS Lightsail data transfer calculator: forecast overage and cut costs",
       ogSub: "Will you go over your allowance this month, and what’s the cheapest fix?",
       name: "AWS Lightsail Cost Saver",
@@ -453,7 +450,6 @@
       rpPrice: "Prices checked"
     },
     ja: {
-      skip: "メインコンテンツへスキップ",
       seoTitle: "AWS Lightsail 転送量計算ツール｜超過料金を予測して最安の対策を計算",
       ogSub: "今月は枠を超える？何台足せば一番安い？",
       name: "AWS Lightsail 節約計算機",
@@ -582,7 +578,6 @@
       rpPrice: "価格確認"
     },
     ko: {
-      skip: "본문으로 건너뛰기",
       seoTitle: "AWS Lightsail 전송량 계산기: 초과 요금 예측과 가장 싼 해결책",
       ogSub: "이번 달 한도를 넘을까요? 몇 대를 더하면 가장 쌀까요?",
       name: "AWS Lightsail 절약 계산기",
@@ -711,7 +706,6 @@
       rpPrice: "가격 확인"
     },
     es: {
-      skip: "Saltar al contenido principal",
       seoTitle: "Calculadora de transferencia de AWS Lightsail: prevé el exceso y ahorra",
       ogSub: "¿Te pasarás de la cuota este mes? ¿Cuántas instancias te conviene añadir?",
       name: "Calculadora de ahorro AWS Lightsail",
@@ -840,7 +834,6 @@
       rpPrice: "Precios verificados"
     },
     fr: {
-      skip: "Aller au contenu principal",
       seoTitle: "Calculateur de transfert AWS Lightsail : anticipez le dépassement et payez moins",
       ogSub: "Allez-vous dépasser votre quota ce mois-ci ? Combien d’instances ajouter ?",
       name: "Calculateur d’économies AWS Lightsail",
@@ -969,7 +962,6 @@
       rpPrice: "Prix vérifiés"
     },
     de: {
-      skip: "Zum Hauptinhalt springen",
       seoTitle: "AWS Lightsail Traffic-Rechner: Mehrkosten vorhersagen und sparen",
       ogSub: "Reicht dein Traffic-Kontingent diesen Monat? Wie viele Instanzen lohnen sich?",
       name: "AWS Lightsail Sparrechner",
@@ -1098,7 +1090,6 @@
       rpPrice: "Preise geprüft"
     },
     pt: {
-      skip: "Ir para o conteúdo principal",
       seoTitle: "Calculadora de tráfego do AWS Lightsail: preveja o excedente e economize",
       ogSub: "Sua franquia vai estourar este mês? Quantas instâncias vale a pena adicionar?",
       name: "Calculadora de economia AWS Lightsail",
@@ -1227,7 +1218,6 @@
       rpPrice: "Preços verificados"
     },
     ru: {
-      skip: "Перейти к основному содержимому",
       seoTitle: "Калькулятор трафика AWS Lightsail: прогноз перерасхода и экономия",
       ogSub: "Хватит ли лимита трафика в этом месяце и сколько инстансов добавить?",
       name: "Калькулятор экономии AWS Lightsail",

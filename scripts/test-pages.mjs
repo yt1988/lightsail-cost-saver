@@ -33,7 +33,7 @@ for (const [lang] of D.LANGS) {
     && (html.match(/<link rel="alternate" hreflang=/g) || []).length === D.LANGS.length + 1
     && html.includes(`<option value="${lang}" selected>`)
     && (html.match(/<main\b/g) || []).length === 1 && html.includes('<main id="main" tabindex="-1">')
-    && html.includes(`class="skip" href="#main" data-i="skip">${esc(L.skip)}<`);
+    && (html.match(/<h1\b/g) || []).length === 1;
   check(`/${path} is pre-rendered in ${lang}`, ok);
   // labels the script would set (data-ia) are already in this language in the HTML
   const ia = [...html.matchAll(/<[a-z]+\b[^>]*\sdata-ia="(\w+)"[^>]*>/g)];
