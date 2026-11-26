@@ -821,7 +821,9 @@ secCalc: "Расчёт", secData: "Данные",
   }
 
   function renderNodes() {
-    const xs = '<svg viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
+    // xmlns is not an attribute outerHTML can add back: Dark Reader re-loads each <svg> as a data: URI, where an SVG
+    // without it fails to decode
+    const xs = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
     $("#nodes").innerHTML = S.nodes.map(n => `
       <div class="node" data-id="${n.id}">
         <div class="node-top">

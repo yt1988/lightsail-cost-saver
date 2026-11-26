@@ -1802,7 +1802,7 @@
       <span class="p"><b>$${v4 ? b.p4 : b.p6}</b><span>${b.tb}TB</span></span><span class="u">$${costs[i].toFixed(2)}/TB</span></button>`).join("");
   }
   function renderNodes() {
-    const xs = '<svg viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
+    const xs = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
     $("#nodes").innerHTML = S.nodes.map((n) => `
       <div class="node" data-id="${n.id}">
         <div class="node-top">
